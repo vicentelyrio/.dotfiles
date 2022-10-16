@@ -1,4 +1,9 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
-brew "zsh"
+
+# cli utility 
 brew "gum"
+
+# zsh 
+brew "zsh"
+brew "antidote"
