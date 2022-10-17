@@ -10,6 +10,7 @@ require() {
 # Source dependencies
 require "interface.sh"
 require "dependencies.sh"
+require "configs.sh"
 require "bundles.sh"
 
 onStart() {

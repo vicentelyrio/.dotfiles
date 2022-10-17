@@ -10,19 +10,6 @@ nInstallCorePkg() {
   printSuccess "Core Packages successfully installed"
 }
 
-onGitConfig() {
-  if [ -z "$(git config --global --get user.email)" ]; then
-    printLine
-    printQuestion "Git config (leave blank to skip)" 
-
-    NAME=$(gum input --placeholder "Your github username")  
-    EMAIL=$(gum input --placeholder "Your github email")  
-
-    test -n "$NAME" && git config --global user.name "$NAME"
-    test -n "$EMAIL" && git config --global user.email "$EMAIL" 
-  fi
-}
-
 onInstallMethod() {
   printLine
   printQuestion "Select what installation method do you want" 
