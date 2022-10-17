@@ -19,7 +19,8 @@ onStart() {
   onCheckDependencies
   onInstallCorePkg
   onWelcome
-  onInstallByType
+  onGitConfig
+  onInstallMethod
 }
 
 onStart

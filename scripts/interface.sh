@@ -52,6 +52,10 @@ printText() {
   printf "\r ----------------------------------\n"
 }
 
+printLine() {
+  echo ""
+}
+
 # Dialog
 dialog() {
   while true; do
