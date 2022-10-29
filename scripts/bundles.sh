@@ -4,9 +4,9 @@ successMessage() {
   printSuccess "$1 install selected" 
 }
 
-nInstallCorePkg() {
+onInstallCorePkg() {
   printWarning "Installing core packages"
-  brew bundle --file ../.Brewfile.core 
+  brew bundle --file ./.Brewfile.core 
   printSuccess "Core Packages successfully installed"
 }
 
@@ -39,10 +39,17 @@ onInstallByProfile() {
   ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " --no-limit "$DOTFILES" "$DEVELOPMENT" "$GAMEDEV" "$DESIGN")
 
   case $ACTIONS in
-    $DOTFILES ) successMessage "$ACTIONS"; onInstallFull;;
+    $DOTFILES ) successMessage "$ACTIONS"; onInstallDotfiles;;
     $DEVELOPMENT) successMessage "$ACTIONS"; onInstallByProfile;; 
     $GAMEDEV) successMessage "$ACTIONS"; onInstallCustom;;
     $DESIGN) successMessage "$ACTIONS"; onInstallCustom;;
     * ) printError "aborted";;
   esac
+}
+
+onInstallDotfiles() {
+  printWarning "Installing Terminal Utilities"
+  brew bundle --file ./.Brewfile.terminal
+  $(brew --prefix)/opt/fzf/install
+  printSuccess "Terminal Utilities successfully installed"
 }

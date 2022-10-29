@@ -10,7 +10,7 @@ require() {
 # Source dependencies
 require "interface.sh"
 require "dependencies.sh"
-require "configs.sh"
+require "gitconfig.sh"
 require "bundles.sh"
 
 onStart() {
@@ -19,8 +19,11 @@ onStart() {
   untestedOsWarning
   onCheckDependencies
   onInstallCorePkg
+
   onWelcome
-  onGitConfig
+
+  startGitConfig
+
   onInstallMethod
 }
 

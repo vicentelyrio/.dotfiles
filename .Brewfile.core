@@ -3,7 +3,3 @@ tap "homebrew/core"
 
 # cli utility 
 brew "gum"
-
-# zsh 
-brew "zsh"
-brew "antidote"

@@ -1,0 +1,11 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+
+brew "zsh"
+brew "fzf"
+brew "tree"
+brew "zoxide"
+brew "gtop"
+brew "tmux"
+brew "tmuxinator"
+

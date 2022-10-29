@@ -14,7 +14,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 onWelcome() {
-  clear;
+  # clear;
   # gum spin --spinner dot -- sleep 2
   gum style \
 	  --foreground 212 --border-foreground 212 \
