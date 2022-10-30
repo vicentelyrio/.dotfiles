@@ -10,22 +10,26 @@ require() {
 
 # Source dependencies
 source $(require "interface.sh")
-source $(require "dependencies.sh")
-source $(require "git.sh")
-source $(require "bundles.sh")
+source $(require "dependencies/dependencies.sh")
+source $(require "core/core.sh")
+source $(require "git/git.sh")
+# source $(require "pkgs/terminal/terminal.sh")
+# source $(require "bundles.sh")
 
-onStart() {
-  printMessage "booting..."
-
+main() {
   untestedOsWarning
-  checkAndInstallDependencies
+
+  installDependencies
   installCorePackages
 
-  onWelcome
+  welcome
 
   startGitConfig
 
-  onInstallMethod
+  # installTerminalPackages
+
+  # onInstallMethod
 }
 
-onStart
+main
+

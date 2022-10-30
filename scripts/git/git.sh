@@ -3,8 +3,9 @@
 # Config the main git user, used as default
 configPrimaryUser() {
   printLine
-  printMessage "Default git user (leave blank to skip)" 
-  
+  printMessage "Set your default git user (leave blank to skip)" 
+  printLine
+
   question "Your github username" "username" "git config --global user.name"
   question "Your github email" "username@email.com" "git config --global user.email"
   
@@ -18,10 +19,10 @@ configPrimaryUser() {
 # Config a secondary user, scoped by some folder in your file system
 configSecondaryUser() {
   printLine
-  printMessage "Secondary user (leave blank to skip)"
+  printMessage "Set a secondary user (leave blank to skip)"
+  printLine
 
   # SCOPE 
-  question "Scope for this user" "work" "git config --global user.name"
   local SCOPE_LABEL="Scope for this user" 
   local SCOPE_PLACEHOLDER="work"
   
@@ -31,7 +32,6 @@ configSecondaryUser() {
   test -n "$SCOPE" && printMessage "$SCOPE"
 
   # FOLDER
-  question "Specify a folder for the scoped user" "~/Sites/Acme" "git config --global user.name"
   local FOLDER_LABEL="Specify a folder for the scoped user" 
   local FOLDER_PLACEHOLDER="~/Sites/Acme"
   
@@ -60,13 +60,12 @@ configSecondaryUser() {
 
   # Create git file
   if [ "$FOLDER" ] && [ "$SCOPE" ] && [ "$NAME" ] && [ "$EMAIL" ]; then
-    FILE=".gitconfig-$SCOPE"
-    >> ~/$FILE
+    FILE="$HOME/.gitconfig-$SCOPE"
 
     git config --global includeIf."gitdir/i:$FOLDER".path "$FILE"
     git config --file "$FILE" user.name "$NAME"
     git config --file "$FILE" user.email "$EMAIL"
-    
+
     printLine
     printSuccess "$SCOPE user setup completed"
 

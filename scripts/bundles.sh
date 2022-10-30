@@ -4,12 +4,6 @@ successMessage() {
   printSuccess "$1 install selected" 
 }
 
-installCorePackages () {
-  printWarning "Installing core packages"
-  brew bundle --file ~/.dotfiles/.Brewfile.core 
-  printSuccess "Core Packages successfully installed"
-}
-
 onInstallMethod() {
   printLine
   printQuestion "Select what installation method do you want" 

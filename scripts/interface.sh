@@ -13,7 +13,7 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-onWelcome() {
+welcome() {
   # clear;
   # gum spin --spinner dot -- sleep 2
   gum style \
@@ -70,13 +70,8 @@ dialog() {
 
 # Question
 question() {
-  local LABEL="$1" 
-  local PLACEHOLDER="$2"
+  printQuestion "$1" 
   
-  printQuestion "$LABEL" 
-  
-  local OPTION=$(gum input --placeholder "$PLACEHOLDER")
-  test -n "$OPTION" && printMessage "$OPTION"
-
-  $($3 $OPTION)
+  local OPTION=$(gum input --placeholder "$2")
+  test -n "$OPTION" && printMessage "$OPTION" && $($3 $OPTION)
 }
