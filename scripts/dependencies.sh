@@ -15,12 +15,12 @@ esac
 untestedOsWarning() {
   if ! ([ $OS == "OSX" ] || [ $OS == "LINUX" ]); then
     printWarning "Untested System ($OS)"
-    printText "this script has only been tested on OS X and Ubuntu, it depends on Homebrew to install some programs which may be specific to one or another platform. Try installing Homebrew manually and perform a custom install."
+    printText "This script has only been tested on OS X and Ubuntu. It depends on Homebrew to install some programs which may be specific to one or another platform. Try installing Homebrew following the official doc and perform a custom install to manually select what you want."
     dialog "Do you wish to try it anyway?"
   fi
 }
 
-onInstallBrew() {
+installHomebrew() {
   if [ $OS == "LINUX" ]; then
     printWarning "Installing Linux dependencies"
     sudo apt update
@@ -42,7 +42,7 @@ onInstallBrew() {
   printSuccess "Homebrew successfully installed"
 }
 
-onCheckDependencies() {
+checkAndInstallDependencies() {
   printWarning "Checking for required dependencies..."
 
   if ! command -v brew &> /dev/null; then
@@ -50,7 +50,7 @@ onCheckDependencies() {
     printError "Homebrew cannot be found"
     printText "Homebrew is a required dependency, please install to continue"
     dialog "Do you wish to install Homebrew and its dependencies?"
-    onInstallBrew
+    installHomebrew
   fi
 
   printSuccess "Homebrew is ready"

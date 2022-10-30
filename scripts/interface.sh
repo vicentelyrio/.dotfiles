@@ -68,3 +68,15 @@ dialog() {
   done
 }
 
+# Question
+question() {
+  local LABEL="$1" 
+  local PLACEHOLDER="$2"
+  
+  printQuestion "$LABEL" 
+  
+  local OPTION=$(gum input --placeholder "$PLACEHOLDER")
+  test -n "$OPTION" && printMessage "$OPTION"
+
+  $($3 $OPTION)
+}

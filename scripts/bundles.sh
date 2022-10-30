@@ -4,9 +4,9 @@ successMessage() {
   printSuccess "$1 install selected" 
 }
 
-onInstallCorePkg() {
+installCorePackages () {
   printWarning "Installing core packages"
-  brew bundle --file ./.Brewfile.core 
+  brew bundle --file ~/.dotfiles/.Brewfile.core 
   printSuccess "Core Packages successfully installed"
 }
 

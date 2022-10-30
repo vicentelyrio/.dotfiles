@@ -3,22 +3,23 @@
 require() {
   local DIR="${BASH_SOURCE%/*}"
   if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
-  chmod +x "$DIR/$1"
-  source "$DIR/$1"
+  local FILE="$DIR/$1"
+  chmod +x $FILE 
+  echo $FILE
 }
 
 # Source dependencies
-require "interface.sh"
-require "dependencies.sh"
-require "gitconfig.sh"
-require "bundles.sh"
+source $(require "interface.sh")
+source $(require "dependencies.sh")
+source $(require "git.sh")
+source $(require "bundles.sh")
 
 onStart() {
   printMessage "booting..."
 
   untestedOsWarning
-  onCheckDependencies
-  onInstallCorePkg
+  checkAndInstallDependencies
+  installCorePackages
 
   onWelcome
 

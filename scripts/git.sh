@@ -4,24 +4,9 @@
 configPrimaryUser() {
   printLine
   printMessage "Default git user (leave blank to skip)" 
-
-  # USERNAME
-  local NAME_LABEL="Your github username" 
-  local NAME_PLACEHOLDER="username"
   
-  printQuestion "$NAME_LABEL" 
-  
-  local NAME=$(gum input --placeholder "$NAME_PLACEHOLDER")
-  test -n "$NAME" && git config --global user.name "$NAME" && printMessage "$NAME"
-
-  # EMAIL
-  local EMAIL_LABEL="Your github email" 
-  local EMAIL_PLACEHOLDER="username@email.com"
-  
-  printQuestion "$EMAIL_LABEL"
-
-  EMAIL=$(gum input --placeholder "$EMAIL_PLACEHOLDER")  
-  test -n "$EMAIL" && git config --global user.email "$EMAIL" && printMessage "$EMAIL"
+  question "Your github username" "username" "git config --global user.name"
+  question "Your github email" "username@email.com" "git config --global user.email"
   
   printLine
   printSuccess "Default user setup completed"
@@ -36,6 +21,7 @@ configSecondaryUser() {
   printMessage "Secondary user (leave blank to skip)"
 
   # SCOPE 
+  question "Scope for this user" "work" "git config --global user.name"
   local SCOPE_LABEL="Scope for this user" 
   local SCOPE_PLACEHOLDER="work"
   
@@ -45,6 +31,7 @@ configSecondaryUser() {
   test -n "$SCOPE" && printMessage "$SCOPE"
 
   # FOLDER
+  question "Specify a folder for the scoped user" "~/Sites/Acme" "git config --global user.name"
   local FOLDER_LABEL="Specify a folder for the scoped user" 
   local FOLDER_PLACEHOLDER="~/Sites/Acme"
   
@@ -59,7 +46,7 @@ configSecondaryUser() {
   
   printQuestion "$NAME_LABEL" 
   
-  NAME=$(gum input --placeholder "$NAME_PLACEHOLDER")  
+  NAME=$(gum input --placeholder "$NAME_PLACEHOLDER") 
   test -n "$NAME" && printMessage "$NAME"
   
   # EMAIL
@@ -82,6 +69,8 @@ configSecondaryUser() {
     
     printLine
     printSuccess "$SCOPE user setup completed"
+
+    # Start again
     startSecondaryUserConfig
   fi
 }
@@ -102,7 +91,7 @@ startSecondaryUserConfig() {
 
 startGitConfig() {
   if [ "$(git config --global --get user.email)" ]; then
-    printWarning "You already have an github user configured"
+    printWarning "You already have an github user configured [$(git config --get user.name) - $(git config --get user.email)]"
     printQuestion "Do you want to configure it anyway?" 
 
     YES="Yes"
