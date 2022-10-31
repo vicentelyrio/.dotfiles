@@ -41,9 +41,9 @@ onInstallByProfile() {
   esac
 }
 
-onInstallDotfiles() {
-  printWarning "Installing Terminal Utilities"
-  brew bundle --file ./.Brewfile.terminal
-  $(brew --prefix)/opt/fzf/install
-  printSuccess "Terminal Utilities successfully installed"
-}
+# onInstallDotfiles() {
+#   printWarning "Installing Terminal Utilities"
+#   brew bundle --file ./.Brewfile.terminal
+#   $(brew --prefix)/opt/fzf/install
+#   printSuccess "Terminal Utilities successfully installed"
+# }

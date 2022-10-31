@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
+NAME="Terminal Utilities"
+
 installTerminalPackages () {
   printLine
-  printMessage "Installing core packages"
+  printMessage "Installing $NAME"
 
   brew bundle --file $(require "pkgs/terminal/Brewfile")
 
   printLine
-  printSuccess "Core Packages successfully installed"
+  printSuccess "$NAME successfully installed"
 }
 
