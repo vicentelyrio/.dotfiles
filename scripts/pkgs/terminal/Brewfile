@@ -1,12 +1,11 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 
-/* brew "fzf" */
-/* brew "diff-so-fancy" */
-/* brew "bat" */
-/* brew "tree" */
-/* brew "zoxide" */
-/* brew "tmux" */
-/* brew "tmuxinator" */
-/* brew "neofetch" */
-/* brew "gtop" */
+brew "diff-so-fancy"
+brew "bat"
+brew "tree"
+brew "zoxide"
+brew "tmux"
+brew "tmuxinator"
+brew "neofetch"
+brew "gtop"

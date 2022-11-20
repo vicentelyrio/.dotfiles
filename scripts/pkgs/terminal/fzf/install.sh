@@ -2,24 +2,24 @@
 
 set -e
 
-install_zsh () {
-  local NAME="ZSH"
-  local FOLDER="pkgs/terminal/zsh"
-  local FILE=".zshrc"
+install_fzf () {
+  local NAME="FZF"
+  local FOLDER="pkgs/terminal/fzf"
+  local FILE=".fzf.zsh"
   local HOMEFOLDER=${ZDOTDIR:-${HOME}}
   local DESTFILE="${HOMEFOLDER}/${FILE}"
 
   printLine
   printMessage "Installing $NAME"
-  
+ 
+  # install fzf
   brew bundle --file $(require "$FOLDER/Brewfile")
 
-  if [ -f ${DESTFILE} ]; then
-    printMessage "Backup current $FILE"
-    mv ${DESTFILE} "${DESTFILE}.bkp.dotfiles"
-  fi
+  # install autocompletion
+  $(brew --prefix)/opt/fzf/install --all
 
-  cp $(require "${FOLDER}/${FILE}") ${DESTFILE}
+  # install theme
+  cat $(require "${FOLDER}/${FILE}") >> ${DESTFILE}
 
   printLine
   printSuccess "$NAME successfully installed"
