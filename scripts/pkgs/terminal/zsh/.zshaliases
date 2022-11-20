@@ -1,0 +1,12 @@
+# KEYBINDS
+
+bindkey -e
+# Option-Right
+bindkey '\e\e[C' forward-word
+# Option-Left
+bindkey '\e\e[D' backward-word
+
+# Cmd-Left
+bindkey "^[[H" beginning-of-line
+# Cmd-Right
+bindkey "^[[F" end-of-line

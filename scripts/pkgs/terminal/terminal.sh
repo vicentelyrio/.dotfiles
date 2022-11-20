@@ -4,6 +4,7 @@ set -e
 
 source $(require "pkgs/terminal/zsh/install.sh")
 source $(require "pkgs/terminal/fzf/install.sh")
+source $(require "pkgs/terminal/bat/install.sh")
 
 installTerminalPackages () {
   local NAME="Terminal Utilities"
@@ -19,8 +20,9 @@ installTerminalPackages () {
     printLine
     printMessage "Installing $NAME"
     
-    # install_zsh
+    install_zsh
     install_fzf
+    install_bat
 
     printLine
     printSuccess "$NAME successfully installed"

@@ -1,3 +1,6 @@
+# Source aliases
+source ${ZDOTDIR:-${HOME}}/.zshaliases
+
 # ZCOMET - zsh Plugin manager
 if [[ ! -f ${ZDOTDIR:-${HOME}}/.config/.zcomet/bin/zcomet.zsh ]]; then
   command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.config/.zcomet/bin

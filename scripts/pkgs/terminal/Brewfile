@@ -2,7 +2,6 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 
 brew "diff-so-fancy"
-brew "bat"
 brew "tree"
 brew "zoxide"
 brew "tmux"

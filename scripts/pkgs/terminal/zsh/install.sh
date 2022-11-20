@@ -20,7 +20,8 @@ install_zsh () {
   fi
 
   cp $(require "${FOLDER}/${FILE}") ${DESTFILE}
-
+  cp $(require "${FOLDER}/.zshaliases") "${HOMEFOLDER}/.zshaliases"
+  
   printLine
   printSuccess "$NAME successfully installed"
 }
