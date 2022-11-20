@@ -22,31 +22,63 @@ untestedOsWarning() {
   fi
 }
 
-# Install Homebrew and source
-installHomebrew() {
-  if [ $OS == "LINUX" ]; then
+# Install OSX Deps
+installOsxDeps() {
+  if [xcode-select -p 1>/dev/null;echo $? > 0]; then
     printLine
-    printMessage "Installing Linux dependencies"
-
-    sudo apt update
-    sudo apt-get install build-essential procps curl file git -y
-
-    printSuccess "Linux dependencies successfully installed"
+    printMessage "Installing OSX dependencies"
+    xcode-select --install
+    printSuccess "OSX dependencies successfully installed"
   fi
+}
 
+#Install Linux Deps
+installLinuxDeps() {
+  printLine
+  printMessage "Installing Linux dependencies"
+
+  sudo apt update
+  sudo apt-get install build-essential procps curl file git -y
+
+  printSuccess "Linux dependencies successfully installed"
+}
+
+# Install Brew
+installBrew() {
   printLine
   printMessage "Installing Homebrew"
   
-  # install Homebrew for linux/osx
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
- 
-  # source brew
-  test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-  test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
-  eval "$($(brew --prefix)/bin/brew shellenv)" 
 
   printSuccess "Homebrew successfully installed"
+}
+
+# Source Brew with Linux
+sourceBrewLinux() {
+  test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+  test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
+  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
+}
+
+# source Brew with ZSH
+sourceBrewZsh() {
+  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zprofile
+  eval "$($(brew --prefix)/bin/brew shellenv)" 
+}
+
+# Install Steps
+installHomebrew() {
+  if [ $OS == "OSX" ]; then
+    installOsxDeps
+    installBrew
+    sourceBrewZsh
+  else
+    installLinuxDeps
+    installBrew
+    sourceBrewLinux
+    sourceBrewZsh
+  fi
 }
 
 # Check for dependencies and ask for install permission
@@ -55,11 +87,12 @@ installDependencies() {
   printMessage "Checking for required dependencies..."
 
   if ! command -v brew &> /dev/null; then
-    echo ""
+    printLine
     printError "Homebrew cannot be found"
     printText "Homebrew is a required dependency, please install to continue"
     dialog "Do you wish to install Homebrew and its dependencies?"
     installHomebrew
   fi
+
   printSuccess "All dependencies installed"
 }
