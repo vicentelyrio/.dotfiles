@@ -9,7 +9,10 @@ install_gtop() {
   printLine
   printMessage "Installing $NAME"
   
-  brew bundle --file $(require "$FOLDER/Brewfile")
+  # install
+  if ! command -v gtop --version &> /dev/null; then
+    brew bundle --file $(require "$FOLDER/Brewfile")
+  fi
 
   printLine
   printSuccess "$NAME successfully installed"

@@ -7,12 +7,14 @@ install_bat () {
   local FOLDER="pkgs/terminal/bat"
   local FILE=".zshaliases"
   local HOMEFOLDER=${ZDOTDIR:-${HOME}}
-  local DESTFILE="${HOMEFOLDER}/${FILE}"
+  local DESTFILE="${HOMEFOLDER}/.config/.zsh/${FILE}"
 
   printLine
   printMessage "Installing $NAME"
   
-  brew bundle --file $(require "$FOLDER/Brewfile")
+  if ! command -v bat --version &> /dev/null; then
+    brew bundle --file $(require "$FOLDER/Brewfile")
+  fi
 
   cat $(require "${FOLDER}/${FILE}") >> ${DESTFILE}
 

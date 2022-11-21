@@ -13,10 +13,12 @@ install_fzf () {
   printMessage "Installing $NAME"
  
   # install fzf
-  brew bundle --file $(require "$FOLDER/Brewfile")
+  if ! command -v fzf --version &> /dev/null; then
+    brew bundle --file $(require "$FOLDER/Brewfile")
+  fi
 
   # install autocompletion
-  $(brew --prefix)/opt/fzf/install --all
+  $(brew --prefix)/opt/fzf/install --all --no-bash
 
   # install theme
   cat $(require "${FOLDER}/${FILE}") >> ${DESTFILE}

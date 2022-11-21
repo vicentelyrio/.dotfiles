@@ -15,17 +15,16 @@ install_starship () {
   printMessage "Installing $NAME"
   
   # install
-  if ! command -v starship -V &> /dev/null; then
+  if ! command -v starship --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
   fi
 
-  # install config 
   if ! grep -q "$CODE" "$ZPROFILE"; then
-    echo "eval $CODE" >> "$ZPROFILE" 
+    echo "eval \"$CODE"\" >> "$ZPROFILE" 
   fi
 
   # copy settings 
-  cat $(require "${FOLDER}/${FILE}") >> ${DESTFILE}
+  cp $(require "${FOLDER}/${FILE}") ${DESTFILE}
 
   printLine
   printSuccess "$NAME successfully installed"

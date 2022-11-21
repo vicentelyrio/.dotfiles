@@ -9,7 +9,10 @@ install_neofetch() {
   printLine
   printMessage "Installing $NAME"
   
-  brew bundle --file $(require "$FOLDER/Brewfile")
+  # install 
+  if ! command -v neofetch --version &> /dev/null; then
+    brew bundle --file $(require "$FOLDER/Brewfile")
+  fi
 
   printLine
   printSuccess "$NAME successfully installed"
