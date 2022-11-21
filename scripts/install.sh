@@ -12,21 +12,21 @@ require() {
 
 # Source dependencies
 source $(require "interface.sh")
-source $(require "dependencies/dependencies.sh")
+source $(require "deps/dependencies.sh")
 source $(require "core/core.sh")
 source $(require "git/git.sh")
 source $(require "pkgs/terminal/terminal.sh")
 # source $(require "bundles.sh")
 
 main() {
-  untestedOsWarning
+  # untestedOsWarning
 
-  installDependencies
-  installCorePackages
+  # installDependencies
+  # installCorePackages
 
-  welcome
+  # welcome
 
-  startGitConfig
+  # startGitConfig
 
   installTerminalPackages
 

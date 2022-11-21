@@ -1,6 +1,0 @@
-tap "homebrew/bundle"
-tap "homebrew/core"
-
-brew "diff-so-fancy"
-brew "tmux"
-brew "tmuxinator"

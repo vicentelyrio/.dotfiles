@@ -8,13 +8,6 @@ fi
 
 source ${ZDOTDIR:-${HOME}}/.config/.zcomet/bin/zcomet.zsh
 
-# zsh highlight theme 
-if [[ ! -f ${ZDOTDIR:-${HOME}}/.config/.zsh/zsh-sh-theme ]]; then
-  command git clone https://github.com/catppuccin/zsh-syntax-highlighting.git ${ZDOTDIR:-${HOME}}/.config/.zsh/zsh-sh-theme
-fi
-
-source ${ZDOTDIR:-${HOME}}/.config/.zsh/zsh-sh-theme/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
-
 # Plugins
 zcomet load zsh-users/zsh-syntax-highlighting   # syntax highlight
 zcomet load zsh-users/zsh-autosuggestions       # suggestions
