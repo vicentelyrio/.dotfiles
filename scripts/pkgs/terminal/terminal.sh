@@ -9,6 +9,7 @@ source $(require "pkgs/terminal/tree/install.sh")
 source $(require "pkgs/terminal/gtop/install.sh")
 source $(require "pkgs/terminal/neofetch/install.sh")
 source $(require "pkgs/terminal/zoxide/install.sh")
+source $(require "pkgs/terminal/ack/install.sh")
 
 installTerminalPackages () {
   local NAME="Terminal Utilities"
@@ -31,6 +32,7 @@ installTerminalPackages () {
     install_gtop
     install_neofetch
     install_zoxide
+    install_ack
 
     printLine
     printSuccess "$NAME successfully installed"

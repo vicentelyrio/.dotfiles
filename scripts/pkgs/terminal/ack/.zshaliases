@@ -1,0 +1,3 @@
+
+# ACK alias 
+alias ack="ack $1 --sort-files --color"
