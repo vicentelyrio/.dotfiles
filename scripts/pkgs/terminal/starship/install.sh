@@ -8,7 +8,7 @@ install_starship () {
   local FILE="starship.toml"
   local HOMEFOLDER=${ZDOTDIR:-${HOME}}
   local DESTFILE="${HOMEFOLDER}/.config/${FILE}"
-  local ZPROFILE="${HOMEFOLDER}/.zprofile"
+  local ZSHRC="${HOMEFOLDER}/.zshrc"
   local CODE="\$(starship init zsh)"
 
   printLine
@@ -19,8 +19,8 @@ install_starship () {
     brew bundle --file $(require "$FOLDER/Brewfile")
   fi
 
-  if ! grep -q "$CODE" "$ZPROFILE"; then
-    echo "eval \"$CODE"\" >> "$ZPROFILE" 
+  if ! grep -q "$CODE" "$ZSHRC"; then
+    echo "eval \"$CODE"\" >> "$ZSHRC" 
   fi
 
   # copy settings 

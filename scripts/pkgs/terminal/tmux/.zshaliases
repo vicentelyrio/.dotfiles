@@ -1,12 +1,9 @@
-# KEYBINDS
+# tmux / tmuxinator
+alias tk="tmux kill-server"
+alias tks="tmux kill-session -t $1"
+alias tls="tmux ls"
+alias ta="tmux a"
+alias tas="tmux a -t $1"
+alias ts="tmuxinator start $1"
+alias tn="tmuxinator new $1"
 
-bindkey -e
-# Option-Right
-bindkey '\e\e[C' forward-word
-# Option-Left
-bindkey '\e\e[D' backward-word
-
-# Cmd-Left
-bindkey "^[[H" beginning-of-line
-# Cmd-Right
-bindkey "^[[F" end-of-line

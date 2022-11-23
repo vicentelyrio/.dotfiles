@@ -5,9 +5,10 @@ set -e
 install_bat () {
   local NAME="BAT"
   local FOLDER="pkgs/terminal/bat"
-  local FILE=".zshaliases"
   local HOMEFOLDER=${ZDOTDIR:-${HOME}}
-  local DESTFILE="${HOMEFOLDER}/.config/.zsh/${FILE}"
+  local ALIASESFILE=".zshaliases"
+  local ZSHALIASES="${HOMEFOLDER}/.config/.zsh/${ALIASESFILE}"
+  local CODE="alias cat"
 
   printLine
   printMessage "Installing $NAME"
@@ -16,7 +17,9 @@ install_bat () {
     brew bundle --file $(require "$FOLDER/Brewfile")
   fi
 
-  cat $(require "${FOLDER}/${FILE}") >> ${DESTFILE}
+  if ! grep -q "$CODE" "$ZSHALIASES"; then
+    cat $(require "${FOLDER}/${ALIASESFILE}") >> ${ZSHALIASES}
+  fi
 
   printLine
   printSuccess "$NAME successfully installed"
