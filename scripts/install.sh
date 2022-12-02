@@ -15,7 +15,8 @@ source $(require "interface.sh")
 source $(require "deps/dependencies.sh")
 source $(require "core/core.sh")
 source $(require "git/git.sh")
-source $(require "pkgs/terminal/terminal.sh")
+source $(require "pkgs/terminal/install.sh")
+source $(require "pkgs/ide/install.sh")
 # source $(require "bundles.sh")
 
 main() {
@@ -29,6 +30,7 @@ main() {
   # startGitConfig
 
   installTerminalPackages
+  installIDEs
 
   # onInstallMethod
 }

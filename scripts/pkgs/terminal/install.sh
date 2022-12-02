@@ -11,7 +11,7 @@ source $(require "pkgs/terminal/neofetch/install.sh")
 source $(require "pkgs/terminal/zoxide/install.sh")
 source $(require "pkgs/terminal/ack/install.sh")
 source $(require "pkgs/terminal/starship/install.sh")
-# source $(require "pkgs/terminal/tmux/install.sh")
+source $(require "pkgs/terminal/tmux/install.sh")
 
 installTerminalPackages () {
   local NAME="Terminal Utilities"
@@ -36,7 +36,7 @@ installTerminalPackages () {
     install_zoxide
     install_ack
     install_starship
-    # install_tmux
+    install_tmux
 
     printLine
     printSuccess "$NAME successfully installed"

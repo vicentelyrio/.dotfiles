@@ -15,6 +15,10 @@ fi
 
 source ${ZDOTDIR:-${HOME}}/.config/.zsh/zsh-sh-theme/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
+# zsh nvm config
+export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
+
 # Plugins
 zcomet load zsh-users/zsh-syntax-highlighting   # syntax highlight
 zcomet load zsh-users/zsh-autosuggestions       # suggestions
