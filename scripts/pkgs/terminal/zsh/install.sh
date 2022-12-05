@@ -21,7 +21,7 @@ install_zsh () {
 
   if [ -f ${DESTFILE} ]; then
     printMessage "Backup current $FILE"
-    mv ${DESTFILE} "${DESTFILE}.bkp.dotfiles"
+    mv ${DESTFILE} "${DESTFILE}.dotfiles.bkp.${DATENOW}"
   fi
 
   # Create zshrc and aliases files

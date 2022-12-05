@@ -2,6 +2,20 @@
 
 set -e
 
+DATENOW="$(date +%Y-%m-%d-%H.%M.%S)"
+
+OS="unkown"
+
+case "$OSTYPE" in
+  solaris*) OS="SOLARIS" ;;
+  darwin*)  OS="OSX" ;; 
+  linux*)   OS="LINUX" ;;
+  bsd*)     OS="BSD" ;;
+  msys*)    OS="WINDOWS" ;;
+  cygwin*)  OS="WINDOWS" ;;
+  *)        OS="unknown" ;;
+esac
+
 require() {
   local DIR="${BASH_SOURCE%/*}"
   if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
@@ -17,22 +31,23 @@ source $(require "core/core.sh")
 source $(require "git/git.sh")
 source $(require "pkgs/terminal/install.sh")
 source $(require "pkgs/ide/install.sh")
+source $(require "pkgs/osx/install.sh")
+
 # source $(require "bundles.sh")
 
 main() {
-  # untestedOsWarning
+  untestedOsWarning
 
-  # installDependencies
-  # installCorePackages
+  installDependencies
+  installCorePackages
 
-  # welcome
+  welcome
 
-  # startGitConfig
+  startGitConfig
 
   installTerminalPackages
   installIDEs
-
-  # onInstallMethod
+  installOsxStuff
 }
 
 main

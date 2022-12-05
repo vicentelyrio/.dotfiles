@@ -1,17 +1,5 @@
 #!/usr/bin/env bash
 
-OS="unkown"
-
-case "$OSTYPE" in
-  solaris*) OS="SOLARIS" ;;
-  darwin*)  OS="OSX" ;; 
-  linux*)   OS="LINUX" ;;
-  bsd*)     OS="BSD" ;;
-  msys*)    OS="WINDOWS" ;;
-  cygwin*)  OS="WINDOWS" ;;
-  *)        OS="unknown" ;;
-esac
-
 # Warns user about unsuported systems
 untestedOsWarning() {
   if ! ([ $OS == "OSX" ] || [ $OS == "LINUX" ]); then

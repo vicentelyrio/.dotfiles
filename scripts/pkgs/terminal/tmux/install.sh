@@ -30,7 +30,7 @@ install_tmux () {
   # backup config
   if [ -f ${DESTFILE} ]; then
     printMessage "Backup current $FILE"
-    mv ${DESTFILE} "${DESTFILE}.bkp.dotfiles"
+    mv ${DESTFILE} "${DESTFILE}.dotfiles.bkp.${DATENOW}"
   fi
 
   # copy config
@@ -41,8 +41,8 @@ install_tmux () {
     cat $(require "${FOLDER}/${ALIASESFILE}") >> ${ZSHALIASES}
   fi
 
-  tmux source-file ~/.tmux.conf
-  command -v ~/.tmux/plugins/tpm/bin/install_plugins
+  # tmux source-file ~/.tmux.conf
+  # command -v ~/.tmux/plugins/tpm/bin/install_plugins
   
   printLine
   printSuccess "$NAME successfully installed"
