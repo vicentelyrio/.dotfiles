@@ -41,8 +41,9 @@ install_tmux () {
     cat $(require "${FOLDER}/${ALIASESFILE}") >> ${ZSHALIASES}
   fi
 
-  # tmux source-file ~/.tmux.conf
-  # command -v ~/.tmux/plugins/tpm/bin/install_plugins
+  # source tmux and install plugins
+  command -v tmux source-file ~/.tmux.conf &> /dev/null
+  command -v ~/.tmux/plugins/tpm/bin/install_plugins &> /dev/null
   
   printLine
   printSuccess "$NAME successfully installed"

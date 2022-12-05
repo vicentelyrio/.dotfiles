@@ -26,6 +26,7 @@ zcomet load zsh-users/zsh-completions           # tab completion
 zcomet load bossjones/boss-git-zsh-plugin       # git aliases 
 zcomet load lukechilds/zsh-nvm                  # nvm utilities
 zcomet load wfxr/forgit                         # git gui
+zcomet load zpm-zsh/ls                          # better ls
 
 # Compile zcomet
 zcomet compinit

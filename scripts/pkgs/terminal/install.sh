@@ -40,6 +40,8 @@ installTerminalPackages () {
     install_starship
     install_tmux
 
+    source_zsh
+
     printLine
     printSuccess "$NAME successfully installed"
   fi

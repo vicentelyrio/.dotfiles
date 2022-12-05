@@ -32,3 +32,6 @@ install_zsh () {
   printSuccess "$NAME successfully installed"
 }
 
+source_zsh () {
+  command -v source "${ZDOTDIR:-${HOME}}/.zshrc" &> /dev/null
+}

@@ -10,3 +10,7 @@ bindkey '\e\e[D' backward-word
 bindkey "^[[H" beginning-of-line
 # Cmd-Right
 bindkey "^[[F" end-of-line
+
+# cd with dots
+alias ..="cd ../"
+alias ...="cd ../../"
