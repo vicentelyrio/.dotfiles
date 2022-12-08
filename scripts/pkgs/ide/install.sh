@@ -24,4 +24,3 @@ installIDEs() {
     printSuccess "$NAME successfully installed"
   fi
 }
-

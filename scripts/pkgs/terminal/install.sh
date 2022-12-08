@@ -3,6 +3,7 @@
 set -e
 
 source $(require "pkgs/terminal/completion/install.sh")
+source $(require "pkgs/terminal/fonts/install.sh")
 source $(require "pkgs/terminal/zsh/install.sh")
 source $(require "pkgs/terminal/fzf/install.sh")
 source $(require "pkgs/terminal/bat/install.sh")
@@ -28,6 +29,7 @@ installTerminalPackages () {
     printLine
     printMessage "Installing $NAME"
     
+    install_fonts
     install_completion
     install_zsh
     install_fzf
