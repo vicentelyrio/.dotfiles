@@ -12,5 +12,7 @@ bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 
 # cd with dots
-alias ..="cd ../"
-alias ...="cd ../../"
+alias ..="cd ../$1"
+alias ...="cd ../../$1"
+alias vim="nvim"
+alias vi="nvim"
