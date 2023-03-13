@@ -1,18 +1,23 @@
 # KEYBINDS
 
 bindkey -e
-# Option-Right
-bindkey '\e\e[C' forward-word
-# Option-Left
-bindkey '\e\e[D' backward-word
-
-# Cmd-Left
-bindkey "^[[H" beginning-of-line
-# Cmd-Right
-bindkey "^[[F" end-of-line
+# # Option-Right
+# bindkey '\e\e[C' forward-word
+# # Option-Left
+# bindkey '\e\e[D' backward-word
+#
+# # Cmd-Left
+# bindkey "^[[H" beginning-of-line
+# # Cmd-Right
+# bindkey "^[[F" end-of-line
 
 # cd with dots
 alias ..="cd ../$1"
 alias ...="cd ../../$1"
 alias vim="nvim"
 alias vi="nvim"
+
+# node
+alias nka="pskill node"
+alias nl="ps -aef | grep node"
+alias nk="kill -9 $1"

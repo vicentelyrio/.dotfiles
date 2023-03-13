@@ -8,7 +8,7 @@ install_nvim () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # Install packages
   if ! command -v nvim --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
@@ -17,3 +17,4 @@ install_nvim () {
   printLine
   printSuccess "$NAME successfully installed"
 }
+

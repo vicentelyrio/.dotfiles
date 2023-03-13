@@ -2,3 +2,5 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 
 brew "neovim"
+brew "ms-jpq/sad/sad"
+brew "fd"

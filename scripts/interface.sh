@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 LOGO='
-   _| _ |_(_.| _ _ 
-. (_|(_)|_| ||(-_) 
+   _| _ |_(_.| _ _
+. (_|(_)|_| ||(-_)
 '
 
 # Colors
@@ -70,8 +70,8 @@ dialog() {
 
 # Question
 question() {
-  printQuestion "$1" 
-  
+  printQuestion "$1"
+
   local OPTION=$(gum input --placeholder "$2")
   test -n "$OPTION" && printMessage "$OPTION" && $($3 $OPTION)
 }
