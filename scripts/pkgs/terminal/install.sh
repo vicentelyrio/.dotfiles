@@ -18,17 +18,17 @@ source $(require "pkgs/terminal/tmux/install.sh")
 installTerminalPackages () {
   local NAME="Terminal Utilities"
   printLine
-  printQuestion "Do you want to install $NAME?" 
+  printQuestion "Do you want to install $NAME?"
 
   local YES="Yes"
   local NO="No"
-  
-  local ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO") 
- 
+
+  local ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
+
   if [ $ACTIONS == $YES ]; then
     printLine
     printMessage "Installing $NAME"
-    
+
     install_fonts
     install_completion
     install_zsh

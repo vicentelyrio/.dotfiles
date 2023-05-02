@@ -8,7 +8,7 @@ install_tree () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # install
   if ! command -v tree --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")

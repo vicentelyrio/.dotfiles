@@ -1,4 +1,3 @@
-
 # THEMES
 # https://github.com/catppuccin/fzf
 

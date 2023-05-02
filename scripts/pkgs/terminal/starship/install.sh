@@ -13,17 +13,17 @@ install_starship () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # install
   if ! command -v starship --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
   fi
 
   if ! grep -q "$CODE" "$ZSHRC"; then
-    echo "eval \"$CODE"\" >> "$ZSHRC" 
+    echo "eval \"$CODE"\" >> "$ZSHRC"
   fi
 
-  # copy settings 
+  # copy settings
   cp $(require "${FOLDER}/${FILE}") ${DESTFILE}
 
   printLine

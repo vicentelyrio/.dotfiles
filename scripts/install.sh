@@ -8,7 +8,7 @@ OS="unkown"
 
 case "$OSTYPE" in
   solaris*) OS="SOLARIS" ;;
-  darwin*)  OS="OSX" ;; 
+  darwin*)  OS="OSX" ;;
   linux*)   OS="LINUX" ;;
   bsd*)     OS="BSD" ;;
   msys*)    OS="WINDOWS" ;;
@@ -20,7 +20,7 @@ require() {
   local DIR="${BASH_SOURCE%/*}"
   if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
   local FILE="$DIR/$1"
-  chmod +x $FILE 
+  chmod +x $FILE
   echo $FILE
 }
 

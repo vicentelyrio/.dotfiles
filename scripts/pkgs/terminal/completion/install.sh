@@ -11,11 +11,11 @@ install_completion () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # install
   if ! grep -q "$CODE" "$BASHPROFILE"; then
     brew bundle --file $(require "$FOLDER/Brewfile")
-    echo "eval \"$CODE"\" >> "$BASHPROFILE" 
+    echo "eval \"$CODE"\" >> "$BASHPROFILE"
   fi
 
   printLine

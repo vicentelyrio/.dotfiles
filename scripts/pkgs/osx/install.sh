@@ -15,13 +15,13 @@ installOsxStuff() {
 
   local YES="Yes"
   local NO="No"
-  
-  local ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO") 
- 
+
+  local ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
+
   if [ $ACTIONS == $YES ]; then
     printLine
     printMessage "Installing $NAME"
-    
+
     install_quicklook
 
     printLine

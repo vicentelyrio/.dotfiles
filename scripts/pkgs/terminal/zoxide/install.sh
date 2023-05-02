@@ -11,16 +11,16 @@ install_zoxide() {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # install
   if ! command -v zoxide --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
   fi
-    
+
   if ! grep -q "$CODE" "$ZSHRC"; then
-    echo "eval \"$CODE"\" >> "$ZSHRC" 
+    echo "eval \"$CODE"\" >> "$ZSHRC"
   fi
-  
+
   printLine
   printSuccess "$NAME successfully installed"
 }

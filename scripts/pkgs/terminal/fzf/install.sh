@@ -12,7 +12,7 @@ install_fzf () {
 
   printLine
   printMessage "Installing $NAME"
- 
+
   # install fzf
   if ! command -v fzf --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")

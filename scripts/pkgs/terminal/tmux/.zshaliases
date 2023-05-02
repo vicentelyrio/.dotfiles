@@ -1,4 +1,3 @@
-
 # tmux / tmuxinator
 alias tk="tmux kill-server"
 alias tks="tmux kill-session -t $1"

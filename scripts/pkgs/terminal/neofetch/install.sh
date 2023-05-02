@@ -8,8 +8,8 @@ install_neofetch() {
 
   printLine
   printMessage "Installing $NAME"
-  
-  # install 
+
+  # install
   if ! command -v neofetch --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
   fi

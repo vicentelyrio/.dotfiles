@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
 successMessage() {
-  printSuccess "$1 install selected" 
+  printSuccess "$1 install selected"
 }
 
 onInstallMethod() {
   printLine
-  printQuestion "Select what installation method do you want" 
+  printQuestion "Select what installation method do you want"
 
   AUTO="Auto"
   PROFILE="Profile"
   CUSTOM="Custom"
-  
-  ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$AUTO" "$PROFILE" "$CUSTOM") 
-  
+
+  ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$AUTO" "$PROFILE" "$CUSTOM")
+
   case $ACTIONS in
     $AUTO ) successMessage "$ACTIONS"; onInstallFull;;
-    $PROFILE ) successMessage "$ACTIONS"; onInstallByProfile;; 
+    $PROFILE ) successMessage "$ACTIONS"; onInstallByProfile;;
     $CUSTOM ) successMessage "$ACTIONS"; onInstallCustom;;
     * ) printError "$ACTIONS";;
   esac
@@ -34,7 +34,7 @@ onInstallByProfile() {
 
   case $ACTIONS in
     $DOTFILES ) successMessage "$ACTIONS"; onInstallDotfiles;;
-    $DEVELOPMENT) successMessage "$ACTIONS"; onInstallByProfile;; 
+    $DEVELOPMENT) successMessage "$ACTIONS"; onInstallByProfile;;
     $GAMEDEV) successMessage "$ACTIONS"; onInstallCustom;;
     $DESIGN) successMessage "$ACTIONS"; onInstallCustom;;
     * ) printError "aborted";;

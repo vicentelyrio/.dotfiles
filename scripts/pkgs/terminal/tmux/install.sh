@@ -16,7 +16,7 @@ install_tmux () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # Install packages
   if ! command -v which tmux &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
@@ -44,7 +44,7 @@ install_tmux () {
   # source tmux and install plugins
   command -v tmux source-file ~/.tmux.conf &> /dev/null
   command -v ~/.tmux/plugins/tpm/bin/install_plugins &> /dev/null
-  
+
   printLine
   printSuccess "$NAME successfully installed"
 }

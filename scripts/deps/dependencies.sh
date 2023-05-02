@@ -35,7 +35,7 @@ installLinuxDeps() {
 installBrew() {
   printLine
   printMessage "Installing Homebrew"
-  
+
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   printSuccess "Homebrew successfully installed"
@@ -52,7 +52,7 @@ sourceBrewLinux() {
 # source Brew with ZSH
 sourceBrewZsh() {
   echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zprofile
-  eval "$($(brew --prefix)/bin/brew shellenv)" 
+  eval "$($(brew --prefix)/bin/brew shellenv)"
 }
 
 # Install Steps

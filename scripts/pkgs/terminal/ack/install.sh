@@ -12,7 +12,7 @@ install_ack () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   if ! command -v ack --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
   fi

@@ -8,7 +8,7 @@ install_gtop() {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # install
   if ! command -v gtop --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")

@@ -13,7 +13,7 @@ install_zsh () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # install
   if ! command -v zsh --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
@@ -27,7 +27,7 @@ install_zsh () {
   # Create zshrc and aliases files
   cp $(require "${FOLDER}/${FILE}") ${DESTFILE}
   cp $(require "${FOLDER}/${ALIASESFILE}") "${ZSHALIASES}"
-  
+
   printLine
   printSuccess "$NAME successfully installed"
 }

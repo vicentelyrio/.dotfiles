@@ -8,7 +8,7 @@ install_quicklook () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   # Install packages
   brew bundle --file $(require "$FOLDER/Brewfile")
 

@@ -18,6 +18,6 @@ alias vim="nvim"
 alias vi="nvim"
 
 # node
-alias nka="pskill node"
+alias nka="killall node"
 alias nl="ps -aef | grep node"
 alias nk="kill -9 $1"

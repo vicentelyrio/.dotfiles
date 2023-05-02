@@ -12,7 +12,7 @@ install_bat () {
 
   printLine
   printMessage "Installing $NAME"
-  
+
   if ! command -v bat --version &> /dev/null; then
     brew bundle --file $(require "$FOLDER/Brewfile")
   fi
