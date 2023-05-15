@@ -1,23 +1,27 @@
 #!/usr/bin/env bash
 
+source $(require "pkgs/terminal/install.sh")
+source $(require "pkgs/ide/install.sh")
+source $(require "pkgs/osx/install.sh")
+
 successMessage() {
   printSuccess "$1 install selected"
 }
 
 onInstallMethod() {
   printLine
-  printQuestion "Select what installation method do you want"
+  printQuestion "Pick a installation method"
 
-  AUTO="Auto"
-  PROFILE="Profile"
+  AUTO="Full"
+  PROFILE="By Profile"
   CUSTOM="Custom"
 
   ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$AUTO" "$PROFILE" "$CUSTOM")
 
   case $ACTIONS in
-    $AUTO ) successMessage "$ACTIONS"; onInstallFull;;
-    $PROFILE ) successMessage "$ACTIONS"; onInstallByProfile;;
-    $CUSTOM ) successMessage "$ACTIONS"; onInstallCustom;;
+    $AUTO )     successMessage "$ACTIONS"; onInstallFull;;
+    $PROFILE )  successMessage "$ACTIONS"; onInstallByProfile;;
+    $CUSTOM )   successMessage "$ACTIONS"; onInstallCustom;;
     * ) printError "$ACTIONS";;
   esac
 }
@@ -26,24 +30,46 @@ onInstallByProfile() {
   printLine
   printQuestion "Select what profile(s) do you want"
 
-  DOTFILES="Dotfiles only"
+  TERMINAL="Terminal stuff only"
   DEVELOPMENT="Development stack"
   DESIGN="Design"
   GAMEDEV="Game Development"
-  ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " --no-limit "$DOTFILES" "$DEVELOPMENT" "$GAMEDEV" "$DESIGN")
+  ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " --no-limit "$TERMINAL" "$DEVELOPMENT" "$GAMEDEV" "$DESIGN")
 
   case $ACTIONS in
-    $DOTFILES ) successMessage "$ACTIONS"; onInstallDotfiles;;
-    $DEVELOPMENT) successMessage "$ACTIONS"; onInstallByProfile;;
-    $GAMEDEV) successMessage "$ACTIONS"; onInstallCustom;;
-    $DESIGN) successMessage "$ACTIONS"; onInstallCustom;;
+    $TERMINAL )   successMessage "$ACTIONS"; onInstallTerminal;;
+    $DEVELOPMENT) successMessage "$ACTIONS"; onInstallDev;;
+    $GAMEDEV)     successMessage "$ACTIONS"; onInstallGamedev;;
+    $DESIGN)      successMessage "$ACTIONS"; onInstallDesign;;
     * ) printError "aborted";;
   esac
 }
 
-# onInstallDotfiles() {
-#   printWarning "Installing Terminal Utilities"
-#   brew bundle --file ./.Brewfile.terminal
-#   $(brew --prefix)/opt/fzf/install
-#   printSuccess "Terminal Utilities successfully installed"
-# }
+onInstallFull () {
+  installTerminalPackagesExec
+  installIDEsExec
+  installOsxStuffExec
+}
+
+onInstallTerminal() {
+  installTerminalPackagesExec
+}
+
+onInstallDev() {
+  installTerminalPackagesExec
+  installIDEsExec
+}
+
+onInstallGamedev() {
+  printError "not implemented"
+}
+
+onInstallDesign() {
+  printError "not implemented"
+}
+
+onInstallCustom () {
+  installTerminalPackages
+  installIDEs
+  installOsxStuff
+}

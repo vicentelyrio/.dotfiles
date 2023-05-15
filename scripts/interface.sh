@@ -12,6 +12,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
+CARROT='-'
 
 welcome() {
   # clear;
@@ -27,23 +28,23 @@ welcome() {
 # Custom messages
 # -----------------------------------
 printError() {
-  printf "\r ${RED}-- [✕] $1${NC}\n"
+  printf "\r ${RED}${CARROT} [✕] $1${NC}\n"
 }
 
 printSuccess() {
-  printf "\r ${GREEN}-- [✓] $1${NC}\n"
+  printf "\r ${GREEN}${CARROT} [✓] $1${NC}\n"
 }
 
 printWarning() {
-  printf "\r ${YELLOW}-- [!] $1${NC}\n"
+  printf "\r ${YELLOW}${CARROT} [!] $1${NC}\n"
 }
 
 printQuestion() {
-  printf "\r ${BLUE}-- [?] $1${NC}\n"
+  printf "\r ${BLUE}${CARROT} [?] $1${NC}\n"
 }
 
 printMessage() {
-  printf "\r ${PURPLE}-- $1${NC}\n"
+  printf "\r ${PURPLE}${CARROT} $1${NC}\n"
 }
 
 printText() {

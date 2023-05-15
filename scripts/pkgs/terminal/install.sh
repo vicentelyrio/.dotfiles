@@ -15,10 +15,34 @@ source $(require "pkgs/terminal/ack/install.sh")
 source $(require "pkgs/terminal/starship/install.sh")
 source $(require "pkgs/terminal/tmux/install.sh")
 
-installTerminalPackages () {
-  local NAME="Terminal Utilities"
+TERMINAL_NAME="Terminal Utilities"
+
+installTerminalPackagesExec () {
   printLine
-  printQuestion "Do you want to install $NAME?"
+  printMessage "Installing $TERMINAL_NAME"
+
+  install_fonts
+  install_completion
+  install_zsh
+  install_fzf
+  install_bat
+  install_tree
+  install_gtop
+  install_neofetch
+  install_zoxide
+  install_ack
+  install_starship
+  install_tmux
+
+  source_zsh
+
+  printLine
+  printSuccess "$TERMINAL_NAME successfully installed"
+}
+
+installTerminalPackages () {
+  printLine
+  printQuestion "Do you want to install $TERMINAL_NAME?"
 
   local YES="Yes"
   local NO="No"
@@ -26,26 +50,7 @@ installTerminalPackages () {
   local ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
 
   if [ $ACTIONS == $YES ]; then
-    printLine
-    printMessage "Installing $NAME"
-
-    install_fonts
-    install_completion
-    install_zsh
-    install_fzf
-    install_bat
-    install_tree
-    install_gtop
-    install_neofetch
-    install_zoxide
-    install_ack
-    install_starship
-    install_tmux
-
-    source_zsh
-
-    printLine
-    printSuccess "$NAME successfully installed"
+    installTerminalPackagesExec
   fi
 }
 

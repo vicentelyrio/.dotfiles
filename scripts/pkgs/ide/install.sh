@@ -4,10 +4,21 @@ set -e
 
 source $(require "pkgs/ide/nvim/install.sh")
 
-installIDEs() {
-  local NAME="IDEs"
+IDE_NAME="IDEs"
+
+installIDEsExec () {
   printLine
-  printQuestion "Do you want to install $NAME?"
+  printMessage "Installing $IDE_NAME"
+
+  install_nvim
+
+  printLine
+  printSuccess "$IDE_NAME successfully installed"
+}
+
+installIDEs() {
+  printLine
+  printQuestion "Do you want to install $IDE_NAME?"
 
   local YES="Yes"
   local NO="No"
@@ -15,12 +26,6 @@ installIDEs() {
   local ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
 
   if [ $ACTIONS == $YES ]; then
-    printLine
-    printMessage "Installing $NAME"
-
-    install_nvim
-
-    printLine
-    printSuccess "$NAME successfully installed"
+    installIDEsExec
   fi
 }
