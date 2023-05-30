@@ -35,3 +35,4 @@ install_zsh () {
 source_zsh () {
   command -v source "${ZDOTDIR:-${HOME}}/.zshrc" &> /dev/null
 }
+
