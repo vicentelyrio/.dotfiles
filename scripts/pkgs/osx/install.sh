@@ -8,13 +8,11 @@ source "$(require "pkgs/osx/quicklook/install.sh")"
 OSX_NAME="OSX Stuff"
 
 installOsxStuffExec () {
-  printLine
-  printMessage "Installing $OSX_NAME"
+  printSection "Installing $OSX_NAME"
 
   install_quicklook
 
-  printLine
-  printSuccess "$OSX_NAME successfully installed"
+  printSection "✓ $OSX_NAME successfully installed"
 }
 
 installOsxStuff() {
@@ -22,7 +20,6 @@ installOsxStuff() {
     return
   fi
 
-  printLine
   printQuestion "Do you want to install $OSX_NAME?"
 
   local YES="Yes"

@@ -8,17 +8,14 @@ source "$(require "pkgs/ide/nvim/install.sh")"
 IDE_NAME="IDEs"
 
 installIDEsExec () {
-  printLine
-  printMessage "Installing $IDE_NAME"
+  printSection "Installing $IDE_NAME"
 
   install_nvim
 
-  printLine
-  printSuccess "$IDE_NAME successfully installed"
+  printSection "✓ $IDE_NAME successfully installed"
 }
 
 installIDEs() {
-  printLine
   printQuestion "Do you want to install $IDE_NAME?"
 
   local YES="Yes"

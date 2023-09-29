@@ -6,12 +6,12 @@ install_tmux () {
   local NAME="TMUX"
   local FOLDER="pkgs/terminal/tmux"
   local FILE=".tmux.conf"
-  local CODE="[#tmux]"
+  local CODE="#tmux"
 
   printSectionStart "$NAME"
 
   install_pkg "$NAME" "$FOLDER" "which tmux"
-  install_on_zshrc "$CODE" "$FOLDER/$FILE"
+  install_on_zshrc "$CODE" "$FOLDER"
   install_on_zshaliases "$CODE" "$FOLDER"
   install_config_bkp "$FILE" "$FOLDER" "$FILE"
 

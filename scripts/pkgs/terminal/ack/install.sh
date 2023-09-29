@@ -9,7 +9,7 @@ install_ack () {
   printSectionStart "$NAME"
 
   install_pkg "$NAME" "$FOLDER" "ack --version"
-  install_on_zshaliases "[#ack]" "$FOLDER"
+  install_on_zshaliases "#ack" "$FOLDER"
 
   printSectionEnd "$NAME successfully configured"
 }

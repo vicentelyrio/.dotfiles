@@ -16,6 +16,8 @@ source "$(require "pkgs/terminal/bat/install.sh")"
 source "$(require "pkgs/terminal/tree/install.sh")"
 # shellcheck source=/scripts/pkgs/terminal/gtop/install.sh
 source "$(require "pkgs/terminal/gtop/install.sh")"
+# shellcheck source=/scripts/pkgs/terminal/gitui/install.sh
+source "$(require "pkgs/terminal/gitui/install.sh")"
 # shellcheck source=/scripts/pkgs/terminal/eza/install.sh
 source "$(require "pkgs/terminal/eza/install.sh")"
 # shellcheck source=/scripts/pkgs/terminal/neofetch/install.sh
@@ -50,15 +52,14 @@ installTerminalPackagesExec () {
   install_tmux
   install_wezterm
   install_eza
+  install_gitui
 
   source_zsh
 
-  printLine
-  printSuccess "$TERMINAL_NAME successfully installed"
+  printSection "✓ $TERMINAL_NAME successfully installed"
 }
 
 installTerminalPackages () {
-  printLine
   printQuestion "Do you want to install $TERMINAL_NAME?"
 
   local YES="Yes"

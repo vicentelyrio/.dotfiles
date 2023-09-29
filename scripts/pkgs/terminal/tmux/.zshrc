@@ -1,4 +1,3 @@
-
 # TMUX [#tmux]
 
 # TPM - TMUX PACKAGE MANAGER

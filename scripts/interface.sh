@@ -139,32 +139,26 @@ install_config_bkp () {
   fi
 
   cp "$(require "${FOLDER}/${FILE}")" "${DESTFILE}"
+  printSuccess "$FILE confugured successfully"
 }
 
-# Write code to .zshrc
-# -----------------------------------
-write_on_zshrc () {
-  local CODE="$1"
-  local ZSHRC="${HOMEFOLDER}/.zshrc"
-
-  if ! grep -q "$CODE" "$ZSHRC"; then
-    echo "eval \"$CODE"\" >> "$ZSHRC"
-  fi
-}
-
-# Write code to .zshrc
+# Write code from file to .zshrc
 # -----------------------------------
 install_on_zshrc () {
   local CODE="$1"
-  local FILE="$2"
-  local ZSHRC="${HOMEFOLDER}/.zshrc"
+  local FOLDER="$2"
+  local FILE=".zshrc"
+  local ZSHRC="${HOMEFOLDER}/$FILE"
 
   if ! grep -q "$CODE" "$ZSHRC"; then
-    cat "$(require "$FILE")" >> "$ZSHRC"
+    cat "$(require "$FOLDER/$FILE")" >> "$ZSHRC"
+    printSuccess "zshrc successfully configured"
+  else
+    printWarning "zshrc is already configured"
   fi
 }
 
-# Write code to .zshaliases
+# Write code from file to .zshaliases
 # -----------------------------------
 install_on_zshaliases () {
   local CODE="$1"
@@ -173,7 +167,10 @@ install_on_zshaliases () {
   local ZSHALIASES="${HOMEFOLDER}/.config/.zsh/${FILE}"
 
   if ! grep -q "$CODE" "$ZSHALIASES"; then
-    cat "$(require "${FOLDER}/${FILE}")" >> "${ZSHALIASES}"
+    cat "$(require "$FOLDER/$FILE")" >> "${ZSHALIASES}"
+    printSuccess "zshaliases successfully configured"
+  else
+    printWarning "zshaliases is already configured"
   fi
 }
 

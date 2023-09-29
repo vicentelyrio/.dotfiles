@@ -9,7 +9,7 @@ install_bat () {
   printSectionStart "$NAME"
 
   install_pkg "$NAME" "$FOLDER" "bat --version"
-  install_on_zshaliases "[#bat]" "$FOLDER"
+  install_on_zshaliases "#bat" "$FOLDER"
 
   printSectionEnd "$NAME successfully configured"
 }

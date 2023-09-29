@@ -2,14 +2,14 @@
 
 set -e
 
-install_bat () {
+install_gitui () {
   local NAME="GITUI"
-  local FOLDER="pkgs/terminal/gtiui"
+  local FOLDER="pkgs/terminal/gitui"
 
   printSectionStart "$NAME"
 
   install_pkg "$NAME" "$FOLDER" "gitui --version"
-  install_on_zshaliases "[#gitui]" "$FOLDER"
+  install_on_zshaliases "#gitui" "$FOLDER"
 
   printSectionEnd "$NAME successfully configured"
 }

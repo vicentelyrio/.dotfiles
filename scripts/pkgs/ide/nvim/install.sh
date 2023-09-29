@@ -9,7 +9,7 @@ install_nvim () {
   printSectionStart "$NAME"
 
   install_pkg "$NAME" "$FOLDER" "nvim --version"
-  install_on_zshaliases "[#nvim]" "$FOLDER"
+  install_on_zshaliases "#nvim" "$FOLDER"
 
   printSectionEnd "$NAME successfully configured"
 }

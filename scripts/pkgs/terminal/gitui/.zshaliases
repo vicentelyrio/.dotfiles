@@ -1,4 +1,3 @@
-
 # GITUI [#gitui]
-alias gi="gitui"
+alias gg="gitui"
 

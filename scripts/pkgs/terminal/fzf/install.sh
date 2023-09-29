@@ -12,8 +12,10 @@ install_fzf () {
 
   install_pkg "$NAME" "$FOLDER" "fzf --version"
 
+  install_on_zshrc "#fzf" "$FOLDER"
+
   # install autocompletion
-  "$(brew --prefix)"/opt/fzf/install --all --no-bash
+  gum spin --spinner minidot --title "Checking for required dependencies..." -- "$(brew --prefix)"/opt/fzf/install --all --no-bash
 
   # install theme
   cat "$(require "${FOLDER}/${FILE}")" >> "${DESTFILE}"

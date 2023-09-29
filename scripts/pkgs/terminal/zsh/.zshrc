@@ -19,11 +19,11 @@ fi
 
 source ${ZDOTDIR:-${HOME}}/.config/.zcomet/bin/zcomet.zsh
 
+# Snipts
+zcomet snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh   # git completion
+
 # Plugins
 zcomet load lukechilds/zsh-nvm                                                  # nvm utilities
-zcomet load zpm-zsh/ls                                                          # better ls
-zcomet load ohmyzsh plugins/gitfast                                             # completion
-
 zcomet load zsh-users/zsh-completions                                           # tab completion
 zcomet load zsh-users/zsh-history-substring-search                              # history (with up arrow)
 zcomet load zsh-users/zsh-autosuggestions                                       # suggestions
