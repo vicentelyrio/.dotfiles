@@ -2,8 +2,8 @@
 
 set -e
 
-source $(require "pkgs/osx/quicklook/install.sh")
-
+# shellcheck source=/scripts/pkgs/osx/quicklook/install.sh
+source "$(require "pkgs/osx/quicklook/install.sh")"
 
 OSX_NAME="OSX Stuff"
 
@@ -18,7 +18,7 @@ installOsxStuffExec () {
 }
 
 installOsxStuff() {
-  if ! ([ $OS == "OSX" ]); then
+  if ! [ "$OS" == "OSX" ]; then
     return
   fi
 
@@ -28,9 +28,11 @@ installOsxStuff() {
   local YES="Yes"
   local NO="No"
 
-  local ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
+  local ACTIONS
 
-  if [ $ACTIONS == $YES ]; then
+  ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
+
+  if [ "$ACTIONS" == $YES ]; then
     installOsxStuffExec
   fi
 }

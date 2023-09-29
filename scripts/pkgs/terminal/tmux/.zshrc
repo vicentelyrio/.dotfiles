@@ -1,5 +1,7 @@
 
-# TPM - TMUX PACKAGE MANAGER 
+# TMUX [#tmux]
+
+# TPM - TMUX PACKAGE MANAGER
 TMUXFOLDER=${ZDOTDIR:-${HOME}}/.tmux/plugins
 TPM=${TMUXFOLDER}/tpm/tpm
 

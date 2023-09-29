@@ -1,2 +1,4 @@
-# ACK alias
-alias ack="ack $1 --sort-files --color"
+
+# ACK [#ack]
+alias ack="ff $1 --sort-files --color"
+

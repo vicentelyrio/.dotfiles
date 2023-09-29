@@ -1,55 +1,77 @@
 #!/usr/bin/env bash
 
-LOGO='
+set -e
+
+declare -r LOGO='
    _| _ |_(_.| _ _
 . (_|(_)|_| ||(-_)
 '
 
-# Colors
-RED='\033[0;31m'
-PURPLE='\033[0;35m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
-CARROT='-'
+# THEME
+# -----------------------------------
+declare -r RED='\033[0;31m'
+declare -r PURPLE='\033[0;35m'
+declare -r GREEN='\033[0;32m'
+declare -r YELLOW='\033[0;33m'
+declare -r BLUE='\033[0;34m'
+declare -r NC='\033[0m'
+declare -r CARROT='-'
 
+# Welcome Message
+# -----------------------------------
 welcome() {
-  # clear;
-  # gum spin --spinner dot -- sleep 2
   gum style \
 	  --foreground 212 --border-foreground 212 \
-	  --align left --margin "1 1" --padding "1 16 1 1" \
+	  --align left --margin "1 1" --padding "0 6 0 0" \
 	  "${LOGO[@]}"
-	echo ""
-	sleep 1
+	sleep 2
 }
 
 # Custom messages
 # -----------------------------------
 printError() {
-  printf "\r ${RED}${CARROT} [✕] $1${NC}\n"
+  printf "\r ${RED}%s [✕] $1${NC}\n" "${CARROT}"
 }
 
 printSuccess() {
-  printf "\r ${GREEN}${CARROT} [✓] $1${NC}\n"
+  printf "\r ${GREEN}%s [✓] $1${NC}\n" "${CARROT}"
 }
 
 printWarning() {
-  printf "\r ${YELLOW}${CARROT} [!] $1${NC}\n"
+  printf "\r ${YELLOW}%s [!] $1${NC}\n" "${CARROT}"
 }
 
 printQuestion() {
-  printf "\r ${BLUE}${CARROT} [?] $1${NC}\n"
+  printf "\r ${BLUE}%s [?] $1${NC}\n" "${CARROT}"
 }
 
 printMessage() {
-  printf "\r ${PURPLE}${CARROT} $1${NC}\n"
+  printf "\r ${PURPLE}%s $1${NC}\n" "$CARROT"
+}
+
+printSection() {
+  printLine
+  printf "$BLUE ----------------------------------\n"
+  printf "$BLUE $1${NC}\n"
+  printf "$BLUE ----------------------------------\n"
+  printLine
+}
+
+printSectionStart() {
+  printLine
+  printf "$BLUE%s $1$NC\n" "$CARROT"
+  printf "$BLUE ----------------------------------\n"
+}
+
+printSectionEnd() {
+  printf "$BLUE ----------------------------------\n"
+  printf "$GREEN%s $1$NC\n" "$CARROT"
+  printLine
 }
 
 printText() {
   printf "\r ----------------------------------\n"
-  printf "\r $1\n"
+  printf "\r %s\n" "$1"
   printf "\r ----------------------------------\n"
 }
 
@@ -58,9 +80,10 @@ printLine() {
 }
 
 # Dialog
+# -----------------------------------
 dialog() {
   while true; do
-    read -p "$(printQuestion "$1 (y/n) ")" yn
+    read -pr "$(printQuestion "$1 (y/n) ")" yn
     case $yn in
       [Yy]* ) printSuccess "yes"; break;;
       [Nn]* ) printError "abort"; exit;;
@@ -70,9 +93,87 @@ dialog() {
 }
 
 # Question
+# -----------------------------------
 question() {
   printQuestion "$1"
+  local OPTION
 
-  local OPTION=$(gum input --placeholder "$2")
-  test -n "$OPTION" && printMessage "$OPTION" && $($3 $OPTION)
+  OPTION="$(gum input --placeholder "$2")"
+  test -n "$OPTION" && printMessage "$OPTION" && "$($3 "$OPTION")"
 }
+
+# -----------------------------------
+# INSTALL HELPERS
+# -----------------------------------
+
+declare -r HOMEFOLDER=${ZDOTDIR:-${HOME}}
+
+# Install a Package with homebrew
+# -----------------------------------
+install_pkg () {
+  local NAME="$1"
+  local FOLDER="$2"
+  local COMMAND="$3"
+
+  printMessage "Installing $NAME"
+
+  # Install packages
+  if ! command -v eval "$COMMAND" &> /dev/null; then
+    brew bundle --file "$(require "$FOLDER/Brewfile")"
+    printSuccess "$NAME successfully installed"
+  else
+    printMessage "$NAME is already installed"
+  fi
+}
+
+# Install a config file and backup previous config
+# -----------------------------------
+install_config_bkp () {
+  local FILE="$1"
+  local FOLDER="$2"
+  local DESTFILE="${HOMEFOLDER}/$3"
+
+  if [ -f "${DESTFILE}" ]; then
+    printWarning "$FILE exists, creating a backup."
+    mv "${DESTFILE}" "${DESTFILE}.bkp.dotfiles.${DATENOW}"
+  fi
+
+  cp "$(require "${FOLDER}/${FILE}")" "${DESTFILE}"
+}
+
+# Write code to .zshrc
+# -----------------------------------
+write_on_zshrc () {
+  local CODE="$1"
+  local ZSHRC="${HOMEFOLDER}/.zshrc"
+
+  if ! grep -q "$CODE" "$ZSHRC"; then
+    echo "eval \"$CODE"\" >> "$ZSHRC"
+  fi
+}
+
+# Write code to .zshrc
+# -----------------------------------
+install_on_zshrc () {
+  local CODE="$1"
+  local FILE="$2"
+  local ZSHRC="${HOMEFOLDER}/.zshrc"
+
+  if ! grep -q "$CODE" "$ZSHRC"; then
+    cat "$(require "$FILE")" >> "$ZSHRC"
+  fi
+}
+
+# Write code to .zshaliases
+# -----------------------------------
+install_on_zshaliases () {
+  local CODE="$1"
+  local FOLDER="$2"
+  local FILE=".zshaliases"
+  local ZSHALIASES="${HOMEFOLDER}/.config/.zsh/${FILE}"
+
+  if ! grep -q "$CODE" "$ZSHALIASES"; then
+    cat "$(require "${FOLDER}/${FILE}")" >> "${ZSHALIASES}"
+  fi
+}
+

@@ -6,15 +6,10 @@ install_fonts () {
   local NAME="Nerd Fonts"
   local FOLDER="pkgs/terminal/fonts"
 
-  printLine
-  printMessage "Installing $NAME"
+  printSectionStart "$NAME"
 
-  # install
-  if ! command -v tree --version &> /dev/null; then
-    brew bundle --file $(require "$FOLDER/Brewfile")
-  fi
+  brew bundle --file "$(require "$FOLDER/Brewfile")"
 
-  printLine
-  printSuccess "$NAME successfully installed"
+  printSectionEnd "$NAME successfully configured"
 }
 

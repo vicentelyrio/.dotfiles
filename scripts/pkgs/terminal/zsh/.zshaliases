@@ -4,8 +4,6 @@ bindkey -e
 # cd with dots
 alias ..="cd ../$1"
 alias ...="cd ../../$1"
-alias vim="nvim"
-alias vi="nvim"
 
 # node
 alias nka="killall node"

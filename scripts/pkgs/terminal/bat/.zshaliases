@@ -1,2 +1,4 @@
-# BAT alias to cat
+
+# BAT [#bat]
 alias cat="bat"
+

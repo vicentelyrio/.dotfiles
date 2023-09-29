@@ -1,27 +1,31 @@
 #!/usr/bin/env bash
 
-source $(require "pkgs/terminal/install.sh")
-source $(require "pkgs/ide/install.sh")
-source $(require "pkgs/osx/install.sh")
+# shellcheck source=/scripts/pkgs/terminal/install.sh
+source "$(require "pkgs/terminal/install.sh")"
+# shellcheck source=/scripts/pkgs/ide/install.sh
+source "$(require "pkgs/ide/install.sh")"
+# shellcheck source=/scripts/pkgs/osx/install.sh
+source "$(require "pkgs/osx/install.sh")"
 
 successMessage() {
   printSuccess "$1 install selected"
 }
 
 onInstallMethod() {
+  printSection "Install Method"
   printLine
   printQuestion "Pick a installation method"
 
-  AUTO="Full"
+  AUTO="All"
   PROFILE="By Profile"
   CUSTOM="Custom"
 
   ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$AUTO" "$PROFILE" "$CUSTOM")
 
   case $ACTIONS in
-    $AUTO )     successMessage "$ACTIONS"; onInstallFull;;
-    $PROFILE )  successMessage "$ACTIONS"; onInstallByProfile;;
-    $CUSTOM )   successMessage "$ACTIONS"; onInstallCustom;;
+    "$AUTO" )     successMessage "$ACTIONS"; onInstallFull;;
+    "$PROFILE" )  successMessage "$ACTIONS"; onInstallByProfile;;
+    "$CUSTOM" )   successMessage "$ACTIONS"; onInstallCustom;;
     * ) printError "$ACTIONS";;
   esac
 }
@@ -37,10 +41,10 @@ onInstallByProfile() {
   ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " --no-limit "$TERMINAL" "$DEVELOPMENT" "$GAMEDEV" "$DESIGN")
 
   case $ACTIONS in
-    $TERMINAL )   successMessage "$ACTIONS"; onInstallTerminal;;
-    $DEVELOPMENT) successMessage "$ACTIONS"; onInstallDev;;
-    $GAMEDEV)     successMessage "$ACTIONS"; onInstallGamedev;;
-    $DESIGN)      successMessage "$ACTIONS"; onInstallDesign;;
+    "$TERMINAL")    successMessage "$ACTIONS"; onInstallTerminal;;
+    "$DEVELOPMENT") successMessage "$ACTIONS"; onInstallDev;;
+    "$GAMEDEV")     successMessage "$ACTIONS"; onInstallGamedev;;
+    "$DESIGN")      successMessage "$ACTIONS"; onInstallDesign;;
     * ) printError "aborted";;
   esac
 }
@@ -73,3 +77,4 @@ onInstallCustom () {
   installIDEs
   installOsxStuff
 }
+

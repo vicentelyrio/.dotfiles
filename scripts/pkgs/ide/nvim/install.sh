@@ -3,18 +3,14 @@
 set -e
 
 install_nvim () {
-  local NAME="NVIM"
+  local NAME="NEOVIM"
   local FOLDER="pkgs/ide/nvim"
 
-  printLine
-  printMessage "Installing $NAME"
+  printSectionStart "$NAME"
 
-  # Install packages
-  if ! command -v nvim --version &> /dev/null; then
-    brew bundle --file $(require "$FOLDER/Brewfile")
-  fi
+  install_pkg "$NAME" "$FOLDER" "nvim --version"
+  install_on_zshaliases "[#nvim]" "$FOLDER"
 
-  printLine
-  printSuccess "$NAME successfully installed"
+  printSectionEnd "$NAME successfully configured"
 }
 

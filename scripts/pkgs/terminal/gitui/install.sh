@@ -5,23 +5,12 @@ set -e
 install_bat () {
   local NAME="GITUI"
   local FOLDER="pkgs/terminal/gtiui"
-  local HOMEFOLDER=${ZDOTDIR:-${HOME}}
-  local ALIASESFILE=".zshaliases"
-  local ZSHALIASES="${HOMEFOLDER}/.config/.zsh/${ALIASESFILE}"
-  local CODE="alias gitui"
 
-  printLine
-  printMessage "Installing $NAME"
+  printSectionStart "$NAME"
 
-  if ! command -v bat --version &> /dev/null; then
-    brew bundle --file $(require "$FOLDER/Brewfile")
-  fi
+  install_pkg "$NAME" "$FOLDER" "gitui --version"
+  install_on_zshaliases "[#gitui]" "$FOLDER"
 
-  if ! grep -q "$CODE" "$ZSHALIASES"; then
-    cat $(require "${FOLDER}/${ALIASESFILE}") >> ${ZSHALIASES}
-  fi
-
-  printLine
-  printSuccess "$NAME successfully installed"
+  printSectionEnd "$NAME successfully configured"
 }
 

@@ -2,13 +2,13 @@
 
 set -e
 
-install_bat () {
-  local NAME="BAT"
-  local FOLDER="pkgs/terminal/bat"
+install_eza () {
+  local NAME="EZA"
+  local FOLDER="pkgs/terminal/eza"
 
   printSectionStart "$NAME"
 
-  install_pkg "$NAME" "$FOLDER" "bat --version"
+  install_pkg "$NAME" "$FOLDER" "eza --version"
   install_on_zshaliases "[#bat]" "$FOLDER"
 
   printSectionEnd "$NAME successfully configured"

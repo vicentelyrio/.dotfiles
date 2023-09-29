@@ -6,15 +6,10 @@ install_tree () {
   local NAME="TREE"
   local FOLDER="pkgs/terminal/tree"
 
-  printLine
-  printMessage "Installing $NAME"
+  printSectionStart "$NAME"
 
-  # install
-  if ! command -v tree --version &> /dev/null; then
-    brew bundle --file $(require "$FOLDER/Brewfile")
-  fi
+  install_pkg "$NAME" "$FOLDER" "tree --version"
 
-  printLine
-  printSuccess "$NAME successfully installed"
+  printSectionEnd "$NAME successfully configured"
 }
 

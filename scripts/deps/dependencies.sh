@@ -2,7 +2,7 @@
 
 # Warns user about unsuported systems
 untestedOsWarning() {
-  if ! ([ $OS == "OSX" ] || [ $OS == "LINUX" ]); then
+  if ! [ "$OS" == "OSX" ] || [ "$OS" == "LINUX" ]; then
     printLine
     printWarning "Untested System ($OS)"
     printText "This script has only been tested on OS X and Ubuntu. It depends on Homebrew to install some programs which may be specific to one or another platform. Try installing Homebrew following the official doc and perform a custom install to manually select what you want."
@@ -12,7 +12,7 @@ untestedOsWarning() {
 
 # Install OSX Deps
 installOsxDeps() {
-  if [xcode-select -p 1>/dev/null;echo $? > 0]; then
+  if ! command -v xcode-select --version &> /dev/null; then
     printLine
     printMessage "Installing OSX dependencies"
     xcode-select --install
@@ -52,12 +52,12 @@ sourceBrewLinux() {
 # source Brew with ZSH
 sourceBrewZsh() {
   echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zprofile
-  eval "$($(brew --prefix)/bin/brew shellenv)"
+  eval "$("$(brew --prefix)"/bin/brew shellenv)"
 }
 
 # Install Steps
 installHomebrew() {
-  if [ $OS == "OSX" ]; then
+  if [ "$OS" == "OSX" ]; then
     installOsxDeps
     installBrew
     sourceBrewZsh
@@ -71,8 +71,8 @@ installHomebrew() {
 
 # Check for dependencies and ask for install permission
 installDependencies() {
-  printLine
-  printMessage "Checking for required dependencies..."
+  printSection "Dependencies check"
+  gum spin --spinner minidot --title "Checking for required dependencies..." -- sleep 1
 
   if ! command -v brew &> /dev/null; then
     printLine

@@ -2,7 +2,8 @@
 
 set -e
 
-source $(require "pkgs/ide/nvim/install.sh")
+# shellcheck source=/scripts/pkgs/ide/nvim/install.sh
+source "$(require "pkgs/ide/nvim/install.sh")"
 
 IDE_NAME="IDEs"
 
@@ -22,10 +23,11 @@ installIDEs() {
 
   local YES="Yes"
   local NO="No"
+  local ACTIONS
 
-  local ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
+  ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
 
-  if [ $ACTIONS == $YES ]; then
+  if [ "$ACTIONS" == $YES ]; then
     installIDEsExec
   fi
 }

@@ -89,6 +89,8 @@ startSecondaryUserConfig() {
 }
 
 startGitConfig() {
+  printSection "Git config"
+
   if [ "$(git config --global --get user.email)" ]; then
     printWarning "You already have an github user configured [$(git config --get user.name) - $(git config --get user.email)]"
     printQuestion "Do you want to configure it anyway?"
@@ -98,8 +100,10 @@ startGitConfig() {
 
     ACTIONS=$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")
 
-    if [ $ACTIONS == $YES ]; then
+    if [ "$ACTIONS" == "$YES" ]; then
       configPrimaryUser
+    else
+      printError "git config skiped"
     fi
   else
     configPrimaryUser

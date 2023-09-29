@@ -6,13 +6,10 @@ install_quicklook () {
   local NAME="Quicklook plugins"
   local FOLDER="pkgs/osx/quicklook"
 
-  printLine
-  printMessage "Installing $NAME"
+  printSectionStart "$NAME"
 
-  # Install packages
-  brew bundle --file $(require "$FOLDER/Brewfile")
+  brew bundle --file "$(require "$FOLDER/Brewfile")"
 
-  printLine
-  printSuccess "$NAME successfully installed"
+  printSectionEnd "$NAME successfully configured"
 }
 

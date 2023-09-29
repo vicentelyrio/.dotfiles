@@ -1,2 +1,4 @@
-# GITUI alias
-alias gg="gitui"
+
+# GITUI [#gitui]
+alias gi="gitui"
+

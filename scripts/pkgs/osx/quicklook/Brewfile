@@ -9,5 +9,4 @@ cask "qlprettypatch"
 cask "quicklook-csv"
 cask "betterzip"
 cask "webpquicklook"
-cask "suspicious-package"
 
