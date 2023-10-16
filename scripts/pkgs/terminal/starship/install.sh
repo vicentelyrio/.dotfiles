@@ -10,7 +10,7 @@ install_starship () {
   printSectionStart "$NAME"
 
   install_pkg "$NAME" "$FOLDER" "starship --version"
-  install_config_bkp "$FILE" "$FOLDER" "/.config/$FILE"
+  install_config_bkp "$FILE" "$FOLDER" ".config/$FILE"
   install_on_zshrc "#starship" "$FOLDER"
 
   printSectionEnd "$NAME successfully configured"

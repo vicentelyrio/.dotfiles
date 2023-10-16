@@ -5,9 +5,8 @@ set -e
 # shellcheck source=/scripts/pkgs/ide/nvim/install.sh
 source "$(require "pkgs/ide/nvim/install.sh")"
 
-IDE_NAME="IDEs"
-
 installIDEsExec () {
+  local IDE_NAME="IDEs"
   printSection "Installing $IDE_NAME"
 
   install_nvim
@@ -16,6 +15,7 @@ installIDEsExec () {
 }
 
 installIDEs() {
+  local IDE_NAME="IDEs"
   printQuestion "Do you want to install $IDE_NAME?"
 
   local YES="Yes"

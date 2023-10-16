@@ -12,7 +12,7 @@ install_zsh () {
 
   install_pkg "$NAME" "$FOLDER" "zsh --version"
   install_config_bkp "$ZSHFILE" "$FOLDER" "$ZSHFILE"
-  install_config_bkp "$ALIASESFILE" "$FOLDER" "/.config/.zsh/$ALIASESFILE"
+  install_config_bkp "$ALIASESFILE" "$FOLDER" ".config/.zsh/$ALIASESFILE"
 
   printSectionEnd "$NAME successfully configured"
 }

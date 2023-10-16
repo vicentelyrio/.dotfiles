@@ -14,6 +14,7 @@ install_tmux () {
   install_on_zshrc "$CODE" "$FOLDER"
   install_on_zshaliases "$CODE" "$FOLDER"
   install_config_bkp "$FILE" "$FOLDER" "$FILE"
+  install_config_bkp ".tmux-session.sh" "$FOLDER" ".config/.zsh/.tmux-session.sh"
 
   # source tmux and install plugins
   command -v tmux source-file ~/.tmux.conf &> /dev/null

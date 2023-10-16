@@ -122,7 +122,7 @@ install_pkg () {
     brew bundle --file "$(require "$FOLDER/Brewfile")"
     printSuccess "$NAME successfully installed"
   else
-    printMessage "$NAME is already installed"
+    printWarning "$NAME is already installed"
   fi
 }
 
@@ -133,13 +133,17 @@ install_config_bkp () {
   local FOLDER="$2"
   local DESTFILE="${HOMEFOLDER}/$3"
 
-  if [ -f "${DESTFILE}" ]; then
-    printWarning "$FILE exists, creating a backup."
-    mv "${DESTFILE}" "${DESTFILE}.bkp.dotfiles.${DATENOW}"
-  fi
+  if cmp "$(require "$FOLDER/$FILE")" "$DESTFILE"; then
+    printWarning "$FILE configuration exists, skipping"
+  else
+    if [ -f "${DESTFILE}" ]; then
+      printWarning "$FILE exists but its different, creating a backup."
+      mv "${DESTFILE}" "${DESTFILE}.bkp.dotfiles.${DATENOW}"
+    fi
 
-  cp "$(require "${FOLDER}/${FILE}")" "${DESTFILE}"
-  printSuccess "$FILE confugured successfully"
+    cp "$(require "${FOLDER}/${FILE}")" "${DESTFILE}"
+    printSuccess "$FILE confugured successfully"
+  fi
 }
 
 # Write code from file to .zshrc

@@ -30,13 +30,11 @@ source "$(require "pkgs/terminal/ack/install.sh")"
 source "$(require "pkgs/terminal/starship/install.sh")"
 # shellcheck source=/scripts/pkgs/terminal/tmux/install.sh
 source "$(require "pkgs/terminal/tmux/install.sh")"
-# shellcheck source=/scripts/pkgs/terminal/wezterm/install.sh
-source "$(require "pkgs/terminal/wezterm/install.sh")"
-
-declare -r TERMINAL_NAME="Terminal Utilities"
 
 installTerminalPackagesExec () {
-  printSection "Installing $TERMINAL_NAME"
+  local NAME="Terminal Utilities"
+
+  printSection "Installing $NAME"
 
   install_zsh
   install_fonts
@@ -50,17 +48,17 @@ installTerminalPackagesExec () {
   install_ack
   install_starship
   install_tmux
-  install_wezterm
   install_eza
   install_gitui
 
   source_zsh
 
-  printSection "✓ $TERMINAL_NAME successfully installed"
+  printSection "✓ $NAME successfully installed"
 }
 
 installTerminalPackages () {
-  printQuestion "Do you want to install $TERMINAL_NAME?"
+  local NAME="Terminal Utilities"
+  printQuestion "Do you want to install $NAME?"
 
   local YES="Yes"
   local NO="No"
