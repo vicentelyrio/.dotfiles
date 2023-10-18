@@ -1,7 +1,6 @@
--- Pull in the wezterm APIs
 local wezterm = require 'wezterm'
+local act = wezterm.action
 
--- This table will hold the configuration.
 local config = {}
 
 -- In newer versions of wezterm, use the config_builder which will
@@ -10,9 +9,6 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
 config.color_scheme = 'Catppuccin Mocha'
 config.font = wezterm.font 'SFMono Nerd Font'
 config.font_size = 14.0
@@ -37,6 +33,28 @@ config.window_frame = {
   border_top_color = '#11111b',
 }
 
--- and finally, return the configuration to wezterm
+config.keys = {
+  {
+    key = 'h',
+    mods = 'SUPER',
+    action = act.ActivatePaneDirection 'Left',
+  },
+  {
+    key = 'l',
+    mods = 'SUPER',
+    action = act.ActivatePaneDirection 'Right',
+  },
+  {
+    key = 'k',
+    mods = 'SUPER',
+    action = act.ActivatePaneDirection 'Up',
+  },
+  {
+    key = 'j',
+    mods = 'SUPER',
+    action = act.ActivatePaneDirection 'Down',
+  },
+}
+
 return config
 
