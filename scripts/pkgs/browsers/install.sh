@@ -24,8 +24,7 @@ installBrowsersExec () {
 }
 
 installBrowsers() {
-  local NAME="Browsers"
-  printQuestion "Choose what $NAME you want to install"
+  printQuestion "Browsers"
 
   local ACTIONS
 

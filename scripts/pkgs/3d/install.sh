@@ -24,8 +24,7 @@ install3DExec () {
 }
 
 install3D() {
-  local NAME="3D"
-  printQuestion "Choose what $NAME you want to install"
+  printQuestion "3D"
 
   local ACTIONS
 

@@ -57,8 +57,7 @@ installTerminalPackagesExec () {
 }
 
 installTerminalPackages () {
-  local NAME="Terminal Utilities"
-  printQuestion "Choose what $NAME you want to install"
+  printQuestion "Terminal Utilities"
 
   local ACTIONS
   local ACK="Ack (better grep)"

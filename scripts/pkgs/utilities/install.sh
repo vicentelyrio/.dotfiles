@@ -48,12 +48,11 @@ installUtilitiesExec () {
 }
 
 installUtilities () {
-  local NAME="Utilities"
-  printQuestion "Choose what $NAME you want to install"
+  printQuestion "Utilities"
 
   local ACTIONS
 
-  local OBSIDIAN="Dash (offline docs)"
+  local DASH="Dash (offline docs)"
   local OBSIDIAN="Obsidian"
   local ORIGIN="EA Origin"
   local QMK="QMK Keyboard Toolbox"

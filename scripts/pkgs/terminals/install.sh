@@ -24,8 +24,7 @@ installTerminalsPackagesExec () {
 }
 
 installTerminalsPackages () {
-  local NAME="Terminal Emulators"
-  printQuestion "Choose what $NAME you want to install"
+  printQuestion "Terminal Emulators"
 
   local ACTIONS
 

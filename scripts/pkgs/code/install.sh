@@ -20,8 +20,7 @@ installCodeExec () {
 }
 
 installCode() {
-  local NAME="Code"
-  printQuestion "Choose what $NAME you want to install"
+  printQuestion "Code stuff"
 
   local ACTIONS
 

@@ -25,7 +25,7 @@ installOsxUtilitiesExec () {
     return
   fi
 
-  local NAME="MACOS Utilities"
+  local NAME="MacOS Utilities"
 
   printSection "Installing $NAME"
 
@@ -40,8 +40,7 @@ installOsxUtilitiesExec () {
 }
 
 installOsxUtilities () {
-  local NAME="Utilities"
-  printQuestion "Choose what $NAME you want to install"
+  printQuestion "MacOS Utilities"
 
   local ACTIONS
 

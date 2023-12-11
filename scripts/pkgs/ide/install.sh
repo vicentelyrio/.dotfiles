@@ -24,8 +24,7 @@ installIdeExec () {
 }
 
 installIDEs() {
-  local NAME="IDEs"
-  printQuestion "Choose what $NAME you want to install"
+  printQuestion "IDEs"
 
   local ACTIONS
 
