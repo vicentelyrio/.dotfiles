@@ -47,6 +47,8 @@ main() {
   startGitConfig
 
   onInstallMethod
+
+  printSuccess "Good to go :)"
 }
 
 main

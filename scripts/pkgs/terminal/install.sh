@@ -36,20 +36,20 @@ installTerminalPackagesExec () {
 
   printSection "Installing $NAME"
 
-  install_zsh
-  install_fonts
-  install_completion
-  install_fzf
+  install_ack
   install_bat
-  install_tree
+  install_completion
+  install_eza
+  install_fonts
+  install_fzf
+  install_gitui
   install_gtop
   install_neofetch
-  install_zoxide
-  install_ack
   install_starship
   install_tmux
-  install_eza
-  install_gitui
+  install_tree
+  install_zoxide
+  install_zsh
 
   source_zsh
 
@@ -58,16 +58,57 @@ installTerminalPackagesExec () {
 
 installTerminalPackages () {
   local NAME="Terminal Utilities"
-  printQuestion "Do you want to install $NAME?"
+  printQuestion "Choose what $NAME you want to install"
 
-  local YES="Yes"
-  local NO="No"
   local ACTIONS
+  local ACK="Ack (better grep)"
+  local BAT="Bat (better cat)"
+  local COMPLETION="Bash completion"
+  local EZA="EZA (better LS)"
+  local FONTS="Fonts"
+  local FZF="FZF (Fuzy Finder)"
+  local GITUI="Gitui"
+  local GTOP="GTop (htop alternative)"
+  local NEOFETCH="Neofetch"
+  local STARSHIP="Starship"
+  local TMUX="Tmux"
+  local TREE="Tree"
+  local ZOXIDE="Zoxide"
+  local ZSH="Zsh"
 
-  ACTIONS="$(gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " "$YES" "$NO")"
+  ACTIONS=$(
+    gum choose --cursor-prefix "[ ] " --selected-prefix "[✓] " --no-limit \
+    "$ACK" \
+    "$BAT" \
+    "$COMPLETION" \
+    "$EZA" \
+    "$FONTS" \
+    "$FZF" \
+    "$GITUI" \
+    "$GTOP" \
+    "$NEOFETCH" \
+    "$STARSHIP" \
+    "$TMUX" \
+    "$TREE" \
+    "$ZOXIDE" \
+    "$ZSH" \
+  )
 
-  if [ "$ACTIONS" == $YES ]; then
-    installTerminalPackagesExec
-  fi
+  case "$ACTIONS" in
+    "$ACK") install_ack ;;
+    "$BAT") install_bat ;;
+    "$COMPLETION") install_completion ;;
+    "$EZA") install_eza ;;
+    "$FONTS") install_fonts ;;
+    "$FZF") install_fzf ;;
+    "$GITUI") install_gitui ;;
+    "$GTOP") install_gtop ;;
+    "$NEOFETCH") install_neofetch ;;
+    "$STARSHIP") install_starship ;;
+    "$TMUX") install_tmux ;;
+    "$TREE") install_tree ;;
+    "$ZOXIDE") install_zoxide ;;
+    "$ZSH") install_zsh ;;
+  esac
 }
 

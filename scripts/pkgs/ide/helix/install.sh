@@ -2,7 +2,7 @@
 
 set -e
 
-install_nvim () {
+install_helix () {
   local NAME="HELIX"
   local FOLDER="pkgs/ide/helix"
   local FILE="config.toml"
