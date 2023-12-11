@@ -1,11 +1,5 @@
 # .dotfiles
 
-This is the most unnecessary dotfiles in the world.
-
-Consider this more of a personal fun with bash than something you should use.
-
-That said, this is the list of included software:
-
 #### 3D
 - Blender
 - Fusion 3D
