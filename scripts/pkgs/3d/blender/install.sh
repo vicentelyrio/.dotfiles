@@ -8,7 +8,7 @@ install_blender () {
 
   printSectionStart "$NAME"
 
-  install_pkg "$NAME" "$FOLDER" "brew list blender"
+  install_pkg "$NAME" "$FOLDER" ""
 
   printSectionEnd "$NAME successfully configured"
 }

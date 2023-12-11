@@ -83,7 +83,7 @@ printLine() {
 # -----------------------------------
 dialog() {
   while true; do
-    read -pr "$(printQuestion "$1 (y/n) ")" yn
+    read -p "$(printQuestion "$1 (y/n) ")" yn
     case $yn in
       [Yy]* ) printSuccess "yes"; break;;
       [Nn]* ) printError "abort"; exit;;
@@ -99,7 +99,7 @@ question() {
   local OPTION
 
   OPTION="$(gum input --placeholder "$2")"
-  test -n "$OPTION" && printMessage "$OPTION" && "$($3 "$OPTION")"
+  test -n "$OPTION" && printMessage "$OPTION" && eval "$($3 $OPTION)"
 }
 
 # -----------------------------------
@@ -131,9 +131,14 @@ install_pkg () {
 install_config_bkp () {
   local FILE="$1"
   local FOLDER="$2"
-  local DESTFILE="${HOMEFOLDER}/$3"
+  local DESTFOLDER="${HOMEFOLDER}/$3"
+  local DESTFILE="${DESTFOLDER}/$4"
 
-  if cmp "$(require "$FOLDER/$FILE")" "$DESTFILE"; then
+  if ! [ -s "$DESTFOLDER" ]; then
+    mkdir "$DESTFOLDER"
+  fi
+
+  if ! [ -s "$DESTFILE" ] && cmp "$DESTFILE" "$(require "$FOLDER/$FILE")" &>/dev/null; then
     printWarning "$FILE configuration exists, skipping"
   else
     if [ -f "${DESTFILE}" ]; then
@@ -170,7 +175,11 @@ install_on_zshaliases () {
   local FILE=".zshaliases"
   local ZSHALIASES="${HOMEFOLDER}/.config/.zsh/${FILE}"
 
-  if ! grep -q "$CODE" "$ZSHALIASES"; then
+  if ! [ -s "${HOMEFOLDER}/.config/.zsh" ]; then
+    mkdir "${HOMEFOLDER}/.config/.zsh"
+  fi
+
+  if [ -s "$ZSHALIASES" ] && grep -q "$CODE" "$ZSHALIASES"; then
     cat "$(require "$FOLDER/$FILE")" >> "${ZSHALIASES}"
     printSuccess "zshaliases successfully configured"
   else

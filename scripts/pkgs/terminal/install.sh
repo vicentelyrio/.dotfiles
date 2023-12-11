@@ -93,21 +93,23 @@ installTerminalPackages () {
     "$ZSH" \
   )
 
-  case "$ACTIONS" in
-    "$ACK") install_ack ;;
-    "$BAT") install_bat ;;
-    "$COMPLETION") install_completion ;;
-    "$EZA") install_eza ;;
-    "$FONTS") install_fonts ;;
-    "$FZF") install_fzf ;;
-    "$GITUI") install_gitui ;;
-    "$GTOP") install_gtop ;;
-    "$NEOFETCH") install_neofetch ;;
-    "$STARSHIP") install_starship ;;
-    "$TMUX") install_tmux ;;
-    "$TREE") install_tree ;;
-    "$ZOXIDE") install_zoxide ;;
-    "$ZSH") install_zsh ;;
-  esac
+  for element in "${ACTIONS[@]}"; do
+    case "${element}" in
+      "$ACK") install_ack ;;
+      "$BAT") install_bat ;;
+      "$COMPLETION") install_completion ;;
+      "$EZA") install_eza ;;
+      "$FONTS") install_fonts ;;
+      "$FZF") install_fzf ;;
+      "$GITUI") install_gitui ;;
+      "$GTOP") install_gtop ;;
+      "$NEOFETCH") install_neofetch ;;
+      "$STARSHIP") install_starship ;;
+      "$TMUX") install_tmux ;;
+      "$TREE") install_tree ;;
+      "$ZOXIDE") install_zoxide ;;
+      "$ZSH") install_zsh ;;
+    esac
+  done
 }
 

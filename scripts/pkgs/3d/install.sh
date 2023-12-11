@@ -39,9 +39,12 @@ install3D() {
     "$FUSION" \
   )
 
-  case "$ACTIONS" in
-    "$BLENDER") install_blender ;;
-    "$CURA") install_cura ;;
-    "$FUSION") install_fusion3d ;;
-  esac
+  for element in "${ACTIONS[@]}"; do
+    echo "$element"
+    case "${element}" in
+      "$BLENDER") install_blender ;;
+      "$CURA") install_cura ;;
+      "$FUSION") install_fusion3d ;;
+    esac
+  done
 }

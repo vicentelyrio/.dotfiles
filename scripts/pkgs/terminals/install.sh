@@ -39,10 +39,13 @@ installTerminalsPackages () {
     "$RIO" \
   )
 
-  case "$ACTIONS" in
-    "$ALACRITTY") install_alacritty ;;
-    "$RIO") install_rio ;;
-    "$WEZTERM") install_wezterm ;;
-  esac
+
+  for element in "${ACTIONS[@]}"; do
+    case "${element}" in
+      "$ALACRITTY") install_alacritty ;;
+      "$RIO") install_rio ;;
+      "$WEZTERM") install_wezterm ;;
+    esac
+  done
 }
 

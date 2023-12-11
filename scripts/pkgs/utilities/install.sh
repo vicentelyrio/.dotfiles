@@ -75,16 +75,18 @@ installUtilities () {
     "$VLC" \
   )
 
-  case "$ACTIONS" in
-    "$DASH") install_dash ;;
-    "$OBSIDIAN") install_obsidian ;;
-    "$ORIGIN") install_origin ;;
-    "$QMK") install_qmk ;;
-    "$SPOTIFY") install_spotify ;;
-    "$STEAM") install_steam ;;
-    "$TRANSMISSION") install_transmission ;;
-    "$VIA") install_via ;;
-    "$VLC") install_vlc ;;
-  esac
+  for element in "${ACTIONS[@]}"; do
+    case "${element}" in
+      "$DASH") install_dash ;;
+      "$OBSIDIAN") install_obsidian ;;
+      "$ORIGIN") install_origin ;;
+      "$QMK") install_qmk ;;
+      "$SPOTIFY") install_spotify ;;
+      "$STEAM") install_steam ;;
+      "$TRANSMISSION") install_transmission ;;
+      "$VIA") install_via ;;
+      "$VLC") install_vlc ;;
+    esac
+  done
 }
 

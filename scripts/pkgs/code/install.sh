@@ -33,8 +33,10 @@ installCode() {
     "$POSTGRESS" \
   )
 
-  case "$ACTIONS" in
-    "$NVM") install_nvm ;;
-    "$POSTGRESS") install_postgress ;;
-  esac
+  for element in "${ACTIONS[@]}"; do
+    case "${element}" in
+      "$NVM") install_nvm ;;
+      "$POSTGRESS") install_postgress ;;
+    esac
+  done
 }

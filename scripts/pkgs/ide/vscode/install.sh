@@ -3,7 +3,7 @@
 set -e
 
 install_vscode () {
-  local NAME="VSCODE"
+  local NAME="Vscode"
   local FOLDER="pkgs/ide/vscode"
 
   printSectionStart "$NAME"

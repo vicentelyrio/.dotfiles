@@ -61,13 +61,15 @@ installOsxUtilities () {
     "$UNARCHIVER" \
   )
 
-  case "$ACTIONS" in
-    "$AMETHYST") install_amethyst ;;
-    "$CAFFEINE") install_caffeine ;;
-    "$KARABINER") install_karabiner ;;
-    "$MONITORCONTROL") install_monitorcontrol ;;
-    "$QUICKLOOK") install_quicklook ;;
-    "$UNARCHIVER") install_unarchiver ;;
-  esac
+  for element in "${ACTIONS[@]}"; do
+    case "${element}" in
+      "$AMETHYST") install_amethyst ;;
+      "$CAFFEINE") install_caffeine ;;
+      "$KARABINER") install_karabiner ;;
+      "$MONITORCONTROL") install_monitorcontrol ;;
+      "$QUICKLOOK") install_quicklook ;;
+      "$UNARCHIVER") install_unarchiver ;;
+    esac
+  done
 }
 

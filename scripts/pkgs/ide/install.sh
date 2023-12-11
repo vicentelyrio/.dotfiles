@@ -11,7 +11,7 @@ source "$(require "pkgs/ide/nvim/install.sh")"
 # shellcheck source=/scripts/pkgs/ide/vscode/install.sh
 source "$(require "pkgs/ide/vscode/install.sh")"
 
-installIdeExec () {
+installIDEsExec () {
   local NAME="IDEs"
 
   printSection "Installing $NAME"
@@ -39,9 +39,11 @@ installIDEs() {
     "$VSCODE" \
   )
 
-  case "$ACTIONS" in
-    "$HELIX") install_helix ;;
-    "$NVIM") install_nvim ;;
-    "$VSCODE") install_vscode ;;
-  esac
+  for element in "${ACTIONS[@]}"; do
+    case "${element}" in
+      "$HELIX") install_helix ;;
+      "$NVIM") install_nvim ;;
+      "$VSCODE") install_vscode ;;
+    esac
+  done
 }

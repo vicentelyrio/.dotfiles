@@ -3,7 +3,7 @@
 set -e
 
 install_nvim () {
-  local NAME="NEOVIM"
+  local NAME="Neovim"
   local FOLDER="pkgs/ide/nvim"
 
   printSectionStart "$NAME"

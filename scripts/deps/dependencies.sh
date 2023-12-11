@@ -2,12 +2,14 @@
 
 # Warns user about unsuported systems
 untestedOsWarning() {
-  if ! [ "$OS" == "OSX" ] || [ "$OS" == "LINUX" ]; then
-    printLine
-    printWarning "Untested System ($OS)"
-    printText "This script has only been tested on OS X and Ubuntu. It depends on Homebrew to install some programs which may be specific to one or another platform. Try installing Homebrew following the official doc and perform a custom install to manually select what you want."
-    dialog "Do you wish to try it anyway?"
-  fi
+  if [ "$OS" == "OSX" ]; then return; fi
+
+  if [ "$OS" == "LINUX" ]; then return; fi
+
+  printLine
+  printWarning "Untested System ($OS)"
+  printText "This script has only been tested on OS X and some Linux distributions. It depends on Homebrew to install some programs which may be specific to one or another platform. Try installing Homebrew following the official doc."
+  dialog "Do you wish to try it anyway?"
 }
 
 # Install OSX Deps
@@ -25,8 +27,16 @@ installLinuxDeps() {
   printLine
   printMessage "Installing Linux dependencies"
 
-  sudo apt update
-  sudo apt-get install build-essential procps curl file git -y
+  packagesNeeded='build-essential procps curl file git'
+
+  if [ -x "$(command -v apk)" ];       then sudo apk add --no-cache $packagesNeeded
+  elif [ -x "$(command -v apt-get)" ]; then sudo apt-get install $packagesNeeded
+  elif [ -x "$(command -v dnf)" ];     then sudo dnf install $packagesNeeded
+  elif [ -x "$(command -v zypper)" ];  then sudo zypper install $packagesNeeded
+  else
+    printError "Package manager not found. You must manually install: $packagesNeeded">&2;
+    return;
+  fi
 
   printSuccess "Linux dependencies successfully installed"
 }
@@ -51,8 +61,15 @@ sourceBrewLinux() {
 
 # source Brew with ZSH
 sourceBrewZsh() {
-  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zprofile
-  eval "$("$(brew --prefix)"/bin/brew shellenv)"
+  if [ "$OS" == "OSX" ]; then
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zprofile
+    eval "$("$(brew --prefix)"/bin/brew shellenv)"
+  fi
+
+  if [ "$OS" == "LINUX" ]; then
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/vicentelyrio/.zshrc
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
 }
 
 # Install Steps
@@ -61,7 +78,8 @@ installHomebrew() {
     installOsxDeps
     installBrew
     sourceBrewZsh
-  else
+  fi
+  if [ "$OS" == "LINUX" ]; then
     installLinuxDeps
     installBrew
     sourceBrewLinux
@@ -72,7 +90,6 @@ installHomebrew() {
 # Check for dependencies and ask for install permission
 installDependencies() {
   printSection "Dependencies check"
-  gum spin --spinner minidot --title "Checking for required dependencies..." -- sleep 1
 
   if ! command -v brew &> /dev/null; then
     printLine

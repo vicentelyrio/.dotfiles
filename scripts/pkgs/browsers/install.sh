@@ -39,9 +39,11 @@ installBrowsers() {
     "$THORIUM" \
   )
 
-  case "$ACTIONS" in
-    "$BRAVE") install_brave ;;
-    "$FIREFOX") install_firefox ;;
-    "$THORIUM") install_thorium ;;
-  esac
+  for element in "${ACTIONS[@]}"; do
+    case "${element}" in
+      "$BRAVE") install_brave ;;
+      "$FIREFOX") install_firefox ;;
+      "$THORIUM") install_thorium ;;
+    esac
+  done
 }
