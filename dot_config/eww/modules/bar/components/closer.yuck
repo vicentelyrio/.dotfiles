@@ -1,0 +1,5 @@
+(defwidget closer [window]
+  (eventbox
+    :onclick `${DIR}/scripts/${window}-close.sh`
+  )
+)

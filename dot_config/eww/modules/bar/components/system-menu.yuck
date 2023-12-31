@@ -1,0 +1,74 @@
+(defvar settings '["System", "Theme"]')
+(defvar session '["Lock", "Logout"]')
+(defvar system '["Sleep", "Restart", "Shutdown"]')
+
+;; Item
+(defwidget navitem [entry]
+  (eventbox
+    :onclick "${DIR}/scripts/system-menu-select.sh ${entry}"
+    :class "system-menu-button"
+    (box
+      :orientation "h"
+      :halign "start"
+      (label
+        :class "system-menu-label"
+        :text "${entry}"
+      )
+    )
+  )
+)
+
+;; Closer
+(defwindow system-menu-closer
+  :monitor 0
+  :stacking "fg"
+  :namespace "bar"
+  :geometry (geometry
+    :width "100%"
+    :height "100%"
+    :anchor "top left"
+  )
+  (closer :window "system-menu")
+)
+
+;; Window
+(defwindow system-menu
+  :monitor 0
+  :stacking "fg"
+  :namespace "bar"
+  :geometry (geometry
+    :y "34px"
+    :x "10px"
+    :width "200px"
+    :height "60px"
+    :anchor "top left"
+  )
+  (box
+    :class "system-menu"
+    :orientation "v"
+    :space-evenly false
+    (box
+      :class "system-menu-group"
+      :orientation "v"
+      (for entry in settings
+        (navitem :entry entry)
+      )
+    )
+    (box
+      :class "system-menu-group"
+      :orientation "v"
+      :spacing 4
+      (for entry in system
+        (navitem :entry entry)
+      )
+    )
+    (box
+      :class "system-menu-group"
+      :orientation "v"
+      :spacing 4
+      (for entry in session
+        (navitem :entry entry)
+      )
+    )
+  )
+)

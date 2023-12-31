@@ -1,0 +1,16 @@
+(defwidget workspaces []
+  (box
+    :class "workspaces"
+    :orientation "h"
+    :space-evenly true
+    :halign "start"
+    :spacing 10
+    (for entry in WORKSPACES
+      (button
+        :onclick "hyprctl dispatch workspace ${entry}"
+        :class {WORKSPACE_ACTIVE == entry ? "workspace-active" : "workspace"}
+        {""}
+      )
+    )
+  )
+)

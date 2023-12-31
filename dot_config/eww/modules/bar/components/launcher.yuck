@@ -1,0 +1,12 @@
+(defwidget launcher []
+  (button
+    :onclick `${DIR}/scripts/launcher-open.sh &`
+    :width 20
+    :height 20
+    :class "launcher-button"
+    (label
+      :text ""
+      :class "launcher-icon"
+    )
+  )
+)

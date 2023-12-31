@@ -1,0 +1,56 @@
+clock
+timestr=%R
+datestr=%a, %e of %B
+
+image=~/Wallpapers/01-flower.png
+
+effect-blur=5x4
+#effect-greyscale
+
+ignore-empty-password
+
+indicator-radius=100
+indicator
+indicator-thickness=10
+indicator-caps-lock
+
+disable-caps-lock-text
+
+# Define all colors
+
+key-hl-color=00000066
+separator-color=00000000
+bs-hl-color=ffffff
+
+# default
+inside-color=00000033
+ring-color=ffffff33
+line-color=00000000
+text-color=ffffff
+
+# cleared
+inside-clear-color=00000033
+ring-clear-color=ffffff
+line-clear-color=ffffffFF
+text-clear-color=ffffff
+
+# verifying
+inside-ver-color=00000033
+ring-ver-color=ffffff
+line-ver-color=ffffffFF
+text-ver-color=ffffff
+
+# wrong
+inside-wrong-color=00000033
+ring-wrong-color=ffffff
+line-wrong-color=ffffffFF
+text-wrong-color=ffffff
+
+# caps
+inside-caps-lock-color=00000033
+ring-caps-lock-color=ffffffFF
+line-caps-lock-color=ffffff33
+caps-lock-key-hl-color=ffffffFF
+caps-lock-bs-hl-color=ffffffFF
+text-caps-lock-color=ffffff
+

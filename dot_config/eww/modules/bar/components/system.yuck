@@ -1,0 +1,12 @@
+(defwidget system []
+  (button
+    :onclick "${DIR}/scripts/system-menu-open.sh"
+    :width 20
+    :height 20
+    :class "system-button"
+    (label
+      :text "󰣇"
+      :class "system-icon"
+    )
+  )
+)

@@ -1,0 +1,19 @@
+(defwidget brightness []
+  (box
+    :class "brightness"
+    :orientation "horizontal"
+    :space-evenly false
+    (scale
+      :class "scale brightness-scale"
+      :min 10
+      :max 100
+      :value "${BRIGHTNESS}"
+      :onchange "${EWW_CONFIG_DIR}/scripts/brightness-set.sh {} &"
+    )
+    (label
+      :class "brightness-icon"
+      :text "${BRIGHTNESS_ICON}"
+    )
+  )
+)
+

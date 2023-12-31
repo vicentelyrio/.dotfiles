@@ -1,0 +1,17 @@
+(defpoll time
+  :interval "1s"
+  :initial `date +'%a %d %b %H:%M'`
+  `date +'%a  %d %b  %H:%M'`
+)
+
+(defwidget time []
+  (button
+    :onclick `${DIR}/scripts/calendar-open.sh &`
+    :class "time-button"
+    (label
+      :text `${time}`
+      :class "time-label"
+    )
+  )
+)
+

@@ -1,0 +1,22 @@
+;; basepath
+(defvar DIR "~/.config/eww/modules/bar")
+
+;; sizes
+(defvar BAR_SPACE 20)
+
+;; wifi
+(defpoll SIGNAL :interval "10s" :initial "󰤯" "~/.config/eww/modules/bar/scripts/wifi-signal.sh")
+(defpoll SSID :interval "100s" :initial "N/A" "~/.config/eww/modules/bar/scripts/wifi-ssid.sh")
+
+;; volume
+(defpoll VOLUME :initial 40 :interval ".2s" "~/.config/eww/modules/bar/scripts/volume-get.sh")
+(defpoll VOLUME_ICON :interval "1s" "~/.config/eww/modules/bar/scripts/volume-icon.sh")
+
+;; brightness
+(deflisten BRIGHTNESS_ICON :initial "󱩎" "~/.config/eww/modules/bar/scripts/brightness-icon.sh")
+(deflisten BRIGHTNESS :initial 40 "~/.config/eww/modules/bar/scripts/brightness-get.sh")
+
+;; workspaces
+(defpoll WORKSPACES :initial "[1]" :interval ".2s" "~/.config/eww/modules/bar/scripts/workspaces-get.sh")
+(defpoll WORKSPACE_ACTIVE :interval ".2s" "~/.config/eww/modules/bar/scripts/workspaces-active.sh")
+

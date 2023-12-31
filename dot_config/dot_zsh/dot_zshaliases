@@ -1,0 +1,53 @@
+# KEYBINDS
+bindkey -e
+
+# grep
+alias grep='grep --color=auto'
+
+# Hyprland
+alias out='~/.config/.zsh/shutdown.sh'
+
+
+# cd with dots
+alias ..="cd ../$1"
+alias ...="cd ../../$1"
+
+# node
+alias nka="killall node"
+alias nl="ps -aef | grep node"
+alias nk="kill -9 $1"
+
+# BAT [#bat]
+# alias cat="bat"
+
+# ACK [#ack]
+alias ack="ff $1 --sort-files --color"
+
+# TMUX [#tmux]
+alias tk="tmux kill-server"
+alias tks="tmux kill-session -t $1"
+alias tls="tmux ls"
+alias ta="tmux a"
+alias ts="tmuxinator start $1"
+alias tn="tmuxinator new $1"
+alias tas="~/.config/.zsh/.tmux-session.sh"
+
+# EZA [#eza]
+alias ls="eza --icons -l --group-directories-first"
+alias ll="eza --icons -l -all --group-directories-first"
+
+# GITUI [#gitui]
+alias gi="gitui"
+
+# neovim [#nvim]
+alias vim="nvim"
+alias vi="nvim"
+
+# PKGS
+alias y="yarn"
+alias p="pnpm"
+alias n="npm"
+
+# History
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

@@ -1,0 +1,16 @@
+(defwidget volume []
+  (box
+    :class "volume"
+    :orientation "horizontal"
+    :space-evenly false
+    (scale
+      :class "scale volume-scale"
+      :min 0
+      :max 100
+      :value "${VOLUME}"
+      :onchange "pamixer --set-volume {}"
+    )
+    (label :class "volume-icon" :text "${VOLUME_ICON}")
+  )
+)
+

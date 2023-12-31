@@ -1,0 +1,58 @@
+;; vars
+(include "./vars.yuck")
+
+;; components
+(include "./components/brightness.yuck")
+(include "./components/calendar.yuck")
+(include "./components/closer.yuck")
+(include "./components/launcher.yuck")
+(include "./components/system.yuck")
+(include "./components/system-menu.yuck")
+(include "./components/time.yuck")
+(include "./components/volume.yuck")
+(include "./components/wifi.yuck")
+(include "./components/workspaces.yuck")
+
+;; BAR
+(defwindow bar
+  :monitor 0
+  :namespace "bar"
+  :stacking "fg"
+  :windowtype "dock"
+  :exclusive true
+  :wm-ignore true
+  :geometry (geometry
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "30px"
+    :anchor: "top center"
+  :reserve (struts :side "top" :distance "0%")
+  )
+  (box
+    :class "bar"
+    :orientation "h"
+    :spacing BAR_SPACE
+    (box
+      :class "bar-start"
+      :orientation "h"
+      :halign "start"
+      :space-evenly false
+      :spacing BAR_SPACE
+      (system)
+      (workspaces)
+    )
+    (box
+      :class "bar-end"
+      :orientation "h"
+      :halign "end"
+      :space-evenly false
+      :spacing BAR_SPACE
+      (volume)
+      (brightness)
+      (wifi)
+      (launcher)
+      (time)
+    )
+  )
+)

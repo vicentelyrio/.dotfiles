@@ -1,0 +1,34 @@
+(defwindow calendar-closer
+  :monitor 0
+  :stacking "fg"
+  :namespace "bar"
+  :geometry (geometry
+    :width "100%"
+    :height "100%"
+    :anchor "top left"
+  )
+  (closer :window 'calendar')
+)
+
+(defwindow calendar
+  :monitor 0
+  :stacking "fg"
+  :namespace "bar"
+  :geometry (geometry
+    :y "34px"
+    :x "10px"
+    :width "200px"
+    :height "60px"
+    :anchor "top right"
+  )
+  (box
+    :class "calendar-box"
+    (calendar
+      :class "calendar"
+      :show-heading true
+      :show-details true
+      :show-week-numbers false
+      :onclick "${DIR}/scripts/calendar-select.sh {0} {1} {2}"
+    )
+  )
+)
