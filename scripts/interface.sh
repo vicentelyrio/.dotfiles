@@ -21,10 +21,10 @@ declare -r CARROT='-'
 # -----------------------------------
 welcome() {
   gum style \
-	  --foreground 212 --border-foreground 212 \
-	  --align left --margin "1 1" --padding "0 6 0 0" \
-	  "${LOGO[@]}"
-	sleep 2
+    --foreground 212 --border-foreground 212 \
+    --align left --margin "1 1" --padding "0 6 0 0" \
+    "${LOGO[@]}"
+  sleep 2
 }
 
 # Custom messages

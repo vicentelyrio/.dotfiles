@@ -29,10 +29,10 @@ installLinuxDeps() {
 
   packagesNeeded='build-essential procps curl file git'
 
-  if [ -x "$(command -v apk)" ];       then sudo apk add --no-cache $packagesNeeded
-  elif [ -x "$(command -v apt-get)" ]; then sudo apt-get install $packagesNeeded
-  elif [ -x "$(command -v dnf)" ];     then sudo dnf install $packagesNeeded
-  elif [ -x "$(command -v zypper)" ];  then sudo zypper install $packagesNeeded
+  if    [ -x "$(command -v apk)" ];     then sudo apk add --no-cache $packagesNeeded
+  elif  [ -x "$(command -v apt-get)" ]; then sudo apt-get install $packagesNeeded
+  elif  [ -x "$(command -v dnf)" ];     then sudo dnf install $packagesNeeded
+  elif  [ -x "$(command -v zypper)" ];  then sudo zypper install $packagesNeeded
   else
     printError "Package manager not found. You must manually install: $packagesNeeded">&2;
     return;
@@ -67,7 +67,7 @@ sourceBrewZsh() {
   fi
 
   if [ "$OS" == "LINUX" ]; then
-    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/vicentelyrio/.zshrc
+    (echo "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)") >> /home/vicentelyrio/.zshrc
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   fi
 }
@@ -91,13 +91,13 @@ installHomebrew() {
 installDependencies() {
   printSection "Dependencies check"
 
-  if ! command -v brew &> /dev/null; then
-    printLine
-    printError "Homebrew cannot be found"
-    printText "Homebrew is a required dependency, please install to continue"
-    dialog "Do you wish to install Homebrew and its dependencies?"
-    installHomebrew
-  fi
+  # if ! command -v brew &> /dev/null; then
+  #   printLine
+  #   printError "Homebrew cannot be found"
+  #   printText "Homebrew is a required dependency, please install to continue"
+  #   dialog "Do you wish to install Homebrew and its dependencies?"
+  #   installHomebrew
+  # fi
 
   printSuccess "All dependencies installed"
 }

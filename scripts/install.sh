@@ -33,13 +33,13 @@ source "$(require "interface.sh")"
 source "$(require "deps/dependencies.sh")"
 
 # shellcheck source=/scripts/core/core.sh
-source "$(require "core/core.sh")"
+# source "$(require "core/core.sh")"
 
 # shellcheck source=/scripts/git/git.sh
-source "$(require "git/git.sh")"
+# source "$(require "git/git.sh")"
 
 # shellcheck source=/scripts/bundles.sh
-source "$(require "bundles.sh")"
+# source "$(require "bundles.sh")"
 
 main() {
   if [ "$OS" == "WINDOWS" ]; then
@@ -49,14 +49,14 @@ main() {
 
   untestedOsWarning
 
-  # installDependencies
+  installDependencies
   # installCorePackages
 
   # welcome
 
   # startGitConfig
 
-  onInstallMethod
+  # onInstallMethod
 
   printSuccess "Good to go :)"
 }
