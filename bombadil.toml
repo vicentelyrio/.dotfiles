@@ -15,9 +15,14 @@ vars = [ "vars.toml"]
 
 [settings.dots]
 alacritty = { source = "terminals/alacritty", target = ".config/alacritty" }
-# zsh = { source = "zsh/zshrc", target = ".zshrc" }
-# zsh_env = { source = "zsh/zshenv", target = ".zshenv" }
-# starship = { source = "zsh/starship.toml", target = ".config/starship.toml" }
+wezterm = { source = "terminals/wezterm", target = ".config/wezterm" }
+
+zsh = { source = "shell/.zshrc", target = ".zshrc" }
+zsh_aliases = { source = "shell/.zshaliases", target = ".config/.zshaliases" }
+starship = { source = "shell/starship.toml", target = ".config/starship.toml" }
+tmux = { source = "shell/tmux.conf", target = ".config/tmux.conf" }
+fzf = { source = "shell/fzf.zsh", target = ".config/fzf.zsh" }
+
 # gitconfig = { source = "git/gitconfig", target = ".gitconfig" }
 # gitignore = { source = "git/gitignore", target = ".gitignore" }
 # nvim = { source = "editors/neovim", target = ".config/nvim" }
