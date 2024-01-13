@@ -1,0 +1,81 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+
+# TOOLS
+
+# cli
+brew install gum
+
+# ide
+brew install neovim
+brew install helix
+
+# Shell
+brew install ack
+brew install bat
+brew install bash-completion
+brew install eza
+brew install font-hack-nerd-font
+brew install fzf
+brew install gitui
+brew install gtop
+brew install neofetch
+brew install starship
+brew install tmux
+brew install tmuxinator
+brew install tree
+brew install zoxide
+brew install coreutils
+brew install zsh
+
+# Code
+brew install nvm
+
+# Quicklook osx
+brew install qlcolorcode
+brew install qlstephen
+brew install qlmarkdown
+brew install quicklook-json
+brew install qlprettypatch
+brew install quicklook-csv
+brew install webpquicklook
+
+# SOFTWARES
+
+# Code
+brew install --cask postgres-unofficial
+
+# Browers
+brew install --cask brave-browser
+brew install --cask firefox
+
+# 3D
+brew install --cask blender
+brew install --cask ultimaker-cura
+brew install --cask autodesk-fusion360
+
+# Ide
+brew install --cask visual-studio-code
+
+# Terminals
+brew install --cask alacrity
+brew install --cask wezterm
+
+# General
+brew install --cask amethyst
+brew install --cask caffeine
+brew install --cask dash
+brew install --cask karabiner-elements
+brew install --cask monitorcontrol
+brew install --cask obsidian
+brew install --cask qmk-toolbox
+brew install --cask slack
+brew install --cask spotify
+brew install --cask the-unarchiver
+brew install --cask transmission
+brew install --cask via
+brew install --cask vlc
+
+# Games
+brew install --cask origin
+brew install --cask steam
