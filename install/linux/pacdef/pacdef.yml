@@ -1,4 +1,4 @@
-aur_helper: paru # AUR helper to use on Arch Linux (paru, yay, ...)
+aur_helper: yay # AUR helper to use on Arch Linux (paru, yay, ...)
 aur_rm_args: ["R", "c", "n", "s"] # additional args to pass to AUR helper when removing packages (optional)
 disabled_backends: ["python"]
 

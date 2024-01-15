@@ -27,7 +27,9 @@ installRust() {
 installBombadil() {
   if ! command -v bombadil &> /dev/null; then
     printMessage "installing toml-bombadil..."
-    cargo install toml-bombadil
+    eval `ssh-agent -s`
+    ssh-add
+    cargo install --git  https://github.com/oknozor/toml-bombadil
   fi
   printSuccess "toml bombadil"
 }
@@ -48,13 +50,6 @@ installMacosDeps() {
     eval "$("$(brew --prefix)"/bin/brew shellenv)"
   fi
   printSuccess "homebrew"
-
-  # # GUM
-  # if ! command -v gum &> /dev/null; then
-  #   printMessage "installing gum..."
-  #   brew install gum
-  # fi
-  # printSuccess "gum"
 
   # CURL
   if ! command -v curl &> /dev/null; then
@@ -79,12 +74,6 @@ installLinuxDeps() {
   fi
   printSuccess "curl"
 
-  # # GUM
-  # if ! command -v gum &> /dev/null; then
-  #   installOnLinux "gum"
-  # fi
-  # printSuccess "gum"
-
   # RUST
   installRust
 
@@ -94,7 +83,7 @@ installLinuxDeps() {
   # PACDEF
   if ! command -v pacdef &> /dev/null; then
     printMessage "installing pacdef..."
-    cargo install pacdef
+    cargo install -F arch pacdef
   fi
   printSuccess "pacdef"
 }

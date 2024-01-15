@@ -3,9 +3,6 @@ tap "homebrew/core"
 
 # TOOLS
 
-# cli
-brew install gum
-
 # ide
 brew install neovim
 brew install helix
@@ -14,11 +11,13 @@ brew install helix
 brew install ack
 brew install bat
 brew install bash-completion
+brew install dua-cli
 brew install eza
+brew install erdtree
 brew install font-hack-nerd-font
 brew install fzf
 brew install gitui
-brew install gtop
+brew install bottom
 brew install neofetch
 brew install starship
 brew install tmux
