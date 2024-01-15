@@ -1,5 +1,23 @@
 # .dotfiles
 
+### git
+- check for gh and git
+- install gh and git
+- check for users
+- setup user/users proccess
+
+### macos
+- check for brew
+- install brew
+- install packages/apps
+- setup dotfiles
+
+### linux
+- check for pacdef
+- install pacdef
+- install packages/apps
+- setup dotfiles
+
 #### 3D
 - Blender
 - Fusion 3D
@@ -8,7 +26,6 @@
 #### Browsers
 - Brave
 - Firefox
-- Thorium
 
 #### IDEs
 - Helix
@@ -25,7 +42,6 @@
 
 #### Terminals
 - Alacritty
-- Rio
 - Werzterm
 
 #### Terminal Utilities
@@ -36,7 +52,6 @@
 - Fonts
 - FZF
 - Gitui
-- Gtop
 - Neofetch
 - Starship
 - Tmux
