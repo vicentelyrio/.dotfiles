@@ -20,11 +20,8 @@ stow
 sudo
 trash-cli
 direnv
-exa
 fff
-git
 imwheel
-stow
 which
 xdg-ninja
 zplug
@@ -48,22 +45,12 @@ rofi-rbw
 zathura
 zathura-pdf-mupdf
 
-spotify
-gimp
 mpv
 libreoffice-fresh
 
 
 
 [arch]
-# COMMUNICATION -------------------------------------------------------------------------
-webcord
-discord
-zoom
-signal-desktop
-teams-for-linux
-google-chat-linux-bin
-
 # GRAPHICS ------------------------------------------------------------------------------
 vkbasalt
 reshade-shaders-git

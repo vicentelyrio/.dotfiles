@@ -1,0 +1,31 @@
+[arch]
+
+# Hyprland WM
+hyprland
+hyprpaper                             # wallpaper
+hyprprop-git                          # stract props from windows
+
+# Color picker
+farge-git                             # xcolor replacement
+
+# Screenshot
+grim                                  # screenshots
+slurp                                 # region selection
+
+# Clipboard
+clipman                               # clipboard manager
+wl-clip-persist-git                   # clibboard persistion
+
+# Start / Lock Screen
+swayidle                              # idle deamon
+swaylock-effects                      # lock screen
+ly
+
+# Theme
+qt5-wayland
+qt6-wayland
+
+# Xorg
+xsettingsd                            # settings deamon
+xdg-desktop-portal-hyprland
+

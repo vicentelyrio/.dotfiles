@@ -1,0 +1,25 @@
+[arch]
+
+# TERMINALS
+alacritty
+wezterm
+
+# CODE
+docker
+docker-compose
+git
+nvm
+gjs
+github-cli
+
+# IDE
+nano
+vim
+neovim
+helix
+visual-studio-code-bin
+vscode-codicons-git
+
+[flatpak]
+io.beekeeperstudio.Studio
+
