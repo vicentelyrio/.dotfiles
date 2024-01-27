@@ -70,7 +70,7 @@ installMacosDeps() {
 installLinuxDeps() {
   # CURL
   if ! command -v curl &> /dev/null; then
-    installOnLinux "curl"
+    installOnLinux "curl openssh"
   fi
   printSuccess "curl"
 
