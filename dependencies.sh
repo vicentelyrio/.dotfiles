@@ -74,6 +74,12 @@ installLinuxDeps() {
   fi
   printSuccess "curl"
 
+  # SSH
+  if ! command -v ssh-agent &> /dev/null; then
+    installOnLinux "openssh"
+  fi
+  printSuccess "openssh"
+
   # RUST
   installRust
 
