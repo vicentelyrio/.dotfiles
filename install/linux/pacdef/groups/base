@@ -6,32 +6,8 @@ base-devel
 linux
 linux-firmware
 
-grub
-os-prober
-efibootmgr
-
-brightnessctl
-light
-cliphist
-cmus
-ddcutil
-dunst
-gnome-settings-daemon
-smartmontools
-sof-firmware
-zram-generator
-ufw
-xorg-server
-xorg-xinit
-xdg-utils
-
-ranger
-thunar
-
-[flatpak]
-org.flatpak.Builder
-com.github.tchx84.Flatseal
-io.github.flattool.Warehouse
+smartmontools                           # disk utility
+zram-generator                          # zram manager
 
 com.mattjakeman.ExtensionManager
 ca.desrt.dconf-editor

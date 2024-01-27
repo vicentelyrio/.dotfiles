@@ -12,6 +12,7 @@ jq
 libpulse
 libva-intel-driver
 libva-mesa-driver
+sof-firmware
 spotify
 
 [flatpak]

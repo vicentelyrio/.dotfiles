@@ -5,6 +5,9 @@ hyprland
 hyprpaper                             # wallpaper
 hyprprop-git                          # stract props from windows
 
+# Clipboard
+cliphist
+
 # Color picker
 farge-git                             # xcolor replacement
 
@@ -28,4 +31,8 @@ qt6-wayland
 # Xorg
 xsettingsd                            # settings deamon
 xdg-desktop-portal-hyprland
+xorg-server
+xorg-xinit
+xdg-utils
 
+gnome-settings-daemon

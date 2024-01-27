@@ -7,5 +7,10 @@ paman
 python-pip
 
 [rust]
-pacdef
-toml-bombadil
+pacdef                                  # package manager
+toml-bombadil                           # setup
+
+[flatpak]
+com.github.tchx84.Flatseal              # flatpak permission
+io.github.flattool.Warehouse            # flatpak manager
+

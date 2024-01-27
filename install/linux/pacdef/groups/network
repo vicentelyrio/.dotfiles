@@ -6,4 +6,4 @@ network-manager-applet
 networkmanager
 wireless_tools
 wireplumber
-
+ufw                          # firewall
