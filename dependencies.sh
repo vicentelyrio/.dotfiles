@@ -19,7 +19,7 @@ installRust() {
   if ! command -v rustc &> /dev/null; then
     printMessage "installing rust and cargo..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    source ~/.cargo/env
+    source "$HOME/.cargo/env"
   fi
   printSuccess "cargo"
 }
@@ -70,7 +70,7 @@ installMacosDeps() {
 installLinuxDeps() {
   # CURL
   if ! command -v curl &> /dev/null; then
-    installOnLinux "curl openssh"
+    installOnLinux "curl"
   fi
   printSuccess "curl"
 
