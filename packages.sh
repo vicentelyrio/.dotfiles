@@ -6,7 +6,7 @@ installLinuxPackages() {
   rm -rf ~/.config/pacdef
   mkdir ~/.config/pacdef
   cp "$BASEPATH/install/linux/pacdef/pacdef.yml" ~/.config/pacdef/pacdef.yaml
-  pacdef group import "$BASEPATH/install/linux/pacdef/groups/base"
+  pacdef g i "$BASEPATH/install/linux/pacdef/groups"
 
   printStep "Pacdef install"
   pacdef package sync --noconfirm

@@ -26,12 +26,6 @@ source "$(require "dependencies.sh")"
 # shellcheck source=/packages.sh
 source "$(require "packages.sh")"
 
-# shellcheck source=/scripts/git/git.sh
-# source "$(require "git/git.sh")"
-
-# shellcheck source=/scripts/bundles.sh
-# source "$(require "bundles.sh")"
-
 main() {
   clear
 
@@ -42,13 +36,6 @@ main() {
   installDependencies
 
   installPackages
-
-  # welcome
-
-  # startGitConfig
-
-  # onInstallMethod
-
 }
 
 main
