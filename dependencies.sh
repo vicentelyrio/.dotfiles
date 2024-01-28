@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+installRust() {
+  if ! command -v rustc &> /dev/null; then
+    printMessage "installing rust and cargo..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source "$HOME/.cargo/env"
+  fi
+  printSuccess "cargo"
+}
+
+# LINUX
 installOnLinux() {
   printMessage "installing $1..."
   packagesNeeded="$1"
@@ -15,15 +25,31 @@ installOnLinux() {
   fi
 }
 
-installRust() {
-  if ! command -v rustc &> /dev/null; then
-    printMessage "installing rust and cargo..."
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    source "$HOME/.cargo/env"
+installLinuxDeps() {
+  # CURL
+  if ! command -v curl &> /dev/null; then
+    installOnLinux "curl"
   fi
-  printSuccess "cargo"
+  printSuccess "curl"
+
+  # SSH
+  if ! command -v ssh-agent &> /dev/null; then
+    installOnLinux "openssh"
+  fi
+  printSuccess "openssh"
+
+  # RUST
+  installRust
+
+  # PACDEF
+  if ! command -v pacdef &> /dev/null; then
+    printMessage "installing pacdef..."
+    cargo install -F arch pacdef
+  fi
+  printSuccess "pacdef"
 }
 
+# MACOS
 installBombadil() {
   if ! command -v bombadil &> /dev/null; then
     printMessage "installing toml-bombadil..."
@@ -67,33 +93,7 @@ installMacosDeps() {
   installBombadil
 }
 
-installLinuxDeps() {
-  # CURL
-  if ! command -v curl &> /dev/null; then
-    installOnLinux "curl"
-  fi
-  printSuccess "curl"
-
-  # SSH
-  if ! command -v ssh-agent &> /dev/null; then
-    installOnLinux "openssh"
-  fi
-  printSuccess "openssh"
-
-  # RUST
-  installRust
-
-  # BOMBADIL
-  installBombadil
-
-  # PACDEF
-  if ! command -v pacdef &> /dev/null; then
-    printMessage "installing pacdef..."
-    cargo install -F arch pacdef
-  fi
-  printSuccess "pacdef"
-}
-
+# INSTALL
 installDependencies() {
   printSection "$OS Dependencies check"
 
