@@ -4,7 +4,6 @@ flatpak-builder
 pacman-contrib
 yay-git
 paman
-python-pip
 toml-bombadil
 
 [rust]
