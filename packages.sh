@@ -9,7 +9,7 @@ installLinuxPackages() {
   pacdef g i "$BASEPATH/install/linux/pacdef/groups"
 
   printStep "Pacdef install"
-  pacdef package sync --noconfirm
+  sudo pacdef package sync --noconfirm
 }
 
 installMacosPackages() {
