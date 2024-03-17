@@ -13,7 +13,9 @@ installLinuxPackages() {
 }
 
 installMacosPackages() {
-  printSection "TBI"
+  brew tap Homebrew/bundle
+  brew bundle --file=./install/macos/Brewfile
+  printSection "$OS files installed"
 }
 
 installPackages() {
