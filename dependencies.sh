@@ -9,57 +9,70 @@ installRust() {
   printSuccess "cargo"
 }
 
-# LINUX
-installOnLinux() {
-  printMessage "installing $1..."
-  packagesNeeded="$1"
-
-  if    [ -x "$(command -v apk)" ];     then sudo apk add --no-cache "$packagesNeeded"
-  elif  [ -x "$(command -v apt-get)" ]; then sudo apt-get install "$packagesNeeded"
-  elif  [ -x "$(command -v dnf)" ];     then sudo dnf install "$packagesNeeded"
-  elif  [ -x "$(command -v zypper)" ];  then sudo zypper install "$packagesNeeded"
-  elif  [ -x "$(command -v pacman)" ];  then sudo pacman -Sy "$packagesNeeded"
-  else
-    printError "Package manager not found. You must manually install: $packagesNeeded">&2
-    return
-  fi
-}
-
-installLinuxDeps() {
-  # CURL
-  if ! command -v curl &> /dev/null; then
-    installOnLinux "curl"
-  fi
-  printSuccess "curl"
-
-  # SSH
-  if ! command -v ssh-agent &> /dev/null; then
-    installOnLinux "openssh"
-  fi
-  printSuccess "openssh"
-
-  # RUST
-  installRust
-
-  # PACDEF
-  if ! command -v pacdef &> /dev/null; then
-    printMessage "installing pacdef..."
-    cargo install -F arch pacdef
-  fi
-  printSuccess "pacdef"
-}
-
-# MACOS
 installBombadil() {
   if ! command -v bombadil &> /dev/null; then
     printMessage "installing toml-bombadil..."
-    eval `ssh-agent -s`
+    eval "$(ssh-agent -s)"
     ssh-add
     cargo install --git  https://github.com/oknozor/toml-bombadil
   fi
   printSuccess "toml bombadil"
 }
 
+# LINUX
+installOn() {
+  printMessage "installing $1..."
+  packagesNeeded="$1"
+
+  if  [ -x "$(command -v pacman)" ];  then sudo pacman -Sy "$packagesNeeded"
+  else
+    printError "Package manager not found. You must manually install: $packagesNeeded">&2
+    return
+  fi
+}
+
+installDeps() {
+  printMessage "updating pacman"
+  sudo pacman -Syyu
+  sudo pacman -S --needed base-devel git
+  printSuccess "done"
+
+  # CURL
+  if ! command -v curl &> /dev/null; then
+    installOn "curl"
+  fi
+  printSuccess "curl"
+
+  # SSH
+  if ! command -v ssh-agent &> /dev/null; then
+    installOn "openssh"
+  fi
+  printSuccess "openssh"
+
+  # YAY
+  if ! command -v yay &> /dev/null; then
+    printMessage "installing yay..."
+    git clone https://aur.archlinux.org/yay.git
+    chmod 777 yay || return
+    cd yay || return
+    makepkg -si
+  fi
+  printSuccess "yay"
+
+  # PACDEF
+  if ! command -v pacdef &> /dev/null; then
+    yay -S pacdef
+  fi
+  printSuccess "pacdef"
+
+  # RUST
+  installRust
+
+  # BOMBADIL
+  installBombadil
+}
+
+# MACOS
 installMacosDeps() {
   # XCODE
   if ! command -v xcode-select --version &> /dev/null; then
@@ -98,7 +111,7 @@ installDependencies() {
   printSection "$OS Dependencies check"
 
   case "$OS" in
-    "LINUX") installLinuxDeps ;;
+    "LINUX") installDeps ;;
     "MACOS") installMacosDeps ;;
   esac
 
