@@ -1,0 +1,12 @@
+# KEYBINDS
+bindkey -e
+
+# cd with dots
+alias ..="cd ../$1"
+alias ...="cd ../../$1"
+
+# node
+alias nka="killall node"
+alias nl="ps -aef | grep node"
+alias nk="kill -9 $1"
+

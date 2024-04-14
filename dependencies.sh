@@ -1,37 +1,7 @@
 #!/usr/bin/env bash
 
-installRust() {
-  if ! command -v rustc &> /dev/null; then
-    printMessage "installing rust and cargo..."
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    source "$HOME/.cargo/env"
-  fi
-  printSuccess "cargo"
-}
-
-installBombadil() {
-  if ! command -v bombadil &> /dev/null; then
-    printMessage "installing toml-bombadil..."
-    eval "$(ssh-agent -s)"
-    ssh-add
-    cargo install --git  https://github.com/oknozor/toml-bombadil
-  fi
-  printSuccess "toml bombadil"
-}
-
 # LINUX
-installOn() {
-  printMessage "installing $1..."
-  packagesNeeded="$1"
-
-  if  [ -x "$(command -v pacman)" ];  then sudo pacman -Sy "$packagesNeeded"
-  else
-    printError "Package manager not found. You must manually install: $packagesNeeded">&2
-    return
-  fi
-}
-
-installDeps() {
+installLinuxDeps() {
   printMessage "updating pacman"
   sudo pacman -Syyu
   sudo pacman -S --needed base-devel git
@@ -39,13 +9,13 @@ installDeps() {
 
   # CURL
   if ! command -v curl &> /dev/null; then
-    installOn "curl"
+    sudo pacman -S curl
   fi
   printSuccess "curl"
 
   # SSH
   if ! command -v ssh-agent &> /dev/null; then
-    installOn "openssh"
+    sudo pacman -S openssh
   fi
   printSuccess "openssh"
 
@@ -59,17 +29,12 @@ installDeps() {
   fi
   printSuccess "yay"
 
-  # PACDEF
-  if ! command -v pacdef &> /dev/null; then
-    yay -S pacdef
+  # ANSIBLE
+  if ! command -v ansible &> /dev/null; then
+    printMessage "installing ansible..."
+    sudo pacman -S ansible
   fi
-  printSuccess "pacdef"
-
-  # RUST
-  installRust
-
-  # BOMBADIL
-  installBombadil
+  printSuccess "ansible"
 }
 
 # MACOS
@@ -85,7 +50,7 @@ installMacosDeps() {
   if ! command -v brew &> /dev/null; then
     printMessage "installing homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zprofile
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> "$HOME/.zprofile"
     eval "$("$(brew --prefix)"/bin/brew shellenv)"
   fi
   printSuccess "homebrew"
@@ -95,15 +60,16 @@ installMacosDeps() {
     printMessage "installing curl..."
     brew install curl
     echo "export PATH=$(brew --prefix)/opt/curl/bin:$PATH" >> ~/.zshrc
-    source ~/.zshrc
+    source "$HOME/.zshrc"
   fi
   printSuccess "curl"
 
-  # RUST
-  installRust
-
-  # BOMBADIL
-  installBombadil
+  # ANSIBLE
+  if ! command -v ansible &> /dev/null; then
+    printMessage "installing ansible..."
+    brew install ansible
+  fi
+  printSuccess "ansible"
 }
 
 # INSTALL
@@ -111,7 +77,7 @@ installDependencies() {
   printSection "$OS Dependencies check"
 
   case "$OS" in
-    "LINUX") installDeps ;;
+    "LINUX") installLinuxDeps ;;
     "MACOS") installMacosDeps ;;
   esac
 

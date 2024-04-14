@@ -1,0 +1,12 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+
+cask "qlcolorcode"
+cask "qlstephen"
+cask "qlmarkdown"
+cask "quicklook-json"
+cask "qlprettypatch"
+cask "quicklook-csv"
+cask "betterzip"
+cask "webpquicklook"
+

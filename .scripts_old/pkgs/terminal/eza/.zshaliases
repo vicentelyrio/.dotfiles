@@ -1,0 +1,4 @@
+# EZA [#eza]
+alias ls="eza --icons -l --group-directories-first"
+alias ll="eza --icons -l -all --group-directories-first"
+
