@@ -1,0 +1,20 @@
+- name: audio - install dependencies
+  community.general.pacman:
+    name:
+      - pipewire
+      - pipewire-alsa
+      - alsa-utils
+      - pavucontrol
+      # - wireplumber
+
+- name: audio - pipewire service
+  ansible.builtin.service:
+    name: pipewire
+    state: restarted
+    enabled: yes
+
+# - name: audio - WirePlumber service
+#   systemd:
+#     name: wireplumber
+#     state: restarted
+#     enabled: yes

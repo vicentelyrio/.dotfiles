@@ -1,0 +1,28 @@
+- name: yay - disable password
+  lineinfile:
+    path: /etc/sudoers.d/temp_allow_no_pswd_pacman
+    state: present
+    line: "ALL ALL=NOPASSWD: /usr/bin/pacman"
+    validate: /usr/sbin/visudo -cf %s
+    create: yes
+
+- name: yay - git clone yay-bin repo in to /tmp
+  become: false
+  git:
+    repo: "https://aur.archlinux.org/yay-bin.git"
+    dest: /tmp/yay-bin
+    clone: yes
+
+- name: yay - install using makepkg
+  become: false
+  expect:
+    chdir: /tmp/yay-bin
+    command: makepkg -si
+    responses:
+      (?i)Proceed with installation: "y"
+
+- name: yay - re-enable need for password for pacman
+  file:
+    path: /etc/sudoers.d/temp_allow_no_pswd_pacman
+    state: absent
+

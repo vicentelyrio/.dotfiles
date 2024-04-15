@@ -1,0 +1,50 @@
+- name: pacman - update
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: pacman - enable color
+  lineinfile:
+    path: /etc/pacman.conf
+    regexp: "^#Color$"
+    line: "Color"
+
+- name: pacman - enable ParallelDownloads = 5
+  lineinfile:
+    path: /etc/pacman.conf
+    regexp: "#ParallelDownloads = 5"
+    line: "ParallelDownloads = 5"
+
+- name: pacman - makepkg - disable compression
+  lineinfile:
+    path: /etc/makepkg.conf,
+    regexp: "PKGEXT='.pkg.tar.zst'"
+    line: "PKGEXT='.pkg.tar'"
+
+- name: pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
+  lineinfile:
+    path: /etc/makepkg.conf
+    regexp: '#MAKEFLAGS="-j2"'
+    line: 'MAKEFLAGS="-j$(nproc)"'
+
+- name: pacman - add multilib repo
+  become: true
+  ini_file:
+    path: /etc/pacman.conf
+    section: "multilib"
+    option: "Include"
+    value: "/etc/pacman.d/mirrorlist"
+  notify: update_repos
+
+- name: pacman - create hooks directory
+  become: true
+  file:
+    path: /etc/pacman.d/hooks
+    state: directory
+
+- name: pacman - move hooks
+  become: true
+  synchronize:
+    src: ~/.config/arch/pacman/hooks/
+    dest: /etc/pacman.d/hooks/
+  delegate_to: localhost
