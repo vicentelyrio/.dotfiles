@@ -1,0 +1,19 @@
+- name: Choose GPU drivers
+  hosts: all
+  become: true
+  gather_facts: false
+
+  vars_prompt:
+    - name: gpu_driver_choice
+      prompt: "What drivers do you want for your gpu?"
+      choices:
+        - "NVIDIA"
+        - "AMD"
+        - "Intel"
+      private: no
+
+  block:
+    - name: Install GPU drivers
+      include_tasks: "drivers_{{ gpu_driver_choice | lower }}.yml"
+      when: gpu_driver_choice is defined
+

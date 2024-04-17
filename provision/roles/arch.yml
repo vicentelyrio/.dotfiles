@@ -1,15 +1,12 @@
-- name: Arch Role
-  hosts: all
-  become: true
-  block:
-    - name: System Package managers - Pacman
-      include_tasks: ./arch/system/pacman.yml
-
-    - name: System Package managers - Yay
-      include_tasks: ./arch/system/yay.yml
-
-    - name: System Services - SSH
-      include_tasks: ./arch/system/ssh.yml
-
-    - name: System Services - Audio
-      include_tasks: ./arch/system/audio.yml
+- name: Arch Linux
+  hosts: local
+  roles:
+    - role: system
+      vars:
+        role_path: roles/arch
+    - role: interface
+      vars:
+        role_path: roles/arch
+    - role: packages
+      vars:
+        role_path: roles/arch
