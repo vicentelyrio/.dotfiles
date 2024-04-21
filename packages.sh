@@ -2,12 +2,12 @@
 
 # shellcheck source=/packages.sh
 installLinuxPackages() {
-  ansible-playbook --ask-become-pass -i hosts ./provision/roles/arch.yml
+  ansible-playbook --ask-become-pass -i hosts ./provision/roles/arch
   printSection "ansible stuff"
 }
 
 installMacosPackages() {
-  ansible-playbook --ask-become-pass -i hosts ./provision/roles/macos.yml
+  ansible-playbook --ask-become-pass -i hosts ./provision/roles/macos
   printSection "ansible stuff"
 }
 

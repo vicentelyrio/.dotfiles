@@ -2,7 +2,7 @@
 
 set -e
 
-BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 require() {
   local DIR="${BASH_SOURCE%/*}"

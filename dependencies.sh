@@ -7,18 +7,6 @@ installLinuxDeps() {
   sudo pacman -S --needed base-devel git
   printSuccess "done"
 
-  # CURL
-  if ! command -v curl &> /dev/null; then
-    sudo pacman -S curl
-  fi
-  printSuccess "curl"
-
-  # SSH
-  if ! command -v ssh-agent &> /dev/null; then
-    sudo pacman -S openssh
-  fi
-  printSuccess "openssh"
-
   # YAY
   if ! command -v yay &> /dev/null; then
     printMessage "installing yay..."
@@ -54,15 +42,6 @@ installMacosDeps() {
     eval "$("$(brew --prefix)"/bin/brew shellenv)"
   fi
   printSuccess "homebrew"
-
-  # CURL
-  if ! command -v curl &> /dev/null; then
-    printMessage "installing curl..."
-    brew install curl
-    echo "export PATH=$(brew --prefix)/opt/curl/bin:$PATH" >> ~/.zshrc
-    source "$HOME/.zshrc"
-  fi
-  printSuccess "curl"
 
   # ANSIBLE
   if ! command -v ansible &> /dev/null; then

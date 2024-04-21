@@ -5,7 +5,7 @@
       - pipewire-alsa
       - alsa-utils
       - pavucontrol
-      # - wireplumber
+      - wireplumber
 
 - name: audio - pipewire service
   ansible.builtin.service:
@@ -13,8 +13,8 @@
     state: restarted
     enabled: yes
 
-# - name: audio - WirePlumber service
-#   systemd:
-#     name: wireplumber
-#     state: restarted
-#     enabled: yes
+- name: audio - WirePlumber service
+  systemd:
+    name: wireplumber
+    state: restarted
+    enabled: yes

@@ -1,5 +1,5 @@
-- name: Arch Role
-  hosts: all
+- name: Arch Linux Role
+  hosts: local
   become: true
   block:
     - name: System Package managers - Pacman
@@ -13,3 +13,4 @@
 
     - name: System Services - Audio
       include_tasks: ./arch/system/audio.yml
+
