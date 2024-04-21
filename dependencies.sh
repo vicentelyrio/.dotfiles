@@ -7,16 +7,6 @@ installLinuxDeps() {
   sudo pacman -S --needed base-devel git
   printSuccess "done"
 
-  # YAY
-  if ! command -v yay &> /dev/null; then
-    printMessage "installing yay..."
-    git clone https://aur.archlinux.org/yay.git
-    chmod 777 yay || return
-    cd yay || return
-    makepkg -si
-  fi
-  printSuccess "yay"
-
   # ANSIBLE
   if ! command -v ansible &> /dev/null; then
     printMessage "installing ansible..."
