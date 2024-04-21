@@ -4,9 +4,11 @@
     - role: system
       vars:
         role_path: roles/arch
+
     - role: interface
       vars:
         role_path: roles/arch
+
     - role: packages
       vars:
         role_path: roles/arch
