@@ -1,0 +1,12 @@
+- name: Quicklook - install
+  package:
+    name:
+      - qlcolorcode
+      - qlstephen
+      - qlmarkdown
+      - quicklook-json
+      - qlprettypatch
+      - quicklook-csv
+      - betterzip
+      - webpquicklook
+    state: present

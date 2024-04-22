@@ -1,0 +1,4 @@
+- name: MacOS Role
+  hosts: localhost
+  roles:
+    - quicklook
