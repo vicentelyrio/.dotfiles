@@ -1,0 +1,4 @@
+- name: Common Roles
+  hosts: localhost
+  roles:
+    - alacritty

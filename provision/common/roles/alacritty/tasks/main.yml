@@ -1,0 +1,5 @@
+- name: Alacritty - install
+  package:
+    name:
+      - alacritty
+    state: present

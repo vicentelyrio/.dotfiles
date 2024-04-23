@@ -1,0 +1,15 @@
+- name: alacritty - create config directory
+  file:
+    path: ~/.config/alacritty
+    state: directory
+
+- name: alacritty - symlink files
+  file:
+    src: "{{ ansible_env.PWD }}/provision/general/roles/alacritty/files/{{ item }}"
+    path: "~/.config/alacritty/{{ item }}"
+    state: link
+    follow: false
+    force: yes
+  loop:
+    - alacritty.yml
+    - files

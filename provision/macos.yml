@@ -1,0 +1,4 @@
+- name: MacOS Setup
+  hosts: localhost
+- import_playbook: ./macos/main.yml
+- import_playbook: ./common/main.yml

@@ -7,7 +7,7 @@ installLinuxPackages() {
 }
 
 installMacosPackages() {
-  ansible-playbook --ask-become-pass -i ./provision/hosts.yml ./provision/macos/main.yml
+  ansible-playbook --ask-become-pass -i ./provision/hosts.yml ./provision/macos.yml
   printSection "MacOS playbook completed"
 }
 
