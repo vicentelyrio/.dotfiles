@@ -1,5 +1,0 @@
-- name: eza - install
-  package:
-    name:
-      - eza
-    state: present

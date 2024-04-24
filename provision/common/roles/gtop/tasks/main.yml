@@ -1,5 +1,0 @@
-- name: gtop - install
-  package:
-    name:
-      - gtop
-    state: present

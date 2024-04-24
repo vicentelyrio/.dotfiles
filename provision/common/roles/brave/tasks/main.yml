@@ -1,5 +1,0 @@
-- name: brave - install
-  package:
-    name:
-      - brave
-    state: present

@@ -1,4 +1,4 @@
-- name: terminal utilities - install
+- name: Terminal utilities - install
   package:
     name:
       - ack

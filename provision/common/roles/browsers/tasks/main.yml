@@ -1,0 +1,6 @@
+- name: Browsers - install
+  package:
+    name:
+      - brave
+      - firefox
+    state: present

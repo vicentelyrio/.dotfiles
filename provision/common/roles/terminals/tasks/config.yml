@@ -1,0 +1,34 @@
+# ALACRITTY
+- name: alacritty - create config directory
+  file:
+    path: ~/.config/alacritty
+    state: directory
+
+- name: alacritty - symlink files
+  file:
+    src: "{{ ansible_env.PWD }}/provision/common/roles/terminals/files/{{ item }}"
+    path: "~/.config/alacritty/{{ item }}"
+    state: link
+    follow: false
+    force: yes
+  loop:
+    - alacritty.yml
+    - colors.yml
+    - fonts.yml
+    - keybinds.yml
+
+# WEZTERM
+- name: wezterm - create config directory
+  file:
+    path: ~/.config/wezterm
+    state: directory
+
+- name: wezterm - symlink files
+  file:
+    src: "{{ ansible_env.PWD }}/provision/common/roles/terminals/files/{{ item }}"
+    path: "~/.config/wezterm/{{ item }}"
+    state: link
+    follow: false
+    force: yes
+  loop:
+    - wezterm.lua

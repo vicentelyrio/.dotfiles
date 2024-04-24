@@ -1,0 +1,6 @@
+- name: IDEs - install
+  package:
+    name:
+      - helix
+      - nvim
+    state: present

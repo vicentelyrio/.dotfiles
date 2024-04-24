@@ -1,5 +1,0 @@
-- name: zsh - install
-  package:
-    name:
-      - zsh
-    state: present

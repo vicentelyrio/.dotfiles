@@ -1,5 +1,0 @@
-- name: gitui - install
-  package:
-    name:
-      - gitui
-    state: present

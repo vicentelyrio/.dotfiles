@@ -1,0 +1,6 @@
+- name: Terminals - install
+  package:
+    name:
+      - alacritty
+      - wezterm
+    state: present

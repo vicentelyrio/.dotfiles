@@ -1,0 +1,6 @@
+- name: Apps - install
+  package:
+    name:
+      - blender
+      - ultimaker-cura
+    state: present

@@ -1,5 +1,0 @@
-- name: neofetch - install
-  package:
-    name:
-      - neofetch
-    state: present
