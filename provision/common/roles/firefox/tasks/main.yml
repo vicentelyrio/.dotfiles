@@ -1,0 +1,5 @@
+- name: firefox - install
+  package:
+    name:
+      - firefox
+    state: present

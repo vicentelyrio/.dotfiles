@@ -1,0 +1,5 @@
+- name: tmux - install
+  package:
+    name:
+      - tmux
+    state: present

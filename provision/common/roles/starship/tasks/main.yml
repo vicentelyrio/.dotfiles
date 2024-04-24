@@ -1,0 +1,5 @@
+- name: starship - install
+  package:
+    name:
+      - starship
+    state: present

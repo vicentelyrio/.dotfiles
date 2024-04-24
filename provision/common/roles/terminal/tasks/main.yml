@@ -1,0 +1,17 @@
+- name: terminal utilities - install
+  package:
+    name:
+      - ack
+      - bat
+      - bash-completion
+      - eza
+      - fzf
+      - gitui
+      - gtop
+      - neofetch
+      - starship
+      - tmux
+      - tree
+      - zoxide
+      - zsh
+    state: present

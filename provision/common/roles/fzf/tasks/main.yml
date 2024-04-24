@@ -1,0 +1,5 @@
+- name: fzf - install
+  package:
+    name:
+      - fzf
+    state: present

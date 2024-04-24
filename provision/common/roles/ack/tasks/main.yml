@@ -1,0 +1,5 @@
+- name: ack - install
+  package:
+    name:
+      - ack
+    state: present

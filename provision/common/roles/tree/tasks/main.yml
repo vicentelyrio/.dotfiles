@@ -1,0 +1,5 @@
+- name: tree - install
+  package:
+    name:
+      - tree
+    state: present

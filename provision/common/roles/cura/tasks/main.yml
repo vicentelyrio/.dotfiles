@@ -1,0 +1,5 @@
+- name: cura - install
+  package:
+    name:
+      - ultimaker-cura
+    state: present

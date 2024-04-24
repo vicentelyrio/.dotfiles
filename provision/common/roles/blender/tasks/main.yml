@@ -1,0 +1,5 @@
+- name: blender - install
+  package:
+    name:
+      - blender
+    state: present

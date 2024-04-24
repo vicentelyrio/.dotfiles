@@ -77,3 +77,4 @@ colors:
     indexed_colors:
         - { index: 16, color: "#F5A97F" }
         - { index: 17, color: "#F4DBD6" }
+

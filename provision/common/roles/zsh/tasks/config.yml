@@ -1,0 +1,15 @@
+- name: zsh - create config directory
+  file:
+    path: ~/.config/.zsh
+    state: directory
+
+- name: zsh - symlink files
+  file:
+    src: "{{ ansible_env.PWD }}/provision/common/roles/zsh/files/{{ item }}"
+    path: "~/.config/.zsh/{{ item }}"
+    state: link
+    follow: false
+    force: yes
+  loop:
+    - .zshrc
+    - .zshaliases

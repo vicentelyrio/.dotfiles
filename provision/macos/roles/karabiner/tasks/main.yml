@@ -1,0 +1,5 @@
+- name: karabiner - install
+  package:
+    name:
+      - karabiner-elements
+    state: present

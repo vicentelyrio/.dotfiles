@@ -1,4 +1,4 @@
-- name: Alacritty - install
+- name: alacritty - install
   package:
     name:
       - alacritty

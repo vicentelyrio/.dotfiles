@@ -1,4 +1,4 @@
-- name: Quicklook - install
+- name: quicklook - install
   package:
     name:
       - qlcolorcode

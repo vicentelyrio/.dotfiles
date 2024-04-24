@@ -1,0 +1,5 @@
+- name: zoxide - install
+  package:
+    name:
+      - zoxide
+    state: present
