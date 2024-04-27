@@ -1,8 +1,8 @@
 - name: pacman - update
+  become: true
   pacman:
     update_cache: yes
     upgrade: yes
-    become: true
 
 - name: pacman - enable color
   lineinfile:
