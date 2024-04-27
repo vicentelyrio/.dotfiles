@@ -1,5 +1,5 @@
 - name: pacman - update
-  community.general.pacman:
+  pacman:
     update_cache: yes
     upgrade: yes
 
