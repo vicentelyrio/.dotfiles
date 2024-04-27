@@ -7,6 +7,12 @@ installLinuxDeps() {
   sudo pacman -S --needed base-devel git
   printSuccess "done"
 
+  # rsync
+  if ! command -v rsync &> /dev/null; then
+    printMessage "installing rsync..."
+    sudo pacman -S rsync --needed
+  fi
+
   # ANSIBLE
   if ! command -v ansible &> /dev/null; then
     printMessage "installing ansible..."
