@@ -10,7 +10,7 @@ installLinuxDeps() {
   # ANSIBLE
   if ! command -v ansible &> /dev/null; then
     printMessage "installing ansible..."
-    sudo pacman -S ansible
+    sudo pacman -S ansible --needed
   fi
   printSuccess "ansible"
 }
