@@ -18,20 +18,6 @@
     regexp: "#ParallelDownloads = 5"
     line: "ParallelDownloads = 5"
 
-- name: pacman - makepkg - disable compression
-  become: true
-  lineinfile:
-    path: /etc/makepkg.conf,
-    regexp: "PKGEXT='.pkg.tar.zst'"
-    line: "PKGEXT='.pkg.tar'"
-
-- name: pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
-  become: true
-  lineinfile:
-    path: /etc/makepkg.conf
-    regexp: '#MAKEFLAGS="-j2"'
-    line: 'MAKEFLAGS="-j$(nproc)"'
-
 - name: pacman - add multilib repo
   become: true
   ini_file:
@@ -53,3 +39,20 @@
     src: "{{ ansible_env.PWD }}/provision/arch/system/roles/pacman/files/{{ item }}"
     dest: /etc/pacman.d/hooks/
   delegate_to: localhost
+
+- name: pacman - makepkg - disable compression
+  become: true
+  lineinfile:
+    create: true
+    path: /etc/makepkg.conf,
+    regexp: "PKGEXT='.pkg.tar.zst'"
+    line: "PKGEXT='.pkg.tar'"
+
+- name: pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
+  become: true
+  lineinfile:
+    create: true
+    path: /etc/makepkg.conf
+    regexp: '#MAKEFLAGS="-j2"'
+    line: 'MAKEFLAGS="-j$(nproc)"'
+
