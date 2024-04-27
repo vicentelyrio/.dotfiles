@@ -1,4 +1,5 @@
 - name: yay - disable password
+  become: true
   lineinfile:
     path: /etc/sudoers.d/temp_allow_no_pswd_pacman
     state: present
