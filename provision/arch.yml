@@ -1,0 +1,4 @@
+- name: Arch Linux Setup
+  hosts: localhost
+- import_playbook: ./arch/main.yml
+- import_playbook: ./common/main.yml

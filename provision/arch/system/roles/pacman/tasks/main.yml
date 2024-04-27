@@ -45,6 +45,6 @@
 - name: pacman - move hooks
   become: true
   synchronize:
-    src: ~/.config/arch/pacman/hooks/
+    src: "{{ ansible_env.PWD }}/provision/arch/system/roles/pacman/files/{{ item }}"
     dest: /etc/pacman.d/hooks/
   delegate_to: localhost
