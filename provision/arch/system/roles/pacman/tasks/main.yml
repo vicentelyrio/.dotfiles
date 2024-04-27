@@ -40,19 +40,19 @@
     dest: /etc/pacman.d/hooks/
   delegate_to: localhost
 
-- name: pacman - makepkg - disable compression
-  become: true
-  lineinfile:
-    create: true
-    path: /etc/makepkg.conf,
-    regexp: "PKGEXT='.pkg.tar.zst'"
-    line: "PKGEXT='.pkg.tar'"
-
-- name: pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
-  become: true
-  lineinfile:
-    create: true
-    path: /etc/makepkg.conf
-    regexp: '#MAKEFLAGS="-j2"'
-    line: 'MAKEFLAGS="-j$(nproc)"'
-
+# - name: pacman - makepkg - disable compression
+#   become: true
+#   lineinfile:
+#     create: true
+#     path: /etc/makepkg.conf,
+#     regexp: "PKGEXT='.pkg.tar.zst'"
+#     line: "PKGEXT='.pkg.tar'"
+#
+# - name: pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
+#   become: true
+#   lineinfile:
+#     create: true
+#     path: /etc/makepkg.conf
+#     regexp: '#MAKEFLAGS="-j2"'
+#     line: 'MAKEFLAGS="-j$(nproc)"'
+#
