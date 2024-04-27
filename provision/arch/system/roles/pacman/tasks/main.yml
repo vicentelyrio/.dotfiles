@@ -5,24 +5,28 @@
     upgrade: yes
 
 - name: pacman - enable color
+  become: true
   lineinfile:
     path: /etc/pacman.conf
     regexp: "^#Color$"
     line: "Color"
 
 - name: pacman - enable ParallelDownloads = 5
+  become: true
   lineinfile:
     path: /etc/pacman.conf
     regexp: "#ParallelDownloads = 5"
     line: "ParallelDownloads = 5"
 
 - name: pacman - makepkg - disable compression
+  become: true
   lineinfile:
     path: /etc/makepkg.conf,
     regexp: "PKGEXT='.pkg.tar.zst'"
     line: "PKGEXT='.pkg.tar'"
 
 - name: pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
+  become: true
   lineinfile:
     path: /etc/makepkg.conf
     regexp: '#MAKEFLAGS="-j2"'
