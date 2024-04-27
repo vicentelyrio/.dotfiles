@@ -2,6 +2,7 @@
   pacman:
     update_cache: yes
     upgrade: yes
+    become: true
 
 - name: pacman - enable color
   lineinfile:
