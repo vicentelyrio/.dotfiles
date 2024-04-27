@@ -1,4 +1,6 @@
 - name: Arch Linux Setup
   hosts: localhost
-- import_playbook: ./arch/main.yml
+- import_playbook: ./arch/system/main.yml
+- import_playbook: ./arch/interface/main.yml
+- import_playbook: ./arch/packages/main.yml
 - import_playbook: ./common/main.yml
