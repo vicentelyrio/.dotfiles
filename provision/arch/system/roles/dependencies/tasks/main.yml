@@ -9,7 +9,7 @@
   pacman:
     update_cache: yes
     name:
-      - python3-pip
+      - python2-pip
 
 - name: pexpect - install
   pip:
