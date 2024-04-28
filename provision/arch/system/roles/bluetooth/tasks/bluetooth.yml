@@ -1,5 +1,5 @@
 - name: bluetooth - install dependencies
-  community.general.pacman:
+  pacman:
     name:
       - bluez
       - bluez-utils

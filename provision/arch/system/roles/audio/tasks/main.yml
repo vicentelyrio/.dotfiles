@@ -1,5 +1,5 @@
 - name: audio - install dependencies
-  community.general.pacman:
+  pacman:
     name:
       - pipewire
       - pipewire-alsa
