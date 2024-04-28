@@ -1,0 +1,14 @@
+- name: rsync - install
+  pacman:
+    name:
+      - rsync
+
+- name: pip - install
+  pacman:
+    update_cache: yes
+    name:
+      - python3-pip
+
+- name: pexpect - install
+  pip:
+    name: pexpect
