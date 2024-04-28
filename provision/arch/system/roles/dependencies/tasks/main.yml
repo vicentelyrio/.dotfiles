@@ -1,16 +1,9 @@
-- name: rsync - install
-  become: true
-  pacman:
-    name:
-      - rsync
-
-- name: pip - install
+- name: dependencies - install
   become: true
   pacman:
     update_cache: yes
     name:
+      - rsync
       - python-pip
+      - python-pexpect
 
-- name: pexpect - install
-  pip:
-    name: pexpect
