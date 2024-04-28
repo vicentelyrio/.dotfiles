@@ -1,6 +1,7 @@
 - name: Arch Linux System Roles
   hosts: localhost
   roles:
+    - dependencies
     - pacman
     - yay
 
