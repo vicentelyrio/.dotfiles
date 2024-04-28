@@ -1,4 +1,5 @@
 - name: Terminals - install
+  become: true
   package:
     name:
       - alacritty

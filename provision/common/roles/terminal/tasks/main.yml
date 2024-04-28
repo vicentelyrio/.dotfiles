@@ -1,4 +1,5 @@
 - name: Terminal utilities - install
+  become: true
   package:
     name:
       - ack
