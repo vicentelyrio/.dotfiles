@@ -1,9 +1,11 @@
 - name: rsync - install
+  become: true
   pacman:
     name:
       - rsync
 
 - name: pip - install
+  become: true
   pacman:
     update_cache: yes
     name:
