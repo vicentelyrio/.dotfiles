@@ -1,5 +1,0 @@
-- name: unarchiver - install
-  package:
-    name:
-      - the-unarchiver
-    state: present

@@ -1,6 +1,6 @@
 - name: Terminals - install
   become: true
-  package:
+  ansible.builtin.package:
     name:
       - alacritty
       - wezterm

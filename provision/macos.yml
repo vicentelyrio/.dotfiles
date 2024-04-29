@@ -1,4 +1,26 @@
 - name: MacOS Setup
-  hosts: localhost
-- import_playbook: ./macos/main.yml
-- import_playbook: ./common/main.yml
+  hosts: hosts
+
+  tasks:
+    - name: Install The Unarchiver
+      ansible.builtin.package:
+        name: the-unarchiver
+        state: present
+
+    - name: Install Quicklook
+      ansible.builtin.package:
+        name: quicklook
+        state: present
+
+    - name: Install Monitor Control
+      ansible.builtin.package:
+        name: monitorcontrol
+        state: present
+
+    - name: Install Karabiner
+      ansible.builtin.package:
+        name: karabiner-elements
+        state: present
+
+# - name: Importing Common Playbook
+#   ansible.builtin.import_playbook: ./common/main.yml
