@@ -3,6 +3,6 @@
   roles:
     - terminals
     - terminal
-    # - ides
-    # - apps
-    # - browsers
+    - ides
+    - apps
+    - browsers

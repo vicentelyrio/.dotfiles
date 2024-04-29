@@ -1,5 +1,5 @@
 - name: IDEs - install
-  package:
+  ansible.builtin.package:
     name:
       - helix
       - nvim

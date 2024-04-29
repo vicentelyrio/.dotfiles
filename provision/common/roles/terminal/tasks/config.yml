@@ -1,68 +1,20 @@
-# ZSH
-- name: ZSH - create config directory
-  ansible.builtin.file:
-    path: ~/.config/.zsh
-    state: directory
-    mode: "0600"
+- name: Bash
+  include_task: ./config/bash.yml
 
-- name: ZSH - symlink files
-  ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/{{ item }}"
-    path: "~/.config/.zsh/{{ item }}"
-    state: link
-    follow: false
-    force: "yes"
-  loop:
-    - .zshrc
-    - .zshaliases
+- name: Zsh
+  include_task: ./config/zsh.yml
 
-# FZF
-- name: FZF - create config directory
-  ansible.builtin.file:
-    path: ~/.config/fzf
-    state: directory
-    mode: "0600"
+- name: Fzf
+  include_task: ./config/fzf.yml
 
-- name: FZF - symlink files
-  ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/{{ item }}"
-    path: "~/.config/fzf/{{ item }}"
-    state: link
-    follow: false
-    force: "yes"
-  loop:
-    - .fzf.zsh
+- name: Starship
+  include_task: ./config/starship.yml
 
-# STARSHIP
-- name: Starship - create config directory
-  ansible.builtin.file:
-    path: ~/.configstarship/
-    state: directory
-    mode: "0600"
+- name: Tmux
+  include_task: ./config/tmux.yml
 
-- name: Starship - symlink files
-  ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/{{ item }}"
-    path: "~/.config/starship/{{ item }}"
-    state: link
-    follow: false
-    force: "yes"
-  loop:
-    - starship.toml
+- name: Gitui
+  include_task: ./config/gitui.yml
 
-# TMUX
-- name: Tmux - create config directory
-  ansible.builtin.file:
-    path: ~/.config/tmux
-    state: directory
-    mode: "0600"
-
-- name: Tmux - symlink files
-  ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/{{ item }}"
-    path: "~/.config/tmux/{{ item }}"
-    state: link
-    follow: false
-    force: "yes"
-  loop:
-    - .tmux.conf
+- name: Bat
+  include_task: ./config/bat.yml

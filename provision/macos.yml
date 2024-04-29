@@ -2,25 +2,25 @@
   hosts: hosts
 
   tasks:
-    - name: Install The Unarchiver
+    - name: Install MacOS packages
       ansible.builtin.package:
-        name: the-unarchiver
+        name:
+          # quicklook
+          - qlcolorcode
+          - qlstephen
+          - qlmarkdown
+          - quicklook-json
+          - qlprettypatch
+          - quicklook-csv
+          - betterzip
+          - webpquicklook
+          # compression
+          - the-unarchiver
+          # display brightness
+          - monitorcontrol
+          # shortcuts
+          - karabiner-elements
         state: present
 
-    - name: Install Quicklook
-      ansible.builtin.package:
-        name: quicklook
-        state: present
-
-    - name: Install Monitor Control
-      ansible.builtin.package:
-        name: monitorcontrol
-        state: present
-
-    - name: Install Karabiner
-      ansible.builtin.package:
-        name: karabiner-elements
-        state: present
-
-# - name: Importing Common Playbook
-#   ansible.builtin.import_playbook: ./common/main.yml
+- name: Importing Common Playbook
+  ansible.builtin.import_playbook: ./common/main.yml

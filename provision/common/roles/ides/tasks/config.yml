@@ -1,0 +1,5 @@
+- name: Helix
+  include_task: ./config/helix.yml
+
+- name: Nvim
+  include_task: ./config/nvim.yml

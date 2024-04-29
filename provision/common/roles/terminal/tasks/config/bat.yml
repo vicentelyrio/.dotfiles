@@ -1,0 +1,34 @@
+- name: Bat - create config directory
+  ansible.builtin.file:
+    path: ~/.config/bat
+    state: directory
+    mode: "0600"
+
+- name: Bat - symlink config
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/bat/{{ item }}"
+    path: "~/.config/bat/{{ item }}"
+    state: link
+    follow: false
+    force: "yes"
+  loop:
+    - config
+
+- name: Bat - create theme directory
+  ansible.builtin.file:
+    path: ~/.config/bat/themes
+    state: directory
+    mode: "0600"
+
+- name: Bat - symlink themes
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/bat/themes/{{ item }}"
+    path: "~/.config/bat/themes/{{ item }}"
+    state: link
+    follow: false
+    force: "yes"
+  loop:
+    - Catppuccin-frappe.tmTheme
+    - Catppuccin-latte.tmTheme
+    - Catppuccin-macchiato.tmTheme
+    - Catppuccin-mocha.tmTheme

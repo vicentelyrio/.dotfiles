@@ -1,5 +1,5 @@
 - name: Browsers - install
-  package:
+  ansible.builtin.package:
     name:
       - brave
       - firefox
