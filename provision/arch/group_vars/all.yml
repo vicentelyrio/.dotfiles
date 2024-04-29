@@ -1,0 +1,36 @@
+user:
+  name: vicentelyrio
+  group: users
+  shell: /bin/zsh
+
+system:
+  locale: en.UTF-8
+  timezone: America/Sao_Paulo
+  processor: intel
+  graphics_card: amd
+  macspoof: disabled
+
+bootloader: grub
+
+ssh:
+  port: 22
+  enable_sshd: true
+
+# dotfiles:
+#   installation: "true"
+#   url: https://github.com/id101010/dotfiles.git
+#   destination: .dotfiles
+#   rcup_flags: -fx README.md
+
+base_packages:
+  - base-devel
+  - cronie
+  - openssh
+  - rkhunter
+  - nmap
+  - curl
+  - git
+  - rsync
+  - coreutils
+  - dateutils
+  - lsof
