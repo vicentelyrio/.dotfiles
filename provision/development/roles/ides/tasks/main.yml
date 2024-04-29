@@ -1,3 +1,4 @@
+---
 - name: IDEs - install
   ansible.builtin.package:
     name:

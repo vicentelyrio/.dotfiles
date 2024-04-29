@@ -1,3 +1,4 @@
+---
 - name: Terminal utilities - install
   become: true
   ansible.builtin.package:

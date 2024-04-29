@@ -1,7 +1,8 @@
+---
 - name: BASH - symlink config
   ansible.builtin.file:
     src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/bash/{{ item }}"
-    path: "~/{{ item }}"
+    path: ~/{{ item }}
     state: link
     follow: false
     force: "yes"

@@ -1,3 +1,4 @@
+---
 - name: Gitui - create config directory
   ansible.builtin.file:
     path: ~/.config/gitui
@@ -7,7 +8,7 @@
 - name: Gitui - symlink config
   ansible.builtin.file:
     src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/gitui/{{ item }}"
-    path: "~/.config/gitui/{{ item }}"
+    path: ~/.config/gitui/{{ item }}
     state: link
     follow: false
     force: "yes"

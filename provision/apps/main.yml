@@ -1,3 +1,4 @@
+---
 - name: Apps Roles
   hosts: hosts
   roles:

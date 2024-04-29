@@ -1,0 +1,3 @@
+- name: Package Managers
+  ansible.buildin.include_task: ./pacman
+

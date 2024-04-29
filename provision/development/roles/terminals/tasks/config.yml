@@ -1,5 +1,6 @@
+---
 - name: Alacritty
-  include_task: ./config/alacritty.yml
+  ansible.buildin.include_task: ./config/alacritty.yml
 
 - name: Wezterm
-  include_task: ./config/wezterm.yml
+  ansible.buildin.include_task: ./config/wezterm.yml

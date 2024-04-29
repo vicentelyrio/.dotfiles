@@ -13,6 +13,6 @@
 
   block:
     - name: Install GPU drivers
-      include_tasks: "drivers_{{ gpu_driver_choice | lower }}.yml"
+      ansible.buildin.include_tasks: "drivers_{{ gpu_driver_choice | lower }}.yml"
       when: gpu_driver_choice is defined
 

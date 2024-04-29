@@ -1,20 +1,21 @@
+---
 - name: Bash
-  include_task: ./config/bash.yml
+  ansible.buildin.include_task: ./config/bash.yml
 
 - name: Zsh
-  include_task: ./config/zsh.yml
+  ansible.buildin.include_task: ./config/zsh.yml
 
 - name: Fzf
-  include_task: ./config/fzf.yml
+  ansible.buildin.include_task: ./config/fzf.yml
 
 - name: Starship
-  include_task: ./config/starship.yml
+  ansible.buildin.include_task: ./config/starship.yml
 
 - name: Tmux
-  include_task: ./config/tmux.yml
+  ansible.buildin.include_task: ./config/tmux.yml
 
 - name: Gitui
-  include_task: ./config/gitui.yml
+  ansible.buildin.include_task: ./config/gitui.yml
 
 - name: Bat
-  include_task: ./config/bat.yml
+  ansible.buildin.include_task: ./config/bat.yml

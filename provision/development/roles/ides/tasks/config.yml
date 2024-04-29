@@ -1,5 +1,6 @@
+---
 - name: Helix
-  include_task: ./config/helix.yml
+  ansible.buildin.include_task: ./config/helix.yml
 
 - name: Nvim
-  include_task: ./config/nvim.yml
+  ansible.buildin.include_task: ./config/nvim.yml

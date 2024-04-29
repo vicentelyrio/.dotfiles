@@ -1,3 +1,4 @@
+---
 - name: Terminals - install
   become: true
   ansible.builtin.package:
