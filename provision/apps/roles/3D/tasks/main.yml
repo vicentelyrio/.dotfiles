@@ -1,4 +1,4 @@
-- name: Apps - install
+- name: 3D Apps - install
   ansible.builtin.package:
     name:
       - blender

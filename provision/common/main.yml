@@ -1,8 +1,0 @@
-- name: Common Roles
-  hosts: localhost
-  roles:
-    - terminals
-    - terminal
-    - ides
-    - apps
-    - browsers
