@@ -1,0 +1,3 @@
+- name: Pacman - update repos
+  ansible.builting.package:
+    update-cache: "yes"

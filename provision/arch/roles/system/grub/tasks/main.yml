@@ -1,0 +1,4 @@
+- name: Grub - install bootloader and tools
+  ansible.builtin.package:
+    name: grup
+    state: present

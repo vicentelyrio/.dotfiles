@@ -1,4 +1,4 @@
-- name: Install network tools
+- name: Network - install tools
   ansible.builtin.package:
     name:
       - ethtool
@@ -18,10 +18,13 @@
   notify:
     - rkhunter propupdate
 
-- name: Enable dhcp service
-  ansible.builtin.service: name=dhcpcd state=started enabled=true
+- name: Network - enable dhcp service
+  ansible.builtin.service:
+    name: dhcpcd
+    state: started
+    enabled: true
 
-- name: Enable NetworkManager service
+- name: Network - enable NetworkManager service
   ansible.builtin.service:
     name: NetworkManager
     state: started

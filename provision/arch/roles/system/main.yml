@@ -1,0 +1,23 @@
+- name: Network
+  ansible.buildin.include_task: ./network
+
+- name: Users
+  ansible.buildin.include_task: ./user
+
+- name: Locale
+  ansible.buildin.include_task: ./locale
+
+- name: Pacman
+  ansible.buildin.include_task: ./pacman
+
+- name: Yay
+  ansible.buildin.include_task: ./yay
+
+- name: Grub
+  ansible.buildin.include_task: ./grub
+
+- name: Bluetooth
+  ansible.buildin.include_task: ./bluetooth
+
+- name: Audio
+  ansible.buildin.include_task: ./audio

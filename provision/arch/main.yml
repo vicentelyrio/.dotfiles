@@ -1,8 +1,5 @@
----
 - name: Arch Linux Setup
   hosts: hosts
   roles:
     - dependencies
-    - packagemanagers
-    - user
-    - locale
+    - system

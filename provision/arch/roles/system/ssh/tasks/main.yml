@@ -1,0 +1,11 @@
+# SSH
+- name: Ssh - install
+  ansible.builtin.package:
+    name:
+      - openssh
+
+- name: Ssh - enable and start service
+  ansible.builtin.systemd:
+    name: sshd
+    enabled: "yes"
+    state: started

@@ -1,0 +1,75 @@
+- name: Pacman - enable color
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: "^#Color$"
+    line: "Color"
+
+- name: Pacman - enable ParallelDownloads = 5
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: "#ParallelDownloads = 5"
+    line: "ParallelDownloads = 5"
+
+- name: Pacman - add multilib repo
+  become: true
+  community.general.ini_file:
+    path: /etc/pacman.conf
+    section: "multilib"
+    option: "Include"
+    value: "/etc/pacman.d/mirrorlist"
+    mode: "0600"
+  notify: update_repos
+
+- name: Pacman - create hooks directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    mode: "0600"
+
+- name: Pacman - move hooks
+  become: true
+  ansible.builtin.synchronize:
+    src: "{{ ansible_env.PWD }}/roles/pacman/files/hooks/"
+    dest: /etc/pacman.d/hooks/
+    mode: "0600"
+  delegate_to: localhost
+
+- name: Pacman - makepkg - disable compression
+  become: true
+  ansible.builtin.lineinfile:
+    create: true
+    path: /etc/makepkg.conf,
+    regexp: "PKGEXT='.pkg.tar.zst'"
+    line: "PKGEXT='.pkg.tar'"
+    mode: "0600"
+
+- name: Pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
+  become: true
+  ansible.builtin.lineinfile:
+    create: true
+    path: /etc/makepkg.conf
+    regexp: '#MAKEFLAGS="-j2"'
+    line: 'MAKEFLAGS="-j$(nproc)"'
+    mode: "0600"
+
+- name: Pacman - update package cache
+  ansible.builtin.package:
+    update_cache: true
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+
+- name: Pacman - perform full system upgrade
+  ansible.builtin.package:
+    update_cache: true
+    upgrade: true
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+  notify:
+    - rkhunter propupdate
