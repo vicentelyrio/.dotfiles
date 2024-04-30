@@ -1,4 +1,6 @@
 - name: Arch Linux Setup
+  hosts: local
+
   roles:
     - dependencies
     - system
