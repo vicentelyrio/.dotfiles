@@ -1,6 +1,3 @@
-- name: Arch Linux - System
-  hosts: hosts
-
 - name: Network
   ansible.buildin.include_task: ./network
 
