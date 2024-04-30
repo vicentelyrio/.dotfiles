@@ -1,4 +1,5 @@
 - name: Dependencies - install
+  host: local
   become: true
   ansible.builtin.package:
     update_cache: "yes"
