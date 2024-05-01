@@ -6,10 +6,6 @@
       shell: "getent passwd {{ ansible_user_id }} | cut -d: -f6"
       register: home_dir_result
 
-    - name: Print user's home directory
-      debug:
-        msg: "{{ home_dir_result.stdout }}"
-
 - name: Arch Playbook
   ansible.builtin.import_playbook: ./arch/main.yml
 
