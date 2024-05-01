@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config/bat
     state: directory
-    mode: "0644"
+    mode: "0755"
 
 - name: Bat - symlink config
   ansible.builtin.file:
@@ -18,7 +18,7 @@
   ansible.builtin.file:
     path: ~/.config/bat/themes
     state: directory
-    mode: "0644"
+    mode: "0755"
 
 - name: Bat - symlink themes
   ansible.builtin.file:

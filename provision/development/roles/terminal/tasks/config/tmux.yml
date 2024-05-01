@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config/tmux
     state: directory
-    mode: "0644"
+    mode: "0755"
 
 - name: Tmux - symlink files
   ansible.builtin.file:

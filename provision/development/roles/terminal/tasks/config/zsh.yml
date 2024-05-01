@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config/.zsh
     state: directory
-    mode: "0644"
+    mode: "0755"
 
 - name: ZSH - symlink config
   ansible.builtin.file:

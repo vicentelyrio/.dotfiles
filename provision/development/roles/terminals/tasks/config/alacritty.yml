@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config/alacritty
     state: directory
-    mode: "0644"
+    mode: "0755"
 
 - name: Alacritty - symlink files
   ansible.builtin.file:

@@ -6,7 +6,7 @@
     line: "ALL ALL=NOPASSWD: /usr/bin/pacman"
     validate: /usr/sbin/visudo -cf %s
     create: true
-    mode: "0644"
+    mode: "0755"
 
 - name: Yay - git clone yay-bin repo in to /tmp
   become: false
