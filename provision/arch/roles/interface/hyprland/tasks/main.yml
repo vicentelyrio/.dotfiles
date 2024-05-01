@@ -1,5 +1,5 @@
 - name: Hyprland - install
-  pacman:
+  ansible.builtin.package:
     name:
       - hyprland
       - hyprprop-git

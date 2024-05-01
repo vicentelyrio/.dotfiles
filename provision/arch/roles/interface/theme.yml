@@ -1,8 +1,0 @@
-- name: theme - install
-  become: true
-  become_user: aur_builder
-  aur:
-    use: yay
-    name:
-      - catppuccin-gtk-theme-macchiato
-      - catppuccin-cursors-macchiato
