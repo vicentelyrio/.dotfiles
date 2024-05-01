@@ -1,6 +1,6 @@
 - name: Neovim - create config directory
   ansible.builtin.file:
-    path: ~/.config/nvim
+    path: "{{ ansible_env.HOME }}/.config/nvim"
     state: directory
     mode: "0755"
 
