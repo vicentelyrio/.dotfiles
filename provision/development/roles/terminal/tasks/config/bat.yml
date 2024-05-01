@@ -1,4 +1,3 @@
----
 - name: Bat - create config directory
   ansible.builtin.file:
     path: ~/.config/bat
@@ -7,7 +6,7 @@
 
 - name: Bat - symlink config
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/development/roles/terminal/files/bat/{{ item }}"
+    src: "{{ playbook_dir }}/roles/terminal/files/bat/{{ item }}"
     path: ~/.config/bat/{{ item }}
     state: link
     follow: false
@@ -23,7 +22,7 @@
 
 - name: Bat - symlink themes
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/development/roles/terminal/files/bat/themes/{{ item }}"
+    src: "{{ playbook_dir }}/roles/terminal/files/bat/themes/{{ item }}"
     path: ~/.config/bat/themes/{{ item }}
     state: link
     follow: false

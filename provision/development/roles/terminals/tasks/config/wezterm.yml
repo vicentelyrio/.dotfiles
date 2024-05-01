@@ -1,4 +1,3 @@
----
 - name: Wezterm - create config directory
   ansible.builtin.file:
     path: ~/.config/wezterm
@@ -7,7 +6,7 @@
 
 - name: Wezterm - symlink files
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/development/roles/terminals/files/wezterm/{{ item }}"
+    src: "{{ playbook_dir }}/roles/terminals/files/wezterm/{{ item }}"
     path: ~/.config/wezterm/{{ item }}
     state: link
     follow: false

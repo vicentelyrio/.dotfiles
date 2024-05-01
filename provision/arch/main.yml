@@ -1,4 +1,6 @@
 - name: Arch Linux Setup
   hosts: local
+  become: true
+
   roles:
     - system

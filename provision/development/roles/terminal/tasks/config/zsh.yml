@@ -1,4 +1,3 @@
----
 - name: ZSH - create config directory
   ansible.builtin.file:
     path: ~/.config/.zsh
@@ -7,7 +6,7 @@
 
 - name: ZSH - symlink config
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/development/roles/terminal/files/zsh/{{ item }}"
+    src: "{{ playbook_dir }}/roles/terminal/files/zsh/{{ item }}"
     path: ~/{{ item }}
     state: link
     follow: false
@@ -17,7 +16,7 @@
 
 - name: ZSH - symlink aliases
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/development/roles/terminal/files/zsh/{{ item }}"
+    src: "{{ playbook_dir }}/roles/terminal/files/zsh/{{ item }}"
     path: ~/.config/.zsh/{{ item }}
     state: link
     follow: false

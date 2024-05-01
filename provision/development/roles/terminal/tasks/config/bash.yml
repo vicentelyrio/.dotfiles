@@ -1,7 +1,6 @@
----
 - name: BASH - symlink config
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/development/roles/terminal/files/bash/{{ item }}"
+    src: "{{ playbook_dir }}/roles/terminal/files/bash/{{ item }}"
     path: ~/{{ item }}
     state: link
     follow: false
