@@ -1,4 +1,3 @@
----
 - name: Clone NVIM config from my repo
   ansible.builtin.git:
     repo: https://github.com/vicentelyrio/nvim.git
