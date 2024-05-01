@@ -16,7 +16,7 @@
   become: true
   ansible.builtin.file:
     src: "{{ ansible_env.PWD }}/roles/ides/files/helix/{{ item }}"
-    path: ~/.config/helix/{{ item }}
+    path: "$HOME/.config/helix/{{ item }}"
     state: link
     follow: false
     force: "yes"
