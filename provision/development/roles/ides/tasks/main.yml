@@ -3,5 +3,5 @@
   ansible.builtin.package:
     name:
       - helix
-      - nvim
+      - neovim
     state: present
