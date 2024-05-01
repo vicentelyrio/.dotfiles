@@ -5,9 +5,16 @@
   tasks:
     - name: Create directory in user's home directory
       file:
-        path: ~/.config/test
+        path: "{{ ansible_env.HOME }}/.config/test"
         state: directory
+      environment:
+        HOME: "{{ ansible_env.HOME }}"
 
+# - name: Arch Linux Setup
+#   hosts: local
+#   remote_user: "{{ user.name }}"
+#   become: true
+#
 # - name: Arch Playbook
 #   ansible.builtin.import_playbook: ./arch/main.yml
 #
