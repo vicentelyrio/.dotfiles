@@ -1,2 +1,13 @@
 - name: Hyprland
   ansible.builtin.import_tasks: ./hyprland
+#
+# - bar
+# - file manager
+# - fonts
+# - launcher
+# - lockscreen
+# - notification
+# - screenshot
+# - login manager
+# - system info
+# - theme

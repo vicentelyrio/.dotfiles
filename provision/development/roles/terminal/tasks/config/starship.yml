@@ -1,13 +1,13 @@
 - name: Starship - create config directory
   ansible.builtin.file:
-    path: ~/.config/starship
+    path: "$HOME/.config/starship"
     state: directory
     mode: "0644"
 
 - name: Starship - symlink files
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/starship/{{ item }}"
-    dest: ~/.config/starship/{{ item }}
+    dest: "$HOME/.config/starship/{{ item }}"
     state: link
     follow: false
     force: true
