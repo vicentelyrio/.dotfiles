@@ -34,7 +34,6 @@
   ansible.posix.synchronize:
     src: "{{ ansible_env.PWD }}/roles/pacman/files/hooks/"
     dest: /etc/pacman.d/hooks/
-    mode: "0644"
   delegate_to: localhost
 
 - name: Pacman - makepkg - disable compression
