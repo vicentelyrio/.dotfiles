@@ -11,6 +11,6 @@
     path: ~/.config/starship/{{ item }}
     state: link
     follow: false
-    force: "yes"
+    force: true
   loop:
     - starship.toml

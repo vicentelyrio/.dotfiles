@@ -1,0 +1,5 @@
+- name: Cronie - enable cronie server
+  ansible.builtin.service:
+    name: cronie
+    state: started
+    enabled: true

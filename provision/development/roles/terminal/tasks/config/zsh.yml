@@ -11,7 +11,7 @@
     path: ~/{{ item }}
     state: link
     follow: false
-    force: "yes"
+    force: true
   loop:
     - .zshrc
 
@@ -21,6 +21,6 @@
     path: ~/.config/.zsh/{{ item }}
     state: link
     follow: false
-    force: "yes"
+    force: true
   loop:
     - .zshaliases

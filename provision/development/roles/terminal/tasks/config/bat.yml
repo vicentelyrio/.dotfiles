@@ -11,7 +11,7 @@
     path: ~/.config/bat/{{ item }}
     state: link
     follow: false
-    force: "yes"
+    force: true
   loop:
     - config
 
@@ -27,7 +27,7 @@
     path: ~/.config/bat/themes/{{ item }}
     state: link
     follow: false
-    force: "yes"
+    force: true
   loop:
     - Catppuccin-frappe.tmTheme
     - Catppuccin-latte.tmTheme

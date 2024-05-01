@@ -1,6 +1,6 @@
 - name: Pacman - update repos
   ansible.builting.package:
-    update-cache: "yes"
+    update-cache: true
 
 - name: rkhunter propupdate
   ansible.builtin.command: rkhunter --propupd

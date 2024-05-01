@@ -15,10 +15,10 @@
   ansible.builtin.service:
     name: pipewire
     state: restarted
-    enabled: "yes"
+    enabled: true
 
 - name: Audio - WirePlumber service
   ansible.builtin.systemd:
     name: wireplumber
     state: restarted
-    enabled: "yes"
+    enabled: true

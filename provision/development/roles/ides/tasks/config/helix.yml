@@ -10,6 +10,6 @@
     path: ~/.config/helix/{{ item }}
     state: link
     follow: false
-    force: "yes"
+    force: true
   loop:
     - config.toml

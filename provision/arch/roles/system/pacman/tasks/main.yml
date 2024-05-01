@@ -77,7 +77,7 @@
 - name: Pacman - install base packages
   become: true
   ansible.builtin.package:
-    update_cache: "yes"
+    update_cache: true
     name:
       - python-pip
       - python-pexpect

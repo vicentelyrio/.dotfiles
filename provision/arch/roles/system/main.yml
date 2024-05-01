@@ -1,6 +1,8 @@
-- name: Base
-  ansible.builtin.import_tasks: ./base
-  tags: ['base']
+- name: Pacman
+  ansible.builtin.import_tasks: ./pacman
+
+- name: Yay
+  ansible.builtin.import_tasks: ./yay
 
 - name: Gpu
   ansible.builtin.import_tasks: ./gpu
@@ -13,6 +15,13 @@
 - name: Locale
   ansible.builtin.import_tasks: ./locale
   tags: ['locale']
+
+- name: Time
+  ansible.builtin.import_tasks: ./time
+  tags: ['time']
+
+- name: Cronie
+  ansible.builtin.import_tasks: ./cronie
 
 - name: Grub
   ansible.builtin.import_tasks: ./grub

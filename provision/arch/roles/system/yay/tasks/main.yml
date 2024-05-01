@@ -5,7 +5,7 @@
     state: present
     line: "ALL ALL=NOPASSWD: /usr/bin/pacman"
     validate: /usr/sbin/visudo -cf %s
-    create: "yes"
+    create: true
     mode: "0600"
 
 - name: Yay - git clone yay-bin repo in to /tmp
@@ -13,7 +13,7 @@
   ansible.builtin.git:
     repo: "https://aur.archlinux.org/yay-bin.git"
     dest: /tmp/yay-bin
-    clone: "yes"
+    clone: true
     version: latest
 
 - name: Yay - install using makepkg

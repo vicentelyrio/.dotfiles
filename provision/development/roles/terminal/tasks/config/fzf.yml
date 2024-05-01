@@ -5,7 +5,7 @@
     path: ~/{{ item }}
     state: link
     follow: false
-    force: "yes"
+    force: true
   loop:
     - .fzf.zsh
     - .fzf.bash

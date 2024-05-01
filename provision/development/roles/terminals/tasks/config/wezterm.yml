@@ -11,6 +11,6 @@
     path: ~/.config/wezterm/{{ item }}
     state: link
     follow: false
-    force: "yes"
+    force: true
   loop:
     - wezterm.lua
