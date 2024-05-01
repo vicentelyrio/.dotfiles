@@ -55,6 +55,7 @@
     mode: "0644"
 
 - name: Pacman - update package cache
+  become: true
   ansible.builtin.package:
     update_cache: true
   register: task_result
