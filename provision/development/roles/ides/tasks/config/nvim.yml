@@ -1,4 +1,10 @@
-- name: Clone Neovim config from my repo
+- name: Neovim - create config directory
+  ansible.builtin.file:
+    path: ~/.config/nvim
+    state: directory
+    mode: "0755"
+
+- name: Neovim - clone config from my repo
   ansible.builtin.git:
     repo: https://github.com/vicentelyrio/nvim.git
     dest: "{{ ansible_env.HOME }}/.config/nvim"

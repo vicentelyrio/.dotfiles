@@ -2,7 +2,7 @@
 
 # shellcheck source=/packages.sh
 installLinuxPackages() {
-  ansible-playbook --ask-become-pass -i ./provision/hosts.yml ./provision/arch.yml -vvv
+  ansible-playbook --ask-become-pass -i ./provision/hosts.yml ./provision/arch.yml -v
   printSection "Arch playbook completed"
 }
 
