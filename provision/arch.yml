@@ -1,12 +1,18 @@
 - name: Arch Linux Setup
   hosts: local
+  remote_user: "vicentelyrio"
   become: true
+  tasks:
+    - name: Create directory in user's home directory
+      file:
+        path: ~/.config
+        state: directory
 
-- name: Arch Playbook
-  ansible.builtin.import_playbook: ./arch/main.yml
-
-- name: Development Playbook
-  ansible.builtin.import_playbook: ./development/main.yml
-
+# - name: Arch Playbook
+#   ansible.builtin.import_playbook: ./arch/main.yml
+#
+# - name: Development Playbook
+#   ansible.builtin.import_playbook: ./development/main.yml
+#
 # - name: Apps Playbook
 #   ansible.builtin.import_playbook: ./apps/main.yml
