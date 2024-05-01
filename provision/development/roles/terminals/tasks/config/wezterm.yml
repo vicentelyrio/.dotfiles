@@ -8,9 +8,8 @@
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminals/files/wezterm/{{ item }}"
     dest: ~/.config/wezterm/{{ item }}
-    owner: "{{ user.name }}"
     state: link
     follow: false
     force: true
-  loop:
+  with_items:
     - wezterm.lua

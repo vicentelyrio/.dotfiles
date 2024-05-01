@@ -11,6 +11,5 @@
     state: link
     follow: false
     force: true
-    owner: "{{ user.name }}"
-  loop:
+  with_items:
     - config.toml
