@@ -1,0 +1,2 @@
+- name: Window Manager
+  ansible.builtin.import_tasks: ./windowmanager

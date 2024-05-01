@@ -1,0 +1,2 @@
+- name: rkhunter propupdate
+  ansible.builtin.command: rkhunter --propupd

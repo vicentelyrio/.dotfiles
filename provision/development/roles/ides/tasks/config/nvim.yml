@@ -11,3 +11,4 @@
     force: true
     clone: true
     update: true
+    version: main
