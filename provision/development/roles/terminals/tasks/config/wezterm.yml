@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config/wezterm
     state: directory
-    mode: "0755"
+    mode: "0644"
 
 - name: Wezterm - symlink files
   ansible.builtin.file:

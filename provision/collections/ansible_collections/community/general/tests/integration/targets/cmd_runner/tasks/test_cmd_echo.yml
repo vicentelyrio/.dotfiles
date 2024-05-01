@@ -7,7 +7,7 @@
   ansible.builtin.copy:
     src: /bin/echo
     dest: "{{ item.copy_to }}/echo"
-    mode: "0755"
+    mode: "0644"
     remote_src: true
   when: item.copy_to is defined
 

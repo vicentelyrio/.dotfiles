@@ -19,7 +19,7 @@
     section: "multilib"
     option: "Include"
     value: "/etc/pacman.d/mirrorlist"
-    mode: "0755"
+    mode: "0644"
   notify: update_repos
 
 - name: Pacman - create hooks directory
@@ -27,14 +27,14 @@
   ansible.builtin.file:
     path: /etc/pacman.d/hooks
     state: directory
-    mode: "0755"
+    mode: "0644"
 
 - name: Pacman - move hooks
   become: true
   ansible.builtin.synchronize:
     src: "{{ ansible_env.PWD }}/roles/pacman/files/hooks/"
     dest: /etc/pacman.d/hooks/
-    mode: "0755"
+    mode: "0644"
   delegate_to: localhost
 
 - name: Pacman - makepkg - disable compression
@@ -44,7 +44,7 @@
     path: /etc/makepkg.conf,
     regexp: "PKGEXT='.pkg.tar.zst'"
     line: "PKGEXT='.pkg.tar'"
-    mode: "0755"
+    mode: "0644"
 
 - name: Pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
   become: true
@@ -53,7 +53,7 @@
     path: /etc/makepkg.conf
     regexp: '#MAKEFLAGS="-j2"'
     line: 'MAKEFLAGS="-j$(nproc)"'
-    mode: "0755"
+    mode: "0644"
 
 - name: Pacman - update package cache
   ansible.builtin.package:

@@ -1,13 +1,14 @@
-- name: Wayland - install
+- name: Hyprland - install
   pacman:
     name:
       - hyprland
-      - hyprpaper
       - hyprprop-git
+      - hyprpaper
       - hyprpicker
       - hyprlock
       - hypridle
       - xdg-desktop-portal-hyprland
+      - qt4-wayland
       - qt5-wayland
       - qt6-wayland
     state: present
@@ -16,3 +17,10 @@
   retries: 10
   delay: 2
   notify: rkhunter propupdate
+
+- name: Hyprland - copy files
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/hyprland/files/hypr"
+    dest: "{{ ansible_env.HOME }}"
+    mode: "0644"
+    owner: "{{ user.name }}"

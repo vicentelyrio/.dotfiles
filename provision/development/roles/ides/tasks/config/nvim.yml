@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/nvim"
     state: directory
-    mode: "0755"
+    mode: "0644"
 
 - name: Neovim - clone config from my repo
   ansible.builtin.git:

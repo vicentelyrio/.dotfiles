@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config/starship
     state: directory
-    mode: "0755"
+    mode: "0644"
 
 - name: Starship - symlink files
   ansible.builtin.file:
