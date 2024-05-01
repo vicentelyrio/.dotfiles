@@ -1,2 +1,2 @@
-- name: Hyprland Window Manager
+- name: Hyprland
   ansible.builtin.import_tasks: ./hyprland
