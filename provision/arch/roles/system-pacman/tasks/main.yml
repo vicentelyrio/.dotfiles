@@ -63,6 +63,7 @@
   delay: 2
 
 - name: Pacman - perform full system upgrade
+  become: true
   ansible.builtin.package:
     update_cache: true
     upgrade: true
