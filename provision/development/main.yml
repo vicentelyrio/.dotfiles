@@ -1,6 +1,5 @@
 - name: Development Roles
   hosts: local
-  become: true
 
   roles:
     - terminals
