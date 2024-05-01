@@ -7,7 +7,7 @@
 
 - name: ZSH - symlink config
   ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/zsh/{{ item }}"
+    src: "{{ playbook_dir }}/development/roles/terminal/files/zsh/{{ item }}"
     path: ~/{{ item }}
     state: link
     follow: false
@@ -17,7 +17,7 @@
 
 - name: ZSH - symlink aliases
   ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/zsh/{{ item }}"
+    src: "{{ playbook_dir }}/development/roles/terminal/files/zsh/{{ item }}"
     path: ~/.config/.zsh/{{ item }}
     state: link
     follow: false

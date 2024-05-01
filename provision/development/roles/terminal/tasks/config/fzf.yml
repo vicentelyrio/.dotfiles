@@ -1,7 +1,7 @@
 ---
 - name: FZF - symlink files
   ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/terminal/files/fzf/{{ item }}"
+    src: "{{ playbook_dir }}/development/roles/terminal/files/fzf/{{ item }}"
     path: ~/{{ item }}
     state: link
     follow: false

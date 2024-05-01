@@ -7,7 +7,7 @@
 
 - name: Wezterm - symlink files
   ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/terminals/files/wezterm/{{ item }}"
+    src: "{{ playbook_dir }}/development/roles/terminals/files/wezterm/{{ item }}"
     path: ~/.config/wezterm/{{ item }}
     state: link
     follow: false
