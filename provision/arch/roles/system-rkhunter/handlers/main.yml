@@ -1,4 +1,2 @@
-- name: Rkhunter propupdate
+- name: rkhunter propupdate
   ansible.builtin.command: rkhunter --propupd
-  register: output
-  changed_when: output.rc != 0
