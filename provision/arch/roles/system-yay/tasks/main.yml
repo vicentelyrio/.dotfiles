@@ -14,7 +14,6 @@
     repo: "https://aur.archlinux.org/yay-bin.git"
     dest: /tmp/yay-bin
     clone: true
-    version: v12.3.5
 
 - name: Yay - install using makepkg
   become: false
