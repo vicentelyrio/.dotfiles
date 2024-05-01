@@ -1,6 +1,5 @@
----
 - name: Apps Roles
-  hosts: hosts
+  hosts: local
 
   roles:
     - 3D
