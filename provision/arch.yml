@@ -5,7 +5,7 @@
   tasks:
     - name: Create directory in user's home directory
       file:
-        path: ~/.config
+        path: ~/.config/test
         state: directory
 
 # - name: Arch Playbook
