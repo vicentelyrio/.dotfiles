@@ -11,6 +11,7 @@
     state: link
     follow: false
     force: true
+    owner: "{{ user.name }}"
   loop:
     - .zshrc
 
@@ -21,5 +22,6 @@
     state: link
     follow: false
     force: true
+    owner: "{{ user.name }}"
   loop:
     - .zshaliases

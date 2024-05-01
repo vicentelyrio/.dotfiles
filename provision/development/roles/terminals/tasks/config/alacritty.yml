@@ -8,6 +8,7 @@
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminals/files/alacritty/{{ item }}"
     dest: ~/.config/alacritty/{{ item }}
+    owner: "{{ user.name }}"
     state: link
     follow: false
     force: true

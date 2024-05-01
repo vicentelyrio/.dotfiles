@@ -11,6 +11,7 @@
     state: link
     follow: false
     force: true
+    owner: "{{ user.name }}"
   loop:
     - config
 
@@ -27,6 +28,7 @@
     state: link
     follow: false
     force: true
+    owner: "{{ user.name }}"
   loop:
     - Catppuccin-frappe.tmTheme
     - Catppuccin-latte.tmTheme

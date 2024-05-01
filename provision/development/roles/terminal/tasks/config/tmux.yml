@@ -11,5 +11,6 @@
     state: link
     follow: false
     force: true
+    owner: "{{ user.name }}"
   loop:
     - .tmux.conf
