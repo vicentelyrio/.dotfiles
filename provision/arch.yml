@@ -1,6 +1,6 @@
 - name: Arch Linux Setup
   hosts: local
-  remote_user: {{ user.name }}
+  remote_user: "{{ user.name }}"
   become: true
 
 - name: Arch Playbook
