@@ -13,6 +13,7 @@
     mode: "0600"
 
 - name: Helix - symlink files
+  become: true
   ansible.builtin.file:
     src: "{{ ansible_env.PWD }}/provision/common/roles/ides/files/helix/{{ item }}"
     path: ~/.config/helix/{{ item }}
@@ -23,6 +24,7 @@
     - config.toml
 
 - name: Clone NVIM config from my repo
+  become: true
   ansible.builtin.git:
     repo: https://github.com/vicentelyrio/nvim.git
     dest: ~/.config/nvim
