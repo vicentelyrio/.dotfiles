@@ -9,4 +9,4 @@
     repo: "https://github.com/vicentelyrio/nvim.git"
     dest: "{{ home_dir_result.stdout }}/.config/nvim"
     clone: true
-    version: latest
+    version: main
