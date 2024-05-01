@@ -6,22 +6,21 @@
 
 - name: Gpu
   ansible.builtin.import_tasks: ./gpu
-  tags: ['gpu']
 
 - name: Users
   ansible.builtin.import_tasks: ./user
-  tags: ['users']
 
 - name: Locale
   ansible.builtin.import_tasks: ./locale
-  tags: ['locale']
 
 - name: Time
   ansible.builtin.import_tasks: ./time
-  tags: ['time']
 
 - name: Cronie
   ansible.builtin.import_tasks: ./cronie
+
+- name: Ssh
+  ansible.builtin.import_tasks: ./ssh
 
 - name: Grub
   ansible.builtin.import_tasks: ./grub
@@ -29,13 +28,9 @@
 
 - name: Network
   ansible.builtin.import_tasks: ./network
-  tags: ['network']
 
 - name: Bluetooth
   ansible.builtin.import_tasks: ./bluetooth
-  tags: ['bluetooth']
 
 - name: Audio
   ansible.builtin.import_tasks: ./audio
-  tags: ['audio']
-
