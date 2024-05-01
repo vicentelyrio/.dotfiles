@@ -1,5 +1,5 @@
 - name: Development Roles
-  hosts: hosts
+  hosts: local
 
   roles:
     - terminals
