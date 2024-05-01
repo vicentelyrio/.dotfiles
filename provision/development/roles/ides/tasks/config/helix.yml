@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config/helix
     state: directory
-    mode: "0600"
+    mode: "0644"
 
 - name: Helix - symlink files
   ansible.builtin.file:

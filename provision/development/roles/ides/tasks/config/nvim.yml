@@ -4,3 +4,5 @@
     dest: ~/.config/nvim
     single_branch: "yes"
     version: main
+    clone: true
+    update: true
