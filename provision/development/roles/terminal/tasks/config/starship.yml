@@ -7,7 +7,7 @@
 - name: Starship - symlink files
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/starship/{{ item }}"
-    path: ~/.config/starship/{{ item }}
+    dest: ~/.config/starship/{{ item }}
     state: link
     follow: false
     force: true

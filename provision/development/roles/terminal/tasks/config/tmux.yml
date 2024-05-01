@@ -7,7 +7,7 @@
 - name: Tmux - symlink files
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/tmux/{{ item }}"
-    path: ~/.config/tmux/{{ item }}
+    dest: ~/.config/tmux/{{ item }}
     state: link
     follow: false
     force: true

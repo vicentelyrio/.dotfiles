@@ -7,7 +7,7 @@
 - name: Bat - symlink config
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/bat/{{ item }}"
-    path: ~/.config/bat/{{ item }}
+    dest: ~/.config/bat/{{ item }}
     state: link
     follow: false
     force: true
@@ -23,7 +23,7 @@
 - name: Bat - symlink themes
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/bat/themes/{{ item }}"
-    path: ~/.config/bat/themes/{{ item }}
+    dest: ~/.config/bat/themes/{{ item }}
     state: link
     follow: false
     force: true

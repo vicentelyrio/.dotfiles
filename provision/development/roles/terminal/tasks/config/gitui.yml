@@ -7,7 +7,7 @@
 - name: Gitui - symlink config
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/gitui/{{ item }}"
-    path: ~/.config/gitui/{{ item }}
+    dest: ~/.config/gitui/{{ item }}
     state: link
     follow: false
     force: true
