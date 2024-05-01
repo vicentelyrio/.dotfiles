@@ -1,5 +1,6 @@
 - name: Arch Linux Setup
   hosts: local
+  become: true
 
 - name: Arch Playbook
   ansible.builtin.import_playbook: ./arch/main.yml
