@@ -1,13 +1,13 @@
 - name: Gitui - create config directory
   ansible.builtin.file:
-    path: "$HOME/.config/gitui"
+    path: "{{ home_dir_result.stdout }}/.config/gitui"
     state: directory
     mode: "0644"
 
 - name: Gitui - symlink config
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/gitui/{{ item }}"
-    dest: "$HOME/.config/gitui/{{ item }}"
+    dest: "{{ home_dir_result.stdout }}/.config/gitui/{{ item }}"
     state: link
     follow: false
     force: true

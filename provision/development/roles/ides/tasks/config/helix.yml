@@ -1,13 +1,13 @@
 - name: Helix - create config directory
   ansible.builtin.file:
-    path: "$HOME/.config/helix"
+    path: "{{ home_dir_result.stdout }}/.config/helix"
     state: directory
     mode: "0644"
 
 - name: Helix - symlink files
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/ides/files/helix/{{ item }}"
-    dest: "$HOME/.config/helix/{{ item }}"
+    dest: "{{ home_dir_result.stdout }}/.config/helix/{{ item }}"
     state: link
     follow: false
     force: true
