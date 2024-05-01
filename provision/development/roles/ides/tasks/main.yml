@@ -6,6 +6,14 @@
       - neovim
     state: present
 
+- name: Clone NVIM config from my repo
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/vicentelyrio/nvim.git
+    dest: ~/.config/nvim
+    single_branch: "yes"
+    version: main
+
 - name: Helix - create config directory
   ansible.builtin.file:
     path: ~/.config/helix
@@ -22,12 +30,3 @@
     force: "yes"
   loop:
     - config.toml
-
-- name: Clone NVIM config from my repo
-  become: true
-  ansible.builtin.git:
-    repo: https://github.com/vicentelyrio/nvim.git
-    dest: ~/.config/nvim
-    single_branch: "yes"
-    version: main
-
