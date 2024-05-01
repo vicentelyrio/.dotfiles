@@ -1,21 +1,3 @@
-# - name: Arch Linux Setup
-#   hosts: local
-#   remote_user: "{{ user.name }}"
-#   become: true
-#   tasks:
-#     - name: Get user's home directory
-#       shell: "getent passwd {{ ansible_user_id }} | cut -d: -f6"
-#       register: home_dir_result
-#
-# - name: Arch Playbook
-#   ansible.builtin.import_playbook: ./arch/main.yml
-#
-# - name: Development Playbook
-#   ansible.builtin.import_playbook: ./development/main.yml
-#
-# - name: Apps Playbook
-#   ansible.builtin.import_playbook: ./apps/main.yml
-
 - name: Arch Linux Setup
   hosts: local
   connection: local
@@ -24,7 +6,11 @@
       shell: "getent passwd {{ ansible_user_id }} | cut -d: -f6"
       register: home_dir_result
 
-    - name: Create directory in user's home directory
-      file:
-        path: "{{ home_dir_result.stdout }}/test"
-        state: directory
+- name: Arch Playbook
+  ansible.builtin.import_playbook: ./arch/main.yml
+
+- name: Development Playbook
+  ansible.builtin.import_playbook: ./development/main.yml
+
+- name: Apps Playbook
+  ansible.builtin.import_playbook: ./apps/main.yml
