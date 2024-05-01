@@ -1,4 +1,5 @@
 - name: IDEs - install
+  become: true
   ansible.builtin.package:
     name:
       - helix
