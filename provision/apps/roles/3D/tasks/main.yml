@@ -3,5 +3,5 @@
   ansible.builtin.package:
     name:
       - blender
-      - ultimaker-cura
+      - cura
     state: present
