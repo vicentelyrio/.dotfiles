@@ -1,8 +1,7 @@
 - name: Clone Neovim config from my repo
   ansible.builtin.git:
     repo: https://github.com/vicentelyrio/nvim.git
-    dest: ~/.config/nvim
-    single_branch: "yes"
-    version: main
+    dest: ~/.config
+    force: true
     clone: true
     update: true
