@@ -1,2 +1,0 @@
-- name: Hyprland
-  ansible.builtin.import_tasks: ./hyprland
