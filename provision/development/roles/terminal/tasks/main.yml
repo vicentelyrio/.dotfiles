@@ -1,4 +1,3 @@
----
 - name: Terminal utilities - install
   become: true
   ansible.builtin.package:
@@ -17,3 +16,24 @@
       - zoxide
       - zsh
     state: present
+
+- name: Bash
+  ansible.builtin.import_tasks: ./config/bash.yml
+
+- name: Zsh
+  ansible.builtin.import_tasks: ./config/zsh.yml
+
+- name: Fzf
+  ansible.builtin.import_tasks: ./config/fzf.yml
+
+- name: Starship
+  ansible.builtin.import_tasks: ./config/starship.yml
+
+- name: Tmux
+  ansible.builtin.import_tasks: ./config/tmux.yml
+
+- name: Gitui
+  ansible.builtin.import_tasks: ./config/gitui.yml
+
+- name: Bat
+  ansible.builtin.import_tasks: ./config/bat.yml

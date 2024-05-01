@@ -1,23 +1,32 @@
-- name: Network
-  ansible.buildin.include_task: ./network
+- name: Base
+  ansible.builtin.import_tasks: ./base
+  tags: ['base']
+
+- name: Gpu
+  ansible.builtin.import_tasks: ./gpu
+  tags: ['gpu']
 
 - name: Users
-  ansible.buildin.include_task: ./user
+  ansible.builtin.import_tasks: ./user
+  tags: ['users']
 
 - name: Locale
-  ansible.buildin.include_task: ./locale
-
-- name: Pacman
-  ansible.buildin.include_task: ./pacman
-
-- name: Yay
-  ansible.buildin.include_task: ./yay
+  ansible.builtin.import_tasks: ./locale
+  tags: ['locale']
 
 - name: Grub
-  ansible.buildin.include_task: ./grub
+  ansible.builtin.import_tasks: ./grub
+  tags: ['grub']
+
+- name: Network
+  ansible.builtin.import_tasks: ./network
+  tags: ['network']
 
 - name: Bluetooth
-  ansible.buildin.include_task: ./bluetooth
+  ansible.builtin.import_tasks: ./bluetooth
+  tags: ['bluetooth']
 
 - name: Audio
-  ansible.buildin.include_task: ./audio
+  ansible.builtin.import_tasks: ./audio
+  tags: ['audio']
+

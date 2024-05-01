@@ -2,31 +2,12 @@
   become: true
   ansible.builtin.package:
     name:
-      - helix
       - neovim
+      - helix
     state: present
 
-- name: Clone NVIM config from my repo
-  become: true
-  ansible.builtin.git:
-    repo: https://github.com/vicentelyrio/nvim.git
-    dest: ~/.config/nvim
-    single_branch: "yes"
-    version: main
+- name: Nvim setup
+  ansible.builtin.import_tasks: ./config/nvim.yml
 
-- name: Helix - create config directory
-  ansible.builtin.file:
-    path: ~/.config/helix
-    state: directory
-    mode: "0600"
-
-- name: Helix - symlink files
-  become: true
-  ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/roles/ides/files/helix/{{ item }}"
-    path: "$HOME/.config/helix/{{ item }}"
-    state: link
-    follow: false
-    force: "yes"
-  loop:
-    - config.toml
+- name: Helix setup
+  ansible.builtin.import_tasks: ./config/helix.yml

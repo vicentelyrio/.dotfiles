@@ -2,5 +2,4 @@
   hosts: local
 
   roles:
-    - dependencies
     - system

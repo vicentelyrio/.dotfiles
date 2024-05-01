@@ -73,3 +73,28 @@
   delay: 2
   notify:
     - rkhunter propupdate
+
+- name: Pacman - install base packages
+  become: true
+  ansible.builtin.package:
+    update_cache: "yes"
+    name:
+      - python-pip
+      - python-pexpect
+      - base-devel
+      - openssh
+      - curl
+      - git
+      - rsync
+      - coreutils
+      - dateutils
+      - lsof
+      - cronie
+      - rkhunter
+      - nmap
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
+  notify:
+    - rkhunter propupdate

@@ -6,7 +6,7 @@
 
 - name: Helix - symlink files
   ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/provision/common/roles/ides/files/helix/{{ item }}"
+    src: "{{ playbook_dir }}/development/roles/ides/files/helix/{{ item }}"
     path: ~/.config/helix/{{ item }}
     state: link
     follow: false
