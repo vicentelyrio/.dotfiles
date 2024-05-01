@@ -1,4 +1,4 @@
-- name: Arch Linux Setup
+- name: Arch Roles
   hosts: local
 
   roles:
