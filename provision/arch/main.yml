@@ -2,5 +2,18 @@
   hosts: local
 
   roles:
-    - system
-    - interface
+    - system-rkhunter
+    - system-pacman
+    - system-yay
+    - system-user
+    - system-grub
+    - system-cronie
+    - system-gpu
+    - system-locale
+    - system-time
+    - system-ssh
+    - system-network
+    - system-bluetooth
+    - system-audio
+
+    - ui-hyprland
