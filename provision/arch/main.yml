@@ -3,5 +3,5 @@
   become: true
 
   roles:
-    # - system
+    - system
     - interface

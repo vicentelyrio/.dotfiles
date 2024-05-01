@@ -5,10 +5,9 @@
     mode: "0644"
 
 - name: Neovim - clone config from my repo
+  become: false
   ansible.builtin.git:
-    repo: https://github.com/vicentelyrio/nvim.git
+    repo: "https://github.com/vicentelyrio/nvim.git"
     dest: "{{ ansible_env.HOME }}/.config/nvim"
-    force: true
     clone: true
-    update: true
-    version: main
+    version: latest
