@@ -31,7 +31,7 @@
 
 - name: Pacman - move hooks
   become: true
-  ansible.builtin.synchronize:
+  ansible.posix.synchronize:
     src: "{{ ansible_env.PWD }}/roles/pacman/files/hooks/"
     dest: /etc/pacman.d/hooks/
     mode: "0644"

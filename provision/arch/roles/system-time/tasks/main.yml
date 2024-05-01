@@ -12,27 +12,6 @@
   ansible.builtin.copy:
     src: ntp.conf
     dest: /etc/
+    mode: "0644"
   notify:
     - restart ntpd
-
-- name: Ntp - make sure ntpd is stopped
-  ansible.builtin.service:
-    name: ntpd
-    state: stopped
-    enabled: true
-  when: install is changed # noqa: no-handler
-
-- name: Ntp - sync time with swiss ntp metas atomic clock
-  ansible.builtin.command: ntpdate ntp.metas.ch
-  when: install is changed
-
-- name: Ntp - start ntpd back up
-  ansible.builtin.service:
-    name: ntpd
-    state: started
-    enabled: true
-  when: install is changed
-
-- name: Ntp - sync time to hwclock
-  ansible.builtin.command: hwclock --systohc
-  when: install is changed
