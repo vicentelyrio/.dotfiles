@@ -20,12 +20,12 @@
 #     state: started
 #     enabled: true
 
-- name: Audio - pipewire-pulse service
-  become: true
-  ansible.builtin.service:
-    name: pipewire-pulse
-    state: started
-    enabled: true
+# - name: Audio - pipewire-pulse service
+#   become: true
+#   ansible.builtin.service:
+#     name: pipewire-pulse
+#     state: started
+#     enabled: true
 
 - name: Audio - WirePlumber service
   become: true
