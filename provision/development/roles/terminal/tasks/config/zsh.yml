@@ -2,13 +2,12 @@
   ansible.builtin.file:
     path: "~/.config/.zsh"
     state: directory
-    mode: "0644"
+    mode: "0777"
 
 - name: ZSH - symlink config
-  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/zsh/{{ item }}"
-    dest: "/home/{{ user.name }}/{{ item }}"
+    dest: "~/{{ item }}"
     state: link
     follow: false
     force: true
@@ -16,10 +15,9 @@
     - .zshrc
 
 - name: ZSH - symlink aliases
-  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/zsh/{{ item }}"
-    dest: "/home/{{ user.name }}/.config/.zsh/{{ item }}"
+    dest: "~/.config/.zsh/{{ item }}"
     state: link
     follow: false
     force: true
