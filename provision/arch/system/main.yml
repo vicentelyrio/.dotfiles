@@ -1,4 +1,7 @@
-- include_vars: ../group_vars/all.yml
+- name: Include group vars
+  ansible.builtin.include_vars:
+    file: ../../group_vars/all.yml
+    name: group_vars
 
 - name: Arch System Roles
   hosts: local
