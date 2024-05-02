@@ -31,7 +31,8 @@
 
 - name: Hyprland - copy files
   become: true
-  ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/hyprland/files/hypr/"
-    dest: "~/.config/hypr/"
-    remote_src: true
+  ansible.builtin.shell: "cp -r {{ playbook_dir }}/roles/hyprland/files/hypr/ ~/.config/hypr/"
+  # ansible.builtin.copy:
+  #   src: "{{ playbook_dir }}/roles/hyprland/files/hypr/"
+  #   dest: "~/.config/hypr/"
+  #   directory_mode: true
