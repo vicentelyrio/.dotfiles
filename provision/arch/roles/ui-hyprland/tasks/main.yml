@@ -17,7 +17,8 @@
 
 - name: Hyprland - install aur packages
   become: true
-  ansible.builtin.yay:
+  kewlfft.aur.aur:
+    use: yay
     name:
       - hyprprop-git
       - hyprpicker
