@@ -10,7 +10,7 @@
     enabled: true
   when: install is changed # noqa: no-handler
 
-- name: Ntp - sync time with swiss ntp metas atomic clock
+- name: Ntp - sync time with ntp metas atomic clock
   ansible.builtin.command: ntpdate ntp.metas.ch
   register: output
   changed_when: output.rc != 0
