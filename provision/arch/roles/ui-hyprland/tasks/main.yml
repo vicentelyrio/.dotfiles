@@ -34,3 +34,4 @@
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/hyprland/files/hypr/"
     dest: "~/.config/hypr/"
+    remote_src: true
