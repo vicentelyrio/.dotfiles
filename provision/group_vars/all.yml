@@ -4,7 +4,7 @@ user:
   shell: /bin/zsh
 
 system:
-  locale: en
+  locale: en_US.utf8
   timezone: America/Sao_Paulo
   processor: intel
   graphics_card: amd
