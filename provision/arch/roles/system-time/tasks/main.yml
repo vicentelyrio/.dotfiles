@@ -1,5 +1,6 @@
 - name: Ntp - install daemon
-  pacman:
+  become: true
+  ansible.builtin.package:
     name: ntp
     state: present
   register: install
