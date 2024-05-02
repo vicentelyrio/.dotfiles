@@ -33,7 +33,7 @@
   become: true
   become_user: root
   ansible.posix.synchronize:
-    src: "{{ playbook_dir }}/roles/sytem-pacman/files/hooks/"
+    src: "{{ playbook_dir }}/roles/system-pacman/files/hooks/"
     dest: /etc/pacman.d/hooks/
   delegate_to: localhost
 
