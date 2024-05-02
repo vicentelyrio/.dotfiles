@@ -1,4 +1,5 @@
 - name: Network - install tools
+  become: true
   ansible.builtin.package:
     name:
       - ethtool
