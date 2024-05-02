@@ -16,8 +16,9 @@
     - config
 
 - name: Bat - create theme directory
+  become: true
   ansible.builtin.file:
-    path: "~/.config/bat/themes"
+    path: "/home/{{ user.name }}/.config/bat/themes"
     state: directory
     mode: "0644"
 
