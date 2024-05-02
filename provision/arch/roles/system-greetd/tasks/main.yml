@@ -1,5 +1,6 @@
 - name: Greeter - install
   become: true
+  become_user: root
   ansible.builtin.package:
     name:
       - greetd
