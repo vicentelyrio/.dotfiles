@@ -16,4 +16,4 @@
     dest: /etc/
     mode: "0644"
   notify:
-    - restart ntpd
+    - Ntp - restart
