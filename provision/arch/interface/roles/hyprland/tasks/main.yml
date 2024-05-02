@@ -1,5 +1,6 @@
 - name: Hyprland - install
   become: true
+  become_user: root
   ansible.builtin.package:
     name:
       - hyprland
@@ -23,6 +24,8 @@
   notify: Rkhunter propupdate
 
 - name: Hyprland - create config directory
+  become: true
+  become_user: root
   ansible.builtin.file:
     path: ~/.config/hypr
     state: directory
