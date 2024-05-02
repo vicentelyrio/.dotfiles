@@ -3,7 +3,7 @@
   ansible.builtin.package:
     name:
       - hyprland
-      - hyprprop-git
+      # - hyprprop-git
       - hyprpaper
       - hyprpicker
       - hyprlock
@@ -15,7 +15,7 @@
     state: present
   register: install
   until: install is success
-  retries: 10
+  retries: 3
   delay: 2
   notify: Rkhunter propupdate
 
