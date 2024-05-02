@@ -13,23 +13,23 @@
   retries: 10
   delay: 2
 
-# - name: Audio - pipewire service
-#   become: true
-#   ansible.builtin.service:
-#     name: pipewire
-#     state: started
-#     enabled: true
+- name: Audio - pipewire service
+  become: true
+  ansible.builtin.systemd:
+    name: pipewire
+    state: restarted
+    enabled: true
 
-# - name: Audio - pipewire-pulse service
-#   become: true
-#   ansible.builtin.service:
-#     name: pipewire-pulse
-#     state: started
-#     enabled: true
+- name: Audio - pipewire-pulse service
+  become: true
+  ansible.builtin.systemd:
+    name: pipewire-pulse
+    state: restarted
+    enabled: true
 
 - name: Audio - WirePlumber service
   become: true
   ansible.builtin.systemd:
     name: wireplumber
-    state: started
+    state: restarted
     enabled: true
