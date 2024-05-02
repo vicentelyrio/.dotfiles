@@ -3,10 +3,6 @@
   ansible.builtin.package:
     name: intel-ucode
     state: present
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
   notify:
     - Grub - update
   when: system.processor == "intel"
@@ -16,10 +12,6 @@
   ansible.builtin.package:
     name: amd-ucode
     state: present
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
   notify:
     - Grub - update
   when: system.processor == "amd"

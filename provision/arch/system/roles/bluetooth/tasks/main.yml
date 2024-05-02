@@ -5,13 +5,10 @@
       - bluez
       - bluez-utils
       - blueman
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
 
 - name: Bluetooth - ensure the service is enabled and started
   become: true
+  become_user: root
   ansible.builtin.service:
     name: bluetooth
     state: started
