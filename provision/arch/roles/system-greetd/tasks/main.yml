@@ -1,0 +1,23 @@
+- name: Greeter - install
+  ansible.builtin.package:
+    name:
+      - greetd
+
+- name: Greeter - enable and start
+  ansible.builtin.service:
+    name: greetd
+    enabled: true
+    state: restarted
+
+- name: Greeter - symlink files
+  become: true
+  become_user: root
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/system-greetd/files/{{ item }}"
+    dest: "/etc/greetd/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - config.toml
+
