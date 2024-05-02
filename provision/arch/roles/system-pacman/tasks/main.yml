@@ -1,5 +1,6 @@
 - name: Pacman - enable color
   become: true
+  become_user: root
   ansible.builtin.lineinfile:
     path: /etc/pacman.conf
     regexp: "^#Color$"
@@ -7,6 +8,7 @@
 
 - name: Pacman - enable ParallelDownloads = 5
   become: true
+  become_user: root
   ansible.builtin.lineinfile:
     path: /etc/pacman.conf
     regexp: "#ParallelDownloads = 5"
@@ -14,6 +16,7 @@
 
 - name: Pacman - add multilib repo
   become: true
+  become_user: root
   community.general.ini_file:
     path: /etc/pacman.conf
     section: "multilib"
@@ -24,6 +27,7 @@
 
 - name: Pacman - create hooks directory
   become: true
+  become_user: root
   ansible.builtin.file:
     path: /etc/pacman.d/hooks
     state: directory
