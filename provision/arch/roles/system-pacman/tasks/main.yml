@@ -73,7 +73,7 @@
   retries: 10
   delay: 2
   notify:
-    - rkhunter propupdate
+    - Rkhunter propupdate
 
 - name: Pacman - install base packages
   become: true
@@ -101,4 +101,4 @@
   retries: 10
   delay: 2
   notify:
-    - rkhunter propupdate
+    - Rkhunter propupdate

@@ -16,7 +16,7 @@
   until: install is success
   retries: 10
   delay: 2
-  notify: rkhunter propupdate
+  notify: Rkhunter propupdate
 
 - name: Hyprland - copy files
   ansible.builtin.copy:

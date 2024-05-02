@@ -8,7 +8,7 @@
   retries: 10
   delay: 2
   notify:
-    - update grub
+    - Grub - update
   when: system.processor == "intel"
 
 - name: Install microcode updates for amd (if necessary)
@@ -21,5 +21,5 @@
   retries: 10
   delay: 2
   notify:
-    - update grub
+    - Grub - update
   when: system.processor == "amd"

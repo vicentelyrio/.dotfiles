@@ -16,7 +16,7 @@
   retries: 10
   delay: 2
   notify:
-    - rkhunter propupdate
+    - Rkhunter propupdate
 
 - name: Network - enable dhcp service
   ansible.builtin.service:

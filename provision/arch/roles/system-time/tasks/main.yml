@@ -6,7 +6,7 @@
   until: install is success
   retries: 10
   delay: 2
-  notify: rkhunter propupdate
+  notify: Rkhunter propupdate
 
 - name: Ntp - configure swiss metas atomic clocks
   ansible.builtin.copy:
