@@ -5,8 +5,6 @@
     mode: "0644"
 
 - name: Alacritty - symlink files
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminals/files/alacritty/{{ item }}"
     dest: "~/.config/alacritty/{{ item }}"
