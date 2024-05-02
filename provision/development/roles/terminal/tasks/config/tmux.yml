@@ -1,4 +1,6 @@
 - name: Tmux - create config directory
+  become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/tmux"
     state: directory

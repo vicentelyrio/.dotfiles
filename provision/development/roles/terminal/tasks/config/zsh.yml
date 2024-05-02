@@ -1,4 +1,6 @@
 - name: ZSH - create config directory
+  become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/.zsh"
     state: directory

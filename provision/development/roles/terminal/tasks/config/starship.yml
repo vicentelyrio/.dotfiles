@@ -1,4 +1,6 @@
 - name: Starship - create config directory
+  become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/starship"
     state: directory

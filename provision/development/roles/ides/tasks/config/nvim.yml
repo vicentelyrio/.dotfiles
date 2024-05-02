@@ -1,4 +1,6 @@
 - name: Neovim - create config directory
+  become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/nvim"
     state: directory

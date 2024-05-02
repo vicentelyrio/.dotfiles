@@ -1,4 +1,6 @@
 - name: Wezterm - create config directory
+  become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: ~/.config/wezterm
     state: directory
