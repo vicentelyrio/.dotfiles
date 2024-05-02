@@ -1,0 +1,17 @@
+- name: Arch System Roles
+  hosts: local
+
+  roles:
+    - rkhunter
+    - pacman
+    - yay
+    - user
+    - grub
+    - cronie
+    - gpu
+    - locale
+    - time
+    - ssh
+    - network
+    - bluetooth
+    - audio

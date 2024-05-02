@@ -11,16 +11,16 @@
     state: present
   notify: Rkhunter propupdate
 
-# - name: Hyprland - install aur packages
-#   become: true
-#   kewlfft.aur.aur:
-#     use: yay
-#     name:
-#       - hyprprop-git
-#       - hyprpicker
-#       - hyprlock
-#     state: present
-#   notify: Rkhunter propupdate
+- name: Hyprland - install aur packages
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - hyprprop-git
+      - hyprpicker
+      - hyprlock
+    state: present
+  notify: Rkhunter propupdate
 
 - name: Hyprland - create config directory
   ansible.builtin.file:
@@ -31,7 +31,7 @@
 - name: Hyprland - copy files
   become: true
   ansible.posix.synchronize:
-    src: "{{ playbook_dir }}/roles/ui-hyprland/files/hypr/"
+    src: ../files/hypr/
     dest: "/home/{{ user.name }}/.config/hypr/"
     recursive: true
   delegate_to: localhost
