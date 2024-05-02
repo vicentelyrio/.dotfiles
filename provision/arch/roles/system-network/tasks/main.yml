@@ -26,6 +26,7 @@
     enabled: true
 
 - name: Network - enable NetworkManager service
+  become: true
   ansible.builtin.service:
     name: NetworkManager
     state: started

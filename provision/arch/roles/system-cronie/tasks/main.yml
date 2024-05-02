@@ -8,6 +8,7 @@
   delay: 2
 
 - name: Cronie - enable cronie server
+  become: true
   ansible.builtin.service:
     name: cronie
     state: started
