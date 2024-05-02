@@ -125,6 +125,5 @@
       - lsof
       - nmap
       - udiskie
-  elay: 2
   notify:
     - Rkhunter propupdate
