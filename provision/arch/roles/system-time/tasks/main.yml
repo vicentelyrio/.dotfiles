@@ -9,7 +9,8 @@
   delay: 2
   notify: Rkhunter propupdate
 
-- name: Ntp - configure swiss metas atomic clocks
+- name: Ntp - configure metas atomic clocks
+  become: true
   ansible.builtin.copy:
     src: ntp.conf
     dest: /etc/
