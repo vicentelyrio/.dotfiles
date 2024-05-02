@@ -1,6 +1,6 @@
 - name: Ntp - install daemon
   become: true
-  become_user: true
+  become_user: root
   ansible.builtin.package:
     name: ntp
     state: present
@@ -8,7 +8,7 @@
 
 - name: Ntp - configure metas atomic clocks
   become: true
-  become_user: true
+  become_user: root
   ansible.builtin.copy:
     src: ntp.conf
     dest: /etc/

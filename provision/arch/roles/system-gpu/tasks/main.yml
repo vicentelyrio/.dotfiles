@@ -1,6 +1,6 @@
 - name: Install microcode updates for intel (if necessary)
   become: true
-  become_user: true
+  become_user: root
   ansible.builtin.package:
     name: intel-ucode
     state: present
@@ -10,7 +10,7 @@
 
 - name: Install microcode updates for amd (if necessary)
   become: true
-  become_user: true
+  become_user: root
   ansible.builtin.package:
     name: amd-ucode
     state: present

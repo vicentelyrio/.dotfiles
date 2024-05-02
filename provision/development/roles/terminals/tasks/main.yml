@@ -1,6 +1,6 @@
 - name: Terminals - install
   become: true
-  become_user: true
+  become_user: root
   ansible.builtin.package:
     name:
       - alacritty

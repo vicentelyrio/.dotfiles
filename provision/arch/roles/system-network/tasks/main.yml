@@ -1,6 +1,6 @@
 - name: Network - install tools
   become: true
-  become_user: true
+  become_user: root
   ansible.builtin.package:
     name:
       - ethtool
@@ -18,7 +18,7 @@
 
 - name: Network - enable dhcp service
   become: true
-  become_user: true
+  become_user: root
   ansible.builtin.service:
     name: dhcpcd
     state: started
@@ -26,7 +26,7 @@
 
 - name: Network - enable NetworkManager service
   become: true
-  become_user: true
+  become_user: root
   ansible.builtin.service:
     name: NetworkManager
     state: started
