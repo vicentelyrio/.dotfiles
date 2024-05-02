@@ -31,13 +31,15 @@
 
 - name: Pacman - move hooks
   become: true
+  become_user: root
   ansible.posix.synchronize:
-    src: "{{ playbook_dir }}/roles/system-pacman/files/hooks/"
+    src: "{{ playbook_dir }}/system/roles/pacman/files/hooks/"
     dest: /etc/pacman.d/hooks/
   delegate_to: localhost
 
 - name: Pacman - makepkg - disable compression
   become: true
+  become_user: root
   ansible.builtin.lineinfile:
     create: true
     path: /etc/makepkg.conf,
@@ -47,6 +49,7 @@
 
 - name: Pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
   become: true
+  become_user: root
   ansible.builtin.lineinfile:
     create: true
     path: /etc/makepkg.conf
@@ -55,11 +58,15 @@
     mode: "0644"
 
 - name: Pacman - install Reflector
+  become: true
+  become_user: root
   ansible.builtin.package:
     name:
       - reflector
 
 - name: Pacman - write Reflector configuration file
+  become: true
+  become_user: root
   ansible.builtin.copy:
     mode: "0644"
     dest: "/etc/xdg/reflector/reflector.conf"
@@ -75,6 +82,8 @@
       --sort rate
 
 - name: Pacman - enable Reflector and start timer
+  become: true
+  become_user: root
   ansible.builtin.service:
     name: reflector.timer
     enabled: true
@@ -84,25 +93,19 @@
   become: true
   ansible.builtin.package:
     update_cache: true
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
 
 - name: Pacman - perform full system upgrade
   become: true
+  become_user: root
   ansible.builtin.package:
     update_cache: true
     upgrade: true
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
   notify:
     - Rkhunter propupdate
 
 - name: Pacman - install base packages
   become: true
+  become_user: root
   ansible.builtin.package:
     update_cache: true
     name:
@@ -122,9 +125,6 @@
       - lsof
       - nmap
       - udiskie
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
+  elay: 2
   notify:
     - Rkhunter propupdate
