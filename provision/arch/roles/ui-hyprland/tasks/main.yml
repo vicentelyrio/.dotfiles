@@ -31,7 +31,15 @@
 
 - name: Hyprland - copy files
   become: true
-  ansible.builtin.shell: "cp -r {{ playbook_dir }}/roles/hyprland/files/hypr/ ~/.config/hypr/"
+  ansible.posix.synchronize:
+    src: "{{ playbook_dir }}/roles/ui-hyprland/files/hypr/"
+    dest: "~/.config/hypr/"
+    recursive: true
+  delegate_to: localhost
+
+# - name: Hyprland - copy files
+#   become: true
+#   ansible.builtin.shell: "cp -r {{ playbook_dir }}/roles/hyprland/files/hypr/ ~/.config/hypr/"
   # ansible.builtin.copy:
   #   src: "{{ playbook_dir }}/roles/hyprland/files/hypr/"
   #   dest: "~/.config/hypr/"
