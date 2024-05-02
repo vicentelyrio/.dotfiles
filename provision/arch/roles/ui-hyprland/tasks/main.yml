@@ -31,7 +31,7 @@
 
 - name: Hyprland - copy files
   become: true
-  ansible.builtin.synchronize:
+  ansible.posix.synchronize:
     src: "{{ playbook_dir }}/roles/hyprland/files/hypr/"
     dest: "~/.config/hypr/"
     recursive: true
