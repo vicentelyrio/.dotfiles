@@ -1,4 +1,5 @@
 - name: Install microcode updates for intel (if necessary)
+  become: true
   ansible.builtin.package:
     name: intel-ucode
     state: present
@@ -11,6 +12,7 @@
   when: system.processor == "intel"
 
 - name: Install microcode updates for amd (if necessary)
+  become: true
   ansible.builtin.package:
     name: amd-ucode
     state: present
