@@ -1,16 +1,14 @@
 - name: Ntp - install daemon
   become: true
+  become_user: true
   ansible.builtin.package:
     name: ntp
     state: present
-  register: install
-  until: install is success
-  retries: 10
-  delay: 2
   notify: Rkhunter propupdate
 
 - name: Ntp - configure metas atomic clocks
   become: true
+  become_user: true
   ansible.builtin.copy:
     src: ntp.conf
     dest: /etc/

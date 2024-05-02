@@ -1,5 +1,6 @@
 - name: Grub - install bootloader and tools
   become: true
+  become_user: true
   ansible.builtin.package:
     name: grub
     state: present

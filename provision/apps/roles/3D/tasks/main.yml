@@ -1,5 +1,7 @@
 ---
 - name: 3D Apps - install
+  become: true
+  become_user: true
   ansible.builtin.package:
     name:
       - blender

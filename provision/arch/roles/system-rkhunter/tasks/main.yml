@@ -1,4 +1,6 @@
 - name: Rkhunter - install
+  become: true
+  become_user: true
   ansible.builtin.package:
     name:
       - rkhunter
