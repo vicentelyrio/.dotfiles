@@ -34,4 +34,5 @@
   ansible.posix.synchronize:
     src: "{{ playbook_dir }}/roles/hyprland/files/hypr/"
     dest: "~/.config/hypr/"
+    recursive: true
   delegate_to: localhost
