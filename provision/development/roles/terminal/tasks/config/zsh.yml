@@ -1,5 +1,6 @@
 - name: ZSH - create config directory
   become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/.zsh"
     state: directory
@@ -7,6 +8,7 @@
 
 - name: ZSH - symlink config
   become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/zsh/{{ item }}"
     dest: "~/{{ item }}"
@@ -18,6 +20,7 @@
 
 - name: ZSH - symlink aliases
   become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/zsh/{{ item }}"
     dest: "~/.config/.zsh/{{ item }}"

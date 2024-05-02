@@ -1,5 +1,6 @@
 - name: Gitui - create config directory
   become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/gitui"
     state: directory
@@ -7,6 +8,7 @@
 
 - name: Gitui - symlink config
   become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/gitui/{{ item }}"
     dest: "~/.config/gitui/{{ item }}"

@@ -1,5 +1,6 @@
 - name: BASH - symlink config
   become: true
+  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/bash/{{ item }}"
     dest: "~/{{ item }}"
