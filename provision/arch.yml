@@ -1,6 +1,7 @@
 - name: Arch Linux Setup
   hosts: local
   connection: local
+  vars_files: ./vars/all.yml
 
 - name: Arch System Playbook
   ansible.builtin.import_playbook: ./arch/system/main.yml
