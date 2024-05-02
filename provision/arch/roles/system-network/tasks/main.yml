@@ -20,6 +20,7 @@
     - Rkhunter propupdate
 
 - name: Network - enable dhcp service
+  become: true
   ansible.builtin.service:
     name: dhcpcd
     state: started
