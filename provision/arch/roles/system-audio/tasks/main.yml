@@ -1,4 +1,5 @@
 - name: Audio - install dependencies
+  become: true
   ansible.builtin.package:
     name:
       - pipewire
@@ -12,12 +13,14 @@
   delay: 2
 
 - name: Audio - pipewire service
+  become: true
   ansible.builtin.service:
     name: pipewire
     state: restarted
     enabled: true
 
 - name: Audio - WirePlumber service
+  become: true
   ansible.builtin.systemd:
     name: wireplumber
     state: restarted
