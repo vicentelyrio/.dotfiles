@@ -7,6 +7,7 @@
     - system-yay
     - system-user
     - system-grub
+    - system-greetd
     - system-cronie
     - system-gpu
     - system-locale
