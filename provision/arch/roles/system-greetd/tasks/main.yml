@@ -1,9 +1,11 @@
 - name: Greeter - install
+  become: true
   ansible.builtin.package:
     name:
       - greetd
 
 - name: Greeter - enable and start
+  become: true
   ansible.builtin.service:
     name: greetd
     enabled: true
