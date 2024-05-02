@@ -23,7 +23,6 @@
     option: "Include"
     value: "/etc/pacman.d/mirrorlist"
     mode: "0644"
-  notify: update_repos
 
 - name: Pacman - create hooks directory
   become: true

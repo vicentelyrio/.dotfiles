@@ -1,5 +1,0 @@
-- name: Pacman - update repos
-  become: true
-  become_user: root
-  ansible.builtin.package:
-    update-cache: true
