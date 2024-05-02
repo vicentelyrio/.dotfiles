@@ -1,38 +1,30 @@
-# - name: Yay - disable password
-#   become: true
-#   ansible.builtin.lineinfile:
-#     path: /etc/sudoers.d/temp_allow_no_pswd_pacman
-#     state: present
-#     line: "ALL ALL=NOPASSWD: /usr/bin/pacman"
-#     validate: /usr/sbin/visudo -cf %s
-#     create: true
-#     mode: "0644"
-#
-# - name: Yay - git clone yay-bin repo in to /tmp
-#   become: false
-#   ansible.builtin.git:
-#     repo: "https://aur.archlinux.org/yay-bin.git"
-#     dest: /tmp/yay-bin
-#     clone: true
-#
-# - name: Yay - install using makepkg
-#   become: false
-#   ansible.builtin.expect:
-#     chdir: /tmp/yay-bin
-#     command: makepkg -si
-#     responses:
-#       (?i)Proceed with installation: "y"
-#
-# - name: Yay - re-enable need for password for pacman
-#   ansible.builtin.file:
-#     path: /etc/sudoers.d/temp_allow_no_pswd_pacman
-#     state: absent
-- name: Yay - install
-  aur:
-    name: yay
-    user: "{{ user.name }}"
-    skip_pgp: true
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
+- name: Yay - disable password
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/temp_allow_no_pswd_pacman
+    state: present
+    line: "ALL ALL=NOPASSWD: /usr/bin/pacman"
+    validate: /usr/sbin/visudo -cf %s
+    create: true
+    mode: "0644"
+
+- name: Yay - git clone yay-bin repo in to /tmp
+  become: false
+  ansible.builtin.git:
+    repo: "https://aur.archlinux.org/yay-bin.git"
+    dest: /tmp/yay-bin
+    clone: true
+    version: main
+
+- name: Yay - install using makepkg
+  become: false
+  ansible.builtin.expect:
+    chdir: /tmp/yay-bin
+    command: makepkg -si
+    responses:
+      (?i)Proceed with installation: "y"
+
+- name: Yay - re-enable need for password for pacman
+  ansible.builtin.file:
+    path: /etc/sudoers.d/temp_allow_no_pswd_pacman
+    state: absent
