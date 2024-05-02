@@ -32,7 +32,7 @@
 - name: Pacman - move hooks
   become: true
   ansible.posix.synchronize:
-    src: "{{ ansible_env.PWD }}/roles/system-pacman/files/hooks/"
+    src: "{{ playbook_dir }}/roles/system-pacman/files/hooks/"
     dest: /etc/pacman.d/hooks/
   delegate_to: localhost
 

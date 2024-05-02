@@ -34,5 +34,4 @@
   ansible.posix.synchronize:
     src: "{{ playbook_dir }}/roles/hyprland/files/hypr/"
     dest: "~/.config/hypr/"
-    mode: "0644"
-    owner: "{{ user.name }}"
+  delegate_to: localhost
