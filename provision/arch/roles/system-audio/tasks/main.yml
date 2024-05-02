@@ -13,16 +13,12 @@
   retries: 10
   delay: 2
 
-- name: Audio - pipewire service
-  become: true
-  ansible.builtin.service:
-    name: pipewire
-    state: started
-    enabled: true
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
+# - name: Audio - pipewire service
+#   become: true
+#   ansible.builtin.service:
+#     name: pipewire
+#     state: started
+#     enabled: true
 
 - name: Audio - pipewire-pulse service
   become: true
@@ -30,10 +26,6 @@
     name: pipewire-pulse
     state: started
     enabled: true
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
 
 - name: Audio - WirePlumber service
   become: true
@@ -41,7 +33,3 @@
     name: wireplumber
     state: started
     enabled: true
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
