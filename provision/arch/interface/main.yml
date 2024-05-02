@@ -1,5 +1,0 @@
-- name: Arch Interface Roles
-  hosts: local
-  vars_files: ../../vars/all.yml
-  roles:
-    - hyprland
