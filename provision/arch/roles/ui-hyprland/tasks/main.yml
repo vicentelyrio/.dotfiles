@@ -22,10 +22,17 @@
 #     state: present
 #   notify: Rkhunter propupdate
 
+- name: Hyprland - create config directory
+  become: true
+  ansible.builtin.file:
+    path: ~/.config/hypr
+    state: directory
+    mode: "0644"
+
 - name: Hyprland - copy files
   become: true
-  ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/hyprland/files/hypr"
-    dest: "~/.config"
+  ansible.posix.synchronize:
+    src: "{{ playbook_dir }}/roles/hyprland/files/hypr/"
+    dest: "~/.config/hypr/"
     mode: "0644"
     owner: "{{ user.name }}"
