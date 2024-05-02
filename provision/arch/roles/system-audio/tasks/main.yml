@@ -4,6 +4,7 @@
     name:
       - pipewire
       - pipewire-alsa
+      - pipewire-pulse
       - alsa-utils
       - pavucontrol
       - wireplumber
@@ -16,6 +17,13 @@
   become: true
   ansible.builtin.service:
     name: pipewire
+    state: started
+    enabled: true
+
+- name: Audio - pipewire-pulse service
+  become: true
+  ansible.builtin.service:
+    name: pipewire-pulse
     state: started
     enabled: true
 
