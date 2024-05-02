@@ -28,7 +28,7 @@ installMacosDeps() {
   if ! command -v brew &> /dev/null; then
     printMessage "installing homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> "{{ home_dir_result.stdout }}/.zprofile"
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> "~/.zprofile"
     eval "$("$(brew --prefix)"/bin/brew shellenv)"
   fi
   printSuccess "homebrew"

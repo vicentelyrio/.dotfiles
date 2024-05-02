@@ -21,6 +21,6 @@
 - name: Hyprland - copy files
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/hyprland/files/hypr"
-    dest: "{{ home_dir_result.stdout }}"
+    dest: "~/.config"
     mode: "0644"
     owner: "{{ user.name }}"

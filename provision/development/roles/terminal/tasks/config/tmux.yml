@@ -1,13 +1,13 @@
 - name: Tmux - create config directory
   ansible.builtin.file:
-    path: "{{ home_dir_result.stdout }}/.config/tmux"
+    path: "~/.config/tmux"
     state: directory
     mode: "0644"
 
 - name: Tmux - symlink files
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/tmux/{{ item }}"
-    dest: "{{ home_dir_result.stdout }}/.config/tmux/{{ item }}"
+    dest: "~/.config/tmux/{{ item }}"
     state: link
     follow: false
     force: true
