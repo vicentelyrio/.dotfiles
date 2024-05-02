@@ -6,11 +6,9 @@
 
 - name: Alacritty - symlink files
   become: true
-  become_user: "{{ user.name }}"
-  become_method: sudo
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminals/files/alacritty/{{ item }}"
-    dest: "~/.config/alacritty/{{ item }}"
+    dest: "/home/{{ user.name }}/.config/alacritty/{{ item }}"
     state: link
     follow: false
     force: true
