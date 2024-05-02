@@ -26,7 +26,7 @@
   ansible.builtin.file:
     path: ~/.config/hypr
     state: directory
-    mode: "0644"
+    mode: "0777"
 
 - name: Hyprland - copy files
   become: true

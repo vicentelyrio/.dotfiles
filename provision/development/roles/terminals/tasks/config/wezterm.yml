@@ -1,10 +1,8 @@
 - name: Wezterm - create config directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: ~/.config/wezterm
     state: directory
-    mode: "0644"
+    mode: "0777"
 
 - name: Wezterm - symlink files
   become: true

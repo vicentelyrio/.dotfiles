@@ -1,10 +1,8 @@
 - name: Starship - create config directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/starship"
     state: directory
-    mode: "0644"
+    mode: "0777"
 
 - name: Starship - symlink files
   become: true
