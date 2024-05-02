@@ -1,4 +1,5 @@
 - name: Hyprland - install
+  become: true
   ansible.builtin.package:
     name:
       - hyprland
@@ -19,6 +20,7 @@
   notify: Rkhunter propupdate
 
 - name: Hyprland - copy files
+  become: true
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/hyprland/files/hypr"
     dest: "~/.config"
