@@ -1,10 +1,12 @@
 - name: Bat - create config directory
+  become: true
   ansible.builtin.file:
     path: "~/.config/bat"
     state: directory
     mode: "0644"
 
 - name: Bat - symlink config
+  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/bat/{{ item }}"
     dest: "~/.config/bat/{{ item }}"
@@ -15,12 +17,14 @@
     - config
 
 - name: Bat - create theme directory
+  become: true
   ansible.builtin.file:
     path: "~/.config/bat/themes"
     state: directory
     mode: "0644"
 
 - name: Bat - symlink themes
+  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/bat/themes/{{ item }}"
     dest: "~/.config/bat/themes/{{ item }}"

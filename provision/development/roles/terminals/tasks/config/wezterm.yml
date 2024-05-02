@@ -1,10 +1,12 @@
 - name: Wezterm - create config directory
+  become: true
   ansible.builtin.file:
     path: ~/.config/wezterm
     state: directory
     mode: "0644"
 
 - name: Wezterm - symlink files
+  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminals/files/wezterm/{{ item }}"
     dest: "~/.config/wezterm/{{ item }}"

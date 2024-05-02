@@ -1,4 +1,5 @@
 - name: FZF - symlink files
+  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/fzf/{{ item }}"
     dest: "~/{{ item }}"

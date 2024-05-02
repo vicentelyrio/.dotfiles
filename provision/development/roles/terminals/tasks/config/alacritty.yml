@@ -1,10 +1,12 @@
 - name: Alacritty - create config directory
+  become: true
   ansible.builtin.file:
     path: ~/.config/alacritty
     state: directory
     mode: "0644"
 
 - name: Alacritty - symlink files
+  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminals/files/alacritty/{{ item }}"
     dest: "~/.config/alacritty/{{ item }}"
