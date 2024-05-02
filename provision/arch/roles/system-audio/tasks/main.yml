@@ -19,6 +19,7 @@
     name: pipewire
     state: started
     enabled: true
+    daemon_reload: true
 
 - name: Audio - pipewire-pulse service
   become: true
@@ -26,6 +27,7 @@
     name: pipewire-pulse
     state: started
     enabled: true
+    daemon_reload: true
 
 - name: Audio - WirePlumber service
   become: true
@@ -33,3 +35,4 @@
     name: wireplumber
     state: started
     enabled: true
+    daemon_reload: true
