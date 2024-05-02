@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: "~/.config/gitui"
     state: directory
-    mode: "0777"
+    mode: "0644"
 
 - name: Gitui - symlink config
   become: true
