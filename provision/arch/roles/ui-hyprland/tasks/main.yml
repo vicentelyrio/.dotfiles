@@ -6,12 +6,8 @@
       - hyprpaper
       - hypridle
       - xdg-desktop-portal-hyprland
-      - qt4-wayland
       - qt5-wayland
       - qt6-wayland
-      # - hyprprop-git
-      # - hyprpicker
-      # - hyprlock
     state: present
   notify: Rkhunter propupdate
 
