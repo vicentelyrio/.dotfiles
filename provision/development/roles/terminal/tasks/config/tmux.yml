@@ -1,6 +1,4 @@
 - name: Tmux - create config directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/tmux"
     state: directory
@@ -8,10 +6,9 @@
 
 - name: Tmux - symlink files
   become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/tmux/{{ item }}"
-    dest: "~/.config/tmux/{{ item }}"
+    dest: "/home/{{ user.name }}/.config/tmux/{{ item }}"
     state: link
     follow: false
     force: true

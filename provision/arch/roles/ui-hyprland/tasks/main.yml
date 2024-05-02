@@ -23,8 +23,6 @@
 #   notify: Rkhunter propupdate
 
 - name: Hyprland - create config directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: ~/.config/hypr
     state: directory
@@ -32,9 +30,8 @@
 
 - name: Hyprland - copy files
   become: true
-  become_user: "{{ user.name }}"
   ansible.posix.synchronize:
     src: "{{ playbook_dir }}/roles/ui-hyprland/files/hypr/"
-    dest: "~/.config/hypr/"
+    dest: "/home/{{ user.name }}/.config/hypr/"
     recursive: true
   delegate_to: localhost

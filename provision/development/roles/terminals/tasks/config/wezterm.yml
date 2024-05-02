@@ -1,6 +1,4 @@
 - name: Wezterm - create config directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: ~/.config/wezterm
     state: directory
@@ -8,10 +6,9 @@
 
 - name: Wezterm - symlink files
   become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminals/files/wezterm/{{ item }}"
-    dest: "~/.config/wezterm/{{ item }}"
+    dest: "/home/{{ user.name }}/.config/wezterm/{{ item }}"
     state: link
     follow: false
     force: true

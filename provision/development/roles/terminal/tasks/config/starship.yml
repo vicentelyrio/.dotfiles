@@ -1,6 +1,4 @@
 - name: Starship - create config directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/starship"
     state: directory
@@ -8,10 +6,9 @@
 
 - name: Starship - symlink files
   become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/starship/{{ item }}"
-    dest: "~/.config/starship/{{ item }}"
+    dest: "/home/{{ user.name }}/.config/starship/{{ item }}"
     state: link
     follow: false
     force: true

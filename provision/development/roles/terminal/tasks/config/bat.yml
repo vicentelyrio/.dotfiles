@@ -1,6 +1,4 @@
 - name: Bat - create config directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/bat"
     state: directory
@@ -8,10 +6,9 @@
 
 - name: Bat - symlink config
   become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/bat/{{ item }}"
-    dest: "~/.config/bat/{{ item }}"
+    dest: "/home/{{ user.name }}/.config/bat/{{ item }}"
     state: link
     follow: false
     force: true
@@ -19,8 +16,6 @@
     - config
 
 - name: Bat - create theme directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/bat/themes"
     state: directory
@@ -28,10 +23,9 @@
 
 - name: Bat - symlink themes
   become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminal/files/bat/themes/{{ item }}"
-    dest: "~/.config/bat/themes/{{ item }}"
+    dest: "/home/{{ user.name }}/.config/bat/themes/{{ item }}"
     state: link
     follow: false
     force: true

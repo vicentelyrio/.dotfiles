@@ -1,6 +1,4 @@
 - name: Helix - create config directory
-  become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     path: "~/.config/helix"
     state: directory
@@ -8,10 +6,9 @@
 
 - name: Helix - symlink files
   become: true
-  become_user: "{{ user.name }}"
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/ides/files/helix/{{ item }}"
-    dest: "~/.config/helix/{{ item }}"
+    dest: "/home/{{ user.name }}/.config/helix/{{ item }}"
     state: link
     follow: false
     force: true
