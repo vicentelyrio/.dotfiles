@@ -4,11 +4,10 @@ user:
   shell: /bin/zsh
 
 system:
-  locale: en.UTF-8
+  locale: en
   timezone: America/Sao_Paulo
   processor: intel
   graphics_card: amd
-  macspoof: disabled
 
 bootloader: grub
 
