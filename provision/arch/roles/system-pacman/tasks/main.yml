@@ -111,7 +111,6 @@
       - reflector
       - xdg-user-dirs
       - xdg-utils
-      - pacseek
       - coreutils
       - dateutils
       - lsof
@@ -119,3 +118,12 @@
       - udiskie
   notify:
     - Rkhunter propupdate
+
+- name: Pacman - install manager
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - pacseek
+    state: present
+  notify: Rkhunter propupdate
