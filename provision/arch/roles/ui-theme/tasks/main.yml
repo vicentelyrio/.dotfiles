@@ -31,7 +31,7 @@
 - name: Theme - source theme folder
   become: true
   ansible.builtin.lineinfile:
-    path: ~/.bashrc
+    path: ~/.zshrc
     regexp: "source ~/.config/themes/theme.conf"
     line: "source ~/.config/themes/theme.conf"
     state: present

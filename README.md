@@ -27,7 +27,6 @@ used in MacOS and Arch installs
 - [Bat](https://github.com/sharkdp/bat) (better cat)
 - [Bash Completion](https://github.com/scop/bash-completion)
 - [EZA](https://github.com/eza-community/eza) (better ls)
-- [FZF](https://github.com/junegunn/fzf) (fuzzy finder)
 - [Gitui](https://github.com/extrawurst/gitui) (git tui)
 - [Neofetch](https://github.com/dylanaraps/neofetch) (system information)
 - [Starship](https://starship.rs/) (shell prompt)

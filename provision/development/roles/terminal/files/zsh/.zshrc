@@ -38,9 +38,6 @@ eval "$(zoxide init zsh)"
 # Starship
 eval "$(starship init zsh)"
 
-# FZF
-[ -f ~/.config/.fzf.zsh ] && source ~/.config/.fzf.zsh
-
 # TMUX
 
 # TPM - TMUX PACKAGE MANAGER
