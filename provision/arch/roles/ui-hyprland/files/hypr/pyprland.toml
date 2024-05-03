@@ -50,8 +50,8 @@ margin = 20
 lazy = true
 
 [wallpapers]
-path = "/home/vicentelyrio/.config/hypr/themes/night/wallpapers/"
-interval = 60                                                                                                                                                                          # change every hour
+path = "/home/vicentelyrio/.config/hypr/themes/$THEME_CURRENT/wallpapers/"
+interval = 60
 command = "swww img --transition-bezier 0.5,1.19,.8,.4 --transition-type wipe --transition-duration 2 --transition-fps 75 \"[file]\" && notify-send 'Wallpaper Changed' -i \"[file]\""
 clear_command = "swww clear"
 extensions = ["jpg", "png", "gif", "jpeg"]

@@ -1,0 +1,33 @@
+- name: Theme - install theme packages
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - catppuccin-gtk-theme-macchiato
+      - catppuccin-cursors-macchiato
+      - ttf-ms-win11-auto
+    state: present
+  notify: Rkhunter propupdate
+
+- name: Theme - create directory
+  ansible.builtin.file:
+    path: ~/.config/hypr/theme
+    state: directory
+    mode: "0777"
+
+- name: Theme - copy files
+  ansible.posix.synchronize:
+    src: ../files/themes/
+    dest: "~/.config/themes"
+    recursive: true
+  delegate_to: localhost
+
+- name: Theme - source theme folder
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: ~/.bash_profile
+    regexp: "source ~/.config/theme/theme.conf"
+    line: "source ~/.config/theme/theme.conf"
+    state: present
+    create: true

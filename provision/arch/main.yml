@@ -2,6 +2,7 @@
   hosts: local
   vars_files: ../vars/all.yml
   roles:
+    # System
     - system-rkhunter
     - system-pacman
     - system-yay
@@ -16,4 +17,7 @@
     - system-network
     - system-bluetooth
     - system-audio
+
+    # Interface
+    - ui-theme
     - ui-hyprland

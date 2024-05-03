@@ -21,10 +21,6 @@
       - hyprpicker
       - hyprlock
       - pyprland
-      # Theme
-      - catppuccin-gtk-theme-macchiato
-      - catppuccin-cursors-macchiato
-      - ttf-ms-win11-auto
     state: present
   notify: Rkhunter propupdate
 
@@ -34,27 +30,9 @@
     state: directory
     mode: "0777"
 
-- name: Hyprland - create config directory
-  ansible.builtin.file:
-    path: ~/.config/hypr/config
-    state: directory
-    mode: "0777"
-
-- name: Hyprland - create scripts directory
-  ansible.builtin.file:
-    path: ~/.config/hypr/theme
-    state: directory
-    mode: "0777"
-
-- name: Hyprland - create theme directory
-  ansible.builtin.file:
-    path: ~/.config/hypr/theme
-    state: directory
-    mode: "0777"
-
 - name: Hyprland - copy files
   ansible.posix.synchronize:
     src: ../files/hypr/
-    dest: "/home/{{ user.name }}/.config/hypr/"
+    dest: "~/.config/hypr/"
     recursive: true
   delegate_to: localhost
