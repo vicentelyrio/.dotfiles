@@ -35,12 +35,22 @@
     recursive: true
   delegate_to: localhost
 
-- name: Theme - source theme folder
+- name: Theme - check for theme entry on bash_profile
   become: true
   become_user: root
+  check_mode: true
+  changed_when: false
+  register: check
   ansible.builtin.lineinfile:
     path: ~/.bash_profile
     regexp: "source ~/.config/theme/theme.conf"
+    state: absent
+
+- name: Theme - source theme folder
+  become: true
+  become_user: root
+  when: check.found == 0
+  ansible.builtin.lineinfile:
+    path: ~/.bash_profile
     line: "source ~/.config/theme/theme.conf"
     state: present
-    create: true
