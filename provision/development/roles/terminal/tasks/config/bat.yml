@@ -19,6 +19,13 @@
     path: "~/bat/themes/Catppuccin Macchiato.tmTheme"
   register: result
 
+- debug:
+    msg: "File exists..."
+  when: result.stat.exists
+- debug:
+    msg: "File not found"
+  when: result.stat.exists == False
+
 - name: Bat - create theme directory
   ansible.builtin.file:
     path: "~/.config/bat/themes"
