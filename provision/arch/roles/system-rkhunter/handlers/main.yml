@@ -1,3 +1,5 @@
 - name: Rkhunter propupdate
+  become: true
+  become_user: root
   ansible.builtin.command: rkhunter --propupd
   changed_when: false
