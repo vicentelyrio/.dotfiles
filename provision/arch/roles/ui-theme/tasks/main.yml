@@ -11,7 +11,7 @@
 
 - name: Theme - create directory
   ansible.builtin.file:
-    path: ~/.config/hypr/theme
+    path: ~/.config/theme
     state: directory
     mode: "0777"
 
