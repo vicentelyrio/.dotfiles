@@ -23,6 +23,7 @@
     option: "Include"
     value: "/etc/pacman.d/mirrorlist"
     mode: "0644"
+  notify: Pacman - update package cache
 
 - name: Pacman - create hooks directory
   become: true
@@ -91,12 +92,7 @@
     name: reflector.timer
     enabled: true
     state: started
-
-- name: Pacman - update package cache
-  become: true
-  become_user: root
-  ansible.builtin.package:
-    update_cache: true
+  notify: Pacman - update package cache
 
 - name: Pacman - perform full system upgrade
   become: true

@@ -6,6 +6,8 @@
       - openssh
 
 - name: Ssh - enable and start service
+  become: true
+  become_user: root
   ansible.builtin.systemd:
     name: sshd
     enabled: true
