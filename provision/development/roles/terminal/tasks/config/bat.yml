@@ -20,15 +20,9 @@
     state: directory
     mode: "0777"
 
-- name: Bat - symlink themes
-  ansible.builtin.file:
-    src: "{{ playbook_dir }}/roles/terminal/files/bat/themes/{{ item }}"
-    dest: "~/.config/bat/themes/{{ item }}"
-    state: link
-    follow: false
-    force: true
-  with_items:
-    - Catppuccin-frappe.tmTheme
-    - Catppuccin-latte.tmTheme
-    - Catppuccin-macchiato.tmTheme
-    - Catppuccin-mocha.tmTheme
+- name: Bat - download custom theme
+  ansible.builtin.command: wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+
+- name: Bat - rebuild cache
+  ansible.builtin.command: bat cache --build
+
