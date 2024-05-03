@@ -11,25 +11,22 @@
       - wireplumber
 
 - name: Audio - pipewire service
-  become: true
-  become_user: root
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: pipewire
     state: restarted
     enabled: true
+    scope: user
 
 - name: Audio - pipewire-pulse service
-  become: true
-  become_user: root
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: pipewire-pulse
     state: restarted
     enabled: true
+    scope: user
 
 - name: Audio - WirePlumber service
-  become: true
-  become_user: root
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: wireplumber
     state: restarted
     enabled: true
+    scope: user
