@@ -21,7 +21,7 @@
     mode: "0777"
 
 - name: Bat - download custom theme
-  ansible.builtin.command: wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+  ansible.builtin.command: wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
 
 - name: Bat - rebuild cache
   ansible.builtin.command: bat cache --build
