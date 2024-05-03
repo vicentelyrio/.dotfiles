@@ -3,20 +3,20 @@
   vars_files: ../vars/all.yml
   roles:
     # System
-    # - system-rkhunter
-    # - system-pacman
-    # - system-yay
-    # - system-user
-    # - system-grub
-    # - system-greetd
-    # - system-cronie
-    # - system-gpu
-    # - system-locale
-    # - system-time
-    # - system-ssh
-    # - system-network
-    # - system-bluetooth
-    # - system-audio
+    - system-rkhunter
+    - system-pacman
+    - system-yay
+    - system-user
+    - system-grub
+    - system-greetd
+    - system-cronie
+    - system-gpu
+    - system-locale
+    - system-time
+    - system-ssh
+    - system-network
+    - system-bluetooth
+    - system-audio
 
     # Interface
     - ui-theme
