@@ -1,3 +1,0 @@
-# ACK [#ack]
-alias ack="ff $1 --sort-files --color"
-
