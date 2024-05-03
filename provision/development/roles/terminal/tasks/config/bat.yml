@@ -16,7 +16,7 @@
 
 - name: Bat - Check if custom theme exists
   stat:
-    path: ~/bat/themes/Catppuccin Macchiato.tmTheme
+    path: "~/bat/themes/Catppuccin Macchiato.tmTheme"
   register: result
 
 - name: Bat - create theme directory
