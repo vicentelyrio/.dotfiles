@@ -5,7 +5,20 @@
     name:
       - catppuccin-gtk-theme-macchiato
       - catppuccin-cursors-macchiato
-      - ttf-ms-win11-auto
+      # - ttf-ms-win11-auto
+    state: present
+  notify: Rkhunter propupdate
+
+- name: Theme - install fonts
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - ttf-font-awesome
+      - ttf-nerd-font-symbols
+      - ttf-nerd-font-symbols-mono
+      - ttf-jetbrains-mono-nerd
+      # - ttf-ms-win11-auto
     state: present
   notify: Rkhunter propupdate
 
@@ -18,7 +31,7 @@
 - name: Theme - copy files
   ansible.posix.synchronize:
     src: ../files/themes/
-    dest: "~/.config/themes"
+    dest: ~/.config/themes
     recursive: true
   delegate_to: localhost
 
