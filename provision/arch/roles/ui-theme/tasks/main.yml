@@ -22,12 +22,6 @@
     state: present
   notify: Rkhunter propupdate
 
-- name: Theme - create directory
-  ansible.builtin.file:
-    path: ~/.config/theme
-    state: directory
-    mode: "0777"
-
 - name: Theme - copy files
   ansible.posix.synchronize:
     src: ../files/themes/
@@ -39,7 +33,7 @@
   become: true
   ansible.builtin.lineinfile:
     path: ~/.bash_profile
-    regexp: "source ~/.config/theme/theme.conf"
-    line: "source ~/.config/theme/theme.conf"
+    regexp: "source ~/.config/themes/theme.conf"
+    line: "source ~/.config/themes/theme.conf"
     state: present
     create: true
