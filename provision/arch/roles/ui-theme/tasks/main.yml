@@ -15,8 +15,8 @@
   ansible.builtin.package:
     name:
       - ttf-font-awesome
-      - ttf-nerd-font-symbols
-      - ttf-nerd-font-symbols-mono
+      - ttf-nerd-fonts-symbols
+      - ttf-nerd-fonts-symbols-mono
       - ttf-jetbrains-mono-nerd
       # - ttf-ms-win11-auto
     state: present
