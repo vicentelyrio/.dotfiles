@@ -37,7 +37,6 @@
 
 - name: Theme - check for theme entry on bash_profile
   become: true
-  become_user: root
   check_mode: true
   changed_when: false
   register: check
@@ -48,7 +47,6 @@
 
 - name: Theme - source theme folder
   become: true
-  become_user: root
   when: check.found == 0
   ansible.builtin.lineinfile:
     path: ~/.bash_profile
