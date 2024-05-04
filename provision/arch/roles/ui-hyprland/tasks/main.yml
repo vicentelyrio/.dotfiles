@@ -24,19 +24,6 @@
     state: present
   notify: Rkhunter propupdate
 
-# - name: Hyprland - create main config directory
-#   ansible.builtin.file:
-#     path: ~/.config/hypr
-#     state: directory
-#     mode: "0777"
-#
-# - name: Hyprland - copy files
-#   ansible.posix.synchronize:
-#     src: ../files/hypr/
-#     dest: "~/.config/hypr/"
-#     recursive: true
-#   delegate_to: localhost
-
 # Symlink Files
 - name: Hyprland - create config directory
   ansible.builtin.file:

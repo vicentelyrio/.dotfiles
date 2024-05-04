@@ -1,0 +1,10 @@
+- name: Font Manager - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - font-manager
+    state: present
+  notify: Rkhunter propupdate
+  ignore_errors: true
+  register: ignore_errors_register

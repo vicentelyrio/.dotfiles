@@ -1,8 +1,12 @@
 - name: Git - configure user name
   ansible.builtin.command: "git config --global user.name {{ git.name }}"
+  register: output
+  changed_when: output.rc != 0
 
 - name: Git - configure user email
   ansible.builtin.command: "git config --global user.email {{ git.email }}"
+  register: output
+  changed_when: output.rc != 0
 
 # - name: Git - install git-cli
 #   become: true
