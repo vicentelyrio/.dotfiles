@@ -7,7 +7,6 @@
       - bat
       - bash-completion
       - eza
-      - fzf
       - gitui
       - gtop
       - neofetch
@@ -23,9 +22,6 @@
 
 - name: Zsh
   ansible.builtin.import_tasks: ./config/zsh.yml
-
-- name: Fzf
-  ansible.builtin.import_tasks: ./config/fzf.yml
 
 - name: Starship
   ansible.builtin.import_tasks: ./config/starship.yml

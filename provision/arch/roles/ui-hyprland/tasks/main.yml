@@ -20,10 +20,11 @@
       - hyprprop-git
       - hyprpicker
       - hyprlock
+      - pyprland
     state: present
   notify: Rkhunter propupdate
 
-- name: Hyprland - create config directory
+- name: Hyprland - create main config directory
   ansible.builtin.file:
     path: ~/.config/hypr
     state: directory
@@ -32,6 +33,6 @@
 - name: Hyprland - copy files
   ansible.posix.synchronize:
     src: ../files/hypr/
-    dest: "/home/{{ user.name }}/.config/hypr/"
+    dest: "~/.config/hypr/"
     recursive: true
   delegate_to: localhost

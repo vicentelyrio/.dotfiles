@@ -65,6 +65,7 @@
   become: true
   become_user: root
   ansible.builtin.package:
+    update_cache: true
     name:
       - reflector
 
@@ -78,9 +79,6 @@
       --save /etc/pacman.d/mirrorlist
       --protocol http
       --country Brasil
-      --country Argentina
-      --country Uruguay
-      --country USA
       --latest 20
       --score 20
       --sort rate
@@ -109,17 +107,10 @@
   ansible.builtin.package:
     update_cache: true
     name:
-      - python-pip
-      - python-pexpect
-      - base
-      - base-devel
       - polkit-gnome
       - reflector
       - xdg-user-dirs
       - xdg-utils
-      - curl
-      - git
-      - rsync
       - coreutils
       - dateutils
       - lsof

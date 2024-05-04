@@ -1,4 +1,6 @@
 - name: Ntp - restart
+  become: true
+  become_user: root
   ansible.builtin.service:
     name: ntpd
     state: restarted

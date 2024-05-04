@@ -1,5 +1,0 @@
-tap "homebrew/bundle"
-tap "homebrew/core"
-
-brew "coreutils"
-brew "zsh"
