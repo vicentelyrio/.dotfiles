@@ -1,0 +1,13 @@
+- name: Git - configure user name
+  ansible.builtin.command: "git config --global user.name {{ git.name }}"
+
+- name: Git - configure user email
+  ansible.builtin.command: "git config --global user.email {{ git.email }}"
+
+# - name: Git - install git-cli
+#   become: true
+#   kewlfft.aur.aur:
+#     use: yay
+#     name:
+#       - github-cli-git
+#     state: present

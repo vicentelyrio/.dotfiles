@@ -3,14 +3,12 @@ user:
   group: users
   shell: /bin/zsh
 
+git:
+  name: vicentelyrio
+  email: vicentelyrio@gmail.com
+
 system:
   locale: en_US.utf8
   timezone: America/Sao_Paulo
   processor: intel
   graphics_card: amd
-
-bootloader: grub
-
-ssh:
-  port: 22
-  enable_sshd: true
