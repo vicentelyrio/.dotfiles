@@ -15,12 +15,11 @@
   when: git.default is defined
 
 - name: Github - create default user ssh keypair
-  become: true
-  become_user: root
   community.crypto.openssh_keypair:
     force: false
     state: present
     type: ed25519
+    mode: "0400"
     path: "/home/{{ user.name }}/.ssh/id_ssh_default"
     comment: "{{ git.default.email }}"
   when: git.default is defined
@@ -34,8 +33,6 @@
   when: git.default is defined
 
 - name: Github - add default user key to agent
-  become: true
-  become_user: root
   ansible.builtin.shell: "eval $(ssh-agent -s) && ssh-add /home/{{ user.name }}/.ssh/id_ssh_default"
   args:
     executable: /bin/bash
