@@ -1,5 +1,6 @@
 - name: Audio - install dependencies
   become: true
+  become_user: root
   ansible.builtin.package:
     name:
       - pipewire
@@ -8,28 +9,24 @@
       - alsa-utils
       - pavucontrol
       - wireplumber
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
 
-# - name: Audio - pipewire service
-#   become: true
-#   ansible.builtin.systemd:
-#     name: pipewire
-#     state: restarted
-#     enabled: true
-#
-# - name: Audio - pipewire-pulse service
-#   become: true
-#   ansible.builtin.systemd:
-#     name: pipewire-pulse
-#     state: restarted
-#     enabled: true
-#
-# - name: Audio - WirePlumber service
-#   become: true
-#   ansible.builtin.systemd:
-#     name: wireplumber
-#     state: restarted
-#     enabled: true
+- name: Audio - pipewire service
+  ansible.builtin.systemd_service:
+    name: pipewire
+    state: restarted
+    enabled: true
+    scope: user
+
+- name: Audio - pipewire-pulse service
+  ansible.builtin.systemd_service:
+    name: pipewire-pulse
+    state: restarted
+    enabled: true
+    scope: user
+
+- name: Audio - WirePlumber service
+  ansible.builtin.systemd_service:
+    name: wireplumber
+    state: restarted
+    enabled: true
+    scope: user

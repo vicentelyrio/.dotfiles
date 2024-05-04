@@ -1,5 +1,6 @@
 - name: Network - install tools
   become: true
+  become_user: root
   ansible.builtin.package:
     name:
       - ethtool
@@ -12,15 +13,12 @@
       - networkmanager-openconnect
       - networkmanager-openvpn
     state: present
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
   notify:
     - Rkhunter propupdate
 
 - name: Network - enable dhcp service
   become: true
+  become_user: root
   ansible.builtin.service:
     name: dhcpcd
     state: started
@@ -28,6 +26,7 @@
 
 - name: Network - enable NetworkManager service
   become: true
+  become_user: root
   ansible.builtin.service:
     name: NetworkManager
     state: started

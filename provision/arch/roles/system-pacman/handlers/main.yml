@@ -1,3 +1,6 @@
-- name: Pacman - update repos
+- name: Pacman - update package cache
+  become: true
+  become_user: root
   ansible.builtin.package:
-    update-cache: true
+    update_cache: true
+

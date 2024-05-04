@@ -1,13 +1,13 @@
 - name: Ssh - install
+  become: true
+  become_user: root
   ansible.builtin.package:
     name:
       - openssh
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2
 
 - name: Ssh - enable and start service
+  become: true
+  become_user: root
   ansible.builtin.systemd:
     name: sshd
     enabled: true

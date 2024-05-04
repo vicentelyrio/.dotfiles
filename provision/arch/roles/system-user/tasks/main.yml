@@ -6,6 +6,7 @@
 
 - name: Ensure the user user.name exists
   become: true
+  become_user: root
   ansible.builtin.user:
     name: "{{ user.name }}"
     shell: "{{ user.shell }}"

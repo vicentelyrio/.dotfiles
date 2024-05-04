@@ -4,7 +4,7 @@
 installLinuxDeps() {
   printMessage "updating pacman"
   sudo pacman -Syyu
-  sudo pacman -S --needed base-devel git
+  sudo pacman -S --needed base-devel git rsync
   printSuccess "done"
 
   # ANSIBLE

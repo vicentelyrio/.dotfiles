@@ -1,5 +1,6 @@
 - name: Terminal utilities - install
   become: true
+  become_user: root
   ansible.builtin.package:
     name:
       - ack

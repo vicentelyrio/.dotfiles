@@ -1,8 +1,6 @@
 - name: Rkhunter - install
+  become: true
+  become_user: root
   ansible.builtin.package:
     name:
       - rkhunter
-  register: task_result
-  until: task_result is success
-  retries: 10
-  delay: 2

@@ -5,10 +5,9 @@
     mode: "0777"
 
 - name: Alacritty - symlink files
-  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/terminals/files/alacritty/{{ item }}"
-    dest: "/home/{{ user.name }}/.config/alacritty/{{ item }}"
+    dest: "~/.config/alacritty/{{ item }}"
     state: link
     follow: false
     force: true

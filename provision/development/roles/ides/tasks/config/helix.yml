@@ -5,10 +5,9 @@
     mode: "0777"
 
 - name: Helix - symlink files
-  become: true
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/ides/files/helix/{{ item }}"
-    dest: "/home/{{ user.name }}/.config/helix/{{ item }}"
+    dest: "~/.config/helix/{{ item }}"
     state: link
     follow: false
     force: true
