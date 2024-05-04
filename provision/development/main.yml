@@ -2,7 +2,7 @@
   hosts: local
   vars_files: ../vars/all.yml
   roles:
-    - git
+    - github
     # - terminals
     # - terminal
     # - ides

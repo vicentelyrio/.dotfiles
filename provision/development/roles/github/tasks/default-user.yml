@@ -1,0 +1,34 @@
+- name: Github - create default user name
+  community.general.git_config:
+    name: user.name
+    value: "{{ git.default.name }}"
+    scope: global
+    state: present
+  when: git.default is defined
+
+- name: Github - create default user email
+  community.general.git_config:
+    name: user.email
+    value: "{{ git.default.email }}"
+    scope: global
+    state: present
+  when: git.default is defined
+
+- name: Github - create default user ssh keypair
+  become: true
+  become_user: root
+  community.crypto.openssh_keypair:
+    force: false
+    state: present
+    type: ed25519
+    path: "/home/{{ user.name }}/.ssh/id_ssh_default"
+    comment: "{{ git.default.email }}"
+  when: git.default is defined
+
+- name: Github - create default user ssh config
+  community.general.git_config:
+    name: core.sshCommand
+    value: "~/.ssh/id_ssh_default"
+    scope: global
+    state: present
+  when: git.default is defined

@@ -1,0 +1,39 @@
+- name: Github - create main file
+  ansible.builtin.blockinfile:
+    block: "{{ lookup('template', '../templates/gitconfig-main.j2') }}"
+    dest: ~/.gitconfig
+    mode: "0644"
+    marker: "# {mark} custom github users"
+    prepend_newline: true
+  when: git.users is defined
+
+- name: Github - create scope file
+  ansible.builtin.template:
+    src: ../templates/gitconfig.j2
+    dest: "~/.gitconfig-{{ item.scope }}"
+    mode: "0644"
+  with_items: "{{ git.users }}"
+  when: git.users is defined
+
+- name: Github - create aditional user ssh keypair
+  become: true
+  become_user: root
+  community.crypto.openssh_keypair:
+    force: false
+    state: present
+    type: ed25519
+    path: "/home/{{ user.name }}/.ssh/id_ssh_{{ item.scope }}"
+    comment: "{{ item.email }}"
+  with_items: "{{ git.users }}"
+  when: git.users is defined
+
+- name: Github - create ssh config for aditional user
+  become: true
+  become_user: root
+  community.general.git_config:
+    name: core.sshCommand
+    value: "/home/{{ user.name }}/.ssh/id_ssh_{{ item.scope }}"
+    file: "/home/{{ user.name }}/.gitconfig-{{ item.scope }}"
+    state: present
+  with_items: "{{ git.users }}"
+  when: git.users is defined

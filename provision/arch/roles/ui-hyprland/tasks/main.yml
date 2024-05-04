@@ -45,4 +45,3 @@
     follow: false
     force: true
   with_items: "{{ hypr_files.files }}"
-

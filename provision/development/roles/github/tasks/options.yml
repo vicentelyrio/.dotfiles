@@ -1,0 +1,9 @@
+# OPTIONS
+- name: Github - create options
+  community.general.git_config:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    scope: global
+    state: present
+  with_dict: "{{ git.options }}"
+  when: git.options is defined
