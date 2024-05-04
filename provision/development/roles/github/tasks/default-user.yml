@@ -32,3 +32,13 @@
     scope: global
     state: present
   when: git.default is defined
+
+- name: Github - add default user key to agent
+  become: true
+  become_user: root
+  ansible.builtin.shell: "eval $(ssh-agent -s) && ssh-add /home/{{ user.name }}/.ssh/id_ssh_default"
+  args:
+    executable: /bin/bash
+  when: git.default is defined
+  register: output
+  changed_when: output.rc != 0

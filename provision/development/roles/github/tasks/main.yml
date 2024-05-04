@@ -1,4 +1,4 @@
-# - name: Ghubit - install git-cli
+# - name: Github - install git-cli
 #   become: true
 #   kewlfft.aur.aur:
 #     use: yay

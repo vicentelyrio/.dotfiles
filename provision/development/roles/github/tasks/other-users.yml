@@ -37,3 +37,14 @@
     state: present
   with_items: "{{ git.users }}"
   when: git.users is defined
+
+- name: Github - add aditional user key to agent
+  become: true
+  become_user: root
+  ansible.builtin.shell: "eval $(ssh-agent -s) && ssh-add /home/{{ user.name }}/.ssh/id_ssh_{{ item.scope }}"
+  args:
+    executable: /bin/bash
+  with_items: "{{ git.users }}"
+  when: git.users is defined
+  register: output
+  changed_when: output.rc != 0

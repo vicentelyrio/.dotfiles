@@ -3,7 +3,7 @@
   vars_files: ../vars/all.yml
   roles:
     - github
-    # - terminals
-    # - terminal
-    # - ides
-    # - node
+    - terminals
+    - terminal
+    - ides
+    - node
