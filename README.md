@@ -3,6 +3,9 @@
 My personal dotfiles.
 Uses [Ansible](https://www.ansible.com) to provision MacOS and Arch Linux.
 
+> [!WARNING]
+> THIS IS A WIP. Do not use.
+
 ### Common Setup
 for both MacOS and Arch
 
