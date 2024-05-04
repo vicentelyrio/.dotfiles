@@ -2,8 +2,8 @@
   hosts: local
   vars_files: ../vars/all.yml
   roles:
-    - terminals
-    - terminal
-    - ides
-    - node
     - git
+    # - terminals
+    # - terminal
+    # - ides
+    # - node

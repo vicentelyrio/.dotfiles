@@ -29,6 +29,7 @@ for both MacOS and Arch
 - [Ack](https://github.com/samaaron/ack) (better grep)
 - [Bat](https://github.com/sharkdp/bat) (better cat)
 - [Bash Completion](https://github.com/scop/bash-completion)
+- [Delta](https://github.com/dandavision/delta) (better git diff)
 - [EZA](https://github.com/eza-community/eza) (better ls)
 - [Gitui](https://github.com/extrawurst/gitui) (git tui)
 - [Neofetch](https://github.com/dylanaraps/neofetch) (system information)

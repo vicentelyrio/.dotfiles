@@ -1,14 +1,36 @@
+system:
+  locale: en_US.utf8
+  timezone: America/Sao_Paulo
+  processor: intel
+  graphics_card: amd
+
 user:
   name: vicentelyrio
   group: users
   shell: /bin/zsh
 
 git:
-  name: vicentelyrio
-  email: vicentelyrio@gmail.com
+  default:
+    name: vicentelyrio
+    email: vicentelyrio@gmail.com
 
-system:
-  locale: en_US.utf8
-  timezone: America/Sao_Paulo
-  processor: intel
-  graphics_card: amd
+  users:
+    -
+      scope: yuca
+      name: vicentelyrio-yuca
+      email: vicente.lyrio@yuca.live
+      path: ~/Projects/yuca
+
+  options:
+    init.defaultBranch: main
+    push.autoSetupRemote: true
+    push.default: current
+    core.pager: delta
+    delta.features: decorations side-by-side line-numbers
+    delta.navigate: true
+    delta.light: false
+    delta.syntax-theme: Dracula
+    interactive.diffFilter: delta --color-only --features=interactive
+    merge.conflictStyles: diff3
+    diff.colorMoved: default
+

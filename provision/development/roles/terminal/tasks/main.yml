@@ -15,6 +15,7 @@
       - tree
       - zoxide
       - zsh
+      - git-delta
     state: present
 
 - name: Bash
