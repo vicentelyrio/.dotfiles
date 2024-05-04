@@ -24,15 +24,38 @@
     state: present
   notify: Rkhunter propupdate
 
-- name: Hyprland - create main config directory
+# - name: Hyprland - create main config directory
+#   ansible.builtin.file:
+#     path: ~/.config/hypr
+#     state: directory
+#     mode: "0777"
+#
+# - name: Hyprland - copy files
+#   ansible.posix.synchronize:
+#     src: ../files/hypr/
+#     dest: "~/.config/hypr/"
+#     recursive: true
+#   delegate_to: localhost
+
+# Symlink Files
+- name: Hyprland - create config directory
   ansible.builtin.file:
     path: ~/.config/hypr
     state: directory
     mode: "0777"
 
-- name: Hyprland - copy files
-  ansible.posix.synchronize:
-    src: ../files/hypr/
-    dest: "~/.config/hypr/"
-    recursive: true
-  delegate_to: localhost
+- name: Hyprland - find files to symlink
+  ansible.builtin.find:
+    paths: "{{ playbook_dir }}/roles/ui-hyprland/files/hypr"
+    file_type: any
+  register: hypr_files
+
+- name: Hyprland - symlink files
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "~/.config/hypr/{{ item.path | basename }}"
+    state: link
+    follow: false
+    force: true
+  with_items: "{{ hypr_files.files }}"
+

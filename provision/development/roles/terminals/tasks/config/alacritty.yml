@@ -12,7 +12,6 @@
     follow: false
     force: true
   with_items:
-    - alacritty.yml
-    - colors.yml
-    - fonts.yml
-    - keybinds.yml
+    - alacritty.toml
+    - colors.toml
+    - fonts.toml

@@ -5,9 +5,11 @@
     name:
       - catppuccin-gtk-theme-macchiato
       - catppuccin-cursors-macchiato
-      # - ttf-ms-win11-auto
+      - ttf-ms-win11-auto
     state: present
   notify: Rkhunter propupdate
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Theme - install fonts
   become: true
@@ -20,18 +22,35 @@
       - ttf-jetbrains-mono-nerd
     state: present
   notify: Rkhunter propupdate
+  ignore_errors: true
+  register: ignore_errors_register
 
-- name: Theme - copy files
-  ansible.posix.synchronize:
-    src: ../files/themes/
-    dest: ~/.config/themes
-    recursive: true
-  delegate_to: localhost
+# Symlink Files
+- name: Theme - create config directory
+  ansible.builtin.file:
+    path: ~/.config/themes
+    state: directory
+    mode: "0777"
+
+- name: Theme - find files to symlink
+  ansible.builtin.find:
+    paths: "{{ playbook_dir }}/roles/ui-theme/files/themes"
+    file_type: any
+  register: theme_files
+
+- name: Theme - symlink files
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "~/.config/themes/{{ item.path | basename }}"
+    state: link
+    follow: false
+    force: true
+  with_items: "{{ theme_files.files }}"
 
 - name: Theme - source theme folder
   become: true
   ansible.builtin.lineinfile:
-    path: ~/.zshrc
+    path: ~/.zshenv
     regexp: "source ~/.config/themes/theme.conf"
     line: "source ~/.config/themes/theme.conf"
     state: present

@@ -48,4 +48,3 @@ if [[ ! -f ${TPM} ]]; then
   git clone https://github.com/tmux-plugins/tpm ${TMUXFOLDER}/tpm
 fi
 
-

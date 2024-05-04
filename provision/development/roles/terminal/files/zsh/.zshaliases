@@ -11,7 +11,7 @@ alias nl="ps -aef | grep node"
 alias nk="kill -9 $1"
 
 # vim
-alias ovim="vim"
+alias vi="nvim"
 
 # TMUX
 alias tk="tmux kill-server"

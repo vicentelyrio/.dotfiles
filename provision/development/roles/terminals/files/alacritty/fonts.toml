@@ -1,0 +1,22 @@
+[font]
+size = 15.0
+
+[font.bold]
+style = "Bold"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+style = "Italic"
+
+[font.normal]
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0

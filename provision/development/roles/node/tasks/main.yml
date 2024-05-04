@@ -5,10 +5,10 @@
     name:
       - nvm
     state: present
-  notify: Rkhunter propupdate
 
 - name: Node - install node and set version
-  ansible.builtin.shell: "source /root/.nvm/nvm.sh && nvm install node"
+  become: true
+  ansible.builtin.shell: "source ~/.nvm/nvm.sh && nvm install --lts"
   args:
     executable: /bin/bash
   register: output
