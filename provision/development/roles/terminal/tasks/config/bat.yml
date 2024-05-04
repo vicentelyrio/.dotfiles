@@ -15,22 +15,26 @@
     - config
 
 - name: Bat - Check if custom theme exists
-  stat:
+  ansible.builtin.stat:
     path: "~/.config/bat/themes/Catppuccin Macchiato.tmTheme"
-  register: result
+  register: file_stats
 
 - name: Bat - create theme directory
   ansible.builtin.file:
     path: "~/.config/bat/themes"
     state: directory
     mode: "0777"
-  when: not result.stat.exists
+  when: not file_stats.stat.exists
 
 - name: Bat - download custom theme
-  ansible.builtin.command: wget -P ~/.config/bat/themes https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
-  when: not result.stat.exists
+  ansible.builtin.get_url:
+    url: https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+    dest: ~/.config/bat/themes
+    mode: "0644"
+  when: not file_stats.stat.exists
 
 - name: Bat - rebuild cache
   ansible.builtin.command: bat cache --build
-  when: not result.stat.exists
-
+  register: result
+  changed_when: result.rc != 0
+  when: not file_stats.stat.exists

@@ -1,10 +1,10 @@
 # .dotfiles
 
 My personal dotfiles.
-Use [Ansible](https://www.ansible.com) for provisioning my macos and arch linux setups.
+Uses [Ansible](https://www.ansible.com) to provision MacOS and Arch Linux.
 
 ### Common Setup
-used in MacOS and Arch installs
+for both MacOS and Arch
 
 #### 3D
 - [Blender](https://www.blender.org)
@@ -34,6 +34,12 @@ used in MacOS and Arch installs
 - [Tree](https://github.com/Old-Man-Programmer/tree) (directory tree view)
 - [Zoxide](https://github.com/ajeetdsouza/zoxide) (better cd)
 - [Zsh](https://www.zsh.org/) (better shell)
+
+#### Development
+- [nvm](https://github.com/nvm-sh/nvm)
+- [node](https://nodejs.org)
+- [npm](https://www.npmjs.com)
+- [yarn](https://yarnpkg.com)
 
 #### Utilities Apps
 - [Obsidian](https://obsidian.md)

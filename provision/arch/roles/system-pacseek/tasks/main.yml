@@ -1,9 +1,10 @@
 - name: Pacseek - install manager
   become: true
-  ignore_errors: true
   kewlfft.aur.aur:
     use: yay
     name:
       - pacseek
     state: present
   notify: Rkhunter propupdate
+  ignore_errors: true
+  register: ignore_errors_register
