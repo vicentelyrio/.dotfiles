@@ -1,5 +1,6 @@
-- name: Pacman - install manager
+- name: Pacseek - install manager
   become: true
+  ignore_errors: true
   kewlfft.aur.aur:
     use: yay
     name:
