@@ -20,7 +20,7 @@
     state: present
     type: ed25519
     mode: "0400"
-    path: "/home/{{ user.name }}/.ssh/id_ssh_default"
+    path: "~/.ssh/id_ssh_default"
     comment: "{{ git.default.email }}"
   when: git.default is defined
 
@@ -33,9 +33,19 @@
   when: git.default is defined
 
 - name: Github - add default user key to agent
-  ansible.builtin.shell: "eval $(ssh-agent -s) && ssh-add /home/{{ user.name }}/.ssh/id_ssh_default"
+  ansible.builtin.shell: "ssh-add ~/.ssh/id_ssh_default"
   args:
     executable: /bin/bash
   when: git.default is defined
   register: output
   changed_when: output.rc != 0
+
+- name: Github - update config file
+  ansible.builtin.blockinfile:
+    block: "{{ lookup('template', '../templates/config-default.j2') }}"
+    dest: ~/.ssh/config
+    mode: "0644"
+    marker: "# {mark} default github host"
+    prepend_newline: true
+    create: true
+  when: git.default is defined

@@ -1,0 +1,8 @@
+{% for user in git.users %}
+Host {{user.scope}}-github.com
+  HostName github.com
+  User git
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ssh_{{user.scope}}
+{% endfor %}

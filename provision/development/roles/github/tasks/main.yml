@@ -6,20 +6,6 @@
 #       - github-cli-git
 #     state: present
 
-- name: Github - create ~/.gitconfig
-  ansible.builtin.file:
-    path: ~/.gitconfig
-    mode: "0644"
-    state: touch
-  when: git is defined
-
-- name: Github - create ~/.ssh
-  ansible.builtin.file:
-    path: ~/.ssh
-    mode: "0777"
-    state: directory
-  when: git is defined
-
 - include_tasks: ./default-user.yml
 - include_tasks: ./options.yml
 - include_tasks: ./other-users.yml

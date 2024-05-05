@@ -12,3 +12,46 @@
     name: sshd
     enabled: true
     state: started
+
+- name: Ssh - symlink agent file
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/system-ssh/files/{{ item }}"
+    dest: "~/.config/systemd/user/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - ssh-agent.service
+
+- name: Ssh - source agent var
+  become: true
+  ansible.builtin.lineinfile:
+    path: ~/.zshenv
+    regexp: '^SSH_AUTH_SOCK='
+    line: 'export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"'
+    state: present
+    create: true
+    mode: "0644"
+
+- name: Ssh - enable and start agent service
+  ansible.builtin.systemd:
+    name: ssh-agent
+    enabled: true
+    state: started
+    scope: user
+
+- name: Github - create ~/.ssh
+  ansible.builtin.file:
+    path: ~/.ssh
+    mode: "0777"
+    state: directory
+
+- name: Ssh - update config
+  become: true
+  ansible.builtin.lineinfile:
+    path: ~/.ssh/config
+    regexp: '^AddKeysToAgent'
+    line: "AddKeysToAgent yes"
+    state: present
+    create: true
+    mode: "0644"
