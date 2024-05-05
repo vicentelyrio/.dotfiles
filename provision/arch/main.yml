@@ -11,7 +11,7 @@
     - system-grub
     # - system-greetd
     - system-cronie
-    - system-gpu
+    - system-cpu
     - system-locale
     - system-time
     - system-ssh

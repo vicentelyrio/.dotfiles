@@ -1,4 +1,4 @@
-- name: Install microcode updates for intel (if necessary)
+- name: CPU - Install microcode updates for intel (if necessary)
   become: true
   become_user: root
   ansible.builtin.package:
@@ -8,7 +8,7 @@
     - Grub - update
   when: system.processor == "intel"
 
-- name: Install microcode updates for amd (if necessary)
+- name: CPU - Install microcode updates for amd (if necessary)
   become: true
   become_user: root
   ansible.builtin.package:

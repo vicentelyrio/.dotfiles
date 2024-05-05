@@ -68,6 +68,7 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 - Reflector setup
 - Yay setup
 - Cronie setup
+- CPU setup
 - GPU setup
 - Npt setup
 - Locale setup
@@ -93,10 +94,22 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 ##### References/inspirations
 - https://github.com/id101010/ansible-archlinux (ansible)
 - https://github.com/snowiow/snow (ansible)
-- https://github.com/Matt-FTW/dotfiles (hyprland)
+- https://github.com/Matt-FTW/dotfiles (ansible/hyprland)
 
 > [!IMPORTANT]
+> TODO:
 > - Review permissions management
 > - Github-cli authentication via prompt
+> - GPU setup
 > - Grub setup
 > - Greet setup
+> - Virt-manager setup
+> - udisk setup
+> - OSD
+> - Notification
+> - Bar
+> - Launcher
+> - Clipboard
+> - Screen capture
+> - Screen share
+> - Multimidia
