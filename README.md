@@ -44,6 +44,7 @@ for both MacOS and Arch
 - [node](https://nodejs.org)
 - [npm](https://www.npmjs.com)
 - [yarn](https://yarnpkg.com)
+- github ([multiple users](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.yml) setup)
 
 #### Utilities Apps
 - [Obsidian](https://obsidian.md)
@@ -59,11 +60,43 @@ for both MacOS and Arch
 - [The Unarchiver](https://theunarchiver.mom/)
 
 ### Arch setup
-Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/arch/vars/all.yml) file with custom configurations
+Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.yml) file with custom configurations
 
-- Config user
+##### System
+- User setup
+- Pacman setup
+- Reflector setup
+- Yay setup
+- Cronie setup
+- GPU setup
+- Npt setup
+- Locale setup
+- SSH agent setup
+- Bluetooth setup
+- Network setup
+- Audio setup
+- RKHunter setup
+- Grub setup
+- Greet setup
+- Pacseek
+
+##### Interface
+- Centralized Theme config
+- Fonts
+- Font Manager
 - Hyprland
+- Hyprpaper
+- Hypridle
+- Hyprlock
 
 
-##### References
-- https://github.com/id101010/ansible-archlinux (ansible setup)
+##### References/inspirations
+- https://github.com/id101010/ansible-archlinux (ansible)
+- https://github.com/snowiow/snow (ansible)
+- https://github.com/Matt-FTW/dotfiles (hyprland)
+
+> [!IMPORTANT]
+> - Review permissions management
+> - Github-cli authentication via prompt
+> - Grub setup
+> - Greet setup

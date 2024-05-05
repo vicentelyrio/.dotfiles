@@ -1,10 +1,10 @@
-# - name: Github - install git-cli
-#   become: true
-#   kewlfft.aur.aur:
-#     use: yay
-#     name:
-#       - github-cli-git
-#     state: present
+- name: Github - install git-cli
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - github-cli
+    state: present
 
 - name: Github - Create Default User
   ansible.builtin.include_tasks: ./default-user.yml
