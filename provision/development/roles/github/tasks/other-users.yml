@@ -27,24 +27,6 @@
   with_items: "{{ git.users }}"
   when: git.users is defined
 
-- name: Github - create default user ssh config
-  community.general.git_config:
-    name: core.sshCommand
-    value: "~/.ssh/id_ssh_default"
-    scope: global
-    state: present
-  when: git.default is defined
-
-- name: Github - create ssh config for aditional user
-  community.general.git_config:
-    name: core.sshCommand
-    value: "~/.ssh/id_ssh_{{ item.scope }}"
-    file: "~/.gitconfig-{{ item.scope }}"
-    state: present
-    scope: global
-  with_items: "{{ git.users }}"
-  when: git.users is defined
-
 - name: Github - add aditional user key to agent
   ansible.builtin.shell: "ssh-add ~/.ssh/id_ssh_{{ item.scope }}"
   args:

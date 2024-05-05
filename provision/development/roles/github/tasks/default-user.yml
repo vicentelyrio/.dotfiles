@@ -27,7 +27,7 @@
 - name: Github - create default user ssh config
   community.general.git_config:
     name: core.sshCommand
-    value: "~/.ssh/id_ssh_default"
+    value: "ssh -i ~/.ssh/id_ssh_default"
     scope: global
     state: present
   when: git.default is defined
