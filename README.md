@@ -98,7 +98,9 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 
 > [!IMPORTANT]
 > TODO:
-> - Review permissions management
+> - Review permissions management for arch roles
+> - Review error handling
+> - Review macos install for common roles
 > - Github-cli authentication via prompt
 > - GPU setup
 > - Grub setup
@@ -113,3 +115,8 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 > - Screen capture
 > - Screen share
 > - Multimidia
+> - GTK theme
+> - QT theme
+> - Electron apps themes for wayland
+> - hy3
+> - hyprwinwrap
