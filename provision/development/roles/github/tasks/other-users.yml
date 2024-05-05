@@ -27,7 +27,6 @@
   with_items: "{{ git.users }}"
   when: git.users is defined
 
-
 - name: Github - create default user ssh config
   community.general.git_config:
     name: core.sshCommand
