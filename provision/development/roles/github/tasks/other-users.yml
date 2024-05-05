@@ -10,7 +10,7 @@
 
 - name: Github - create scoped gitconfig
   ansible.builtin.template:
-    src: ../templates/gitconfig-scoped.j2
+    src: "{{ playbook_dir }}/roles/github/templates/gitconfig-scoped.j2"
     dest: "~/.gitconfig-{{ item.scope }}"
     mode: "0777"
   with_items: "{{ git.users }}"
@@ -45,4 +45,3 @@
     prepend_newline: true
     create: true
   when: git.users is defined
-

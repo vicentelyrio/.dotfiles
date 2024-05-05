@@ -6,6 +6,11 @@
 #       - github-cli-git
 #     state: present
 
-- include_tasks: ./default-user.yml
-- include_tasks: ./options.yml
-- include_tasks: ./other-users.yml
+- name: Github - Create Default User
+  ansible.builtin.include_tasks: ./default-user.yml
+
+- name: Github - Create Options
+  ansible.builtin.include_tasks: ./options.yml
+
+- name: Github - Create Aditional Users
+  ansible.builtin.include_tasks: ./other-users.yml
