@@ -4,6 +4,7 @@
     use: yay
     name:
       - aylurs-gtk-shell
+      - libdbusmenu-gtk3
     state: present
   notify: Rkhunter propupdate
   ignore_errors: true

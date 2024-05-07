@@ -6,6 +6,8 @@
       - bluez
       - bluez-utils
       - blueman
+      - gnome-bluetooth-3.0
+    state: present
 
 - name: Bluetooth - ensure the service is enabled and started
   become: true
@@ -14,3 +16,13 @@
     name: bluetooth
     state: started
     enabled: true
+
+- name: Bluetooth - Config experimental flag
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    create: true
+    path: /etc/bluetooth/main.conf
+    regexp: "#Experimental = false"
+    line: "Experimental = true"
+
