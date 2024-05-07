@@ -116,5 +116,6 @@
       - lsof
       - nmap
       - udiskie
+      - inotify-tools
   notify:
     - Rkhunter propupdate

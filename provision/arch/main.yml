@@ -22,4 +22,5 @@
     # Interface
     - ui-theme
     - ui-hyprland
+    - ui-ags
     - ui-font-manager

@@ -31,7 +31,6 @@ decorations = "buttonless"
 dynamic_padding = false
 dynamic_title = true
 opacity = 1
-startup_mode = "Fullscreen"
 title = "Alacritty"
 
 [window.class]
