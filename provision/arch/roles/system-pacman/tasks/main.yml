@@ -119,3 +119,8 @@
       - inotify-tools
   notify:
     - Rkhunter propupdate
+
+- name: Pacman - create xdg dirs
+  ansible.builtin.command: xdg-user-dirs-update
+  register: result
+  changed_when: result.rc != 0

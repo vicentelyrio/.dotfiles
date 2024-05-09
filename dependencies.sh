@@ -3,14 +3,14 @@
 # LINUX
 installLinuxDeps() {
   printMessage "updating pacman"
-  sudo pacman -Syyu
-  sudo pacman -S --needed base base-devel git rsync python-pip python-pexpect
+  sudo pacman -Syyu --noconfirm
+  sudo pacman -S --needed base base-devel git rsync python-pip python-pexpect --noconfirm
   printSuccess "done"
 
   # ANSIBLE
   if ! command -v ansible &> /dev/null; then
     printMessage "installing ansible..."
-    sudo pacman -S ansible --needed
+    sudo pacman -S ansible --needed --noconfirm
   fi
   printSuccess "ansible"
 }
