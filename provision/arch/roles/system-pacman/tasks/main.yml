@@ -124,3 +124,9 @@
   ansible.builtin.command: xdg-user-dirs-update
   register: result
   changed_when: result.rc != 0
+
+- name: Pacman - create systemd user folders
+  ansible.builtin.file:
+    path: ~/.config/systemd/user
+    mode: "0644"
+    state: directory
