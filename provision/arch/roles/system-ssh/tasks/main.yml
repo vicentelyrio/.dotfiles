@@ -20,10 +20,9 @@
     state: link
     follow: false
     force: true
+  with_community.general.filetree: ~/.config/systemd/user
   with_items:
     - ssh-agent.service
-  with_filetree:
-    ~/.config/systemd/user
 
 - name: Ssh - source agent var
   become: true
