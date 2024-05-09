@@ -13,6 +13,18 @@
     enabled: true
     state: started
 
+- name: Github - create systemd folder
+  ansible.builtin.file:
+    path: ~/.config/systemd
+    mode: "0644"
+    state: directory
+
+- name: Github - create systemd user folder
+  ansible.builtin.file:
+    path: ~/.config/systemd/user
+    mode: "0644"
+    state: directory
+
 - name: Ssh - symlink agent file
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/system-ssh/files/{{ item }}"
@@ -20,7 +32,6 @@
     state: link
     follow: false
     force: true
-  with_community.general.filetree: ~/.config/systemd/user
   with_items:
     - ssh-agent.service
 
