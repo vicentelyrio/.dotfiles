@@ -22,6 +22,8 @@
     force: true
   with_items:
     - ssh-agent.service
+  with_filetree:
+    ~/.config/systemd/user
 
 - name: Ssh - source agent var
   become: true
