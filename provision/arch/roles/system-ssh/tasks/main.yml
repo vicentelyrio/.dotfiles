@@ -16,13 +16,13 @@
 - name: Github - create systemd folder
   ansible.builtin.file:
     path: ~/.config/systemd
-    mode: "0644"
+    mode: "0777"
     state: directory
 
 - name: Github - create systemd user folder
   ansible.builtin.file:
     path: ~/.config/systemd/user
-    mode: "0644"
+    mode: "0777"
     state: directory
 
 - name: Ssh - symlink agent file
