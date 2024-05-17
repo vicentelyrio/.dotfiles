@@ -1,0 +1,18 @@
+- name: Brightness - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - brightnessctl
+      - ddcutil
+
+- name: Brightness - enable i2c_dev
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /etc/modules-load.d/i2c_dev.conf
+    regexp: "i2c_dev"
+    line: "i2c_dev"
+    state: present
+    create: true
+    mode: "0644"

@@ -2,7 +2,9 @@ system:
   locale: en_US.utf8
   timezone: America/Sao_Paulo
   processor: intel
-  graphics_card: amd
+  graphics_card:
+    - amd
+    - intel
 
 user:
   name: vicentelyrio

@@ -9,6 +9,7 @@
     - system-user
     - system-pacseek
     - system-grub
+    - system-gpu
     # - system-greetd
     - system-cronie
     - system-cpu
@@ -18,6 +19,7 @@
     - system-network
     - system-bluetooth
     - system-audio
+    - system-brightness
 
     # Interface
     - ui-theme
