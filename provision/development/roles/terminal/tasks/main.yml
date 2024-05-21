@@ -16,6 +16,8 @@
       - zoxide
       - zsh
       - git-delta
+      - ripgrep
+      - fd
     state: present
 
 - name: Bash

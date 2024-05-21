@@ -2,6 +2,7 @@ system:
   locale: en_US.utf8
   timezone: America/Sao_Paulo
   processor: intel
+  external_display: true
   graphics_card:
     - amd
     - intel

@@ -33,20 +33,20 @@
     state: directory
     mode: "0644"
 
-- name: Pacman - move hooks
-  become: true
-  become_user: root
-  ansible.posix.synchronize:
-    src: "{{ playbook_dir }}/roles/system-pacman/files/hooks/"
-    dest: /etc/pacman.d/hooks/
-  delegate_to: localhost
+# - name: Pacman - move hooks
+#   become: true
+#   become_user: root
+#   ansible.posix.synchronize:
+#     src: "{{ playbook_dir }}/roles/system-pacman/files/hooks/"
+#     dest: /etc/pacman.d/hooks/
+#   delegate_to: localhost
 
 - name: Pacman - makepkg - disable compression
   become: true
   become_user: root
   ansible.builtin.lineinfile:
     create: true
-    path: /etc/makepkg.conf,
+    path: /etc/makepkg.conf
     regexp: "PKGEXT='.pkg.tar.zst'"
     line: "PKGEXT='.pkg.tar'"
     mode: "0644"

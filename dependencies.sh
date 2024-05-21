@@ -4,7 +4,7 @@
 installLinuxDeps() {
   printMessage "updating pacman"
   sudo pacman -Syyu --noconfirm
-  sudo pacman -S --needed base base-devel git rsync python-pip python-pexpect --noconfirm
+  sudo pacman -S --needed base base-devel linux-headers git rsync python-pip python-pexpect --noconfirm
   printSuccess "done"
 
   # ANSIBLE

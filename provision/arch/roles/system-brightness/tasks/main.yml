@@ -6,13 +6,87 @@
       - brightnessctl
       - ddcutil
 
+- name: Brightness - install aur packages
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - ddcci-driver-linux-dkms-git
+      - light
+    state: present
+
 - name: Brightness - enable i2c_dev
   become: true
   become_user: root
   ansible.builtin.lineinfile:
-    path: /etc/modules-load.d/i2c_dev.conf
+    path: /etc/modules-load.d/modules.conf
     regexp: "i2c_dev"
     line: "i2c_dev"
     state: present
     create: true
     mode: "0644"
+  when: system.external_display|bool
+
+- name: Brightness - Ensure group i2c exists
+  ansible.builtin.group:
+    name: "i2c"
+    state: present
+  when: system.external_display|bool
+
+- name: Brightness - Ensure the user is part of the i2c group
+  become: true
+  become_user: root
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    shell: "{{ user.shell }}"
+    groups:
+      - i2c
+    append: true
+    system: true
+  when:
+    - user.name is defined
+    - system.external_display|bool
+
+- name: Brightness - load DDCCI module
+  become: true
+  become_user: root
+  community.general.modprobe:
+    name: ddcci
+    state: present
+  when: system.external_display|bool
+
+- name: Brightness - copy service
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/ddcci-i2c.service
+    dest: /etc/systemd/system/
+    mode: "0644"
+  when: system.external_display|bool
+
+- name: Brightness - detect bus address
+  ansible.builtin.shell: ddcutil detect | grep "I2C bus" | awk -F '/' '{print $3}'
+  register: i2c_device
+  changed_when: i2c_device.rc != 0
+
+- name: Brightness - update copyied service
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/system/ddcci-i2c.service
+    regexp: "^ExecStart="
+    line: "ExecStart=/bin/sh -c 'echo ddcci 0x37 > /sys/bus/i2c/devices/{{ i2c_device.stdout }}/new_device'"
+    state: present
+    create: true
+    mode: "0644"
+  when: system.external_display|bool
+
+- name: Brightness - reload i2c-service
+  become: true
+  become_user: root
+  ansible.builtin.systemd_service:
+    name: ddcci-i2c.service
+    state: started
+    enabled: true
+    daemon_reload: true
+  when: system.external_display|bool
