@@ -16,6 +16,7 @@
       - network
       - lock
       - uucp
+      - video
     append: true
     system: false
     createhome: true

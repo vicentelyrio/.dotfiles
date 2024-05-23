@@ -1,0 +1,10 @@
+[Unit]
+Description=Register DDCCI Driver
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c /usr/sbin/backlight-start.sh
+
+[Install]
+WantedBy=multi-user.target

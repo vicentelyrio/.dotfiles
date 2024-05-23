@@ -15,6 +15,16 @@
       - light
     state: present
 
+# LIGHT Permission
+- name: Brightness - copy rules for light run without sudo
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/90-backlight.rules
+    dest: /etc/udev/rules.d/
+    mode: "0644"
+
+# I2C DEV
 - name: Brightness - enable i2c_dev
   become: true
   become_user: root
@@ -47,6 +57,7 @@
     - user.name is defined
     - system.external_display|bool
 
+# DDCI
 - name: Brightness - load DDCCI module
   become: true
   become_user: root
@@ -55,38 +66,44 @@
     state: present
   when: system.external_display|bool
 
-- name: Brightness - copy service
-  become: true
-  become_user: root
-  ansible.builtin.copy:
-    src: ../files/ddcci-i2c.service
-    dest: /etc/systemd/system/
-    mode: "0644"
-  when: system.external_display|bool
-
-- name: Brightness - detect bus address
-  ansible.builtin.shell: ddcutil detect | grep "I2C bus" | awk -F '/' '{print $3}'
-  register: i2c_device
-  changed_when: i2c_device.rc != 0
-
-- name: Brightness - update copyied service
+- name: Brightness - enable DDCCI
   become: true
   become_user: root
   ansible.builtin.lineinfile:
-    path: /etc/systemd/system/ddcci-i2c.service
-    regexp: "^ExecStart="
-    line: "ExecStart=/bin/sh -c 'echo ddcci 0x37 > /sys/bus/i2c/devices/{{ i2c_device.stdout }}/new_device'"
+    path: /etc/modules-load.d/modules.conf
+    regexp: "ddcci"
+    line: "ddcci"
     state: present
     create: true
     mode: "0644"
   when: system.external_display|bool
 
-- name: Brightness - reload i2c-service
+- name: Brightness - copy script
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/backlight-start.sh
+    dest: /usr/sbin/
+    mode: "0777"
+  when: system.external_display|bool
+
+- name: Brightness - copy ddcci.service
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/ddcci.service
+    dest: /etc/systemd/system/
+    mode: "0644"
+  when: system.external_display|bool
+
+- name: Brightness - start ddci.service
   become: true
   become_user: root
   ansible.builtin.systemd_service:
-    name: ddcci-i2c.service
+    name: ddcci.service
     state: started
     enabled: true
     daemon_reload: true
   when: system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register
