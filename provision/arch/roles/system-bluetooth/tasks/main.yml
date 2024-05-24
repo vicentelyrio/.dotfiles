@@ -5,6 +5,9 @@
     name:
       - bluez
       - bluez-utils
+      - bluez-tools
+      - bluez-obex
+      - bluez-hid2hci
       - blueman
       - gnome-bluetooth-3.0
     state: present
