@@ -7,8 +7,9 @@
       - pipewire-alsa
       - pipewire-pulse
       - alsa-utils
-      - pavucontrol
+      - pamixer
       - wireplumber
+      # - pavucontrol
 
 - name: Audio - pipewire service
   ansible.builtin.systemd_service:

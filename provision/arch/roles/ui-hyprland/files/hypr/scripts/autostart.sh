@@ -31,10 +31,6 @@ hypridle &
 # Wallpaper daemon
 hyprpaper &
 
-# Clipboard
-# wl-clip-persist --clipboard regular &
-# wl-paste --watch cliphist store &
-
 # Polkit authentication
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 

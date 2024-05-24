@@ -45,4 +45,5 @@
     state: link
     follow: false
     force: true
+    mode: "0777"
   with_items: "{{ hypr_files.files }}"
