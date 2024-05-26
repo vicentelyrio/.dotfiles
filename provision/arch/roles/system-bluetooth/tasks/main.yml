@@ -12,6 +12,14 @@
       - gnome-bluetooth-3.0
     state: present
 
+- name: Bluetooth - install gui
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - overskride
+    state: present
+
 - name: Bluetooth - ensure the service is enabled and started
   become: true
   become_user: root
