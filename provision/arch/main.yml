@@ -7,6 +7,7 @@
     - system-pacman
     - system-yay
     - system-user
+    - system-xdg
     - system-pacseek
     - system-grub
     - system-gpu
@@ -16,6 +17,7 @@
     - system-locale
     - system-time
     - system-ssh
+    - system-keyboard
     - system-network
     - system-bluetooth
     - system-audio

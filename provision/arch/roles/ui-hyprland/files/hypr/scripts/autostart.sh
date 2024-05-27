@@ -16,16 +16,19 @@
 # devify &
 
 # Solaar start (logitech bolt manager)
-solaar --window=hide
-
-# Interface
-$HOME/.config/ags/scripts/start.sh
+solaar --window=hide &
 
 # Idle daemon to screen lock
 hypridle &
 
 # Wallpaper daemon
 hyprpaper &
+
+# Keyboard map
+# xremap $HOME/.config/xremap/config.toml --device /dev/input/event30 &
+
+# Interface
+$HOME/.config/ags/scripts/start.sh &
 
 # Screen sharing and portals
 # "$scripts"/portal &

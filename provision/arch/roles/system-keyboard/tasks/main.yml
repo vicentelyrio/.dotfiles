@@ -1,0 +1,57 @@
+- name: Keyboard - install base packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    name:
+      - wev
+  notify:
+    - Rkhunter propupdate
+
+- name: Keyboard - install aur packages
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - xremap-wlroots-bin
+      - via-bin
+    state: present
+  notify: Rkhunter propupdate
+
+# XREMAP
+# - name: Keyboard - create xremap directory
+#   ansible.builtin.file:
+#     path: $HOME/.config/xremap
+#     state: directory
+#     mode: "0777"
+#
+# - name: Keyboard - symlink xremap files
+#   ansible.builtin.file:
+#     src: "{{ playbook_dir }}/roles/system-keyboard/files/xremap/{{ item }}"
+#     dest: "$HOME/.config/xremap/{{ item }}"
+#     state: link
+#     follow: false
+#     force: true
+#   with_items:
+#     - config.yml
+
+# - name: Keyboard - start xremap
+#   ansible.builtin.command: xremap $HOME/.config/xremap/config.yml --device /dev/input/event30
+#   register: result
+#   changed_when: result.rc != 0
+
+# VIA
+- name: Keyboard - copy VIA rules
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/99-via.rules
+    dest: /etc/udev/rules.d/
+    mode: "0644"
+
+- name: Keyboard - reload rules
+  become: true
+  become_user: root
+  ansible.builtin.command: udevadm control --reload
+  register: result
+  changed_when: result.rc != 0
