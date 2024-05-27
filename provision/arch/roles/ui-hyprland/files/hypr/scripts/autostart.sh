@@ -15,6 +15,9 @@
 # Notify about devices connecting and disconnecting
 # devify &
 
+# Solaar start (logitech bolt manager)
+solaar --window=hide
+
 # Interface
 $HOME/.config/ags/scripts/start.sh
 
