@@ -12,5 +12,5 @@
   kewlfft.aur.aur:
     use: yay
     name:
-      - cura
+      - cura-bin
     state: present

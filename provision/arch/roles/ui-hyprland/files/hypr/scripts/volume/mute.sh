@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pamixer --set-volume 0
+pamixer -t

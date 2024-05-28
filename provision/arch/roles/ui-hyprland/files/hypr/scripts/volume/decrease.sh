@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pamixer --derease 5
+pamixer -d 5

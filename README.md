@@ -102,7 +102,6 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 > - Review error handling
 > - Review macos install for common roles
 > - Github-cli authentication via prompt
-> - GPU setup
 > - Grub setup
 > - Greet setup
 > - Virt-manager setup

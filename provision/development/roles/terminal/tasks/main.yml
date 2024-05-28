@@ -18,6 +18,9 @@
       - git-delta
       - ripgrep
       - fd
+      - jq
+      - ripgrep
+      - fzf
     state: present
 
 - name: Bash

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-light -A 5
+pamixer -ui 5

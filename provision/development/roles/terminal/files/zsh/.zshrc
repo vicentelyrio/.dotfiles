@@ -32,6 +32,9 @@ zcomet load zsh-users/zsh-syntax-highlighting                                   
 # Compile zcomet
 zcomet compinit
 
+# FZF
+source <(fzf --zsh)
+
 # Zoxide
 eval "$(zoxide init zsh)"
 

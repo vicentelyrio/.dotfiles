@@ -6,6 +6,7 @@
       - catppuccin-gtk-theme-macchiato
       - catppuccin-cursors-macchiato
       - ttf-ms-win11-auto
+      - qt5ct
     state: present
   notify: Rkhunter propupdate
   ignore_errors: true

@@ -8,5 +8,5 @@
 - name: Development Playbook
   ansible.builtin.import_playbook: ./development/main.yml
 
-# - name: Apps Playbook
-#   ansible.builtin.import_playbook: ./apps/main.yml
+- name: Apps Playbook
+  ansible.builtin.import_playbook: ./apps/main.yml

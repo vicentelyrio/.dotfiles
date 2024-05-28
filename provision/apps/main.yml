@@ -2,5 +2,7 @@
   hosts: local
 
   roles:
-    # - 3D
+    - 3D
     - browsers
+    - media
+    - productivity

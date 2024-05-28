@@ -33,13 +33,13 @@
     state: directory
     mode: "0644"
 
-# - name: Pacman - move hooks
-#   become: true
-#   become_user: root
-#   ansible.posix.synchronize:
-#     src: "{{ playbook_dir }}/roles/system-pacman/files/hooks/"
-#     dest: /etc/pacman.d/hooks/
-#   delegate_to: localhost
+- name: Pacman - move hooks
+  become: true
+  become_user: root
+  ansible.posix.synchronize:
+    src: "{{ playbook_dir }}/roles/system-pacman/files/hooks/"
+    dest: /etc/pacman.d/hooks/
+  delegate_to: localhost
 
 - name: Pacman - makepkg - disable compression
   become: true
@@ -119,6 +119,17 @@
       - inotify-tools
   notify:
     - Rkhunter propupdate
+
+- name: Pacman - Install aur hooks
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - check-broken-packages-pacman-hook-git
+      - reflector-pacman-hook-git
+      - sync-pacman-hook-git
+      - needrestart
+      - paccache-hook
+    state: present
 
 - name: Pacman - create xdg dirs
   ansible.builtin.command: xdg-user-dirs-update
