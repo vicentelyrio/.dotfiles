@@ -1,0 +1,29 @@
+- name: Player - install base packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    name:
+      - playerctl
+  notify:
+    - Rkhunter propupdate
+
+- name: Player - copy service
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/playerctl.service
+    dest: /etc/systemd/system/
+    mode: "0644"
+
+- name: Player - start service
+  become: true
+  become_user: root
+  ansible.builtin.systemd_service:
+    name: playerctl.service
+    state: started
+    enabled: true
+    daemon_reload: true
+  ignore_errors: true
+  register: ignore_errors_register
+

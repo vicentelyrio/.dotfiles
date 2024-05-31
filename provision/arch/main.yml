@@ -22,6 +22,7 @@
     - system-bluetooth
     - system-audio
     - system-brightness
+    - system-player
 
     # Interface
     - ui-theme
