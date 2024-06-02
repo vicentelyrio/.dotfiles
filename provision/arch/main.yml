@@ -4,8 +4,8 @@
   roles:
     # System
     - system-rkhunter
-    - system-pacman
     - system-yay
+    - system-pacman
     - system-user
     - system-xdg
     - system-pacseek
