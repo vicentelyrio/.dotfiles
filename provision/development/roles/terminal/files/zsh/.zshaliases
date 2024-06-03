@@ -38,10 +38,13 @@ alias ocat="/usr/bin/cat"
 alias ack="ff $1 --sort-files --color"
 
 # Linux
-alias start='sudo systemctl start'
-alias stop='sudo systemctl stop'
-alias status='systemctl status'
-alias restart='sudo systemctl restart'
-alias jof='journalctl -u'
-alias fjof='journalctl -fu'
+alias start="sudo systemctl start"
+alias stop="sudo systemctl stop"
+alias status="systemctl status"
+alias restart="sudo systemctl restart"
+alias jof="journalctl -u"
+alias fjof="journalctl -fu"
 
+# Code
+alias y="yarn"
+alias n="npm"

@@ -29,6 +29,7 @@ git:
     push.autoSetupRemote: true
     push.default: current
     core.pager: delta
+    core.editor: nvim
     delta.features: decorations side-by-side line-numbers
     delta.navigate: true
     delta.light: false

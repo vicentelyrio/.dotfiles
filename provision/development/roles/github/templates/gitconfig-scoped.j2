@@ -1,5 +1,7 @@
+[username]
+	name = {{ item.name }}
 [user]
 	name = {{ item.name }}
 	email = {{ item.email }}
 [core]
-	sshCommand = "ssh -i ~/.ssh/id_ssh_{{ item.scope }}"
+	sshCommand = ssh -i ~/.ssh/id_ssh_{{ item.scope }}

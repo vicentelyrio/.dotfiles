@@ -3,6 +3,7 @@ Host {{user.scope}}-github.com
   HostName github.com
   User git
   AddKeysToAgent yes
-  UseKeychain yes
+  IdentitiesOnly yes
+  # UseKeychain yes
   IdentityFile ~/.ssh/id_ssh_{{user.scope}}
 {% endfor %}

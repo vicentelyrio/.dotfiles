@@ -1,4 +1,4 @@
 {% for user in git.users %}
-[includeIf "gitdir/i:{{user.path}}"]
-	path=~/.gitconfig-{{user.scope}}/
+[includeIf "gitdir/i:{{user.path}}/"]
+	path=~/.gitconfig-{{user.scope}}
 {% endfor %}
