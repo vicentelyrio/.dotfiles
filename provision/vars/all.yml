@@ -1,0 +1,40 @@
+system:
+  locale: en_US.utf8
+  timezone: America/Sao_Paulo
+  processor: intel
+  external_display: true
+  graphics_card:
+    - amd
+    - intel
+
+user:
+  name: vicentelyrio
+  group: users
+  shell: /bin/zsh
+
+git:
+  default:
+    name: vicentelyrio
+    email: vicentelyrio@gmail.com
+
+  users:
+    -
+      scope: yuca
+      name: vicentelyrio-yuca
+      email: vicente.lyrio@yuca.live
+      path: ~/Projects/yuca
+
+  options:
+    init.defaultBranch: main
+    push.autoSetupRemote: true
+    push.default: current
+    core.pager: delta
+    core.editor: nvim
+    delta.features: decorations side-by-side line-numbers
+    delta.navigate: true
+    delta.light: false
+    delta.syntax-theme: Dracula
+    interactive.diffFilter: delta --color-only --features=interactive
+    merge.conflictStyles: diff3
+    diff.colorMoved: default
+

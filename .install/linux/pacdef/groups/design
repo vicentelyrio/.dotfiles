@@ -1,0 +1,8 @@
+[arch]
+gimp
+
+[flatpak]
+com.github.vikdevelop.photopea_app
+org.inkscape.Inkscape
+org.kde.krita
+com.orama_interactive.Pixelorama

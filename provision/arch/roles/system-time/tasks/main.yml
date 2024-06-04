@@ -1,0 +1,17 @@
+- name: Ntp - install daemon
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name: ntp
+    state: present
+  notify: Rkhunter propupdate
+
+- name: Ntp - configure metas atomic clocks
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ntp.conf
+    dest: /etc/
+    mode: "0644"
+  notify:
+    - Ntp - restart

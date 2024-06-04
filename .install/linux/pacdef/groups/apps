@@ -1,0 +1,21 @@
+[flatpak]
+# Management
+md.obsidian.Obsidian
+
+# Comm
+com.slack.Slack
+
+# Utils
+org.gnome.Calendar
+io.missioncenter.MissionCenter
+net.nokyan.Resources
+
+# Game
+io.github.MakovWait.Godots
+io.github.Foldex.AdwSteamGtk
+com.mojang.Minecraft
+net.brinkervii.grapejuice
+
+# 3D
+org.blender.Blender
+

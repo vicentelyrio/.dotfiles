@@ -1,0 +1,17 @@
+- name: Alacritty - create config directory
+  ansible.builtin.file:
+    path: ~/.config/alacritty
+    state: directory
+    mode: "0777"
+
+- name: Alacritty - symlink files
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/terminals/files/alacritty/{{ item }}"
+    dest: "~/.config/alacritty/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - alacritty.toml
+    - colors.toml
+    - fonts.toml

@@ -1,0 +1,14 @@
+- name: Terminals - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - alacritty
+      - wezterm
+    state: present
+
+- name: Alacritty
+  ansible.builtin.import_tasks: ./config/alacritty.yml
+
+- name: Wezterm
+  ansible.builtin.import_tasks: ./config/wezterm.yml

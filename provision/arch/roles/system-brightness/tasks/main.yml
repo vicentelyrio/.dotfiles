@@ -1,0 +1,109 @@
+- name: Brightness - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - brightnessctl
+      - ddcutil
+
+- name: Brightness - install aur packages
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - ddcci-driver-linux-dkms-git
+      - light
+    state: present
+
+# LIGHT Permission
+- name: Brightness - copy rules for light run without sudo
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/90-backlight.rules
+    dest: /etc/udev/rules.d/
+    mode: "0644"
+
+# I2C DEV
+- name: Brightness - enable i2c_dev
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /etc/modules-load.d/modules.conf
+    regexp: "i2c_dev"
+    line: "i2c_dev"
+    state: present
+    create: true
+    mode: "0644"
+  when: system.external_display|bool
+
+- name: Brightness - Ensure group i2c exists
+  ansible.builtin.group:
+    name: "i2c"
+    state: present
+  when: system.external_display|bool
+
+- name: Brightness - Ensure the user is part of the i2c group
+  become: true
+  become_user: root
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    shell: "{{ user.shell }}"
+    groups:
+      - i2c
+    append: true
+    system: true
+  when:
+    - user.name is defined
+    - system.external_display|bool
+
+# DDCI
+- name: Brightness - load DDCCI module
+  become: true
+  become_user: root
+  community.general.modprobe:
+    name: ddcci
+    state: present
+  when: system.external_display|bool
+
+- name: Brightness - enable DDCCI
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /etc/modules-load.d/modules.conf
+    regexp: "ddcci"
+    line: "ddcci"
+    state: present
+    create: true
+    mode: "0644"
+  when: system.external_display|bool
+
+- name: Brightness - copy script
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/backlight-start.sh
+    dest: /usr/sbin/
+    mode: "0777"
+  when: system.external_display|bool
+
+- name: Brightness - copy ddcci.service
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: ../files/ddcci.service
+    dest: /etc/systemd/system/
+    mode: "0644"
+  when: system.external_display|bool
+
+- name: Brightness - start ddci.service
+  become: true
+  become_user: root
+  ansible.builtin.systemd_service:
+    name: ddcci.service
+    state: started
+    enabled: true
+    daemon_reload: true
+  when: system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register

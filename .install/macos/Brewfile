@@ -1,0 +1,79 @@
+tap "homebrew/core"
+
+# TOOLS
+
+# ide
+brew "neovim"
+brew "helix"
+
+# Shell
+brew "ack"
+brew "bat"
+brew "bash-completion"
+brew "dua-cli"
+brew "eza"
+brew "erdtree"
+brew "font-hack-nerd-font"
+brew "fzf"
+brew "gitui"
+brew "bottom"
+brew "neofetch"
+brew "starship"
+brew "tmux"
+brew "tmuxinator"
+brew "tree"
+brew "zoxide"
+brew "coreutils"
+brew "zsh"
+
+# Code
+brew "nvm"
+
+# Quicklook osx
+brew "qlcolorcode"
+brew "qlstephen"
+brew "qlmarkdown"
+brew "quicklook-json"
+brew "qlprettypatch"
+brew "quicklook-csv"
+brew "webpquicklook"
+
+# SOFTWARES
+
+# Code
+cask "postgres-unofficial"
+
+# Browers
+cask "brave-browser"
+cask "firefox"
+
+# 3D
+cask "blender"
+cask "ultimaker-cura"
+cask "autodesk-fusion360"
+
+# Ide
+cask "visual-studio-code"
+
+# Terminals
+cask "alacrity"
+cask "wezterm"
+
+# General
+cask "amethyst"
+cask "caffeine"
+cask "dash"
+cask "karabiner-elements"
+cask "monitorcontrol"
+cask "obsidian"
+cask "qmk-toolbox"
+cask "slack"
+cask "spotify"
+cask "the-unarchiver"
+cask "transmission"
+cask "via"
+cask "vlc"
+
+# Games
+cask "origin"
+cask "steam"

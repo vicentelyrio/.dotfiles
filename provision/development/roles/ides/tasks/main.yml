@@ -1,0 +1,14 @@
+- name: IDEs - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - neovim
+      - helix
+    state: present
+
+- name: Nvim setup
+  ansible.builtin.import_tasks: ./config/nvim.yml
+
+- name: Helix setup
+  ansible.builtin.import_tasks: ./config/helix.yml

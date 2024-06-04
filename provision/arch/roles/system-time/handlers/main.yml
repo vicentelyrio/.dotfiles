@@ -1,0 +1,31 @@
+- name: Ntp - restart
+  become: true
+  become_user: root
+  ansible.builtin.service:
+    name: ntpd
+    state: restarted
+
+- name: Ntp - make sure ntpd is stopped
+  ansible.builtin.service:
+    name: ntpd
+    state: stopped
+    enabled: true
+  when: install is changed # noqa: no-handler
+
+- name: Ntp - sync time with ntp metas atomic clock
+  ansible.builtin.command: ntpdate ntp.metas.ch
+  register: output
+  changed_when: output.rc != 0
+
+- name: Ntp - start ntpd back up
+  ansible.builtin.service:
+    name: ntpd
+    state: started
+    enabled: true
+  register: output
+  changed_when: output.rc != 0
+
+- name: Ntp - sync time to hwclock
+  ansible.builtin.command: hwclock --systohc
+  register: output
+  changed_when: output.rc != 0

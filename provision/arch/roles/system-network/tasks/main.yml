@@ -1,0 +1,33 @@
+- name: Network - install tools
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - ethtool
+      - wpa_supplicant
+      - netctl
+      - dhcpcd
+      - nmap
+      - networkmanager
+      - network-manager-applet
+      - networkmanager-openconnect
+      - networkmanager-openvpn
+    state: present
+  notify:
+    - Rkhunter propupdate
+
+- name: Network - enable dhcp service
+  become: true
+  become_user: root
+  ansible.builtin.service:
+    name: dhcpcd
+    state: started
+    enabled: true
+
+- name: Network - enable NetworkManager service
+  become: true
+  become_user: root
+  ansible.builtin.service:
+    name: NetworkManager
+    state: started
+    enabled: true

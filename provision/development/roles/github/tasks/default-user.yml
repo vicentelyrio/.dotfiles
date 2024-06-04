@@ -1,0 +1,51 @@
+- name: Github - create default user name
+  community.general.git_config:
+    name: user.name
+    value: "{{ git.default.name }}"
+    scope: global
+    state: present
+  when: git.default is defined
+
+- name: Github - create default user email
+  community.general.git_config:
+    name: user.email
+    value: "{{ git.default.email }}"
+    scope: global
+    state: present
+  when: git.default is defined
+
+- name: Github - create default user ssh keypair
+  community.crypto.openssh_keypair:
+    force: false
+    state: present
+    type: ed25519
+    mode: "0400"
+    path: "~/.ssh/id_ssh_default"
+    comment: "{{ git.default.email }}"
+  when: git.default is defined
+
+- name: Github - create default user ssh config
+  community.general.git_config:
+    name: core.sshCommand
+    value: "ssh -i ~/.ssh/id_ssh_default"
+    scope: global
+    state: present
+  when: git.default is defined
+
+- name: Github - add default user key to agent
+  ansible.builtin.shell: "ssh-add ~/.ssh/id_ssh_default"
+  args:
+    executable: /bin/bash
+  when: git.default is defined
+  register: output
+  changed_when: output.rc != 0
+
+- name: Github - update config file
+  ansible.builtin.blockinfile:
+    block: "{{ lookup('template', '../templates/config-default.j2') }}"
+    dest: ~/.ssh/config
+    mode: "0644"
+    marker: "# {mark} default github host"
+    prepend_newline: true
+    create: true
+  when: git.default is defined

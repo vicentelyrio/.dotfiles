@@ -1,0 +1,19 @@
+- name: Media - install packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    name:
+      - geeqie
+      - mpv
+      - pinta
+      - krita
+
+- name: Media - install aur packages
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - spotify
+      - spicetify-cli
+      - aseprite
+    state: present

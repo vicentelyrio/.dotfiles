@@ -1,0 +1,24 @@
+- name: Ensure group user.group exists
+  ansible.builtin.group:
+    name: "{{ user.group }}"
+    state: present
+  when: user.name is defined
+
+- name: Ensure the user user.name exists
+  become: true
+  become_user: root
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    shell: "{{ user.shell }}"
+    groups:
+      - "{{ user.group }}"
+      - wheel
+      - network
+      - lock
+      - uucp
+      - video
+    append: true
+    system: false
+    createhome: true
+    home: /home/{{ user.name }}
+  when: user.name is defined

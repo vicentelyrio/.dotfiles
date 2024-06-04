@@ -1,0 +1,8 @@
+# Execute your favorite apps at launch
+#exec-once = waybar
+exec-once = hyprpaper
+exec-once = dunst
+exec-once = ~/.config/eww/modules/bar/scripts/_open.sh
+exec-once = ~/.config/swayidle/idle.sh
+exec-once = ~/.config/gtk-3.0/patch_theme.sh
+

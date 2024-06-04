@@ -1,0 +1,8 @@
+- name: Set timezone to system.timezone
+  community.general.timezone:
+    name: "{{ system.timezone }}"
+
+- name: Ensure the locale system.locale exists
+  locale_gen:
+    name: "{{ system.locale }}"
+    state: present

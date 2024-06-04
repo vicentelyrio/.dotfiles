@@ -1,4 +1,0 @@
-tap "homebrew/bundle"
-tap "homebrew/core"
-
-brew install --cask monitorcontrol

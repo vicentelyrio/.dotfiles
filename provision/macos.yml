@@ -1,0 +1,29 @@
+- name: MacOS Setup
+  hosts: hosts
+
+  tasks:
+    - name: Install MacOS packages
+      ansible.builtin.package:
+        name:
+          # quicklook
+          - qlcolorcode
+          - qlstephen
+          - qlmarkdown
+          - quicklook-json
+          - qlprettypatch
+          - quicklook-csv
+          - betterzip
+          - webpquicklook
+          # compression
+          - the-unarchiver
+          # display brightness
+          - monitorcontrol
+          # shortcuts
+          - karabiner-elements
+        state: present
+
+- name: Development Playbook
+  ansible.builtin.import_playbook: ./development/main.yml
+
+- name: Apps Playbook
+  ansible.builtin.import_playbook: ./apps/main.yml

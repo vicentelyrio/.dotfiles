@@ -1,0 +1,14 @@
+[arch]
+ncdu
+
+base
+base-devel
+linux
+linux-firmware
+
+smartmontools                           # disk utility
+zram-generator                          # zram manager
+
+com.mattjakeman.ExtensionManager
+ca.desrt.dconf-editor
+

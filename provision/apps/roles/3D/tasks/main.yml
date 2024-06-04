@@ -1,0 +1,16 @@
+---
+- name: 3D Apps - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - blender
+    state: present
+
+- name: 3D Apps - install aur packages
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - cura-bin
+    state: present

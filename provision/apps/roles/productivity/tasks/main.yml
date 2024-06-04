@@ -1,0 +1,19 @@
+- name: Productivity - install packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    name:
+      - galculator
+      - libreoffice-fresh
+      - obsidian
+      - zathura
+      - zathura-pdf-mupdf
+
+- name: Productivity - install aur packages
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - slack-desktop
+      - zoom
+    state: present

@@ -1,9 +1,0 @@
-# TMUX [#tmux]
-alias tk="tmux kill-server"
-alias tks="tmux kill-session -t $1"
-alias tls="tmux ls"
-alias ta="tmux a"
-alias ts="tmuxinator start $1"
-alias tn="tmuxinator new $1"
-alias tas="~/.config/.zsh/.tmux-session.sh"
-

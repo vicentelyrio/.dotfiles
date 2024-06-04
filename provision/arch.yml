@@ -1,0 +1,12 @@
+- name: Arch Linux Setup
+  hosts: local
+  connection: local
+
+- name: Arch Playbook
+  ansible.builtin.import_playbook: ./arch/main.yml
+
+- name: Development Playbook
+  ansible.builtin.import_playbook: ./development/main.yml
+
+- name: Apps Playbook
+  ansible.builtin.import_playbook: ./apps/main.yml

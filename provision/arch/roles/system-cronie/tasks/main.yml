@@ -1,0 +1,14 @@
+- name: Cronie - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - cronie
+
+- name: Cronie - enable cronie server
+  become: true
+  become_user: root
+  ansible.builtin.service:
+    name: cronie
+    state: started
+    enabled: true

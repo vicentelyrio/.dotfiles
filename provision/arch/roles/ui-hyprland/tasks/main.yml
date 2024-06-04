@@ -1,0 +1,49 @@
+- name: Hyprland - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - hyprland
+      - hyprpaper
+      - hypridle
+      - xdg-desktop-portal-hyprland
+      - qt5-wayland
+      - qt6-wayland
+      - wl-clipboard
+    state: present
+  notify: Rkhunter propupdate
+
+- name: Hyprland - install aur packages
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - hyprprop-git
+      - hyprpicker
+      - hyprlock
+      - pyprland
+    state: present
+  notify: Rkhunter propupdate
+
+# Symlink Files
+- name: Hyprland - create config directory
+  ansible.builtin.file:
+    path: ~/.config/hypr
+    state: directory
+    mode: "0777"
+
+- name: Hyprland - find files to symlink
+  ansible.builtin.find:
+    paths: "{{ playbook_dir }}/roles/ui-hyprland/files/hypr"
+    file_type: any
+  register: hypr_files
+
+- name: Hyprland - symlink files
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "~/.config/hypr/{{ item.path | basename }}"
+    state: link
+    follow: false
+    force: true
+    mode: "0777"
+  with_items: "{{ hypr_files.files }}"

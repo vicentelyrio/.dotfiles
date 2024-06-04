@@ -1,0 +1,22 @@
+- name: Node - install nvm
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - nvm
+    state: present
+
+- name: Node - install node and set version
+  become: true
+  ansible.builtin.shell: "source ~/.nvm/nvm.sh && nvm install --lts"
+  args:
+    executable: /bin/bash
+  register: output
+  changed_when: output.rc != 0
+
+- name: Node - install yarn
+  ansible.builtin.shell: "npm i -g yarn && corepack enable"
+  args:
+    executable: /bin/bash
+  register: output
+  changed_when: output.rc != 0

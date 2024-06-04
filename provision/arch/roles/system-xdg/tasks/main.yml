@@ -1,0 +1,15 @@
+- name: XDG - install base packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    name:
+      - xdg-user-dirs
+      - xdg-utils
+  notify:
+    - Rkhunter propupdate
+
+- name: XDG - create xdg dirs
+  ansible.builtin.command: xdg-user-dirs-update
+  register: result
+  changed_when: result.rc != 0

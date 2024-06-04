@@ -1,0 +1,137 @@
+- name: Pacman - enable color
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: "^#Color$"
+    line: "Color"
+
+- name: Pacman - enable ParallelDownloads = 5
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: "#ParallelDownloads = 5"
+    line: "ParallelDownloads = 5"
+
+- name: Pacman - add multilib repo
+  become: true
+  become_user: root
+  community.general.ini_file:
+    path: /etc/pacman.conf
+    section: "multilib"
+    option: "Include"
+    value: "/etc/pacman.d/mirrorlist"
+    mode: "0644"
+  notify: Pacman - update package cache
+
+- name: Pacman - create hooks directory
+  become: true
+  become_user: root
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    mode: "0644"
+
+- name: Pacman - move hooks
+  become: true
+  become_user: root
+  ansible.posix.synchronize:
+    src: "{{ playbook_dir }}/roles/system-pacman/files/hooks/"
+    dest: /etc/pacman.d/hooks/
+  delegate_to: localhost
+
+- name: Pacman - makepkg - disable compression
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    create: true
+    path: /etc/makepkg.conf
+    regexp: "PKGEXT='.pkg.tar.zst'"
+    line: "PKGEXT='.pkg.tar'"
+    mode: "0644"
+
+- name: Pacman - makepkg - enable parallel compilation MAKEFLAGS="-j$(nproc)"
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    create: true
+    path: /etc/makepkg.conf
+    regexp: '#MAKEFLAGS="-j2"'
+    line: 'MAKEFLAGS="-j$(nproc)"'
+    mode: "0644"
+
+- name: Pacman - install Reflector
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    name:
+      - reflector
+
+- name: Pacman - write Reflector configuration file
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    mode: "0644"
+    dest: "/etc/xdg/reflector/reflector.conf"
+    content: |
+      --save /etc/pacman.d/mirrorlist
+      --protocol http
+      --country Brasil
+      --latest 20
+      --score 20
+      --sort rate
+
+- name: Pacman - enable Reflector and start timer
+  become: true
+  become_user: root
+  ansible.builtin.service:
+    name: reflector.timer
+    enabled: true
+    state: started
+  notify: Pacman - update package cache
+
+- name: Pacman - perform full system upgrade
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    upgrade: true
+  notify:
+    - Rkhunter propupdate
+
+- name: Pacman - install base packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    name:
+      - polkit-gnome
+      - reflector
+      - xdg-user-dirs
+      - xdg-utils
+      - coreutils
+      - dateutils
+      - lsof
+      - nmap
+      - udiskie
+      - inotify-tools
+  notify:
+    - Rkhunter propupdate
+
+- name: Pacman - Install aur hooks
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - check-broken-packages-pacman-hook-git
+      - reflector-pacman-hook-git
+      - sync-pacman-hook-git
+      - needrestart
+      - paccache-hook
+    state: present
+
+- name: Pacman - create xdg dirs
+  ansible.builtin.command: xdg-user-dirs-update
+  register: result
+  changed_when: result.rc != 0

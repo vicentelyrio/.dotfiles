@@ -1,0 +1,16 @@
+---
+- name: Browsers - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - firefox-developer-edition
+    state: present
+
+- name: Browsers - install aur packages
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - brave-bin
+    state: present

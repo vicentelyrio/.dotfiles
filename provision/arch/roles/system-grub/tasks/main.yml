@@ -1,0 +1,18 @@
+- name: Grub - install bootloader and tools
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - grub
+      - os-prober
+    state: present
+
+- name: Grub - update config
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    create: true
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet acpi_osi=Linux acpi_backlight=vendor"'
+  notify: Grub - update

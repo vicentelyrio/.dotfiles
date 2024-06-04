@@ -1,0 +1,42 @@
+- name: Terminal utilities - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - ack
+      - bat
+      - bash-completion
+      - eza
+      - gitui
+      - gtop
+      - neofetch
+      - starship
+      - tmux
+      - tree
+      - zoxide
+      - zsh
+      - git-delta
+      - ripgrep
+      - fd
+      - jq
+      - ripgrep
+      - fzf
+    state: present
+
+- name: Bash
+  ansible.builtin.import_tasks: ./config/bash.yml
+
+- name: Zsh
+  ansible.builtin.import_tasks: ./config/zsh.yml
+
+- name: Starship
+  ansible.builtin.import_tasks: ./config/starship.yml
+
+- name: Tmux
+  ansible.builtin.import_tasks: ./config/tmux.yml
+
+- name: Gitui
+  ansible.builtin.import_tasks: ./config/gitui.yml
+
+- name: Bat
+  ansible.builtin.import_tasks: ./config/bat.yml
