@@ -4,7 +4,7 @@
     state: directory
     mode: "0777"
 
-- name: Neovim - clone config from my repo
+- name: Neovim - clone config from repo
   ansible.builtin.git:
     repo: "https://github.com/vicentelyrio/nvim.git"
     dest: "~/.config/nvim"
