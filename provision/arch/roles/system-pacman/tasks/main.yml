@@ -113,6 +113,7 @@
       - xdg-utils
       - coreutils
       - dateutils
+      - ffmpeg
       - lsof
       - nmap
       - udiskie

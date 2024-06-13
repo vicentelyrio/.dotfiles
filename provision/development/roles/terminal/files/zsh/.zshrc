@@ -51,3 +51,8 @@ if [[ ! -f ${TPM} ]]; then
   git clone https://github.com/tmux-plugins/tpm ${TMUXFOLDER}/tpm
 fi
 
+# History
+HISTFILE=~/.zsh_histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
