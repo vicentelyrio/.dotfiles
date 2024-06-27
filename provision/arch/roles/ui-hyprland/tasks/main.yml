@@ -6,6 +6,7 @@
       - hyprland
       - hyprpaper
       - hypridle
+      - xdg-desktop-portal-gtk
       - xdg-desktop-portal-hyprland
       - qt5-wayland
       - qt6-wayland
@@ -47,3 +48,19 @@
     force: true
     mode: "0777"
   with_items: "{{ hypr_files.files }}"
+
+- name: Hyprland - create xdg-portal config directory
+  ansible.builtin.file:
+    path: ~/.config/xdg-desktop-portal
+    state: directory
+    mode: "0777"
+
+- name: Hyprland - symlink files
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/ui-hyprland/files/{{ item }}"
+    dest: "~/.config/xdg-desktop-portal/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - hyprland-portals.conf

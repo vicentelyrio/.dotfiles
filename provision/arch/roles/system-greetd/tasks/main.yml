@@ -11,7 +11,7 @@
   ansible.builtin.service:
     name: greetd
     enabled: true
-    state: restarted
+    state: stopped
 
 - name: Greeter - symlink files
   become: true
@@ -24,4 +24,5 @@
     force: true
   with_items:
     - config.toml
-
+    - hyprland.conf
+    - start-hypr.sh
