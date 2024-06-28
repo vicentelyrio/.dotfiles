@@ -30,6 +30,9 @@ hyprpaper &
 # Interface
 $HOME/.config/ags/scripts/start.sh &
 
+# GTK theme
+# $HOME/.config/hypr/scripts/gtk/settings.sh &
+
 # Screen sharing and portals
 # "$scripts"/portal &
 # xwaylandvideobridge &
