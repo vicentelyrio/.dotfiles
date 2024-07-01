@@ -3,15 +3,6 @@
 # Automounter for removable media
 # udiskie &
 
-# Plugins
-# pypr &
-
-# Notification Daemon
-# swaync &
-
-# OSD Window
-# swayosd-server &
-
 # Notify about devices connecting and disconnecting
 # devify &
 
@@ -28,7 +19,7 @@ hyprpaper &
 # xremap $HOME/.config/xremap/config.toml --device /dev/input/event30 &
 
 # Interface
-$HOME/.config/ags/scripts/start.sh &
+$HOME/.config/ags/run/desktop-show.sh &
 
 # GTK theme
 # $HOME/.config/hypr/scripts/gtk/settings.sh &

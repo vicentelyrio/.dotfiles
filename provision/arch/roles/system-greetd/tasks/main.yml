@@ -26,3 +26,4 @@
     - config.toml
     - hyprland.conf
     - start-hypr.sh
+    - start-session.sh
