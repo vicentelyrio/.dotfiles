@@ -1,0 +1,8 @@
+- name: Backup - install dependencies
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - timeshift
+      - rclone
+    state: present

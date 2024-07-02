@@ -13,6 +13,7 @@
     - system-gpu
     - system-greetd
     - system-cronie
+    - system-backup
     - system-cpu
     - system-locale
     - system-time

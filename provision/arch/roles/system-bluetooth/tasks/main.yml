@@ -37,4 +37,3 @@
     path: /etc/bluetooth/main.conf
     regexp: "#Experimental = false"
     line: "Experimental = true"
-
