@@ -5,6 +5,8 @@
     update_cache: true
     name:
       - wev
+      - xkeyboard-config
+      - xorg-setxkbmap
   notify:
     - Rkhunter propupdate
 
