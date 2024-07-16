@@ -11,7 +11,7 @@
     - system-pacseek
     - system-grub
     - system-gpu
-    - system-greetd
+    # - system-greetd
     - system-cronie
     - system-backup
     - system-cpu
