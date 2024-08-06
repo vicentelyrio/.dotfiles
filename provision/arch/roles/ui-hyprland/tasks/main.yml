@@ -23,7 +23,6 @@
     name:
       - hyprprop-git
       - hyprpicker
-      - hyprlock
       - pyprland
     state: present
   notify: Rkhunter propupdate

@@ -88,7 +88,6 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 - Hyprland
 - Hyprpaper
 - Hypridle
-- Hyprlock
 
 
 ##### References/inspirations
@@ -103,19 +102,10 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 > - Review macos install for common roles
 > - Github-cli authentication via prompt
 > - Grub setup
-> - Greet setup
 > - Virt-manager setup
 > - udisk setup
 > - OSD
-> - Notification
-> - Bar
-> - Launcher
-> - Clipboard
 > - Screen capture
-> - Screen share
 > - Multimidia
-> - GTK theme
-> - QT theme
-> - Electron apps themes for wayland
 > - hy3
 > - hyprwinwrap
