@@ -65,6 +65,8 @@
     name: ddcci
     state: present
   when: system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Brightness - enable DDCCI
   become: true
@@ -77,6 +79,8 @@
     create: true
     mode: "0644"
   when: system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Brightness - copy script
   become: true
@@ -86,6 +90,8 @@
     dest: /usr/sbin/
     mode: "0777"
   when: system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Brightness - copy ddcci.service
   become: true
@@ -95,6 +101,8 @@
     dest: /etc/systemd/system/
     mode: "0644"
   when: system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Brightness - start ddci.service
   become: true

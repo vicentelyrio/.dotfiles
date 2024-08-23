@@ -1,0 +1,19 @@
+- name: Docker - install libs
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - docker
+      - docker-compose
+    state: present
+
+- name: Docker - start docker.service
+  become: true
+  become_user: root
+  ansible.builtin.systemd_service:
+    name: docker.service
+    state: started
+    enabled: true
+    daemon_reload: true
+  ignore_errors: true
+  register: ignore_errors_register
