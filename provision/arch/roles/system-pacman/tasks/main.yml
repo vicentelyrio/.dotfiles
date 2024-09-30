@@ -118,6 +118,7 @@
       - nmap
       - udiskie
       - inotify-tools
+      - ffmpeg
   notify:
     - Rkhunter propupdate
 

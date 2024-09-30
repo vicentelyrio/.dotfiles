@@ -1,0 +1,17 @@
+- name: Tailscale - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - tailscale
+    state: present
+  notify:
+    - Rkhunter propupdate
+
+- name: Tailscale - enable service
+  become: true
+  become_user: root
+  ansible.builtin.service:
+    name: tailscaled
+    state: started
+    enabled: true

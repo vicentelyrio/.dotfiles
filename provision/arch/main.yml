@@ -24,6 +24,7 @@
     - system-audio
     - system-brightness
     - system-player
+    - system-tailscale
 
     # Interface
     - ui-theme

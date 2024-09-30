@@ -8,6 +8,8 @@
       - mpv
       - pinta
       - krita
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Media - install aur packages
   kewlfft.aur.aur:
@@ -17,3 +19,5 @@
       - spicetify-cli
       - aseprite
     state: present
+  ignore_errors: true
+  register: ignore_errors_register
