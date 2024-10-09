@@ -8,6 +8,8 @@
       - mpv
       - pinta
       - krita
+      - gimp
+      - inkscape
   ignore_errors: true
   register: ignore_errors_register
 

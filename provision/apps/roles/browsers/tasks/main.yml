@@ -13,4 +13,5 @@
     use: yay
     name:
       - brave-bin
+      - responsively
     state: present
