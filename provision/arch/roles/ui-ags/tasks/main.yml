@@ -12,7 +12,7 @@
 
 - name: AGS - clone config from repo
   ansible.builtin.git:
-    repo: "https://github.com/vicentelyrio/ags-desktop.git"
+    repo: "git@github.com:vicentelyrio/ags-desktop.git"
     dest: "~/.config/ags"
     clone: true
     version: main

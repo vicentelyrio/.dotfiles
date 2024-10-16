@@ -82,6 +82,7 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 - Pacseek
 
 ##### Interface
+- [AGS](https://aylur.github.io/ags-docs/) with [my custom config](https://github.com/vicentelyrio/ags-desktop)
 - Centralized Theme config
 - Fonts
 - Font Manager
@@ -89,11 +90,11 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 - Hyprpaper
 - Hypridle
 
-
 ##### References/inspirations
 - https://github.com/id101010/ansible-archlinux (ansible)
 - https://github.com/snowiow/snow (ansible)
 - https://github.com/Matt-FTW/dotfiles (ansible/hyprland)
+- https://github.com/Aylur/dotfiles
 
 > [!IMPORTANT]
 > TODO:
@@ -101,11 +102,7 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 > - Review error handling
 > - Review macos install for common roles
 > - Github-cli authentication via prompt
-> - Grub setup
 > - Virt-manager setup
 > - udisk setup
 > - OSD
-> - Screen capture
-> - Multimidia
 > - hy3
-> - hyprwinwrap
