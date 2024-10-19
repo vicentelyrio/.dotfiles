@@ -1,3 +1,4 @@
+---
 - name: ZSH - create config directory
   ansible.builtin.file:
     path: "~/.config/.zsh"

@@ -1,3 +1,4 @@
+---
 - name: Font Manager - install
   become: true
   become_user: root

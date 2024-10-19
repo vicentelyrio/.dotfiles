@@ -1,3 +1,4 @@
+---
 - name: Github - install git-cli
   become: true
   become_user: root
@@ -12,5 +13,5 @@
 - name: Github - Create Options
   ansible.builtin.include_tasks: ./options.yml
 
-- name: Github - Create Aditional Users
+- name: Github - Create Additional Users
   ansible.builtin.include_tasks: ./other-users.yml

@@ -1,4 +1,4 @@
-# OPTIONS
+---
 - name: Github - create options
   community.general.git_config:
     name: "{{ item.key }}"

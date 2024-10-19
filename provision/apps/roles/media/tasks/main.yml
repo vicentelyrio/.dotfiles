@@ -1,3 +1,4 @@
+---
 - name: Media - install packages
   become: true
   become_user: root

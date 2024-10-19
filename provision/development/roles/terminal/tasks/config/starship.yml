@@ -1,3 +1,4 @@
+---
 - name: Starship - create config directory
   ansible.builtin.file:
     path: "~/.config/starship"

@@ -1,3 +1,4 @@
+---
 - name: Grub - install bootloader and tools
   become: true
   become_user: root
@@ -15,4 +16,5 @@
     path: /etc/default/grub
     regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
     line: 'GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet acpi_osi=Linux acpi_backlight=vendor"'
+    mode: "0644"
   notify: Grub - update

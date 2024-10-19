@@ -1,3 +1,4 @@
+---
 - name: Ntp - restart
   become: true
   become_user: root
@@ -10,7 +11,7 @@
     name: ntpd
     state: stopped
     enabled: true
-  when: install is changed # noqa: no-handler
+  when: install is changed
 
 - name: Ntp - sync time with ntp metas atomic clock
   ansible.builtin.command: ntpdate ntp.metas.ch

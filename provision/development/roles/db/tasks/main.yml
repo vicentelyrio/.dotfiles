@@ -1,3 +1,4 @@
+---
 - name: DB - install Dbeaver
   become: true
   kewlfft.aur.aur:
@@ -13,5 +14,3 @@
     name:
       - postgresql
     state: present
-
-

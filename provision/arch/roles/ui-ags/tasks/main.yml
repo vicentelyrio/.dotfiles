@@ -1,3 +1,4 @@
+---
 - name: Ags - install
   become: true
   kewlfft.aur.aur:

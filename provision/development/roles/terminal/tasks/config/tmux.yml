@@ -1,3 +1,4 @@
+---
 - name: Tmux - create config directory
   ansible.builtin.file:
     path: "~/.config/tmux"

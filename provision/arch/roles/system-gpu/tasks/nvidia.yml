@@ -1,8 +1,9 @@
+---
 - name: NVIDIA - Drivers Pacman
   become: true
   become_user: root
   pacman:
-    update_cache: yes
+    update_cache: false
     name:
       - nvidia
       - nvidia-utils

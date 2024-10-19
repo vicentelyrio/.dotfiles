@@ -1,3 +1,4 @@
+---
 - name: Yay - Install
   kewlfft.aur.aur:
     name: yay

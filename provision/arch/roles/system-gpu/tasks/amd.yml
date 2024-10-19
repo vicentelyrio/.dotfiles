@@ -1,8 +1,9 @@
+---
 - name: AMD - Drivers Pacman
   become: true
   become_user: root
   pacman:
-    update_cache: yes
+    update_cache: true
     name:
       - xf86-video-amdgpu
       - vulkan-radeon
@@ -28,4 +29,3 @@
     name:
       - amf-amdgpu-pro
       - vulkan-amdgpu-pro
-

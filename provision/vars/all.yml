@@ -1,3 +1,4 @@
+---
 system:
   locale: en_US.utf8
   timezone: America/Sao_Paulo
@@ -37,4 +38,3 @@ git:
     interactive.diffFilter: delta --color-only --features=interactive
     merge.conflictStyles: diff3
     diff.colorMoved: default
-

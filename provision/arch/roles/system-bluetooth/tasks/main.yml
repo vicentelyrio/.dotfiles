@@ -1,3 +1,4 @@
+---
 - name: Bluetooth - install dependencies
   become: true
   become_user: root
@@ -37,3 +38,4 @@
     path: /etc/bluetooth/main.conf
     regexp: "#Experimental = false"
     line: "Experimental = true"
+    mode: "0644"

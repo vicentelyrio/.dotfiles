@@ -1,3 +1,4 @@
+---
 - name: Neovim - create config directory
   ansible.builtin.file:
     path: "~/.config/nvim"

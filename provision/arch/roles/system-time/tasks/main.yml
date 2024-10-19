@@ -1,3 +1,4 @@
+---
 - name: Ntp - install daemon
   become: true
   become_user: root

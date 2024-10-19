@@ -1,3 +1,4 @@
+---
 - name: Node - install nvm
   become: true
   kewlfft.aur.aur:

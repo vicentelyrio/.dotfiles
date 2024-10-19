@@ -1,8 +1,9 @@
+---
 - name: Intel - Drivers Pacman
   become: true
   become_user: root
   pacman:
-    update_cache: yes
+    update_cache: true
     name:
       - xf86-video-intel
       - vulkan-intel

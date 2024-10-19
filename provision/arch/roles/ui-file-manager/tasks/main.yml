@@ -1,3 +1,4 @@
+---
 - name: File Manager - install packages
   become: true
   become_user: root
@@ -13,4 +14,3 @@
       - nemo-image-converter
   notify:
     - Rkhunter propupdate
-

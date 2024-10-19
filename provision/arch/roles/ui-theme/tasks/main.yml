@@ -1,3 +1,4 @@
+---
 - name: Theme - install packages
   become: true
   kewlfft.aur.aur:

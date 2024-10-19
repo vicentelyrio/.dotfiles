@@ -1,3 +1,4 @@
+---
 - name: Network - restart NetworkManager service
   ansible.builtin.service:
     name: networkmanager.service

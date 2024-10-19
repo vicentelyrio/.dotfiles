@@ -1,3 +1,4 @@
+---
 - name: Player - install base packages
   become: true
   become_user: root
@@ -12,7 +13,7 @@
   become: true
   become_user: root
   ansible.builtin.copy:
-    src: ../files/playerctl.service
+    src: "{{ playbook_dir }}/roles/system-player/files/playerctl.service"
     dest: /etc/systemd/system/
     mode: "0644"
 
@@ -26,4 +27,3 @@
     daemon_reload: true
   ignore_errors: true
   register: ignore_errors_register
-

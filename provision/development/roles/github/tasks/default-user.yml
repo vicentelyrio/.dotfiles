@@ -1,3 +1,4 @@
+---
 - name: Github - create default user name
   community.general.git_config:
     name: user.name

@@ -1,3 +1,4 @@
+---
 - name: Gitui - create config directory
   ansible.builtin.file:
     path: "~/.config/gitui"

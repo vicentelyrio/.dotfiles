@@ -1,3 +1,4 @@
+---
 - name: Github - update gitconfig file
   ansible.builtin.blockinfile:
     block: "{{ lookup('template', '../templates/gitconfig-main.j2') }}"
@@ -16,7 +17,7 @@
   with_items: "{{ git.users }}"
   when: git.users is defined
 
-- name: Github - create aditional user ssh keypair
+- name: Github - create additional user ssh keypair
   community.crypto.openssh_keypair:
     force: false
     state: present
@@ -27,7 +28,7 @@
   with_items: "{{ git.users }}"
   when: git.users is defined
 
-- name: Github - add aditional user key to agent
+- name: Github - add additional user key to agent
   ansible.builtin.shell: "ssh-add ~/.ssh/id_ssh_{{ item.scope }}"
   args:
     executable: /bin/bash

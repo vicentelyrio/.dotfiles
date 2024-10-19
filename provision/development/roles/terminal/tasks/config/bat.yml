@@ -1,3 +1,4 @@
+---
 - name: Bat - create config directory
   ansible.builtin.file:
     path: "~/.config/bat"

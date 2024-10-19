@@ -1,3 +1,4 @@
+---
 - name: Rkhunter propupdate
   become: true
   become_user: root

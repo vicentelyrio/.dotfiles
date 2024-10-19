@@ -1,3 +1,4 @@
+---
 - name: Grub - update
   become: true
   become_user: root

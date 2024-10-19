@@ -1,3 +1,4 @@
+---
 - name: Helix - create config directory
   ansible.builtin.file:
     path: "~/.config/helix"

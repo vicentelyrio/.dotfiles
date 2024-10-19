@@ -1,3 +1,4 @@
+---
 - name: Pacman - enable color
   become: true
   become_user: root

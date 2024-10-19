@@ -1,3 +1,4 @@
+---
 - name: Brightness - install
   become: true
   become_user: root
@@ -20,7 +21,7 @@
   become: true
   become_user: root
   ansible.builtin.copy:
-    src: ../files/90-backlight.rules
+    src: "{{ playbook_dir }}/roles/system-brightness/files/90-backlight.rules"
     dest: /etc/udev/rules.d/
     mode: "0644"
 
@@ -86,7 +87,7 @@
   become: true
   become_user: root
   ansible.builtin.copy:
-    src: ../files/backlight-start.sh
+    src: "{{ playbook_dir }}/roles/system-brightness/files/backlight-start.sh"
     dest: /usr/sbin/
     mode: "0777"
   when: system.external_display|bool
@@ -97,7 +98,7 @@
   become: true
   become_user: root
   ansible.builtin.copy:
-    src: ../files/ddcci.service
+    src: "{{ playbook_dir }}/roles/system-brightness/files/ddcci.service"
     dest: /etc/systemd/system/
     mode: "0644"
   when: system.external_display|bool
