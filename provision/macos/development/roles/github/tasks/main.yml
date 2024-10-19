@@ -1,0 +1,15 @@
+---
+- name: Github - install git-cli
+  ansible.builtin.package:
+    name:
+      - gh
+    state: present
+
+- name: Github - Create Default User
+  ansible.builtin.include_tasks: ./default-user.yml
+
+- name: Github - Create Options
+  ansible.builtin.include_tasks: ./options.yml
+
+- name: Github - Create Additional Users
+  ansible.builtin.include_tasks: ./other-users.yml

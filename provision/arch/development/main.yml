@@ -1,0 +1,12 @@
+---
+- name: Development Roles
+  hosts: local
+  vars_files: ../vars/all.yml
+  roles:
+    - github
+    - terminals
+    - terminal
+    - ides
+    - node
+    - db
+    - docker

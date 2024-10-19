@@ -1,0 +1,17 @@
+---
+- name: Gitui - create config directory
+  ansible.builtin.file:
+    path: "~/.config/gitui"
+    state: directory
+    mode: "0777"
+
+- name: Gitui - symlink config
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/terminal/files/gitui/{{ item }}"
+    dest: "~/.config/gitui/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - key_bindings.ron
+    - theme.ron

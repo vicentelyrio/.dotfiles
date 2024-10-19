@@ -1,0 +1,48 @@
+---
+- name: Github - update gitconfig file
+  ansible.builtin.blockinfile:
+    block: "{{ lookup('template', '../templates/gitconfig-main.j2') }}"
+    dest: ~/.gitconfig
+    mode: "0644"
+    marker: "# {mark} custom github users"
+    prepend_newline: true
+    create: true
+  when: git.users is defined
+
+- name: Github - create scoped gitconfig
+  ansible.builtin.template:
+    src: "{{ playbook_dir }}/roles/github/templates/gitconfig-scoped.j2"
+    dest: "~/.gitconfig-{{ item.scope }}"
+    mode: "0777"
+  with_items: "{{ git.users }}"
+  when: git.users is defined
+
+- name: Github - create additional user ssh keypair
+  community.crypto.openssh_keypair:
+    force: false
+    state: present
+    type: ed25519
+    mode: "0400"
+    path: "~/.ssh/id_ssh_{{ item.scope }}"
+    comment: "{{ item.email }}"
+  with_items: "{{ git.users }}"
+  when: git.users is defined
+
+- name: Github - add additional user key to agent
+  ansible.builtin.shell: "ssh-add ~/.ssh/id_ssh_{{ item.scope }}"
+  args:
+    executable: /bin/bash
+  with_items: "{{ git.users }}"
+  when: git.users is defined
+  register: output
+  changed_when: output.rc != 0
+
+- name: Github - update config file with scoped user
+  ansible.builtin.blockinfile:
+    block: "{{ lookup('template', '../templates/config-scoped.j2') }}"
+    dest: ~/.ssh/config
+    mode: "0644"
+    marker: "# {mark} custom github hosts"
+    prepend_newline: true
+    create: true
+  when: git.users is defined

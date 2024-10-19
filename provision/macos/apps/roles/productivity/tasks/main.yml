@@ -1,0 +1,11 @@
+---
+- name: Productivity - install packages
+  ansible.builtin.package:
+    name:
+      - obsidian
+      - slack
+      - zoom
+      - microsoft-teams
+    state: present
+  ignore_errors: true
+  register: ignore_errors_register

@@ -1,0 +1,15 @@
+---
+- name: Terminals - install
+  ansible.builtin.package:
+    name:
+      - alacritty
+      - wezterm
+    state: present
+  ignore_errors: true
+  register: ignore_errors_register
+
+- name: Alacritty
+  ansible.builtin.import_tasks: ./config/alacritty.yml
+
+- name: Wezterm
+  ansible.builtin.import_tasks: ./config/wezterm.yml

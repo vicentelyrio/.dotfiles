@@ -1,0 +1,50 @@
+import = ["/home/vicentelyrio/.config/alacritty/colors.toml", "/home/vicentelyrio/.config/alacritty/fonts.toml"]
+live_config_reload = true
+working_directory = "None"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor.style]
+blinking = "Off"
+shape = "Beam"
+
+[debug]
+log_level = "Off"
+persistent_logging = false
+print_events = false
+render_timer = false
+
+[env]
+TERM = "xterm-256color"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+decorations = "buttonless"
+dynamic_padding = false
+dynamic_title = true
+opacity = 1
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.dimensions]
+columns = 2
+lines = 2
+
+[window.padding]
+x = 6
+y = 6
+
+[window.position]
+x = 0
+y = 0

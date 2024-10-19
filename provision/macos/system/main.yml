@@ -1,0 +1,6 @@
+---
+- name: Apps Roles
+  hosts: local
+
+  roles:
+    - quicklook

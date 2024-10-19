@@ -1,0 +1,11 @@
+---
+- name: DB - install
+  ansible.builtin.package:
+    name:
+      - beekeeper-studio
+      - postgresql
+      - docker
+      - docker-compose
+    state: present
+  ignore_errors: true
+  register: ignore_errors_register

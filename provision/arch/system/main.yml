@@ -1,7 +1,7 @@
 ---
 - name: Arch System Roles
   hosts: local
-  vars_files: ../vars/all.yml
+  vars_files: ../../vars/all.yml
   roles:
     # System
     - system-rkhunter

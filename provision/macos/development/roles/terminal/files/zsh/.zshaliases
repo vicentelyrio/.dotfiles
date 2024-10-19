@@ -1,0 +1,50 @@
+# KEYBINDS
+bindkey -e
+
+# cd with dots
+alias ..="cd ../$1"
+alias ...="cd ../../$1"
+
+# node
+alias nka="killall node"
+alias nl="ps -aef | grep node"
+alias nk="kill -9 $1"
+
+# vim
+alias vi="nvim"
+
+# TMUX
+alias tk="tmux kill-server"
+alias tks="tmux kill-session -t $1"
+alias tls="tmux ls"
+alias ta="tmux a"
+alias ts="tmuxinator start $1"
+alias tn="tmuxinator new $1"
+alias tas="~/.config/.zsh/.tmux-session.sh"
+
+# GITUI
+alias gi="gitui"
+
+# EZA
+alias ls="eza --icons -l --group-directories-first"
+alias ll="eza --icons -l -all --group-directories-first"
+alias lg="eza --icons -l -all --group-directories-first |grep"
+
+# BAT
+alias cat="bat"
+alias ocat="/usr/bin/cat"
+
+# ACK
+alias ack="ff $1 --sort-files --color"
+
+# Linux
+alias start="sudo systemctl start"
+alias stop="sudo systemctl stop"
+alias status="systemctl status"
+alias restart="sudo systemctl restart"
+alias jof="journalctl -u"
+alias fjof="journalctl -fu"
+
+# Code
+alias y="yarn"
+alias n="npm"

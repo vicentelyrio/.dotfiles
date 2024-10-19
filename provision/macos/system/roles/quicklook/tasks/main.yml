@@ -1,0 +1,27 @@
+---
+- name: Quicklook - install packages
+  ansible.builtin.package:
+    name:
+      # quicklook
+      - qlcolorcode
+      - qlstephen
+      - qlmarkdown
+      - quicklook-json
+      - qlprettypatch
+      - quicklook-csv
+      - betterzip
+      - webpquicklook
+
+      # compression
+      - the-unarchiver
+
+      # display brightness
+      - monitorcontrol
+
+      # shortcuts
+      - karabiner-elements
+
+      # fonts
+      - font-jetbrains-mono-nerd-font
+  ignore_errors: true
+  register: ignore_errors_register

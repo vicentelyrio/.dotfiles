@@ -1,0 +1,10 @@
+---
+- name: Browsers - install
+  ansible.builtin.package:
+    name:
+      - firefox@developer-edition
+      - brave-browser
+      - responsively
+    state: present
+  ignore_errors: true
+  register: ignore_errors_register

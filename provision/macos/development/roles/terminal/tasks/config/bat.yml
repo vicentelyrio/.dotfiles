@@ -1,0 +1,41 @@
+---
+- name: Bat - create config directory
+  ansible.builtin.file:
+    path: "~/.config/bat"
+    state: directory
+    mode: "0777"
+
+- name: Bat - symlink config
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/terminal/files/bat/{{ item }}"
+    dest: "~/.config/bat/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - config
+
+- name: Bat - Check if custom theme exists
+  ansible.builtin.stat:
+    path: "~/.config/bat/themes/Catppuccin Macchiato.tmTheme"
+  register: file_stats
+
+- name: Bat - create theme directory
+  ansible.builtin.file:
+    path: "~/.config/bat/themes"
+    state: directory
+    mode: "0777"
+  when: not file_stats.stat.exists
+
+- name: Bat - download custom theme
+  ansible.builtin.get_url:
+    url: https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+    dest: ~/.config/bat/themes
+    mode: "0644"
+  when: not file_stats.stat.exists
+
+- name: Bat - rebuild cache
+  ansible.builtin.command: bat cache --build
+  register: result
+  changed_when: result.rc != 0
+  when: not file_stats.stat.exists
