@@ -94,7 +94,13 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 - https://github.com/id101010/ansible-archlinux (ansible)
 - https://github.com/snowiow/snow (ansible)
 - https://github.com/Matt-FTW/dotfiles (ansible/hyprland)
+
+###### (AGS)
 - https://github.com/Aylur/dotfiles
+- https://github.com/end-4/dots-hyprland
+- https://github.com/PoobToo/dotfiles
+- https://github.com/shadeyg56/nixos-config
+- https://github.com/kotontrion/dotfiles
 
 > [!IMPORTANT]
 > TODO:
