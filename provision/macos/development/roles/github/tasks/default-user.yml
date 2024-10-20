@@ -7,6 +7,12 @@
     state: present
   when: git.default is defined
 
+- name: Github - create ssh directory
+  ansible.builtin.file:
+    path: ~/.ssh
+    state: directory
+    mode: "0777"
+
 - name: Github - create default user email
   community.general.git_config:
     name: user.email

@@ -3,21 +3,31 @@
   ansible.builtin.package:
     name:
       - nvm
+      - corepack
     state: present
   ignore_errors: true
   register: ignore_errors_register
 
 - name: Node - install node and set version
-  become: true
   ansible.builtin.shell: "source ~/.nvm/nvm.sh && nvm install --lts"
   args:
     executable: /bin/bash
+  ignore_errors: true
+  register: output
+  changed_when: output.rc != 0
+
+- name: Node - enable corepack
+  ansible.builtin.shell: "corepack enable"
+  args:
+    executable: /bin/bash
+  ignore_errors: true
   register: output
   changed_when: output.rc != 0
 
 - name: Node - install yarn
-  ansible.builtin.shell: "npm i -g yarn && corepack enable"
+  ansible.builtin.shell: "npm i -g yarn"
   args:
     executable: /bin/bash
+  ignore_errors: true
   register: output
   changed_when: output.rc != 0

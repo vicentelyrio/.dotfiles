@@ -3,7 +3,7 @@
   ansible.builtin.package:
     name:
       - beekeeper-studio
-      - postgresql
+      - postgresql@14
       - docker
       - docker-compose
     state: present
