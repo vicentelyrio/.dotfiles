@@ -4,8 +4,14 @@
     name:
       - beekeeper-studio
       - postgresql@14
-      - docker
-      - docker-compose
     state: present
   ignore_errors: true
   register: ignore_errors_register
+
+- name: Install Docker Desktop (CLI)
+  ansible.builtin.command:
+    cmd: brew install --formula docker
+
+- name: Install Docker Desktop (GUI)
+  ansible.builtin.command:
+    cmd: brew install --cask docker
