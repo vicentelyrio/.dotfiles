@@ -1,0 +1,7 @@
+---
+- name: Code - install code related packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - platformio
+    state: present
