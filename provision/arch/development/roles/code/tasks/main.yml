@@ -4,5 +4,5 @@
   kewlfft.aur.aur:
     use: yay
     name:
-      - platformio
+      - platformio-git
     state: present

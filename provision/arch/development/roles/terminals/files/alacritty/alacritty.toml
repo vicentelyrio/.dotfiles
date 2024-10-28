@@ -1,4 +1,4 @@
-import = ["/home/vicentelyrio/.config/alacritty/colors.toml", "/home/vicentelyrio/.config/alacritty/fonts.toml"]
+general.import = ["/home/vicentelyrio/.config/alacritty/colors.toml", "/home/vicentelyrio/.config/alacritty/fonts.toml"]
 live_config_reload = true
 working_directory = "None"
 

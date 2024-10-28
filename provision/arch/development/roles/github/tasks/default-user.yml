@@ -12,6 +12,7 @@
     path: ~/.ssh
     state: directory
     mode: "0777"
+  when: git.default is defined
 
 - name: Github - create default user email
   community.general.git_config:
