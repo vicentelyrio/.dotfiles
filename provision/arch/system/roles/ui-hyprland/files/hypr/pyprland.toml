@@ -1,58 +1,20 @@
 [pyprland]
-plugins = ["scratchpads", "expose", "magnify", "wallpapers"]
-
-[scratchpads.volume]
-command = "pavucontrol"
-unfocus = "hide"
-position = "1% 8%"
-lazy = true
-force_monitor = "DP-1"
+plugins = ["scratchpads", "expose", "magnify"]
 
 [scratchpads.terminal]
 command = "alacritty --class scratchpad-large"
-excludes = ["dots", "yazi", "topgrade-system", "topgrade-all"]
+excludes = ["dots", "yazi"]
 lazy = true
 
 [scratchpads.yazi]
-command = "alacritty --class scratchpad-large yazi"
-lazy = true
-
-[scratchpads.gpt]
-command = "alacritty --class scratchpad-large tgpt -m"
+command = "alacritty --class scratchpad-large -e zsh -c 'yazi'"
 lazy = true
 
 [scratchpads.dots]
-command = "alacritty --class scratchpad-large yadm enter gitui"
+command = "alacritty --class scratchpad-large -e zsh -c 'gitui'"
 excludes = ["terminal"]
 lazy = true
 
-[scratchpads.btop]
-command = "alacritty --class scratchpad-large gtop"
+[scratchpads.gtop]
+command = "alacritty --class scratchpad-large -e zsh -c 'gtop'"
 lazy = true
-
-# [scratchpads.cava]
-# command = "alacritty --class scratchpad-mini cava"
-# lazy = true
-
-# [scratchpads.topgrade-system]
-# command = "alacritty --class scratchpad-large topgrade -k --only system"
-# lazy = true
-#
-# [scratchpads.topgrade-all]
-# command = "alacritty --class scratchpad-large topgrade -k --no-self-update"
-# lazy = true
-
-[scratchpads.bluetooth]
-command = "blueman-manager"
-animation = "fromRight"
-unfocus = "hide"
-margin = 20
-lazy = true
-
-[wallpapers]
-path = "/home/vicentelyrio/.config/hypr/themes/$THEME_CURRENT/wallpapers/"
-interval = 60
-command = "swww img --transition-bezier 0.5,1.19,.8,.4 --transition-type wipe --transition-duration 2 --transition-fps 75 \"[file]\" && notify-send 'Wallpaper Changed' -i \"[file]\""
-clear_command = "swww clear"
-extensions = ["jpg", "png", "gif", "jpeg"]
-
