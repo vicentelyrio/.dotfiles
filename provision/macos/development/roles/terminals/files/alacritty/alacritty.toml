@@ -32,6 +32,7 @@ dynamic_padding = false
 dynamic_title = true
 opacity = 1
 title = "Alacritty"
+startup_mode = "Fullscreen"
 
 [window.class]
 general = "Alacritty"

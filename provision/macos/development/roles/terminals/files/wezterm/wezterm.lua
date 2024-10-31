@@ -10,7 +10,7 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = 'Catppuccin Mocha'
-config.font = wezterm.font 'JetBrains Mono Nerd Font'
+config.font = wezterm.font 'JetBrainsMono Nerd Font'
 config.font_size = 14.0
 
 config.use_fancy_tab_bar = false
@@ -36,23 +36,33 @@ config.window_frame = {
 config.keys = {
   {
     key = 'h',
-    mods = 'SUPER',
+    mods = 'CMD',
     action = act.ActivatePaneDirection 'Left',
   },
   {
     key = 'l',
-    mods = 'SUPER',
+    mods = 'CMD',
     action = act.ActivatePaneDirection 'Right',
   },
   {
     key = 'k',
-    mods = 'SUPER',
+    mods = 'CMD',
     action = act.ActivatePaneDirection 'Up',
   },
   {
     key = 'j',
-    mods = 'SUPER',
+    mods = 'CMD',
     action = act.ActivatePaneDirection 'Down',
+  },
+  {
+    key = "_",
+    mods = "CMD",
+    action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+  },
+  {
+    key = "|",
+    mods = "CMD",
+    action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
 }
 
