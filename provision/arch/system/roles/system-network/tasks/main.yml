@@ -13,6 +13,8 @@
       - network-manager-applet
       - networkmanager-openconnect
       - networkmanager-openvpn
+      - avahi
+      - nss-mdns
     state: present
   notify:
     - Rkhunter propupdate
@@ -32,3 +34,45 @@
     name: NetworkManager
     state: started
     enabled: true
+
+- name: Network - Configure NSS to use mdns4
+  become: true
+  become_user: root
+  lineinfile:
+    path: /etc/nsswitch.conf
+    regexp: '^hosts:'
+    line: 'hosts: files mymachines mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns myhostname'
+
+- name: Network - Configure Avahi Daemon
+  become: true
+  become_user: root
+  copy:
+    dest: /etc/avahi/avahi-daemon.conf
+    content: |
+      [server]
+      use-ipv4=yes
+      use-ipv6=yes
+
+      [publish]
+      publish-hinfo=yes
+      publish-workstation=yes
+      publish-domain=yes
+
+      [reflector]
+      enable-reflector=no
+
+      [rlimits]
+      rlimit-core=0
+      rlimit-data=4194304
+      rlimit-fsize=0
+      rlimit-nofile=300
+      rlimit-stack=4194304
+      rlimit-nproc=3
+
+- name: Network - Enable and start Avahi service
+  become: true
+  become_user: root
+  systemd:
+    name: avahi-daemon
+    enabled: yes
+    state: started
