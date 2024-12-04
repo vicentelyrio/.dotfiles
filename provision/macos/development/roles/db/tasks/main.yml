@@ -11,7 +11,11 @@
 - name: Install Docker Desktop (CLI)
   ansible.builtin.command:
     cmd: brew install --formula docker
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Install Docker Desktop (GUI)
   ansible.builtin.command:
     cmd: brew install --cask docker
+  ignore_errors: true
+  register: ignore_errors_register

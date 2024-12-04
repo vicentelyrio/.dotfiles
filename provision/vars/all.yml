@@ -20,10 +20,10 @@ git:
 
   users:
     -
-      scope: yuca
-      name: vicentelyrio-yuca
-      email: vicente.lyrio@yuca.live
-      path: ~/Projects/yuca
+      scope: tino
+      name: vicentelyrio-tino
+      email: vicente.lyrio@tino.com.br
+      path: ~/Projects/tino
 
   options:
     init.defaultBranch: main
