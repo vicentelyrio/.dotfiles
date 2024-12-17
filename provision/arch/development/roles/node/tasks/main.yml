@@ -6,6 +6,8 @@
     name:
       - nvm
     state: present
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Node - install node and set version
   become: true
@@ -14,6 +16,8 @@
     executable: /bin/bash
   register: output
   changed_when: output.rc != 0
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Node - install yarn
   ansible.builtin.shell: "npm i -g yarn && corepack enable"
@@ -21,3 +25,5 @@
     executable: /bin/bash
   register: output
   changed_when: output.rc != 0
+  ignore_errors: true
+  register: ignore_errors_register

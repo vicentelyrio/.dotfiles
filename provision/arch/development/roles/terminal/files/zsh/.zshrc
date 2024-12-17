@@ -56,3 +56,6 @@ HISTFILE=~/.zsh_histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
+
+# ASDF completions
+. /opt/asdf-vm/asdf.sh
