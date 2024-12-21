@@ -1,0 +1,43 @@
+- name: ASDF - Install version manager
+  block:
+    - name: ASDF - Install dependencies
+      package:
+        name:
+          - git
+          - curl
+          - make
+          - unzip
+        state: present
+      become: true
+
+    - name: ASDF - Check if  is installed
+      stat:
+        path: "{{ ansible_env.HOME }}/.asdf"
+      register: asdf_dir
+
+    - name: ASDF - Clone
+      git:
+        repo: https://github.com/asdf-vm/asdf.git
+        dest: "{{ ansible_env.HOME }}/.asdf"
+        version: v0.15.0
+      when: not asdf_dir.stat.exists
+
+    - name: ASDF - Add to shell (zsh)
+      blockinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - asdf"
+        block: |
+          . "$HOME/.asdf/asdf.sh"
+          # append completions to fpath
+          fpath=(${ASDF_DIR}/completions $fpath)
+          # initialise completions with ZSH's compinit
+          autoload -Uz compinit && compinit
+
+    - name: ASDF - Install plugins
+      command: "{{ ansible_env.HOME }}/.asdf/bin/asdf plugin add {{ item }}"
+      loop:
+        - nodejs
+        - yarn
+      register: plugin_add
+      changed_when: plugin_add.rc == 0
+      failed_when: plugin_add.rc != 0 and 'already added' not in plugin_add.stderr

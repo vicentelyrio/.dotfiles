@@ -6,6 +6,7 @@
       - slack
       - zoom
       - microsoft-teams
+      - claude
     state: present
   ignore_errors: true
   register: ignore_errors_register

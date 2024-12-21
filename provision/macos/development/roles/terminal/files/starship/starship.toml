@@ -1,3 +1,5 @@
+command_timeout = 2000
+
 [aws]
 symbol = "  "
 
@@ -75,3 +77,11 @@ symbol = " "
 
 [spack]
 symbol = "🅢 "
+
+[nodejs]
+format = "via [⬢ $version](bold green) "
+detect_extensions = ["js", "mjs", "cjs", "node", "jsx", "tsx"]
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]
+version_format = "${raw}"
+command = "asdf current nodejs | awk '{print $2}'"

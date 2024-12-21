@@ -48,3 +48,4 @@ alias fjof="journalctl -fu"
 # Code
 alias y="yarn"
 alias n="npm"
+alias p="pnpm"

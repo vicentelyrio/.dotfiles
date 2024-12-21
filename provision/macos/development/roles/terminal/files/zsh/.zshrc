@@ -8,10 +8,6 @@ fi
 
 source ${ZDOTDIR:-${HOME}}/.config/.zsh/zsh-sh-theme/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
-# zsh nvm config
-export NVM_COMPLETION=true
-export NVM_AUTO_USE=true
-
 # ZCOMET - plugin manager
 if [[ ! -f ${ZDOTDIR:-${HOME}}/.config/.zcomet/bin/zcomet.zsh ]]; then
   command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.config/.zcomet/bin
@@ -23,7 +19,6 @@ source ${ZDOTDIR:-${HOME}}/.config/.zcomet/bin/zcomet.zsh
 zcomet snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh   # git completion
 
 # Plugins
-zcomet load lukechilds/zsh-nvm                                                  # nvm utilities
 zcomet load zsh-users/zsh-completions                                           # tab completion
 zcomet load zsh-users/zsh-history-substring-search                              # history (with up arrow)
 zcomet load zsh-users/zsh-autosuggestions                                       # suggestions
@@ -56,3 +51,38 @@ HISTFILE=~/.zsh_histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
+
+# ASDF
+. "$HOME/.asdf/asdf.sh"
+
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
+# Function to find and read .nvmrc files
+function asdf_update_nodejs_version() {
+  local nvmrc_path
+  nvmrc_path="$(pwd)/.nvmrc"
+  if [ -f "$nvmrc_path" ]; then
+    local node_version
+    node_version=$(<"$nvmrc_path")
+    # Install the version if it's not already installed
+    asdf install nodejs $node_version 2>/dev/null || true
+    # Set the version for the current shell
+    asdf local nodejs $node_version
+  fi
+}
+
+# Auto-switch Node.js version when entering a directory
+autoload -U add-zsh-hook
+
+add-zsh-hook chpwd asdf_update_nodejs_version
+# BEGIN ANSIBLE MANAGED BLOCK - asdf
+. "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+# END ANSIBLE MANAGED BLOCK - asdf

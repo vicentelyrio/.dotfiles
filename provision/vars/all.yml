@@ -18,12 +18,12 @@ git:
     name: vicentelyrio
     email: vicentelyrio@gmail.com
 
-  users:
-    -
-      scope: yuca
-      name: vicentelyrio-yuca
-      email: vicente.lyrio@yuca.live
-      path: ~/Projects/yuca
+  # users:
+  #   -
+  #     scope: work
+  #     name: vicentelyrio-work
+  #     email: vicentelyrio@gmail.com
+  #     path: ~/Projects/work
 
   options:
     init.defaultBranch: main
