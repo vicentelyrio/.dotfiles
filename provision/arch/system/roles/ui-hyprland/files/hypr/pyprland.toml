@@ -1,27 +1,22 @@
 [pyprland]
-plugins = ["scratchpads", "layout_center", "expose", "magnify", "system_notifier", "toggle_special", "workspaces_follow_focus"]
-
-[scratchpads.terminal]
-command = "alacritty --class scratchpad-large"
-excludes = ["dots", "yazi"]
-lazy = true
+plugins = ["scratchpads", "layout_center", "expose", "magnify", "system_notifier", "toggle_special", "workspaces_follow_focus", "lost_windows"]
 
 [scratchpads.yazi]
 command = "alacritty --class scratchpad-large -e zsh -c 'yazi'"
 lazy = true
+allow_special_workspaces = true
 
 [scratchpads.nemo]
-command = "alacritty --class scratchpad-large -e zsh -c 'nemo'"
-lazy = true
-
-[scratchpads.dots]
-command = "alacritty --class scratchpad-large -e zsh -c 'gitui'"
-excludes = ["terminal"]
-lazy = true
+command = "nemo"
+class = "nemo"
+animation = "fromBottom"
+size = "70% 70%"
+position = "15% 15%"
 
 [scratchpads.gtop]
 command = "alacritty --class scratchpad-large -e zsh -c 'gtop'"
 lazy = true
+allow_special_workspaces = true
 
 [layout_center]
 margin = 60
@@ -30,22 +25,3 @@ next = "movefocus r"
 prev = "movefocus l"
 next2 = "movefocus d"
 prev2 = "movefocus u"
-
-# [system_notifier.parsers.journal]
-# pattern = "([a-z0-9]+): Link UP$"
-# filter = "s/.*\[\d+\]: ([a-z0-9]+): Link.*/\1 is active/"
-# color= "#00aa00"
-#
-# [system_notifier.parsers.journal]
-# pattern = "([a-z0-9]+): Link DOWN$"
-# filter = "s/.*\[\d+\]: ([a-z0-9]+): Link.*/\1 is inactive/"
-# color= "#ff8800"
-#
-# [system_notifier.parsers.journal]
-# pattern = "Process \d+ \(.*\) of .* dumped core."
-# filter = "s/.*Process \d+ \((.*)\) of .* dumped core./\1 dumped core/"
-# color= "#aa0000"
-#
-# [system_notifier.parsers.journal]
-# pattern = "usb \d+-[0-9.]+: Product: "
-# filter = "s/.*usb \d+-[0-9.]+: Product: (.*)/USB plugged: \1/"

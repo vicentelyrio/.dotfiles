@@ -59,3 +59,7 @@ setopt appendhistory
 
 # ASDF completions
 . /opt/asdf-vm/asdf.sh
+
+# export PATH="$HOME/.local/bin:$PATH"
+# export PATH="$HOME/.local/share/pypr-env/bin:$PATH"
+alias pypr="$HOME/.local/share/pypr-env/bin/pypr"
