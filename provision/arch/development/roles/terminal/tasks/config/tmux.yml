@@ -13,4 +13,4 @@
     follow: false
     force: true
   with_items:
-    - .tmux.conf
+    - tmux.conf

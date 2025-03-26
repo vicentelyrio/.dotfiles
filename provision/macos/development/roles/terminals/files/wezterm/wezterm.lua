@@ -22,6 +22,8 @@ config.window_padding = {
   bottom = 0,
 }
 
+config.scrollback_lines = 100000
+
 config.window_frame = {
   border_left_width = '0.5cell',
   border_right_width = '0.5cell',

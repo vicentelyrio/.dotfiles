@@ -52,37 +52,63 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-# ASDF
-. "$HOME/.asdf/asdf.sh"
+function asdf_update_versions() {
+  local nvmrc_path=".nvmrc"
+  local yarnrc_path=".yarnrc"
+  local toolversions_path=".tool-versions"
 
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+  # Don't do anything if .tool-versions exists
+  if [ -f "$toolversions_path" ]; then
+    return
+  fi  # This was the problem - had a } instead of fi
 
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
-
-# Function to find and read .nvmrc files
-function asdf_update_nodejs_version() {
-  local nvmrc_path
-  nvmrc_path="$(pwd)/.nvmrc"
+  # Handle Node version from .nvmrc
   if [ -f "$nvmrc_path" ]; then
     local node_version
     node_version=$(<"$nvmrc_path")
+    # Clean up the version string (remove 'v' prefix if present)
+    node_version=${node_version#v}
+
     # Install the version if it's not already installed
     asdf install nodejs $node_version 2>/dev/null || true
     # Set the version for the current shell
     asdf local nodejs $node_version
   fi
+
+  # Handle Yarn version from .yarnrc
+  if [ -f "$yarnrc_path" ]; then
+    local yarn_version
+    # Extract version from .yarnrc (assuming format like 'version "X.X.X"')
+    yarn_version=$(grep "version" "$yarnrc_path" | cut -d '"' -f2)
+
+    if [ ! -z "$yarn_version" ]; then
+      # Install the version if it's not already installed
+      asdf install yarn $yarn_version 2>/dev/null || true
+      # Set the version for the current shell
+      asdf local yarn $yarn_version
+    fi
+  fi
 }
 
-# Auto-switch Node.js version when entering a directory
+# Auto-switch versions when entering a directory
 autoload -U add-zsh-hook
+add-zsh-hook chpwd asdf_update_versions
 
-add-zsh-hook chpwd asdf_update_nodejs_version
 # BEGIN ANSIBLE MANAGED BLOCK - asdf
-. "$HOME/.asdf/asdf.sh"
+. /usr/local/opt/asdf/libexec/asdf.sh
+
 # append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
 # END ANSIBLE MANAGED BLOCK - asdf
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
+
+. "$HOME/.local/bin/env"
