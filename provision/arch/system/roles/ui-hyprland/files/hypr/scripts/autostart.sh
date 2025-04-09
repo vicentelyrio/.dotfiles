@@ -19,7 +19,10 @@ hyprpaper &
 # xremap $HOME/.config/xremap/config.toml --device /dev/input/event30 &
 
 # Interface
-$HOME/.config/ags/run/desktop-show.sh &
+"$HOME/.config/ags/run/desktop-show.sh" &
+
+# Clipboard manager
+"$HOME/.config/hypr/scripts/clipboard/manager.sh" &
 
 # GTK theme
 # $HOME/.config/hypr/scripts/gtk/settings.sh &
