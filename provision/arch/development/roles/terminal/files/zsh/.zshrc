@@ -8,9 +8,9 @@ fi
 
 source ${ZDOTDIR:-${HOME}}/.config/.zsh/zsh-sh-theme/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
-# zsh nvm config
-export NVM_COMPLETION=true
-export NVM_AUTO_USE=true
+# # zsh nvm config
+# export NVM_COMPLETION=true
+# export NVM_AUTO_USE=true
 
 # ZCOMET - plugin manager
 if [[ ! -f ${ZDOTDIR:-${HOME}}/.config/.zcomet/bin/zcomet.zsh ]]; then
@@ -57,9 +57,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-# ASDF completions
-. /opt/asdf-vm/asdf.sh
-
-# export PATH="$HOME/.local/bin:$PATH"
-# export PATH="$HOME/.local/share/pypr-env/bin:$PATH"
 alias pypr="$HOME/.local/share/pypr-env/bin/pypr"
+# BEGIN ANSIBLE MANAGED BLOCK - asdf
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit && compinit
+export PATH="$HOME/.asdf/shims:$PATH"
+# END ANSIBLE MANAGED BLOCK - asdf
