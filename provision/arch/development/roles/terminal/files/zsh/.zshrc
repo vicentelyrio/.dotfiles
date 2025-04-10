@@ -58,8 +58,9 @@ SAVEHIST=10000
 setopt appendhistory
 
 alias pypr="$HOME/.local/share/pypr-env/bin/pypr"
-# BEGIN ANSIBLE MANAGED BLOCK - asdf
+
+# BEGIN ANSIBLE MANAGED BLOCK - ASDF
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 export PATH="$HOME/.asdf/shims:$PATH"
-# END ANSIBLE MANAGED BLOCK - asdf
+# END ANSIBLE MANAGED BLOCK - ASDF
