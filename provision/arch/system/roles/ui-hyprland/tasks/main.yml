@@ -26,6 +26,7 @@
       - hyprprop-git
       - hyprpicker
       - pyprland
+      - clipse
     state: present
   notify: Rkhunter propupdate
 

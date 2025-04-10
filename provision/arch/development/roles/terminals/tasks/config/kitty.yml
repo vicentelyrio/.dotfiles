@@ -1,0 +1,16 @@
+---
+- name: Kitty - create config directory
+  ansible.builtin.file:
+    path: ~/.config/kitty
+    state: directory
+    mode: "0777"
+
+- name: Kitty - symlink files
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/terminals/files/kitty/{{ item }}"
+    dest: "~/.config/kitty/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - kitty.conf

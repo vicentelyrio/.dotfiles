@@ -21,11 +21,8 @@ hyprpaper &
 # Interface
 "$HOME/.config/ags/run/desktop-show.sh" &
 
-# Clipboard manager
-"$HOME/.config/hypr/scripts/clipboard/manager.sh" &
-
 # GTK theme
-# $HOME/.config/hypr/scripts/gtk/settings.sh &
+"$HOME/.config/hypr/scripts/gtk/settings.sh" &
 
 # Screen sharing and portals
 # "$scripts"/portal &

@@ -1,5 +1,14 @@
 [pyprland]
-plugins = ["scratchpads", "layout_center", "expose", "magnify", "system_notifier", "toggle_special", "workspaces_follow_focus", "lost_windows"]
+plugins = [
+  "scratchpads",
+  "layout_center",
+  "expose",
+  "magnify",
+  "system_notifier",
+  "toggle_special",
+  "workspaces_follow_focus",
+  "lost_windows"
+]
 
 [scratchpads.yazi]
 command = "alacritty --class scratchpad-large -e zsh -c 'yazi'"
