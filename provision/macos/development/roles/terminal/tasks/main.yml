@@ -20,6 +20,7 @@
       - jq
       - ripgrep
       - fzf
+      - pngpaste
     state: present
   ignore_errors: true
   register: ignore_errors_register
