@@ -112,3 +112,10 @@ if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-
 if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
 
 . "$HOME/.local/bin/env"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+. "$HOME/.cargo/env"
+
+export PATH="$HOME/.asdf/shims:$PATH"
