@@ -5,7 +5,6 @@ system:
   processor: intel
   external_display: true
   graphics_card:
-    - amd
     - intel
 
 user:

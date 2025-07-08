@@ -15,6 +15,7 @@
     use: yay
     name:
       - dotenv-linter-bin
+      - cursor-bin
 
 - name: Nvim setup
   ansible.builtin.import_tasks: ./config/nvim.yml
