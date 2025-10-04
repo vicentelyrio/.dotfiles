@@ -4,6 +4,7 @@
   vars_files: ../../vars/all.yml
   roles:
     # System
+    - system-aur-builder
     - system-rkhunter
     - system-yay
     - system-pacman
