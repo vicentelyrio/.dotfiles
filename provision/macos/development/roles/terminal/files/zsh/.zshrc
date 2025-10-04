@@ -95,14 +95,11 @@ autoload -U add-zsh-hook
 add-zsh-hook chpwd asdf_update_versions
 
 # BEGIN ANSIBLE MANAGED BLOCK - asdf
-. /usr/local/opt/asdf/libexec/asdf.sh
-
+. "$HOME/.asdf/asdf.sh"
 # append completions to fpath
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-
+fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
-
 # END ANSIBLE MANAGED BLOCK - asdf
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -111,11 +108,13 @@ if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-
 # The next line enables shell command completion for gcloud.
 if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
 
-. "$HOME/.local/bin/env"
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
 . "$HOME/.cargo/env"
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
 export PATH="$HOME/.asdf/shims:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

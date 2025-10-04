@@ -1,5 +1,29 @@
 ---
-- name: Yay - Install
-  kewlfft.aur.aur:
-    name: yay
-    state: present
+- name: YAY - Check if is installed
+  command: which yay
+  register: yay_check
+  ignore_errors: true
+  changed_when: false
+
+- name: YAY - Clone repository
+  become: true
+  become_user: "{{ ansible_user_id }}"
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+    update: yes
+  when: yay_check.rc != 0
+
+- name: YAY - Build and install
+  become: true
+  become_user: "{{ ansible_user_id }}"
+  command:
+    cmd: makepkg -si --noconfirm
+    chdir: /tmp/yay
+  when: yay_check.rc != 0
+
+- name: YAY - Clean up build directory
+  file:
+    path: /tmp/yay
+    state: absent
+  when: yay_check.rc != 0
