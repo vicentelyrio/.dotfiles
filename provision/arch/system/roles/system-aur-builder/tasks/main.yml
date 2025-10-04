@@ -1,11 +1,16 @@
+---
 - name: Ensure aur_builder user exists
   ansible.builtin.user:
     name: aur_builder
     shell: /bin/bash
     create_home: yes
+  become: true
+  become_user: root
 
 - name: Allow aur_builder to run pacman without password
   ansible.builtin.copy:
     dest: /etc/sudoers.d/aur_builder
     content: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman\n"
     mode: '0440'
+  become: true
+  become_user: root
