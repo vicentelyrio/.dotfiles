@@ -3,11 +3,11 @@
   hosts: local
   connection: local
 
-# - name: Arch Playbook
-#   ansible.builtin.import_playbook: ./arch/system/main.yml
+- name: Arch Playbook
+  ansible.builtin.import_playbook: ./arch/system/main.yml
 
 - name: Development Playbook
   ansible.builtin.import_playbook: ./arch/development/main.yml
 
-# - name: Apps Playbook
-#   ansible.builtin.import_playbook: ./arch/apps/main.yml
+- name: Apps Playbook
+  ansible.builtin.import_playbook: ./arch/apps/main.yml
