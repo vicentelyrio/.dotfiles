@@ -7,10 +7,14 @@
   become: true
   become_user: root
 
-- name: Allow aur_builder to run pacman without password
+- name: Allow aur_builder to run pacman without password and disable requiretty
   ansible.builtin.copy:
     dest: /etc/sudoers.d/aur_builder
-    content: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman\n"
+    content: |
+      Defaults:aur_builder !requiretty
+      aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman
     mode: '0440'
+    owner: root
+    group: root
   become: true
   become_user: root
