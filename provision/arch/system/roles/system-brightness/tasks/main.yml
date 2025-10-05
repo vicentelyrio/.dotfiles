@@ -11,11 +11,13 @@
   kewlfft.aur.aur:
     use: yay
     name:
-      - ddcci-driver-linux-dkms-git
+      - ddcci-driver-linux-dkms
       - light
     state: present
   become: true
   become_user: aur_builder
+  ignore_errors: true
+  register: ignore_errors_register
 
 # LIGHT Permission
 - name: Brightness - copy rules for light run without sudo
@@ -25,6 +27,8 @@
     src: "{{ playbook_dir }}/roles/system-brightness/files/90-backlight.rules"
     dest: /etc/udev/rules.d/
     mode: "0644"
+  ignore_errors: true
+  register: ignore_errors_register
 
 # I2C DEV
 - name: Brightness - enable i2c_dev
@@ -38,12 +42,16 @@
     create: true
     mode: "0644"
   when: system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Brightness - Ensure group i2c exists
   ansible.builtin.group:
     name: "i2c"
     state: present
   when: system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Brightness - Ensure the user is part of the i2c group
   become: true
@@ -58,6 +66,8 @@
   when:
     - user.name is defined
     - system.external_display|bool
+  ignore_errors: true
+  register: ignore_errors_register
 
 # DDCI
 - name: Brightness - load DDCCI module
