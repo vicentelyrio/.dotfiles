@@ -29,6 +29,8 @@
       - clipse
     state: present
   notify: Rkhunter propupdate
+  become: true
+  become_user: aur_builder
 
 # Symlink Files
 - name: Hyprland - create config directory

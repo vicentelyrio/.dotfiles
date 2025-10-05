@@ -29,3 +29,5 @@
     name:
       - amf-amdgpu-pro
       - vulkan-amdgpu-pro
+  become: true
+  become_user: aur_builder

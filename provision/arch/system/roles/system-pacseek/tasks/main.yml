@@ -9,3 +9,5 @@
   notify: Rkhunter propupdate
   ignore_errors: true
   register: ignore_errors_register
+  become: true
+  become_user: aur_builder

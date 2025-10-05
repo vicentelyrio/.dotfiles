@@ -6,3 +6,5 @@
     name:
       - platformio-git
     state: present
+  become: true
+  become_user: aur_builder
