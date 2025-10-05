@@ -12,7 +12,6 @@
     - Rkhunter propupdate
 
 - name: Keyboard - install aur packages
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:

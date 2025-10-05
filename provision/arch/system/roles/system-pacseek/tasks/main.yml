@@ -1,6 +1,5 @@
 ---
 - name: Pacseek - install manager
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:

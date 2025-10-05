@@ -1,6 +1,5 @@
 ---
 - name: Code - install code related packages
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:

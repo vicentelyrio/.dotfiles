@@ -1,7 +1,5 @@
 ---
 - name: Bluetooth - install dependencies
-  become: true
-  become_user: root
   ansible.builtin.package:
     name:
       - bluez
@@ -12,9 +10,10 @@
       - blueman
       - gnome-bluetooth-3.0
     state: present
+  become: true
+  become_user: root
 
 - name: Bluetooth - install gui
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:
@@ -25,19 +24,19 @@
   become_user: aur_builder
 
 - name: Bluetooth - ensure the service is enabled and started
-  become: true
-  become_user: root
   ansible.builtin.service:
     name: bluetooth
     state: started
     enabled: true
-
-- name: Bluetooth - Config experimental flag
   become: true
   become_user: root
+
+- name: Bluetooth - Config experimental flag
   ansible.builtin.lineinfile:
     create: true
     path: /etc/bluetooth/main.conf
     regexp: "#Experimental = false"
     line: "Experimental = true"
     mode: "0644"
+  become: true
+  become_user: root

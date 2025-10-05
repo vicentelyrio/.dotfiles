@@ -19,7 +19,6 @@
   notify: Rkhunter propupdate
 
 - name: Hyprland - install aur packages
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:

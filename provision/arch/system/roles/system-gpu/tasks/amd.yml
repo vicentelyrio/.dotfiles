@@ -23,7 +23,6 @@
 
 # AUR
 - name: AMD - Drivers AUR
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:

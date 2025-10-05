@@ -1,18 +1,17 @@
 ---
 - name: DB - install Dbeaver
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:
       - beekeeper-studio-bin
     state: present
+  become: true
+  become_user: aur_builder
 
 - name: DB - install postgresql
-  become: true
-  become_user: root
   ansible.builtin.package:
     name:
       - postgresql
     state: present
   become: true
-  become_user: aur_builder
+  become_user: root

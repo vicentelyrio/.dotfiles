@@ -9,7 +9,6 @@
     state: present
 
 - name: 3D Apps - install aur packages
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:

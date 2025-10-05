@@ -1,6 +1,5 @@
 ---
 - name: Theme - install packages
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:
@@ -53,6 +52,7 @@
 
 - name: Theme - source theme folder
   become: true
+  become_user: root
   ansible.builtin.lineinfile:
     path: ~/.zshenv
     regexp: "source ~/.config/themes/theme.conf"

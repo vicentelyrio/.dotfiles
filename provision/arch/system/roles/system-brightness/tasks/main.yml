@@ -8,7 +8,6 @@
       - ddcutil
 
 - name: Brightness - install aur packages
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:

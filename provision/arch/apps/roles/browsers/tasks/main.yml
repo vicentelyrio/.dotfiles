@@ -8,7 +8,6 @@
     state: present
 
 - name: Browsers - install aur packages
-  become: true
   kewlfft.aur.aur:
     use: yay
     name:

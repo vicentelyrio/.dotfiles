@@ -1,7 +1,5 @@
 ---
 - name: IDEs - install
-  become: true
-  become_user: root
   ansible.builtin.package:
     name:
       - tidy
@@ -9,6 +7,8 @@
       - neovim
       - helix
     state: present
+  become: true
+  become_user: root
 
 - name: IDEs - Install aur packages
   kewlfft.aur.aur:
