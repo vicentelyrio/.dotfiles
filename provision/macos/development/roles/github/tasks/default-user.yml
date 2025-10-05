@@ -6,12 +6,16 @@
     scope: global
     state: present
   when: git.default is defined
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Github - create ssh directory
   ansible.builtin.file:
     path: ~/.ssh
     state: directory
     mode: "0777"
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Github - create default user email
   community.general.git_config:
@@ -20,6 +24,8 @@
     scope: global
     state: present
   when: git.default is defined
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Github - create default user ssh keypair
   community.crypto.openssh_keypair:
@@ -30,6 +36,8 @@
     path: "~/.ssh/id_ssh_default"
     comment: "{{ git.default.email }}"
   when: git.default is defined
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Github - create default user ssh config
   community.general.git_config:
@@ -38,6 +46,8 @@
     scope: global
     state: present
   when: git.default is defined
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Github - add default user key to agent
   ansible.builtin.shell: "ssh-add ~/.ssh/id_ssh_default"
@@ -46,6 +56,8 @@
   when: git.default is defined
   register: output
   changed_when: output.rc != 0
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Github - update config file
   ansible.builtin.blockinfile:
@@ -56,3 +68,5 @@
     prepend_newline: true
     create: true
   when: git.default is defined
+  ignore_errors: true
+  register: ignore_errors_register
