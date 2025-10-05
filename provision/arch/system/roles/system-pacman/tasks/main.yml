@@ -123,17 +123,6 @@
   notify:
     - Rkhunter propupdate
 
-- name: Pacman - Install aur hooks
-  kewlfft.aur.aur:
-    use: yay
-    name:
-      - check-broken-packages-pacman-hook-git
-      - reflector-pacman-hook-git
-      - sync-pacman-hook-git
-      - needrestart
-      - paccache-hook
-    state: present
-
 - name: Pacman - create xdg dirs
   ansible.builtin.command: xdg-user-dirs-update
   register: result
