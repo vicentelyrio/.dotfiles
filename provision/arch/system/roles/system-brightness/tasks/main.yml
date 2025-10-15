@@ -7,12 +7,37 @@
       - brightnessctl
       - ddcutil
 
-- name: Brightness - install aur packages
+- name: Brightness - build aur package (ddcci-driver-linux-dkms-git)
   kewlfft.aur.aur:
     use: yay
-    name:
-      - ddcci-driver-linux-dkms
-      - light
+    name: ddcci-driver-linux-dkms-git
+    state: present
+    extra_args: --builddir /tmp/aur-build --nobuild
+  failed_when: false
+  register: ddcci_build_result
+  become: true
+  become_user: aur_builder
+  ignore_errors: true
+  register: ignore_errors_register
+
+- name: Brightness - install built DKMS package with pacman
+  become: true
+  become_user: root
+  ansible.builtin.shell: |
+    cd /home/{{ user.name }}/.cache/yay/ddcci-driver-linux-dkms-git/
+    pacman -U --noconfirm *.pkg.tar*
+  when: ddcci_build_result.failed
+  register: ddcci_install_result
+  failed_when: false
+  become: true
+  become_user: aur_builder
+  ignore_errors: true
+  register: ignore_errors_register
+
+- name: Brightness - install light from AUR
+  kewlfft.aur.aur:
+    use: yay
+    name: light
     state: present
   become: true
   become_user: aur_builder
