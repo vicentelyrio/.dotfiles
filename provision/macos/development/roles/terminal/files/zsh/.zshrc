@@ -118,3 +118,4 @@ export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
 export PATH="$HOME/.asdf/shims:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
