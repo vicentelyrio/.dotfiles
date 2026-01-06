@@ -7,6 +7,7 @@
     - terminals
     - terminal
     - ides
-    - asdf
+    - node
+    # - asdf
     - db
     - code

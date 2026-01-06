@@ -1,10 +1,8 @@
 ---
-- name: Browsers - install
+- name: Security - install packages
   ansible.builtin.package:
     name:
-      - firefox@developer-edition
-      - responsively
-      - zen
+      - bitwarden
     state: present
   ignore_errors: true
   register: ignore_errors_register
