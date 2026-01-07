@@ -1,0 +1,57 @@
+---
+- name: Node - install nvm
+  ansible.builtin.package:
+    name:
+      - nvm
+    state: present
+  ignore_errors: true
+  register: ignore_errors_register
+
+- name: Node - create nvm directory
+  ansible.builtin.file:
+    path: ~/.nvm
+    state: directory
+    mode: "0777"
+  ignore_errors: true
+  register: ignore_errors_register
+
+- name: Node - Add to shell (zsh)
+  ansible.builtin.blockinfile:
+    path: "{{ lookup('env','HOME') }}/.zshrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - node/nvm"
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+
+- name: Node - install node (LTS)
+  ansible.builtin.shell: |
+    export NVM_DIR="$HOME/.nvm"
+    source "$(brew --prefix nvm)/nvm.sh"
+    nvm install --lts
+    nvm alias default lts/*
+  args:
+    executable: /bin/bash
+
+- name: Node - expose node to PATH
+  ansible.builtin.shell: |
+    export NVM_DIR="$HOME/.nvm"
+    source "$(brew --prefix nvm)/nvm.sh"
+    echo "NODE_PATH=$(nvm which --lts)" >> ~/.node_env
+  args:
+    executable: /bin/bash
+
+- name: Node - enable corepack
+  ansible.builtin.shell: |
+    export NVM_DIR="$HOME/.nvm"
+    source "$(brew --prefix nvm)/nvm.sh"
+    corepack enable
+  args:
+    executable: /bin/bash
+
+- name: Node - install yarn via corepack
+  ansible.builtin.shell: |
+    export NVM_DIR="$HOME/.nvm"
+    source "$(brew --prefix nvm)/nvm.sh"
+    corepack prepare yarn@stable --activate
+  args:
+    executable: /bin/bash
