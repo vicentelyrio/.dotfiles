@@ -24,3 +24,10 @@
     force: true
   with_items:
     - .zshaliases
+
+- name: ZSH - add ssh agent persistence
+  ansible.builtin.lineinfile:
+    path: "~/.zshrc"
+    line: "ssh-add --apple-use-keychain ~/.ssh/id_ssh_default 2>/dev/null"
+    create: true
+    insertafter: EOF

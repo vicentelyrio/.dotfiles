@@ -8,14 +8,22 @@
   ignore_errors: true
   register: ignore_errors_register
 
-- name: Install Docker Desktop (CLI)
-  ansible.builtin.command:
-    cmd: brew install --formula docker
-  ignore_errors: true
-  register: ignore_errors_register
+- name: Check if Docker Desktop already exists
+  ansible.builtin.stat:
+    path: /Applications/Docker.app
+  register: docker_exists
 
-- name: Install Docker Desktop (GUI)
+- name: Install Docker CLI tools
+  ansible.builtin.package:
+    name:
+      - docker
+      - docker-compose
+    state: present
+
+- name: Install Docker Desktop GUI (only if not exists)
   ansible.builtin.command:
     cmd: brew install --cask docker
+  when: not docker_exists.stat.exists
   ignore_errors: true
-  register: ignore_errors_register
+  register: docker_install
+  failed_when: false

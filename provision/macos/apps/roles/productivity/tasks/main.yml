@@ -10,3 +10,15 @@
     state: present
   ignore_errors: true
   register: ignore_errors_register
+
+- name: Karabiner - create config directory
+  ansible.builtin.file:
+    path: "~/.config/karabiner"
+    state: directory
+    mode: "0755"
+
+- name: Karabiner - deploy caps lock to escape config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/productivity/files/karabiner.json"
+    dest: "~/.config/karabiner/karabiner.json"
+    mode: "0644"

@@ -4,3 +4,4 @@
 
   roles:
     - quicklook
+    - system-defaults
