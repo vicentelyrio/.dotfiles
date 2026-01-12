@@ -66,19 +66,23 @@
 - name: Configure automatic weekly updates
   ansible.builtin.command:
     cmd: sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ScheduleFrequency -int 7
-  become: true
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Enable automatic security updates
   ansible.builtin.command:
     cmd: sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
-  become: true
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Enable firewall
   ansible.builtin.command:
     cmd: sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-  become: true
+  ignore_errors: true
+  register: ignore_errors_register
 
 - name: Enable stealth mode
   ansible.builtin.command:
     cmd: sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
-  become: true
+  ignore_errors: true
+  register: ignore_errors_register

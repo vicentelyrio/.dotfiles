@@ -60,4 +60,10 @@ autoload -U +X bashcompinit && bashcompinit
 export NVM_DIR="$HOME/.nvm"
 [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
 # END ANSIBLE MANAGED BLOCK - node/nvm
+<<<<<<< Updated upstream
 ssh-add --apple-use-keychain ~/.ssh/id_ssh_default 2>/dev/null
+=======
+
+# opencode
+export PATH=/Users/vicentelyrio/.opencode/bin:$PATH
+>>>>>>> Stashed changes
