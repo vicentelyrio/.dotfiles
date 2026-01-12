@@ -64,3 +64,14 @@ fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 export PATH="$HOME/.asdf/shims:$PATH"
 # END ANSIBLE MANAGED BLOCK - ASDF
+
+# opencode
+export PATH=/home/vicentelyrio/.opencode/bin:$PATH
+
+# pnpm
+export PNPM_HOME="/home/vicentelyrio/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

@@ -17,6 +17,7 @@
     name:
       - slack-desktop
       - zoom
+      - claude-desktop-arch
     state: present
   become: true
   become_user: aur_builder
