@@ -56,14 +56,20 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
+
 # BEGIN ANSIBLE MANAGED BLOCK - node/nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
 # END ANSIBLE MANAGED BLOCK - node/nvm
-<<<<<<< Updated upstream
+
 ssh-add --apple-use-keychain ~/.ssh/id_ssh_default 2>/dev/null
-=======
 
 # opencode
 export PATH=/Users/vicentelyrio/.opencode/bin:$PATH
->>>>>>> Stashed changes
+
+# bun completions
+[ -s "/Users/vicentelyrio/.bun/_bun" ] && source "/Users/vicentelyrio/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
