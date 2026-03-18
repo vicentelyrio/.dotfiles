@@ -20,6 +20,8 @@
       - vdpauinfo
       - clinfo
       - rocm-hip-sdk
+  ignore_errors: true
+  register: ignore_errors_register
 
 # AUR
 - name: AMD - Drivers AUR

@@ -15,3 +15,5 @@
       - lib32-mesa
       - mesa-vdpau
       - lib32-mesa-vdpau
+  ignore_errors: true
+  register: ignore_errors_register

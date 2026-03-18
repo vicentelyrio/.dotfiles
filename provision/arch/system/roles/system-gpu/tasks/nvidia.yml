@@ -14,3 +14,5 @@
       - cuda
       - vdpauinfo
       - clinfo
+  ignore_errors: true
+  register: ignore_errors_register

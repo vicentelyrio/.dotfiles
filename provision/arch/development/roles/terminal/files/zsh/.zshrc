@@ -57,7 +57,12 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-alias pypr="$HOME/.local/share/pypr-env/bin/pypr"
+# pyenv
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+#
+# alias pypr="$HOME/.local/share/pypr-env/bin/pypr"
 
 # BEGIN ANSIBLE MANAGED BLOCK - ASDF
 fpath=(${ASDF_DIR}/completions $fpath)
@@ -75,3 +80,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# bun completions
+[ -s "/home/vicentelyrio/.bun/_bun" ] && source "/home/vicentelyrio/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
