@@ -46,9 +46,12 @@ alias jof="journalctl -u"
 alias fjof="journalctl -fu"
 
 # Code
-alias y="yarn"
+alias b="bun"
+alias br="bun run"
 alias n="npm"
+alias nr="npm run"
 alias p="pnpm"
+alias y="yarn"
 
 # CODY
 alias gcc="git diff | cody chat --stdin -m 'write a commit message for this diff in one line'"

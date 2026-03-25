@@ -39,8 +39,9 @@ alias ocat="/usr/bin/cat"
 alias ack="ff $1 --sort-files --color"
 
 # Code
-alias y="yarn"
-alias n="npm"
-alias p="pnpm"
 alias b="bun"
 alias br="bun run"
+alias n="npm"
+alias nr="npm run"
+alias p="pnpm"
+alias y="yarn"
