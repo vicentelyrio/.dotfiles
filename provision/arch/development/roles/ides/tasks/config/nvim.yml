@@ -3,13 +3,29 @@
   ansible.builtin.file:
     path: "~/.config/nvim"
     state: directory
-    mode: "0777"
+    mode: "0755"
 
-- name: Neovim - clone config from repo
+- name: Neovim - check if config repo already exists
+  ansible.builtin.stat:
+    path: "~/.config/nvim/.git"
+  register: nvim_repo
+
+- name: Neovim - clone config from repo (only if not already cloned)
   ansible.builtin.git:
     repo: "git@github.com:vicentelyrio/nvim.git"
     dest: "~/.config/nvim"
     clone: true
     version: main
-  ignore_errors: true
-  register: ignore_errors_register
+    update: false
+  when: not nvim_repo.stat.exists
+  register: nvim_clone
+  failed_when:
+    - nvim_clone.failed | default(false)
+    - "'Local modifications' not in (nvim_clone.msg | default(''))"
+
+- name: Neovim - repo present, skipping update to preserve local changes
+  ansible.builtin.debug:
+    msg: >-
+      ~/.config/nvim already cloned. Not pulling automatically to avoid
+      clobbering local edits (e.g. lazy-lock.json). Pull manually when ready.
+  when: nvim_repo.stat.exists

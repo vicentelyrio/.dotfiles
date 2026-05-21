@@ -1,4 +1,8 @@
-general.import = ["/home/vicentelyrio/.config/alacritty/colors.toml", "/home/vicentelyrio/.config/alacritty/fonts.toml"]
+[general]
+import = [
+  "~/.config/alacritty/colors.toml",
+  "~/.config/alacritty/fonts.toml",
+]
 live_config_reload = true
 working_directory = "None"
 
@@ -25,7 +29,7 @@ TERM = "xterm-256color"
 history = 10000
 multiplier = 3
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
 

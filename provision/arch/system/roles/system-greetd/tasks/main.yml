@@ -6,13 +6,22 @@
     name:
       - greetd
 
-- name: Greeter - enable and start
+- name: Greeter - detect if running inside greetd session
+  ansible.builtin.shell: |
+    set -o pipefail
+    loginctl show-session "$XDG_SESSION_ID" -p Service --value 2>/dev/null || true
+  args:
+    executable: /bin/bash
+  register: greetd_current_session
+  changed_when: false
+  failed_when: false
+
+- name: Greeter - enable on boot (do not restart live session)
   become: true
   become_user: root
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: greetd
     enabled: true
-    state: stopped
 
 - name: Greeter - symlink files
   become: true
@@ -23,8 +32,34 @@
     state: link
     follow: false
     force: true
-  with_items:
+  loop:
     - config.toml
     - hyprland.conf
     - start-hypr.sh
     - start-session.sh
+
+- name: Greeter - ensure scripts are executable
+  become: true
+  become_user: root
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/roles/system-greetd/files/{{ item }}"
+    mode: "0755"
+  loop:
+    - start-hypr.sh
+    - start-session.sh
+
+- name: Greeter - skipping restart (would kill active session)
+  ansible.builtin.debug:
+    msg: >-
+      greetd is currently hosting this session ({{ greetd_current_session.stdout }}).
+      Skipping service restart. Changes will take effect at next reboot or after
+      logging out and running `sudo systemctl restart greetd` from a TTY.
+  when: greetd_current_session.stdout == "greetd"
+
+- name: Greeter - start service (only when not inside a greetd session)
+  become: true
+  become_user: root
+  ansible.builtin.systemd:
+    name: greetd
+    state: started
+  when: greetd_current_session.stdout != "greetd"

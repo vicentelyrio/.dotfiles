@@ -5,7 +5,11 @@ system:
   processor: intel
   external_display: true
   graphics_card:
-    - intel
+    - nvidia
+  # NVIDIA driver flavor:
+  #   open    -> nvidia-open (REQUIRED for RTX 20-series and newer: Turing, Ampere, Ada, Blackwell/RTX 50)
+  #   legacy  -> nvidia (proprietary, for Maxwell/Pascal and older where open is not supported)
+  nvidia_driver: open
 
 user:
   name: vicentelyrio

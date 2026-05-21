@@ -33,7 +33,7 @@
   ansible.builtin.file:
     path: ~/.config/themes
     state: directory
-    mode: "0777"
+    mode: "0755"
 
 - name: Theme - find files to symlink
   ansible.builtin.find:
@@ -51,12 +51,10 @@
   with_items: "{{ theme_files.files }}"
 
 - name: Theme - source theme folder
-  become: true
-  become_user: root
   ansible.builtin.lineinfile:
     path: ~/.zshenv
     regexp: "source ~/.config/themes/theme.conf"
     line: "source ~/.config/themes/theme.conf"
     state: present
     create: true
-    mode: "0777"
+    mode: "0644"

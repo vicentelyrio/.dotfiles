@@ -6,17 +6,13 @@
     scope: global
     state: present
   when: git.default is defined
-  ignore_errors: true
-  register: ignore_errors_register
 
 - name: Github - create ssh directory
   ansible.builtin.file:
     path: ~/.ssh
     state: directory
-    mode: "0777"
+    mode: "0700"
   when: git.default is defined
-  ignore_errors: true
-  register: ignore_errors_register
 
 - name: Github - create default user email
   community.general.git_config:
@@ -25,20 +21,16 @@
     scope: global
     state: present
   when: git.default is defined
-  ignore_errors: true
-  register: ignore_errors_register
 
 - name: Github - create default user ssh keypair
   community.crypto.openssh_keypair:
     force: false
     state: present
     type: ed25519
-    mode: "0400"
+    mode: "0600"
     path: "~/.ssh/id_ssh_default"
     comment: "{{ git.default.email }}"
   when: git.default is defined
-  ignore_errors: true
-  register: ignore_errors_register
 
 - name: Github - create default user ssh config
   community.general.git_config:
@@ -47,27 +39,39 @@
     scope: global
     state: present
   when: git.default is defined
-  ignore_errors: true
-  register: ignore_errors_register
+
+- name: Github - list keys currently loaded in ssh-agent
+  ansible.builtin.command: ssh-add -l
+  register: ssh_add_list
+  changed_when: false
+  failed_when: false
+  when: git.default is defined
+
+- name: Github - get fingerprint of default key
+  ansible.builtin.command: ssh-keygen -lf ~/.ssh/id_ssh_default
+  register: ssh_default_fp
+  changed_when: false
+  failed_when: false
+  when: git.default is defined
 
 - name: Github - add default user key to agent
-  ansible.builtin.shell: "ssh-add ~/.ssh/id_ssh_default"
-  args:
-    executable: /bin/bash
-  when: git.default is defined
-  register: output
-  changed_when: output.rc != 0
-  ignore_errors: true
-  register: ignore_errors_register
+  ansible.builtin.command: ssh-add ~/.ssh/id_ssh_default
+  register: ssh_add_result
+  changed_when: ssh_add_result.rc == 0
+  failed_when:
+    - ssh_add_result.rc != 0
+    - "'Could not open a connection to your authentication agent' not in (ssh_add_result.stderr | default(''))"
+  when:
+    - git.default is defined
+    - ssh_default_fp.rc | default(1) == 0
+    - (ssh_default_fp.stdout.split(' ')[1] | default('')) not in (ssh_add_list.stdout | default(''))
 
 - name: Github - update config file
   ansible.builtin.blockinfile:
     block: "{{ lookup('template', '../templates/config-default.j2') }}"
     dest: ~/.ssh/config
-    mode: "0644"
+    mode: "0600"
     marker: "# {mark} default github host"
     prepend_newline: true
     create: true
   when: git.default is defined
-  ignore_errors: true
-  register: ignore_errors_register

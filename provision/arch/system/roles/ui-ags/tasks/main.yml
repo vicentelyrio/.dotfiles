@@ -1,5 +1,7 @@
 ---
 - name: Ags - install
+  become: true
+  become_user: aur_builder
   kewlfft.aur.aur:
     use: yay
     name:
@@ -7,16 +9,30 @@
       - libdbusmenu-gtk3
     state: present
   notify: Rkhunter propupdate
-  ignore_errors: true
-  register: ignore_errors_register
-  become: true
-  become_user: aur_builder
+  register: ags_install
+  failed_when: false
 
-- name: AGS - clone config from repo
+- name: AGS - check if config repo already exists
+  ansible.builtin.stat:
+    path: "~/.config/ags/.git"
+  register: ags_repo
+
+- name: AGS - clone config from repo (only if not already cloned)
   ansible.builtin.git:
     repo: "git@github.com:vicentelyrio/ags-desktop.git"
     dest: "~/.config/ags"
     clone: true
     version: main
-  ignore_errors: true
-  register: ignore_errors_register
+    update: false
+  when: not ags_repo.stat.exists
+  register: ags_clone
+  failed_when:
+    - ags_clone.failed | default(false)
+    - "'Local modifications' not in (ags_clone.msg | default(''))"
+
+- name: AGS - repo present, skipping update to preserve local changes
+  ansible.builtin.debug:
+    msg: >-
+      ~/.config/ags already cloned. Not pulling automatically to avoid
+      clobbering local edits. Pull manually when ready.
+  when: ags_repo.stat.exists

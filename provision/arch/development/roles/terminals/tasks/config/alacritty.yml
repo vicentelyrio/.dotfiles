@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: ~/.config/alacritty
     state: directory
-    mode: "0777"
+    mode: "0755"
 
 - name: Alacritty - symlink files
   ansible.builtin.file:
@@ -12,7 +12,7 @@
     state: link
     follow: false
     force: true
-  with_items:
+  loop:
     - alacritty.toml
     - colors.toml
     - fonts.toml

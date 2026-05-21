@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: ~/.config/kitty
     state: directory
-    mode: "0777"
+    mode: "0755"
 
 - name: Kitty - symlink files
   ansible.builtin.file:

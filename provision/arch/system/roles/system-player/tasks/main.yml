@@ -9,21 +9,57 @@
   notify:
     - Rkhunter propupdate
 
-- name: Player - copy service
-  become: true
-  become_user: root
-  ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/system-player/files/playerctl.service"
-    dest: /etc/systemd/system/
-    mode: "0644"
-
-- name: Player - start service
+# Older versions of this role installed playerctl.service as a SYSTEM unit,
+# which cannot reach the user's D-Bus session. Clean it up if present.
+- name: Player - disable obsolete system unit (if installed)
   become: true
   become_user: root
   ansible.builtin.systemd_service:
     name: playerctl.service
-    state: started
-    enabled: true
+    enabled: false
+    state: stopped
+  failed_when: false
+
+- name: Player - remove obsolete system unit file (if present)
+  become: true
+  become_user: root
+  ansible.builtin.file:
+    path: /etc/systemd/system/playerctl.service
+    state: absent
+  register: obsolete_system_unit
+
+- name: Player - reload system systemd if obsolete unit removed
+  become: true
+  become_user: root
+  ansible.builtin.systemd_service:
     daemon_reload: true
-  ignore_errors: true
-  register: ignore_errors_register
+  when: obsolete_system_unit.changed
+
+- name: Player - ensure user systemd directory exists
+  ansible.builtin.file:
+    path: "~/.config/systemd/user"
+    state: directory
+    mode: "0755"
+
+- name: Player - install user service unit
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/system-player/files/playerctl.service"
+    dest: "~/.config/systemd/user/playerctl.service"
+    mode: "0644"
+  register: playerctl_unit
+
+- name: Player - reload user systemd if unit changed
+  ansible.builtin.systemd_service:
+    scope: user
+    daemon_reload: true
+  when: playerctl_unit.changed
+
+- name: Player - enable user service (starts at graphical session)
+  ansible.builtin.systemd_service:
+    scope: user
+    name: playerctl.service
+    enabled: true
+  register: playerctl_enable
+  failed_when:
+    - playerctl_enable.failed
+    - "'Interactive authentication required' not in (playerctl_enable.msg | default(''))"

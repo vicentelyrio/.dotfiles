@@ -13,7 +13,7 @@
   ansible.builtin.template:
     src: "{{ playbook_dir }}/roles/github/templates/gitconfig-scoped.j2"
     dest: "~/.gitconfig-{{ item.scope }}"
-    mode: "0777"
+    mode: "0644"
   with_items: "{{ git.users }}"
   when: git.users is defined
 

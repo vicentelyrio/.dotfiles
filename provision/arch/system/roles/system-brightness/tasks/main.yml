@@ -8,17 +8,16 @@
       - ddcutil
 
 - name: Brightness - build aur package (ddcci-driver-linux-dkms-git)
+  become: true
+  become_user: aur_builder
   kewlfft.aur.aur:
     use: yay
     name: ddcci-driver-linux-dkms-git
     state: present
     extra_args: --builddir /tmp/aur-build --nobuild
-  failed_when: false
   register: ddcci_build_result
-  become: true
-  become_user: aur_builder
+  failed_when: false
   ignore_errors: true
-  register: ignore_errors_register
 
 - name: Brightness - install built DKMS package with pacman
   become: true
@@ -26,23 +25,23 @@
   ansible.builtin.shell: |
     cd /home/{{ user.name }}/.cache/yay/ddcci-driver-linux-dkms-git/
     pacman -U --noconfirm *.pkg.tar*
-  when: ddcci_build_result.failed
+  args:
+    executable: /bin/bash
+  when: ddcci_build_result is defined and ddcci_build_result.failed | default(false)
   register: ddcci_install_result
   failed_when: false
-  become: true
-  become_user: aur_builder
-  ignore_errors: true
-  register: ignore_errors_register
+  changed_when: ddcci_install_result.rc | default(1) == 0
 
 - name: Brightness - install light from AUR
+  become: true
+  become_user: aur_builder
   kewlfft.aur.aur:
     use: yay
     name: light
     state: present
-  become: true
-  become_user: aur_builder
+  register: light_install_result
+  failed_when: false
   ignore_errors: true
-  register: ignore_errors_register
 
 # LIGHT Permission
 - name: Brightness - copy rules for light run without sudo
@@ -52,8 +51,6 @@
     src: "{{ playbook_dir }}/roles/system-brightness/files/90-backlight.rules"
     dest: /etc/udev/rules.d/
     mode: "0644"
-  ignore_errors: true
-  register: ignore_errors_register
 
 # I2C DEV
 - name: Brightness - enable i2c_dev
@@ -66,33 +63,27 @@
     state: present
     create: true
     mode: "0644"
-  when: system.external_display|bool
-  ignore_errors: true
-  register: ignore_errors_register
+  when: system.external_display | bool
 
 - name: Brightness - Ensure group i2c exists
+  become: true
+  become_user: root
   ansible.builtin.group:
     name: "i2c"
     state: present
-  when: system.external_display|bool
-  ignore_errors: true
-  register: ignore_errors_register
+  when: system.external_display | bool
 
 - name: Brightness - Ensure the user is part of the i2c group
   become: true
   become_user: root
   ansible.builtin.user:
     name: "{{ user.name }}"
-    shell: "{{ user.shell }}"
     groups:
       - i2c
     append: true
-    system: true
   when:
     - user.name is defined
-    - system.external_display|bool
-  ignore_errors: true
-  register: ignore_errors_register
+    - system.external_display | bool
 
 # DDCI
 - name: Brightness - load DDCCI module
@@ -101,9 +92,8 @@
   community.general.modprobe:
     name: ddcci
     state: present
-  when: system.external_display|bool
-  ignore_errors: true
-  register: ignore_errors_register
+  when: system.external_display | bool
+  failed_when: false
 
 - name: Brightness - enable DDCCI
   become: true
@@ -115,9 +105,7 @@
     state: present
     create: true
     mode: "0644"
-  when: system.external_display|bool
-  ignore_errors: true
-  register: ignore_errors_register
+  when: system.external_display | bool
 
 - name: Brightness - copy script
   become: true
@@ -125,10 +113,8 @@
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/system-brightness/files/backlight-start.sh"
     dest: /usr/sbin/
-    mode: "0777"
-  when: system.external_display|bool
-  ignore_errors: true
-  register: ignore_errors_register
+    mode: "0755"
+  when: system.external_display | bool
 
 - name: Brightness - copy ddcci.service
   become: true
@@ -137,18 +123,16 @@
     src: "{{ playbook_dir }}/roles/system-brightness/files/ddcci.service"
     dest: /etc/systemd/system/
     mode: "0644"
-  when: system.external_display|bool
-  ignore_errors: true
-  register: ignore_errors_register
+  when: system.external_display | bool
+  register: ddcci_service_unit
 
-- name: Brightness - start ddci.service
+- name: Brightness - start ddcci.service
   become: true
   become_user: root
   ansible.builtin.systemd_service:
     name: ddcci.service
     state: started
     enabled: true
-    daemon_reload: true
-  when: system.external_display|bool
-  ignore_errors: true
-  register: ignore_errors_register
+    daemon_reload: "{{ ddcci_service_unit.changed | default(false) }}"
+  when: system.external_display | bool
+  failed_when: false

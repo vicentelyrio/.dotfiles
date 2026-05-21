@@ -1,9 +1,12 @@
 [Unit]
 Description=Keep track of media player activity
+PartOf=graphical-session.target
+After=graphical-session.target
 
 [Service]
-Type=oneshot
+Type=simple
 ExecStart=/usr/bin/playerctld daemon
+Restart=on-failure
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target

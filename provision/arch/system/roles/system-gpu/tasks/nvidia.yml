@@ -1,11 +1,15 @@
 ---
+- name: NVIDIA - Select driver package
+  ansible.builtin.set_fact:
+    nvidia_driver_pkg: "{{ 'nvidia-open' if system.nvidia_driver | default('open') == 'open' else 'nvidia' }}"
+
 - name: NVIDIA - Drivers Pacman
   become: true
   become_user: root
-  pacman:
+  community.general.pacman:
     update_cache: false
     name:
-      - nvidia
+      - "{{ nvidia_driver_pkg }}"
       - nvidia-utils
       - nvidia-settings
       - opencl-nvidia
@@ -14,5 +18,60 @@
       - cuda
       - vdpauinfo
       - clinfo
-  ignore_errors: true
-  register: ignore_errors_register
+    state: present
+  register: nvidia_install_result
+
+- name: NVIDIA - Blacklist nouveau
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    dest: /etc/modprobe.d/blacklist-nouveau.conf
+    content: |
+      blacklist nouveau
+      options nouveau modeset=0
+    owner: root
+    group: root
+    mode: "0644"
+  register: nouveau_blacklist
+
+- name: NVIDIA - Ensure early KMS modules in mkinitcpio
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: '^MODULES='
+    line: 'MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)'
+    backup: true
+  register: mkinitcpio_modules
+
+- name: NVIDIA - Enable DRM kernel mode setting
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    dest: /etc/modprobe.d/nvidia.conf
+    content: |
+      options nvidia_drm modeset=1 fbdev=1
+    owner: root
+    group: root
+    mode: "0644"
+  register: nvidia_modprobe
+
+- name: NVIDIA - Rebuild initramfs
+  become: true
+  become_user: root
+  ansible.builtin.command: mkinitcpio -P
+  when: >
+    nvidia_install_result.changed
+    or nouveau_blacklist.changed
+    or mkinitcpio_modules.changed
+    or nvidia_modprobe.changed
+  changed_when: true
+
+- name: NVIDIA - Notify reboot required
+  ansible.builtin.debug:
+    msg: "NVIDIA driver changes applied. A reboot is required to load the new driver."
+  when: >
+    nvidia_install_result.changed
+    or nouveau_blacklist.changed
+    or mkinitcpio_modules.changed
+    or nvidia_modprobe.changed
