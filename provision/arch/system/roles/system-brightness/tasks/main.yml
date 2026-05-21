@@ -1,36 +1,24 @@
 ---
-- name: Brightness - install
+- name: Brightness - install base packages
   become: true
   become_user: root
   ansible.builtin.package:
     name:
       - brightnessctl
       - ddcutil
+      - linux-headers   # required for DKMS to build against the running kernel
 
-- name: Brightness - build aur package (ddcci-driver-linux-dkms-git)
+# DDCCI DKMS module from AUR. Without this, /sys/class/backlight/ddcci* is never
+# created and `light` has nothing to control on an external display setup.
+- name: Brightness - install DDCCI DKMS driver from AUR
   become: true
   become_user: aur_builder
   kewlfft.aur.aur:
     use: yay
     name: ddcci-driver-linux-dkms-git
     state: present
-    extra_args: --builddir /tmp/aur-build --nobuild
-  register: ddcci_build_result
-  failed_when: false
-  ignore_errors: true
-
-- name: Brightness - install built DKMS package with pacman
-  become: true
-  become_user: root
-  ansible.builtin.shell: |
-    cd /home/{{ user.name }}/.cache/yay/ddcci-driver-linux-dkms-git/
-    pacman -U --noconfirm *.pkg.tar*
-  args:
-    executable: /bin/bash
-  when: ddcci_build_result is defined and ddcci_build_result.failed | default(false)
-  register: ddcci_install_result
-  failed_when: false
-  changed_when: ddcci_install_result.rc | default(1) == 0
+  register: ddcci_dkms_install
+  when: system.external_display | bool
 
 - name: Brightness - install light from AUR
   become: true
@@ -40,29 +28,43 @@
     name: light
     state: present
   register: light_install_result
-  failed_when: false
-  ignore_errors: true
 
-# LIGHT Permission
-- name: Brightness - copy rules for light run without sudo
+# LIGHT Permissions - allow user (in `video` group) to set brightness without sudo
+- name: Brightness - copy udev rules for light run without sudo
   become: true
   become_user: root
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/system-brightness/files/90-backlight.rules"
-    dest: /etc/udev/rules.d/
+    dest: /etc/udev/rules.d/90-backlight.rules
     mode: "0644"
+  register: backlight_udev_rules
 
-# I2C DEV
-- name: Brightness - enable i2c_dev
+- name: Brightness - reload udev rules if changed
+  become: true
+  become_user: root
+  ansible.builtin.command: udevadm control --reload-rules
+  when: backlight_udev_rules.changed
+  changed_when: true
+
+# I2C DEV - required for ddcutil to talk to the monitor
+- name: Brightness - enable i2c_dev module at boot
   become: true
   become_user: root
   ansible.builtin.lineinfile:
-    path: /etc/modules-load.d/modules.conf
-    regexp: "i2c_dev"
+    path: /etc/modules-load.d/i2c.conf
+    regexp: "^i2c_dev$"
     line: "i2c_dev"
     state: present
     create: true
     mode: "0644"
+  when: system.external_display | bool
+
+- name: Brightness - load i2c_dev now (without reboot)
+  become: true
+  become_user: root
+  community.general.modprobe:
+    name: i2c_dev
+    state: present
   when: system.external_display | bool
 
 - name: Brightness - Ensure group i2c exists
@@ -73,66 +75,86 @@
     state: present
   when: system.external_display | bool
 
-- name: Brightness - Ensure the user is part of the i2c group
+- name: Brightness - Ensure the user is part of i2c and video groups
   become: true
   become_user: root
   ansible.builtin.user:
     name: "{{ user.name }}"
     groups:
       - i2c
+      - video
     append: true
   when:
     - user.name is defined
     - system.external_display | bool
 
-# DDCI
-- name: Brightness - load DDCCI module
-  become: true
-  become_user: root
-  community.general.modprobe:
-    name: ddcci
-    state: present
-  when: system.external_display | bool
-  failed_when: false
-
-- name: Brightness - enable DDCCI
+# DDCCI module
+- name: Brightness - enable ddcci module at boot
   become: true
   become_user: root
   ansible.builtin.lineinfile:
-    path: /etc/modules-load.d/modules.conf
-    regexp: "ddcci"
+    path: /etc/modules-load.d/ddcci.conf
+    regexp: "^ddcci$"
     line: "ddcci"
     state: present
     create: true
     mode: "0644"
   when: system.external_display | bool
 
-- name: Brightness - copy script
+- name: Brightness - load DDCCI module now
+  become: true
+  become_user: root
+  community.general.modprobe:
+    name: ddcci
+    state: present
+  when: system.external_display | bool
+  register: ddcci_modprobe
+  failed_when:
+    - ddcci_modprobe.failed | default(false)
+    - "'Module ddcci not found' not in (ddcci_modprobe.msg | default(''))"
+
+- name: Brightness - copy bus-binding script
   become: true
   become_user: root
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/system-brightness/files/backlight-start.sh"
-    dest: /usr/sbin/
+    dest: /usr/local/sbin/backlight-start.sh
     mode: "0755"
   when: system.external_display | bool
 
-- name: Brightness - copy ddcci.service
+- name: Brightness - copy ddcci.service unit
   become: true
   become_user: root
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/system-brightness/files/ddcci.service"
-    dest: /etc/systemd/system/
+    dest: /etc/systemd/system/ddcci.service
     mode: "0644"
   when: system.external_display | bool
   register: ddcci_service_unit
 
-- name: Brightness - start ddcci.service
+- name: Brightness - reload systemd if unit changed
+  become: true
+  become_user: root
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+  when: ddcci_service_unit.changed
+
+- name: Brightness - enable ddcci.service at boot
+  become: true
+  become_user: root
+  ansible.builtin.systemd_service:
+    name: ddcci.service
+    enabled: true
+  when: system.external_display | bool
+
+- name: Brightness - start ddcci.service now (best-effort)
   become: true
   become_user: root
   ansible.builtin.systemd_service:
     name: ddcci.service
     state: started
-    enabled: true
-    daemon_reload: "{{ ddcci_service_unit.changed | default(false) }}"
-  when: system.external_display | bool
+  when:
+    - system.external_display | bool
+    - ddcci_dkms_install is defined
+    - ddcci_dkms_install.changed | default(false) or ddcci_service_unit.changed | default(false)
   failed_when: false
