@@ -1,0 +1,22 @@
+---
+- name: Television - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    update_cache: true
+    name:
+      - television
+    state: present
+  ignore_errors: true
+  register: ignore_errors_register
+
+- name: Television - update channels
+  ansible.builtin.command: tv update-channels
+  changed_when: false
+
+- name: Television - add shell integration to zshrc
+  ansible.builtin.lineinfile:
+    path: "~/.zshrc"
+    line: 'eval "$(tv init zsh)"'
+    create: true
+    insertafter: EOF
