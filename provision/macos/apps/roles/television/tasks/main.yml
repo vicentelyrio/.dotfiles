@@ -11,6 +11,22 @@
   ansible.builtin.command: tv update-channels
   changed_when: false
 
+- name: Television - symlink channel overrides
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/television/files/cable/{{ item }}"
+    dest: "~/.config/television/cable/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - files.toml
+    - git-files.toml
+    - git-diff.toml
+    - recent-files.toml
+    - dotfiles.toml
+    - text.toml
+    - todo-comments.toml
+
 - name: Television - add shell integration to zshrc
   ansible.builtin.lineinfile:
     path: "~/.zshrc"
