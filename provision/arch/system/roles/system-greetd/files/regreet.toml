@@ -1,0 +1,17 @@
+# ReGreet configuration. Themed to match the Catppuccin Macchiato desktop.
+# The GTK theme, cursor and font packages are installed system-wide by the
+# ui-theme role, so the `greeter` user can resolve them from /usr/share.
+
+[background]
+path = "/etc/greetd/wallpaper.png"
+fit = "Cover"
+
+[GTK]
+application_prefer_dark_theme = true
+cursor_theme_name = "Catppuccin-Macchiato-Dark-Cursors"
+font_name = "JetBrainsMono Nerd Font 12"
+theme_name = "catppuccin-macchiato-lavender-standard+default"
+
+[commands]
+reboot = ["systemctl", "reboot"]
+poweroff = ["systemctl", "poweroff"]

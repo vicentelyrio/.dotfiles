@@ -1,12 +1,22 @@
 [arch]
 
-# Hyprland WM
-hyprland
-hyprpaper                             # wallpaper
-hyprprop-git                          # stract props from windows
+# Niri WM
+niri
+fuzzel                                # app launcher
+swaybg                                # wallpaper
+xwayland-satellite                    # Xwayland without a root window
+
+# Shell (pulls quickshell as a dependency)
+noctalia-shell
+
+# Greeter
+greetd
+greetd-regreet                        # GTK greeter
+cage                                   # kiosk compositor that hosts regreet
 
 # Clipboard
 cliphist
+clipse
 
 # Color picker
 farge-git                             # xcolor replacement
@@ -15,22 +25,21 @@ farge-git                             # xcolor replacement
 grim                                  # screenshots
 slurp                                 # region selection
 
-# Clipboard
-clipman                               # clipboard manager
-wl-clip-persist-git                   # clibboard persistion
+# Clipboard persistence
+wl-clip-persist-git
 
-# Start / Lock Screen
-swayidle                              # idle deamon
+# Lock screen
+swayidle                              # idle daemon
 swaylock-effects                      # lock screen
-ly
 
 # Theme
 qt5-wayland
 qt6-wayland
 
-# Xorg
-xsettingsd                            # settings deamon
-xdg-desktop-portal-hyprland
+# Xorg compat
+xsettingsd                            # settings daemon
+xdg-desktop-portal-gtk
+xdg-desktop-portal-gnome
 xorg-server
 xorg-xinit
 xdg-utils

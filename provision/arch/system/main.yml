@@ -30,7 +30,6 @@
 
     # Interface
     - ui-theme
-    - ui-hyprland
-    - ui-ags
+    - ui-niri
     - ui-font-manager
     - ui-file-manager

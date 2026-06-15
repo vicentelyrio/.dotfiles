@@ -1,0 +1,13 @@
+{
+  "colorSchemes": {
+    "darkMode": true,
+    "predefinedScheme": "Custom"
+  },
+  "fontDefault": "JetBrainsMono Nerd Font Propo",
+  "wallpaperDir": "~/.config/themes/night/assets/wallpapers",
+  "bar": {
+    "left": ["system-monitor", "active-window", "media"],
+    "center": ["workspaces"],
+    "right": ["tray", "volume", "clock", "control-center"]
+  }
+}
