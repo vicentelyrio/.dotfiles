@@ -1,30 +1,39 @@
 ---
-- name: Node - install nvm
-  kewlfft.aur.aur:
-    use: yay
-    name:
-      - nvm
-    state: present
-  ignore_errors: true
-  register: ignore_errors_register
-  become: true
-  become_user: aur_builder
+# nvm itself is installed by the zsh-nvm zcomet plugin (see terminal role's
+# .zshrc -> `zcomet load lukechilds/zsh-nvm`), which clones nvm into ~/.nvm.
+# These tasks just drive that nvm to install node + corepack.
 
-- name: Node - install node and set version
-  ansible.builtin.shell: "source ~/.nvm/nvm.sh && nvm install --lts"
+- name: Node - ensure nvm is present
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  register: nvm_sh
+
+- name: Node - fail early if nvm is missing
+  ansible.builtin.fail:
+    msg: >-
+      ~/.nvm/nvm.sh not found. Open an interactive zsh shell once so the
+      zsh-nvm plugin can install nvm, then re-run this role.
+  when: not nvm_sh.stat.exists
+
+- name: Node - install latest LTS and set as default
+  ansible.builtin.shell: |
+    export NVM_DIR="$HOME/.nvm"
+    source "$NVM_DIR/nvm.sh"
+    nvm install --lts
+    nvm alias default 'lts/*'
   args:
     executable: /bin/bash
-  register: output
-  changed_when: output.rc != 0
-  become: true
-  ignore_errors: true
-  register: ignore_errors_register
+  register: node_install
+  changed_when: "'is already installed' not in node_install.stderr"
 
-- name: Node - install yarn
-  ansible.builtin.shell: "npm i -g yarn && corepack enable"
+- name: Node - enable corepack and activate yarn
+  ansible.builtin.shell: |
+    export NVM_DIR="$HOME/.nvm"
+    source "$NVM_DIR/nvm.sh"
+    nvm use default
+    corepack enable
+    corepack prepare yarn@stable --activate
   args:
     executable: /bin/bash
-  register: output
-  changed_when: output.rc != 0
-  ignore_errors: true
-  register: ignore_errors_register
+  register: corepack_setup
+  changed_when: corepack_setup.rc == 0
