@@ -1,0 +1,24 @@
+---
+- name: Herdr - install
+  ansible.builtin.package:
+    name:
+      - herdr
+    state: present
+  ignore_errors: true
+  register: ignore_errors_register
+
+- name: Herdr - create config directory
+  ansible.builtin.file:
+    path: "~/.config/herdr"
+    state: directory
+    mode: "0755"
+
+- name: Herdr - symlink files
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/herdr/files/herdr/{{ item }}"
+    dest: "~/.config/herdr/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - config.toml
