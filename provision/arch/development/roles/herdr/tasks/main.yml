@@ -1,11 +1,15 @@
 ---
+- name: Herdr - check if already installed
+  ansible.builtin.command: command -v herdr
+  register: herdr_installed
+  changed_when: false
+  failed_when: false
+
 - name: Herdr - install
-  ansible.builtin.package:
-    name:
-      - herdr
-    state: present
-  ignore_errors: true
-  register: ignore_errors_register
+  ansible.builtin.shell: curl -fsSL https://herdr.dev/install.sh | sh
+  args:
+    executable: /bin/bash
+  when: herdr_installed.rc != 0
 
 - name: Herdr - create config directory
   ansible.builtin.file:
