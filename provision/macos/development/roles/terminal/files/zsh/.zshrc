@@ -74,3 +74,4 @@ export PATH=/Users/vicentelyrio/.opencode/bin:$PATH
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 eval "$(tv init zsh)"
+eval "$(direnv hook zsh)"
