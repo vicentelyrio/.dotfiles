@@ -3,6 +3,11 @@
   hosts: local
   vars_files: ../../vars/all.yml
   ignore_errors: true
+  vars_prompt:
+    - name: user_password
+      prompt: "Enter login password for {{ user.name }}"
+      private: true
+      confirm: true
   roles:
     # System
     - system-aur-builder

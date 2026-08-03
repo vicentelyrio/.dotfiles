@@ -23,3 +23,17 @@
     createhome: true
     home: /home/{{ user.name }}
   when: user.name is defined
+
+# archinstall doesn't reliably leave this account with a usable password, and
+# nothing else in this playbook sets one — without this, a fresh install ends
+# up locked out at both the greeter and tty logins after reboot.
+- name: Set user.name password
+  become: true
+  become_user: root
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    password: "{{ user_password | password_hash('sha512') }}"
+  when:
+    - user.name is defined
+    - user_password is defined
+    - user_password | length > 0
