@@ -30,15 +30,25 @@ mkdir -p "$STATE_DIR"
 (
   exec 8>"$WRITER_LOCK"
   flock -n -x 8 || exit 0
+  exec 9>"$DELTA_LOCK"
 
   while :; do
-    delta=$(
-      flock -x 9
-      cat "$DELTA_FILE" 2>/dev/null || echo 0
-      echo 0 > "$DELTA_FILE"
-    ) 9>"$DELTA_LOCK"
+    flock -x 9
+    delta=$(cat "$DELTA_FILE" 2>/dev/null || echo 0)
 
-    [ "${delta:-0}" -eq 0 ] && break
+    if [ "${delta:-0}" -eq 0 ]; then
+      # Drop the writer lock while still holding the delta lock. A producer
+      # can only queue a delta with the delta lock held, so it either lands
+      # before this read (and we keep looping) or after this release (and it
+      # wins the writer lock). Releasing in the other order strands a delta.
+      flock -u 8
+      flock -u 9
+      break
+    fi
+
+    echo 0 > "$DELTA_FILE"
+    flock -u 9
+
     if [ "$delta" -gt 0 ]; then
       light -A "$delta" >/dev/null 2>&1 || true
     else

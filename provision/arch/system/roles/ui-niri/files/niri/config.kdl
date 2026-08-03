@@ -16,15 +16,16 @@ input {
     }
 
     mouse {
-        natural-scroll false
+        // natural-scroll is a bare flag; omitting it leaves it off.
     }
 }
 
-// Configure outputs via `niri msg outputs` to discover connector names.
-// The external 4K display at 2x scale is expected on DP-1 or HDMI-A-1.
-// output "DP-1" {
+// The 4K display is on DP-3 (per /sys/class/drm), not DP-1. Niri auto-picks a
+// fractional scale from the EDID, so this stays off until that looks wrong.
+// Config is hot-reloaded, so scale can be tuned live.
+// output "DP-3" {
 //     mode "3840x2160@60.000"
-//     scale 2.0
+//     scale 1.2
 //     position x=0 y=0
 // }
 
@@ -68,7 +69,7 @@ environment {
     XDG_SESSION_TYPE "wayland"
     GTK_THEME "catppuccin-macchiato-lavender-standard+default"
     GTK_IM_MODULE "cedilla"
-    XCURSOR_THEME "Catppuccin-Macchiato-Dark-Cursors"
+    XCURSOR_THEME "catppuccin-macchiato-dark-cursors"
     XCURSOR_SIZE "24"
     QT_QPA_PLATFORM "wayland;xcb"
     QT_QPA_PLATFORMTHEME "qt5ct"
@@ -82,7 +83,7 @@ environment {
 }
 
 cursor {
-    xcursor-theme "Catppuccin-Macchiato-Dark-Cursors"
+    xcursor-theme "catppuccin-macchiato-dark-cursors"
     xcursor-size 24
 }
 
@@ -151,6 +152,9 @@ binds {
     // Monitor off ($MOD_ALT+O matching Hyprland)
     Mod+Alt+O { power-off-monitors; }
 
+    // Lock (routed through logind so it shares swayidle's lock handler)
+    Mod+Escape { spawn "loginctl" "lock-session"; }
+
     // Workspaces ($MOD_SPECIAL+H/L = workspace prev/next, matching Hyprland)
     Mod+Shift+H { focus-workspace-up; }
     Mod+Shift+L { focus-workspace-down; }
@@ -210,18 +214,14 @@ binds {
     F9 { spawn "playerctl" "next"; }
 }
 
-window-rules {
-    match app-id="clipse" {
-        open-floating {
-            default-size { width 600; height 700; }
-        }
-    }
+window-rule {
+    match app-id="clipse"
+    open-floating true
+    default-column-width { fixed 600; }
+    default-window-height { fixed 700; }
+}
 
-    match app-id="org.gnome.Calculator" {
-        open-floating {}
-    }
-
-    match is-dialog=true {
-        open-floating {}
-    }
+window-rule {
+    match app-id="org.gnome.Calculator"
+    open-floating true
 }

@@ -7,6 +7,7 @@
       - niri
       - fuzzel
       - swaybg
+      - swayidle
       - wl-clipboard
       - grim
       - slurp
@@ -24,6 +25,7 @@
       - noctalia-shell
       - xwayland-satellite
       - clipse
+      - swaylock-effects
     state: present
   notify: Rkhunter propupdate
   become: true

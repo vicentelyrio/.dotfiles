@@ -35,7 +35,7 @@
     name: greetd
     enabled: true
 
-- name: Greeter - symlink config files
+- name: Greeter - symlink config files (read by greetd as root)
   become: true
   become_user: root
   ansible.builtin.file:
@@ -46,7 +46,28 @@
     force: true
   loop:
     - config.toml
-    - regreet.toml
+
+# Copied, not symlinked: regreet runs as the `greeter` user, which cannot
+# traverse into ~ (mode 0710) to follow a link back into this repo. Edits here
+# only reach the greeter after the playbook runs again.
+- name: Greeter - install regreet config (readable by greeter user)
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/system-greetd/files/regreet.toml"
+    dest: /etc/greetd/regreet.toml
+    mode: "0644"
+
+- name: Greeter - remove stale hyprland greeter files
+  become: true
+  become_user: root
+  ansible.builtin.file:
+    path: "/etc/greetd/{{ item }}"
+    state: absent
+  loop:
+    - hyprland.conf
+    - start-hypr.sh
+    - start-session.sh
 
 - name: Greeter - install background wallpaper (readable by greeter user)
   become: true
