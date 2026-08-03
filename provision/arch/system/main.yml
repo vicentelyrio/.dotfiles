@@ -2,6 +2,7 @@
 - name: Arch System Roles
   hosts: local
   vars_files: ../../vars/all.yml
+  ignore_errors: true
   roles:
     # System
     - system-aur-builder

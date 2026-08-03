@@ -1,6 +1,7 @@
 ---
 - name: Apps Roles
   hosts: local
+  ignore_errors: true
 
   roles:
     - 3D

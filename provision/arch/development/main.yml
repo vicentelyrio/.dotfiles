@@ -2,6 +2,7 @@
 - name: Development Roles
   hosts: local
   vars_files: ../../vars/all.yml
+  ignore_errors: true
   roles:
     - github
     - terminals
