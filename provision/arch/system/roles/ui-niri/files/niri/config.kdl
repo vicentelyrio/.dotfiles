@@ -4,6 +4,7 @@ input {
     keyboard {
         xkb {
             layout "us"
+            variant "intl"
         }
         repeat-delay 200
         repeat-rate 25
@@ -16,15 +17,12 @@ input {
     }
 
     mouse {
-        // natural-scroll is a bare flag; omitting it leaves it off.
+        natural-scroll
     }
 }
 
-// The 4K display is on DP-3 (per /sys/class/drm), not DP-1. Niri's EDID-based
-// auto scale (1.5) came out too large; pin it to the tested value instead.
-// Config is hot-reloaded, so scale can be tuned live.
 output "DP-3" {
-    scale 1.2
+    scale 0.8
     position x=0 y=0
 }
 
@@ -67,14 +65,16 @@ environment {
     XDG_SESSION_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
     GTK_THEME "catppuccin-macchiato-lavender-standard+default"
-    GTK_IM_MODULE "cedilla"
+    GTK_IM_MODULE "fcitx"
     XCURSOR_THEME "catppuccin-macchiato-dark-cursors"
     XCURSOR_SIZE "24"
     QT_QPA_PLATFORM "wayland;xcb"
     QT_QPA_PLATFORMTHEME "qt5ct"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     QT_AUTO_SCREEN_SCALE_FACTOR "1"
-    QT_IM_MODULE "cedilla"
+    QT_IM_MODULE "fcitx"
+    XMODIFIERS "@im=fcitx"
+    SDL_IM_MODULE "fcitx"
     GDK_BACKEND "wayland,x11,*"
     SDL_VIDEODRIVER "wayland"
     CLUTTER_BACKEND "wayland"
@@ -153,8 +153,8 @@ binds {
     Mod+Escape { spawn "loginctl" "lock-session"; }
 
     // Workspaces ($MOD_SPECIAL+H/L = workspace prev/next, matching Hyprland)
-    Mod+Shift+H { focus-workspace-up; }
-    Mod+Shift+L { focus-workspace-down; }
+    Mod+Shift+K { focus-workspace-up; }
+    Mod+Shift+J { focus-workspace-down; }
     Mod+WheelScrollUp { focus-workspace-up; }
     Mod+WheelScrollDown { focus-workspace-down; }
     Mod+Shift+Ctrl+H { move-workspace-to-monitor-left; }

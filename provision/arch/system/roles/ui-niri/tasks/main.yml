@@ -13,6 +13,10 @@
       - qt6-wayland
       - xdg-desktop-portal-gtk
       - xdg-desktop-portal-gnome
+      - fcitx5
+      - fcitx5-gtk
+      - fcitx5-qt
+      - fcitx5-configtool
     state: present
   notify: Rkhunter propupdate
 
@@ -68,6 +72,15 @@
   with_items:
     - settings.json
     - colors.json
+
+# Input method
+- name: Niri - symlink XCompose overrides
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/ui-niri/files/xcompose/XCompose"
+    dest: "~/.XCompose"
+    state: link
+    follow: false
+    force: true
 
 # Misc
 - name: Niri - create screenshots directory

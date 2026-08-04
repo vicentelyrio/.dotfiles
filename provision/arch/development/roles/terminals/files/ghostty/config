@@ -3,7 +3,7 @@ theme = Catppuccin Macchiato
 
 # Font
 font-family = JetBrainsMono Nerd Font
-font-size = 13
+font-size = 16
 
 # Window
 window-padding-x = 6

@@ -1,0 +1,10 @@
+# Load the system default Compose table first, then override specific
+# sequences below.
+include "%L"
+
+# The stock en_US Compose table maps dead_acute (apostrophe) + c to ć
+# (c-acute), which is correct for Polish but not what a pt-BR-style US-intl
+# typist wants when pressing 'c. Redefine it to produce cedilla (ç) instead,
+# matching the muscle memory of Brazilian keyboards.
+<dead_acute> <c> : "ç" ccedilla
+<dead_acute> <C> : "Ç" Ccedilla
