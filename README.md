@@ -82,23 +82,16 @@ Update the [vars](https://github.com/vicentelyrio/.dotfiles/provision/vars/all.y
 - Pacseek
 
 ##### Interface
-- [AGS](https://aylur.github.io/ags-docs/) with [my custom config](https://github.com/vicentelyrio/ags-desktop)
+- Niri
+- [Noctalia](https://github.com/noctalia-dev/noctalia-shell) shell
 - Centralized Theme config
 - Fonts
 - Font Manager
-- Hyprland
-- Hyprpaper
-- Hypridle
 
 ##### References/inspirations
 - https://github.com/id101010/ansible-archlinux (ansible)
 - https://github.com/snowiow/snow (ansible)
 - https://github.com/Matt-FTW/dotfiles (ansible/hyprland)
-
-###### (AGS)
-- https://github.com/Aylur/dotfiles
-- https://github.com/end-4/dots-hyprland
-- https://github.com/PoobToo/dotfiles
 - https://github.com/shadeyg56/nixos-config
 - https://github.com/kotontrion/dotfiles
 

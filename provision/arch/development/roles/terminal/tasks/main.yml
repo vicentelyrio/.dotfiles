@@ -4,13 +4,11 @@
   become_user: root
   ansible.builtin.package:
     name:
-      - ack
       - bat
       - bash-completion
       - eza
       - gitui
       - gtop
-      - neofetch
       - starship
       - tmux
       - tree
@@ -23,6 +21,16 @@
       - ripgrep
       - fzf
     state: present
+
+- name: Terminal utilities - install AUR packages
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - ack
+      - neofetch
+    state: present
+  become: true
+  become_user: aur_builder
 
 - name: Bash
   ansible.builtin.import_tasks: ./config/bash.yml
