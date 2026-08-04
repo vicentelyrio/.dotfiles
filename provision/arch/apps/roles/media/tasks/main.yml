@@ -20,7 +20,6 @@
     name:
       - spotify
       - spicetify-cli
-      - aseprite
     state: present
   ignore_errors: true
   register: ignore_errors_register

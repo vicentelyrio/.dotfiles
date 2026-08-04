@@ -15,7 +15,6 @@
     use: yay
     name:
       - dotenv-linter-bin
-      - cursor-bin
   become: true
   become_user: aur_builder
 

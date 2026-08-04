@@ -9,7 +9,7 @@
       - linux-headers   # required for DKMS to build against the running kernel
 
 # DDCCI DKMS module from AUR. Without this, /sys/class/backlight/ddcci* is never
-# created and `light` has nothing to control on an external display setup.
+# created and `brightnessctl` has nothing to control on an external display setup.
 - name: Brightness - install DDCCI DKMS driver from AUR
   become: true
   become_user: aur_builder
@@ -20,17 +20,8 @@
   register: ddcci_dkms_install
   when: system.external_display | bool
 
-- name: Brightness - install light from AUR
-  become: true
-  become_user: aur_builder
-  kewlfft.aur.aur:
-    use: yay
-    name: light
-    state: present
-  register: light_install_result
-
-# LIGHT Permissions - allow user (in `video` group) to set brightness without sudo
-- name: Brightness - copy udev rules for light run without sudo
+# Permissions - allow user (in `video` group) to set brightness without sudo
+- name: Brightness - copy udev rules for brightnessctl run without sudo
   become: true
   become_user: root
   ansible.builtin.copy:

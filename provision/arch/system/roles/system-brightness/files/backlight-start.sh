@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Binds the ddcci kernel driver to every i2c bus that has a real DDC/CI-capable
 # monitor on it. Once bound, the kernel creates /sys/class/backlight/ddcci<N>
-# which userspace tools like `light` or `brightnessctl` can drive.
+# which userspace tools like `brightnessctl` can drive.
 #
 # Idempotent: re-binding an already-bound device is a no-op (writes silently
 # fail with EEXIST). Safe to run multiple times.

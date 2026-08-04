@@ -5,8 +5,6 @@
   ansible.builtin.package:
     name:
       - niri
-      - fuzzel
-      - swaybg
       - swayidle
       - wl-clipboard
       - grim
@@ -56,14 +54,14 @@
 # Noctalia shell (installed from AUR above; we only provide config overrides)
 - name: Noctalia - create config directory
   ansible.builtin.file:
-    path: ~/.config/quickshell/noctalia
+    path: ~/.config/noctalia
     state: directory
     mode: "0755"
 
 - name: Noctalia - symlink settings overrides
   ansible.builtin.file:
     src: "{{ playbook_dir }}/roles/ui-niri/files/quickshell/noctalia/{{ item }}"
-    dest: "~/.config/quickshell/noctalia/{{ item }}"
+    dest: "~/.config/noctalia/{{ item }}"
     state: link
     follow: false
     force: true

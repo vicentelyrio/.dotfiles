@@ -1,15 +1,11 @@
 ---
-- name: Herdr - check if already installed
-  ansible.builtin.command: command -v herdr
-  register: herdr_installed
-  changed_when: false
-  failed_when: false
-
 - name: Herdr - install
-  ansible.builtin.shell: curl -fsSL https://herdr.dev/install.sh | sh
-  args:
-    executable: /bin/bash
-  when: herdr_installed.rc != 0
+  kewlfft.aur.aur:
+    use: yay
+    name: herdr-bin
+    state: present
+  become: true
+  become_user: aur_builder
 
 - name: Herdr - create config directory
   ansible.builtin.file:

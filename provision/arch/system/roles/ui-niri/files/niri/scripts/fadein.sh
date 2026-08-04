@@ -17,6 +17,6 @@ if [ -s "$SAVE_FILE" ]; then
   target=${target%.*}
   rm -f "$SAVE_FILE"
   if [ "${target:-0}" -gt 0 ]; then
-    light -S "$target" >/dev/null 2>&1
+    brightnessctl set "${target}%" >/dev/null 2>&1
   fi
 fi

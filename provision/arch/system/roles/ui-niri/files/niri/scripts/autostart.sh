@@ -16,4 +16,4 @@ gsettings set org.gnome.desktop.interface cursor-size 24
 gsettings set org.gnome.desktop.interface font-name "JetBrainsMono Nerd Font 13"
 
 # Shell
-noctalia-shell &
+qs -c noctalia-shell &

@@ -8,7 +8,7 @@ PID_FILE="$STATE_DIR/fadeout.pid"
 mkdir -p "$STATE_DIR"
 echo $$ > "$PID_FILE"
 
-start=$(light -G)
+start=$(brightnessctl -m i | cut -d, -f4 | tr -d '%')
 start=${start%.*}
 start=${start:-0}
 
@@ -27,9 +27,9 @@ sleep_step=$(awk "BEGIN { print 1 / $steps }")
 for (( i=1; i<=steps; i++ )); do
   nb=$(awk "BEGIN { print int($start - ($start / $steps) * $i) }")
   [ "$nb" -lt 0 ] && nb=0
-  light -S "$nb" >/dev/null 2>&1
+  brightnessctl set "${nb}%" >/dev/null 2>&1
   sleep "$sleep_step"
 done
 
-light -S 0 >/dev/null 2>&1
+brightnessctl set 0% >/dev/null 2>&1
 rm -f "$PID_FILE"

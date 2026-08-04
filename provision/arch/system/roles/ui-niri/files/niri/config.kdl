@@ -20,14 +20,13 @@ input {
     }
 }
 
-// The 4K display is on DP-3 (per /sys/class/drm), not DP-1. Niri auto-picks a
-// fractional scale from the EDID, so this stays off until that looks wrong.
+// The 4K display is on DP-3 (per /sys/class/drm), not DP-1. Niri's EDID-based
+// auto scale (1.5) came out too large; pin it to the tested value instead.
 // Config is hot-reloaded, so scale can be tuned live.
-// output "DP-3" {
-//     mode "3840x2160@60.000"
-//     scale 1.2
-//     position x=0 y=0
-// }
+output "DP-3" {
+    scale 1.2
+    position x=0 y=0
+}
 
 layout {
     gaps 8
@@ -76,7 +75,6 @@ environment {
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     QT_AUTO_SCREEN_SCALE_FACTOR "1"
     QT_IM_MODULE "cedilla"
-    GDK_SCALE "1"
     GDK_BACKEND "wayland,x11,*"
     SDL_VIDEODRIVER "wayland"
     CLUTTER_BACKEND "wayland"
@@ -96,14 +94,13 @@ hotkey-overlay {
 }
 
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/vicentelyrio/.config/themes/night/assets/wallpapers/flowers.png"
 spawn-at-startup "/home/vicentelyrio/.config/niri/scripts/autostart.sh"
 
 binds {
     // Applications
-    Mod+Return { spawn "alacritty"; }
-    Mod+Space { spawn "fuzzel"; }
-    Mod+V { spawn "alacritty" "--class" "clipse" "-e" "clipse"; }
+    Mod+Return { spawn "ghostty"; }
+    Mod+Space { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+V { spawn "ghostty" "--class=clipse" "-e" "clipse"; }
     Mod+B { spawn "zen-browser" "--profile-directory=Default"; }
 
     // Window management

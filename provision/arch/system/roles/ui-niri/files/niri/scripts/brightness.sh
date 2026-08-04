@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Coalescing brightness adjuster for external DDC/CI monitors.
 #
-# Niri fires repeat events ~30 Hz while a key is held. Each `light` call
+# Niri fires repeat events ~30 Hz while a key is held. Each `brightnessctl` call
 # costs ~80ms (DDC/CI bus latency). Without coalescing, 1 second of holding
 # queues ~30 hardware writes and the monitor lags 2.5s behind input.
 #
@@ -50,9 +50,9 @@ mkdir -p "$STATE_DIR"
     flock -u 9
 
     if [ "$delta" -gt 0 ]; then
-      light -A "$delta" >/dev/null 2>&1 || true
+      brightnessctl set "+${delta}%" >/dev/null 2>&1 || true
     else
-      light -U "$(( -delta ))" >/dev/null 2>&1 || true
+      brightnessctl set "$(( -delta ))%-" >/dev/null 2>&1 || true
     fi
   done
 ) </dev/null >/dev/null 2>&1 &
