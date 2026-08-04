@@ -14,6 +14,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "catppuccin-macchiato-lavend
 gsettings set org.gnome.desktop.interface cursor-theme "catppuccin-macchiato-dark-cursors"
 gsettings set org.gnome.desktop.interface cursor-size 24
 gsettings set org.gnome.desktop.interface font-name "JetBrainsMono Nerd Font 13"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 # Shell
 qs -c noctalia-shell &

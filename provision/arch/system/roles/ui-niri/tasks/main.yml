@@ -75,3 +75,11 @@
     path: "~/Pictures/Screenshots"
     state: directory
     mode: "0755"
+
+- name: Niri - symlink theme wallpapers for noctalia
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/ui-theme/files/themes/night/assets/wallpapers"
+    dest: "~/Pictures/Wallpapers"
+    state: link
+    follow: false
+    force: true
