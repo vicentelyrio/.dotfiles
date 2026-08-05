@@ -60,7 +60,6 @@ layout {
 }
 
 environment {
-    DISPLAY ":0"
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
@@ -93,7 +92,6 @@ hotkey-overlay {
     skip-at-startup
 }
 
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/home/vicentelyrio/.config/niri/scripts/autostart.sh"
 
 binds {
