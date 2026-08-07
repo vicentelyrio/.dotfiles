@@ -220,3 +220,10 @@ window-rule {
     match app-id="org.gnome.Calculator"
     open-floating true
 }
+
+// Steam's toast notifications otherwise open centered/floating in a
+// random spot each time (niri wiki: Application-Issues#steam).
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts\_\d+\_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
