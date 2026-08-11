@@ -5,6 +5,7 @@
   roles:
     # - 3D
     - browsers
+    - kicad
     - media
     - productivity
     - security

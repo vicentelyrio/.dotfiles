@@ -1,0 +1,10 @@
+---
+- name: KiCad - install packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - kicad
+      - kicad-library
+      - kicad-library-3d
+    state: present
