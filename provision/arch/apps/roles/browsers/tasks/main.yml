@@ -4,6 +4,12 @@
     use: yay
     name:
       - zen-browser-bin
+      # ffmpeg6.1 provides libavcodec.so.60, which zen-browser's libxul.so
+      # dlopens by soname for H.264/AAC decoding. It can't find the ffmpeg 9
+      # libavcodec.so.63 that Arch now ships, so codecs report as "Not
+      # Supported" without this compat package.
+      # https://github.com/zen-browser/desktop/issues/10010
+      - ffmpeg6.1
     state: present
   become: true
   become_user: aur_builder
