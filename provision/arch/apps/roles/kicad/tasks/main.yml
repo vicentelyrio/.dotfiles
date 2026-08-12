@@ -8,3 +8,22 @@
       - kicad-library
       - kicad-library-3d
     state: present
+
+# KiCad's wx/GTK panels lose contrast under this dotfiles' dark GTK theme
+# (see files/kicad-gtk-theme-wrapper.sh). /usr/local/bin is ahead of
+# /usr/bin in PATH, so these wrappers transparently shadow the real
+# binaries for anything that launches KiCad by name (menus, terminal, etc).
+- name: KiCad - install GTK theme wrapper for each binary
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/kicad/files/kicad-gtk-theme-wrapper.sh"
+    dest: "/usr/local/bin/{{ item }}"
+    mode: "0755"
+  loop:
+    - kicad
+    - eeschema
+    - pcbnew
+    - gerbview
+    - bitmap2component
+    - pcb_calculator
