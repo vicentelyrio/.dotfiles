@@ -1,4 +1,4 @@
-onboarding = true
+onboarding = false
 [keys]
 prefix = "ctrl+b"
 
