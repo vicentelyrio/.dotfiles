@@ -11,5 +11,6 @@
     dest: "~/.config/nvim"
     clone: true
     version: main
+    accept_hostkey: true
   ignore_errors: true
   register: ignore_errors_register

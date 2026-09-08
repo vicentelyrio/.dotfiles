@@ -1,0 +1,98 @@
+---
+- name: Niri - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - niri
+      - swayidle
+      - wl-clipboard
+      - grim
+      - slurp
+      - qt5-wayland
+      - qt6-wayland
+      - xdg-desktop-portal-gtk
+      - xdg-desktop-portal-gnome
+      - fcitx5
+      - fcitx5-gtk
+      - fcitx5-qt
+      - fcitx5-configtool
+    state: present
+  notify: Rkhunter propupdate
+
+- name: Niri - install aur packages
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - noctalia-shell
+      - xwayland-satellite
+      - clipse
+      - swaylock-effects
+    state: present
+  notify: Rkhunter propupdate
+  become: true
+  become_user: aur_builder
+
+# Niri config
+- name: Niri - create config directory
+  ansible.builtin.file:
+    path: ~/.config/niri
+    state: directory
+    mode: "0755"
+
+- name: Niri - find config files to symlink
+  ansible.builtin.find:
+    paths: "{{ playbook_dir }}/roles/ui-niri/files/niri"
+    file_type: any
+  register: niri_files
+
+- name: Niri - symlink config files
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "~/.config/niri/{{ item.path | basename }}"
+    state: link
+    follow: false
+    force: true
+  loop: "{{ niri_files.files }}"
+
+# Noctalia shell (installed from AUR above; we only provide config overrides)
+- name: Noctalia - create config directory
+  ansible.builtin.file:
+    path: ~/.config/noctalia
+    state: directory
+    mode: "0755"
+
+- name: Noctalia - symlink settings overrides
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/ui-niri/files/quickshell/noctalia/{{ item }}"
+    dest: "~/.config/noctalia/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - settings.json
+    - colors.json
+
+# Input method
+- name: Niri - symlink XCompose overrides
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/ui-niri/files/xcompose/XCompose"
+    dest: "~/.XCompose"
+    state: link
+    follow: false
+    force: true
+
+# Misc
+- name: Niri - create screenshots directory
+  ansible.builtin.file:
+    path: "~/Pictures/Screenshots"
+    state: directory
+    mode: "0755"
+
+- name: Niri - symlink theme wallpapers for noctalia
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/ui-theme/files/themes/night/assets/wallpapers"
+    dest: "~/Pictures/Wallpapers"
+    state: link
+    follow: false
+    force: true

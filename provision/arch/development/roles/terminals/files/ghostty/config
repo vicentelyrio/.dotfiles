@@ -1,0 +1,25 @@
+# Theme
+theme = Catppuccin Macchiato
+
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 16
+
+# Window
+window-padding-x = 6
+window-padding-y = 6
+window-decoration = false
+
+# Cursor
+cursor-style = bar
+cursor-style-blink = false
+
+# Scrolling
+scrollback-limit = 10000000
+
+# Shell
+command = /bin/zsh --login
+
+# Misc
+copy-on-select = false
+confirm-close-surface = false

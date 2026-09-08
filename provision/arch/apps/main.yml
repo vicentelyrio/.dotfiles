@@ -1,10 +1,13 @@
 ---
 - name: Apps Roles
   hosts: local
+  ignore_errors: true
 
   roles:
     - 3D
     - browsers
+    - gaming
+    - kicad
     - media
     - productivity
     - television

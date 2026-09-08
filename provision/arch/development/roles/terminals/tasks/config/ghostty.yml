@@ -1,0 +1,16 @@
+---
+- name: Ghostty - create config directory
+  ansible.builtin.file:
+    path: ~/.config/ghostty
+    state: directory
+    mode: "0755"
+
+- name: Ghostty - symlink files
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/roles/terminals/files/ghostty/{{ item }}"
+    dest: "~/.config/ghostty/{{ item }}"
+    state: link
+    follow: false
+    force: true
+  with_items:
+    - config

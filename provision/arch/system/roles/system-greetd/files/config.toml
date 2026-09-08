@@ -1,7 +1,9 @@
 [terminal]
 vt = 1
 
+# ReGreet runs inside cage (a minimal kiosk Wayland compositor). ReGreet lists
+# the sessions from /usr/share/wayland-sessions (niri ships niri.desktop there)
+# and hands the chosen command back to greetd to run as the logged-in user.
 [default_session]
-command = "/etc/greetd/start-hypr.sh"
-user = "vicentelyrio"
-
+command = "cage -s -- regreet"
+user = "greeter"

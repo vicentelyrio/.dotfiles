@@ -1,3 +1,4 @@
+onboarding = false
 [keys]
 prefix = "ctrl+b"
 
@@ -26,3 +27,6 @@ close_tab    = "prefix+shift+x"
 detach         = "prefix+d"
 reload_config  = "prefix+shift+r"
 toggle_sidebar = "prefix+b"
+
+[ui]
+agent_panel_sort = "spaces"

@@ -7,6 +7,7 @@
       - alacritty
       - wezterm
       - kitty
+      - ghostty
     state: present
 
 - name: Alacritty
@@ -17,3 +18,6 @@
 
 - name: Kitty
   ansible.builtin.import_tasks: ./config/kitty.yml
+
+- name: Ghostty
+  ansible.builtin.import_tasks: ./config/ghostty.yml

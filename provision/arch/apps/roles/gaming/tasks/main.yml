@@ -1,0 +1,52 @@
+---
+- name: Gaming - install
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - steam
+      - prismlauncher
+      - gamescope
+    state: present
+
+# Watchdog for Proton's iscriptevaluator.exe deadlock (ValveSoftware/Proton#1717,
+# open since 2018, no real fix ever shipped - kill-and-retry is the only
+# workaround). Automates detecting and killing the stuck process tree so games
+# don't need a manual ps/kill dance on every launch.
+- name: Gaming - install iscriptevaluator watchdog script
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/gaming/files/steam-iscriptevaluator-watchdog.sh"
+    dest: /usr/local/bin/steam-iscriptevaluator-watchdog.sh
+    mode: "0755"
+
+- name: Gaming - ensure user systemd directory exists
+  ansible.builtin.file:
+    path: "~/.config/systemd/user"
+    state: directory
+    mode: "0755"
+
+- name: Gaming - install iscriptevaluator watchdog user service
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/gaming/files/steam-iscriptevaluator-watchdog.service"
+    dest: "~/.config/systemd/user/steam-iscriptevaluator-watchdog.service"
+    mode: "0644"
+  register: watchdog_unit
+
+- name: Gaming - reload user systemd if unit changed
+  ansible.builtin.systemd_service:
+    scope: user
+    daemon_reload: true
+  when: watchdog_unit.changed
+
+- name: Gaming - enable and start iscriptevaluator watchdog service
+  ansible.builtin.systemd_service:
+    scope: user
+    name: steam-iscriptevaluator-watchdog.service
+    enabled: true
+    state: started
+  register: watchdog_enable
+  failed_when:
+    - watchdog_enable.failed
+    - "'Interactive authentication required' not in (watchdog_enable.msg | default(''))"

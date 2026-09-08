@@ -1,4 +1,8 @@
 onboarding = false
+
+[theme]
+name = "catppuccin"
+
 [keys]
 prefix = "ctrl+b"
 

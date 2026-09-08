@@ -17,6 +17,7 @@
     clone: true
     version: main
     update: false
+    accept_hostkey: true
   when: not nvim_repo.stat.exists
   register: nvim_clone
   failed_when:

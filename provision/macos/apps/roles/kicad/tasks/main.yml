@@ -1,0 +1,8 @@
+---
+- name: KiCad - install packages
+  ansible.builtin.package:
+    name:
+      - kicad
+    state: present
+  ignore_errors: true
+  register: ignore_errors_register

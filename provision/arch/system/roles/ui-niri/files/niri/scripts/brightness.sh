@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Coalescing brightness adjuster for external DDC/CI monitors.
+#
+# Niri fires repeat events ~30 Hz while a key is held. Each `brightnessctl` call
+# costs ~80ms (DDC/CI bus latency). Without coalescing, 1 second of holding
+# queues ~30 hardware writes and the monitor lags 2.5s behind input.
+#
+# This script accumulates deltas in a tmp file; a single background writer
+# (via flock) flushes whatever delta has built up, so holding for 1 second
+# converges to ~12 hardware writes total.
+#
+# Usage: brightness.sh +5   or   brightness.sh -5
+
+set -u
+
+STEP="${1:-+5}"
+STATE_DIR="${XDG_RUNTIME_DIR:-/tmp}/brightness-adjust"
+DELTA_FILE="$STATE_DIR/delta"
+DELTA_LOCK="$STATE_DIR/delta.lock"
+WRITER_LOCK="$STATE_DIR/writer.lock"
+
+mkdir -p "$STATE_DIR"
+
+(
+  flock -x 9
+  cur=$(cat "$DELTA_FILE" 2>/dev/null || echo 0)
+  echo "$(( cur + STEP ))" > "$DELTA_FILE"
+) 9>"$DELTA_LOCK"
+
+(
+  exec 8>"$WRITER_LOCK"
+  flock -n -x 8 || exit 0
+  exec 9>"$DELTA_LOCK"
+
+  while :; do
+    flock -x 9
+    delta=$(cat "$DELTA_FILE" 2>/dev/null || echo 0)
+
+    if [ "${delta:-0}" -eq 0 ]; then
+      # Drop the writer lock while still holding the delta lock. A producer
+      # can only queue a delta with the delta lock held, so it either lands
+      # before this read (and we keep looping) or after this release (and it
+      # wins the writer lock). Releasing in the other order strands a delta.
+      flock -u 8
+      flock -u 9
+      break
+    fi
+
+    echo 0 > "$DELTA_FILE"
+    flock -u 9
+
+    if [ "$delta" -gt 0 ]; then
+      brightnessctl set "+${delta}%" >/dev/null 2>&1 || true
+    else
+      brightnessctl set "$(( -delta ))%-" >/dev/null 2>&1 || true
+    fi
+  done
+) </dev/null >/dev/null 2>&1 &
+disown 2>/dev/null || true

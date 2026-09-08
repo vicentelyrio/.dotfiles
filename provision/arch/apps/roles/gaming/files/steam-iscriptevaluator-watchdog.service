@@ -1,0 +1,16 @@
+[Unit]
+Description=Kill deadlocked Proton iscriptevaluator.exe install-script processes
+# ValveSoftware/Proton#1717 (open since 2018, never fixed upstream) - the
+# install-script/prerequisites stage Steam runs before a game's own exe can
+# hang forever with 0% CPU. A Proton contributor's own guidance in that
+# issue is to kill the process manually; this service automates that.
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/steam-iscriptevaluator-watchdog.sh
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
